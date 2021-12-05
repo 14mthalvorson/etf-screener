@@ -1,5 +1,6 @@
 from finviz_finance_fulfillment import *
 from yfinance_fulfillment import *
+from utilities import *
 
 
 class Ticker:
@@ -34,11 +35,11 @@ class Ticker:
         self.perf_year = finviz_fundamentals['Perf Year']
 
         try:
-            self.gross_income = '{:.2f}'.format(float(self.gross_margin[:-1]) / 100 * float(self.revenue[:-1])) + 'B'
+            self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
         except Exception:
             print('Could not calculate Gross Income for', self.ticker)
 
         try:
-            self.operating_income = '{:.2f}'.format(float(self.operating_margin[:-1]) / 100 * float(self.revenue[:-1])) + 'B'
+            self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
         except Exception:
             print('Could not calculate Operating Income for', self.ticker)
