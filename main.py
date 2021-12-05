@@ -1,14 +1,10 @@
-from Ticker import *
+from Stock import *
 
 
-amzn = Ticker('amzn')
-googl = Ticker('googl')
-msft = Ticker('msft')
-fb = Ticker('fb')
-aapl = Ticker('aapl')
+aapl = Stock('aapl')
 
 # Tickers are now callable as ticker objects
-for variable in [amzn, googl, msft, fb, aapl]:
+for variable in [aapl]:
     print(variable.company)
     print('Sales past 3Y', variable.revenue_growth_3y)
     print('')

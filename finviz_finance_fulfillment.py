@@ -87,16 +87,26 @@ Example metrics to search for
 from finvizfinance.quote import finvizfinance
 
 
-# Takes a ticker and a list of desired metric names and returns a dictionary of the desired metrics
-def get_finviz_metrics(ticker, list_of_metric_names):
-    metrics = {}
+# Single value - Takes a ticker and a single desired metrics and returns the value of the desired metric
+# Multiple values - Takes a ticker and a list of desired metric names and returns a dictionary of the desired metrics
+def get_finviz_metrics(ticker, metric_names):
     stock = finvizfinance(ticker)
     fundamentals = stock.TickerFundament()
 
-    for metric_name in list_of_metric_names:
-        try:
-            metrics[metric_name] = fundamentals[metric_name]
-        except Exception:
-            print("Error retrieving \"" + metric_name + "\" for ticker " + ticker)
+    if isinstance(metric_names, list):
+        metrics = {}
 
-    return metrics
+        for metric_name in metric_names:
+            try:
+                metrics[metric_name] = fundamentals[metric_name]
+            except Exception:
+                print("Error retrieving \"" + metric_name + "\" for ticker " + ticker)
+
+        return metrics
+
+    else:
+        try:
+            return fundamentals[metric_names]
+        except Exception:
+            print("Error retrieving %s from finviz" % metric_names)
+            return None
