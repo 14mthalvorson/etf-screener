@@ -1,5 +1,6 @@
 # financial-metric-scraper
-Web scraper for collecting financial data from various online sources. Acts as a data fulfillment orchestrator for building financial models.
+Web scraper for collecting financial data from various online sources. 
+Acts as a data fulfillment orchestrator for building financial models.
 
 Goals
 * Able to provide weighted ETF metrics based on the underlying holdings. For example, a weighted Sales Q/Q growth would take the weighted arithmetic mean of the individual holdings of an ETF. 
