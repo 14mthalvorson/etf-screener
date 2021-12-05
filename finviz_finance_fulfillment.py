@@ -99,14 +99,13 @@ def get_finviz_metrics(ticker, metric_names):
         for metric_name in metric_names:
             try:
                 metrics[metric_name] = fundamentals[metric_name]
-            except Exception:
-                print("Error retrieving \"" + metric_name + "\" for ticker " + ticker)
+            except Exception as e:
+                print(e)
 
         return metrics
 
     else:
         try:
             return fundamentals[metric_names]
-        except Exception:
-            print("Error retrieving %s from finviz" % metric_names)
-            return None
+        except Exception as e:
+            print(e)

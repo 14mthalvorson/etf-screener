@@ -5,6 +5,8 @@ def to_number(value):
         return float(value[:-1]) * 1000000
     elif value[-1:] == "%":
         return float(value[:-1]) / 100
+    else:
+        return float(value)
 
 
 def to_billions_string(value):

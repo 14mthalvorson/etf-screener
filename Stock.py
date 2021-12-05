@@ -11,7 +11,7 @@ class Stock:
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'SMA200', '52W High', '52W Low',
-                                                 'Perf Year'])
+                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF'])
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
 
@@ -33,13 +33,35 @@ class Stock:
         self.high_52W = finviz_fundamentals['52W High']
         self.low_52W = finviz_fundamentals['52W Low']
         self.perf_year = finviz_fundamentals['Perf Year']
+        self.shares = finviz_fundamentals['Shs Outstand']
+        self.pc_ratio = finviz_fundamentals['P/C']  # price/cash ratio
+        self.pfcf_ratio = finviz_fundamentals['P/FCF']  # price/free cash flow
 
+        self.gross_income = None
+        self.operating_income = None
+        self.cash = None
+        self.free_cash_flow = None
+
+        # Gross income
         try:
             self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
-        except Exception:
-            print('Could not calculate Gross Income for', self.ticker)
+        except Exception as e:
+            print(e)
 
+        # Operating income
         try:
             self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
-        except Exception:
-            print('Could not calculate Operating Income for', self.ticker)
+        except Exception as e:
+            print(e)
+
+        # Cash
+        try:
+            self.cash = to_billions_string(to_number(self.market_cap) / to_number(self.pc_ratio))
+        except Exception as e:
+            print(e)
+
+        # Free cash flow
+        try:
+            self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
+        except Exception as e:
+            print(e)
