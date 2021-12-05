@@ -1,4 +1,4 @@
-from finvizfinancefulfillment import *
+from finviz_finance_fulfillment import *
 
 
 class Ticker:
