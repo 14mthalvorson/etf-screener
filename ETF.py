@@ -1,17 +1,14 @@
+import requests
+import re
+from Stock import *
+
+
 class ETF:
 
     def __init__(self, ticker):
         self.ticker = ticker
-        self.holdings = None
-
-        finviz_fundamentals = get_finviz_metrics(ticker,
-                                                 ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
-                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
-                                                  'Oper. Margin', 'Profit Margin', 'SMA200', '52W High', '52W Low',
-                                                  'Perf Year'])
-
-        if ticker == 'qqq':
-            self.fill_qqq_holdings()
+        self.holdings = self.fill_holdings_from_marketwatch()
+        self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
 
     # Holdings is a dictionary of weighted holdings
     def __int__(self, ticker, holdings):
@@ -24,7 +21,7 @@ class ETF:
     def fill_holdings_from_marketwatch(self):
 
         # Retrieve URL from dictionary
-        url = 'https://www.marketwatch.com/investing/fund/qqq/holdings'
+        url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % self.ticker
 
         # Get HTML from URL
         html_doc = requests.get(url).text
@@ -47,3 +44,13 @@ class ETF:
         weighted_numer = 0
         weighted_denom = 0
 
+        for ticker in self.holdings.keys():
+            try:
+                stock = Stock(ticker)
+                weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
+                weighted_denom += to_number(self.holdings[ticker])
+
+            except Exception as e:
+                print('passing on ', ticker, e)
+
+        return to_percent_string(weighted_numer / weighted_denom)
