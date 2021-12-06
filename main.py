@@ -5,10 +5,12 @@ from Stock import *
 from ETF import *
 
 
-qqq = ETF('qqq')
-print(qqq.holdings)
-print(qqq.weighted_revenue_growth)
+tickers = ['arkk', 'qqq', 'spy', 'vti']
 
+for ticker in tickers:
+    etf = ETF(ticker)
+    print(etf.holdings)
+    print(etf.weighted_revenue_growth_3y)
 
 
 """

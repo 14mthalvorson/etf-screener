@@ -9,6 +9,7 @@ class ETF:
         self.ticker = ticker
         self.holdings = self.fill_holdings_from_marketwatch()
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
+        self.weighted_revenue_growth_3y = self.calculate_weighted_revenue_growth_3y()
 
     # Holdings is a dictionary of weighted holdings
     def __int__(self, ticker, holdings):
@@ -48,6 +49,21 @@ class ETF:
             try:
                 stock = Stock(ticker)
                 weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
+                weighted_denom += to_number(self.holdings[ticker])
+
+            except Exception as e:
+                print('passing on ', ticker, e)
+
+        return to_percent_string(weighted_numer / weighted_denom)
+
+    def calculate_weighted_revenue_growth_3y(self):
+        weighted_numer = 0
+        weighted_denom = 0
+
+        for ticker in self.holdings.keys():
+            try:
+                stock = Stock(ticker)
+                weighted_numer += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
                 weighted_denom += to_number(self.holdings[ticker])
 
             except Exception as e:

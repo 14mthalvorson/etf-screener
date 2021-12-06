@@ -49,7 +49,10 @@ class Stock:
 
         # Gross income
         try:
-            self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
+            if self.gross_margin != '-':
+                self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
+            else:
+                self.gross_income = None
         except Exception as e:
             print('gross_income', e)
 
