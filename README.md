@@ -8,3 +8,7 @@ Goals
 scraper.py would collect the necessary data online (weighted holdings of the ETF, Sales Q/Q data of the individual stocks)
 
 metrics.py provides an interface over the data scraping and aggregation layer. metrics.py contains a collection of callable functions for returning basic financial metrics (Price, Sales, Earnings, etc.) as well as derived financial metrics (P/E, P/S, etc.)
+
+Example Metrics
+
+![EV_to_EBITDA_Ratios_BigTech](https://user-images.githubusercontent.com/12651154/144777535-a56f3cdf-5193-472b-a163-1b3606f3de61.PNG)
