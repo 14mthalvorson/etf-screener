@@ -1,4 +1,5 @@
 def to_number(value):
+    value = str(value)
     if value[-1:] == 'B':
         return float(value[:-1]) * 1000000000
     elif value[-1:] == 'M':
@@ -19,3 +20,8 @@ def to_millions_string(value):
 
 def to_percent_string(value):
     return '{:.2f}'.format(value * 100) + '%'
+
+
+# Round to nearest hundredths
+def to_ratio_string(value):
+    return '{:.2f}'.format(value)

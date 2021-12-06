@@ -20,6 +20,7 @@ class Stock:
         self.price = finviz_fundamentals['Price']
         self.market_cap = finviz_fundamentals['Market Cap']
         self.revenue = finviz_fundamentals['Sales']
+        self.ebitda = get_macrotrends_metrics(ticker, 'EBITDA')
         self.dividend_yield = finviz_fundamentals['Dividend %']
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
@@ -39,6 +40,7 @@ class Stock:
         self.pc_ratio = finviz_fundamentals['P/C']  # price/cash ratio
         self.pfcf_ratio = finviz_fundamentals['P/FCF']  # price/free cash flow
         self.debt_to_equity_ratio = finviz_fundamentals['Debt/Eq']  # debt/equity ratio
+        self.debt_long_term = get_macrotrends_metrics(ticker, 'Long Term Debt')
 
         self.gross_income = None
         self.operating_income = None
@@ -69,3 +71,17 @@ class Stock:
                 self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
         except Exception as e:
             print('free cash flow', ticker, e)
+
+        # Enterprise value
+        try:
+            self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.debt_long_term) - to_number(self.cash))
+        except Exception as e:
+            print('enterprise value', ticker, e)
+
+        # EV to EBITDA Ratio
+        try:
+            self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
+        except Exception as e:
+            print('enterprise value', ticker, e)
+
+

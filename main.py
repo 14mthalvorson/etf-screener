@@ -12,4 +12,5 @@ msft = Stock('msft')
 variables = [aapl, amzn, fb, googl, msft]
 for variable in variables:
     print(variable.company)
-    print('Revenue growth 3Y:', variable.revenue_growth_3y)
+    print('EV/EBITDA:', variable.ev_to_ebitda_ratio)
+    print()
