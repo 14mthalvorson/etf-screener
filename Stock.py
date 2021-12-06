@@ -1,6 +1,7 @@
-from finviz_finance_fulfillment import *
+from macrotrends_fulfillment import *
 from yfinance_fulfillment import *
 from utilities import *
+
 
 
 class Stock:
@@ -11,7 +12,7 @@ class Stock:
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'SMA200', '52W High', '52W Low',
-                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF'])
+                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq'])
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
 
@@ -23,8 +24,9 @@ class Stock:
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
         self.eps_this_y = finviz_fundamentals['EPS this Y']
-        self.revenue_growth = finviz_fundamentals['Sales Q/Q']
-        self.revenue_growth_3y = yfinance_fundamentals['Sales past 3Y']
+        self.revenue_growth_qoq = finviz_fundamentals['Sales Q/Q']
+        self.revenue_growth_yoy = get_macrotrends_metrics(ticker, 'Sales Y/Y')
+        self.revenue_growth_3y = get_macrotrends_metrics(ticker, 'Sales past 3Y')
         self.revenue_growth_5y = finviz_fundamentals['Sales past 5Y']
         self.gross_margin = finviz_fundamentals['Gross Margin']
         self.operating_margin = finviz_fundamentals['Oper. Margin']
@@ -36,6 +38,7 @@ class Stock:
         self.shares = finviz_fundamentals['Shs Outstand']
         self.pc_ratio = finviz_fundamentals['P/C']  # price/cash ratio
         self.pfcf_ratio = finviz_fundamentals['P/FCF']  # price/free cash flow
+        self.debt_to_equity_ratio = finviz_fundamentals['Debt/Eq']  # debt/equity ratio
 
         self.gross_income = None
         self.operating_income = None
@@ -46,22 +49,23 @@ class Stock:
         try:
             self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
         except Exception as e:
-            print(e)
+            print('gross_income', e)
 
         # Operating income
         try:
             self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
         except Exception as e:
-            print(e)
+            print('operating_income', e)
 
         # Cash
         try:
             self.cash = to_billions_string(to_number(self.market_cap) / to_number(self.pc_ratio))
         except Exception as e:
-            print(e)
+            print('cash', e)
 
         # Free cash flow
         try:
-            self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
+            if self.pfcf_ratio != '-':
+                self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
         except Exception as e:
-            print(e)
+            print('free cash flow', ticker, e)
