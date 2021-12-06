@@ -16,7 +16,7 @@ class Stock:
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
 
-        self.company = finviz_fundamentals['Company']
+        self.name = finviz_fundamentals['Company']
         self.price = finviz_fundamentals['Price']
         self.market_cap = finviz_fundamentals['Market Cap']
         self.revenue = finviz_fundamentals['Sales']
@@ -84,3 +84,8 @@ class Stock:
         except Exception as e:
             print('enterprise value', ticker, e)
 
+        # EV to Sales Ratio
+        try:
+            self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
+        except Exception as e:
+            print('EV to Sales Ratio', ticker, e)
