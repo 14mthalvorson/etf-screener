@@ -84,4 +84,3 @@ class Stock:
         except Exception as e:
             print('enterprise value', ticker, e)
 
-

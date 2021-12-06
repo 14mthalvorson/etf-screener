@@ -3,7 +3,8 @@ import re
 import ast
 from utilities import *
 
-def get_macrotrends_metrics(ticker, metric_name):
+
+def get_macrotrends_metrics(ticker, metric_name, *args):
 
     if metric_name == 'Sales past 3Y':
         # This URL is from a specific chart on the Macrotrends revenue page

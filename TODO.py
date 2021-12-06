@@ -1,6 +1,8 @@
 # Metrics
-# 1 TODO: Debt, EV
-# 3 TODO: EBITDA, EBITDA Margin, EV/EBITDA
+# 3 TODO: EBITDA Margin
+
+# TODO: Test out with more stocks. Beef up error handling.
 
 # Documentation
 # TODO: Update formatting on README and add examples
+
