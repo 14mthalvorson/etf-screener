@@ -61,13 +61,13 @@ class Stock:
         try:
             self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
         except Exception as e:
-            print('operating_income', e)
+            pass
 
         # Cash
         try:
             self.cash = to_billions_string(to_number(self.market_cap) / to_number(self.pc_ratio))
         except Exception as e:
-            print('cash', e)
+            self.cash = 0
 
         # Free cash flow
         try:
@@ -80,7 +80,7 @@ class Stock:
         try:
             self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.debt_long_term) - to_number(self.cash))
         except Exception as e:
-            print('enterprise value', ticker, e)
+            self.enterprise_value = self.market_cap
 
         # EV to EBITDA Ratio
         try:
