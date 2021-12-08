@@ -12,7 +12,7 @@ class Stock:
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'SMA200', '52W High', '52W Low',
-                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq'])
+                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
 
@@ -41,6 +41,7 @@ class Stock:
         self.pfcf_ratio = finviz_fundamentals['P/FCF']  # price/free cash flow
         self.debt_to_equity_ratio = finviz_fundamentals['Debt/Eq']  # debt/equity ratio
         self.debt_long_term = get_macrotrends_metrics(ticker, 'Long Term Debt')
+        self.employees = finviz_fundamentals['Employees']
 
         self.gross_income = None
         self.operating_income = None
@@ -92,3 +93,9 @@ class Stock:
             self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
         except Exception as e:
             print('EV to Sales Ratio', ticker, e)
+
+        # Revenue per Employee
+        try:
+            self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
+        except Exception as e:
+            print('Revenue per employee value', ticker, e)
