@@ -53,7 +53,7 @@ class ETF:
                 weighted_denom += to_number(self.holdings[ticker])
 
             except Exception as e:
-                print('passing on ', ticker, e)
+                print('passing on:', ticker, "(weighted revenue growth)" , e)
 
         return to_percent_string(weighted_numer / weighted_denom)
 
@@ -68,7 +68,8 @@ class ETF:
                 weighted_denom += to_number(self.holdings[ticker])
 
             except Exception as e:
-                print('passing on ', ticker, e)
+                # Some companies don't have this. That is fine. Don't really need to notify.
+                pass
 
         return to_percent_string(weighted_numer / weighted_denom)
 
@@ -85,7 +86,7 @@ class ETF:
                 weighted_EV += to_number(stock.enterprise_value)
 
             except Exception as e:
-                print('passing on ', ticker, e)
+                print('passing on:', ticker, "(weighted EV/EBITDA)", e)
 
         if weighted_EBITDA != 0:
             return to_ratio_string(weighted_EV / weighted_EBITDA)

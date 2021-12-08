@@ -9,8 +9,10 @@ tickers = ['arkk', 'qqq', 'spy', 'vti']
 
 for ticker in tickers:
     etf = ETF(ticker)
+    print(ticker)
     print(etf.holdings)
     print(etf.weighted_EV_to_EBITDA_ratio)
+    print()
 
 
 """
