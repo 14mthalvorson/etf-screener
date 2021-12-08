@@ -10,6 +10,7 @@ class ETF:
         self.holdings = self.fill_holdings_from_marketwatch()
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
         self.weighted_revenue_growth_3y = self.calculate_weighted_revenue_growth_3y()
+        self.weighted_EV_to_EBITDA_ratio = self.calculate_weighted_EV_to_EBITDA_ratio()
 
     # Holdings is a dictionary of weighted holdings
     def __int__(self, ticker, holdings):
@@ -70,3 +71,24 @@ class ETF:
                 print('passing on ', ticker, e)
 
         return to_percent_string(weighted_numer / weighted_denom)
+
+    # EV/EBITDA Ratio
+    # 1. Sum all weighted EBITDA. 2. Sum all weighted EV. 3. Calculate the ratio.
+    def calculate_weighted_EV_to_EBITDA_ratio(self):
+        weighted_EV = 0
+        weighted_EBITDA = 0
+
+        for ticker in self.holdings.keys():
+            try:
+                stock = Stock(ticker)
+                weighted_EBITDA += to_number(stock.ebitda)
+                weighted_EV += to_number(stock.enterprise_value)
+
+            except Exception as e:
+                print('passing on ', ticker, e)
+
+        if weighted_EBITDA != 0:
+            return to_ratio_string(weighted_EV / weighted_EBITDA)
+        else:
+            print('Weighted EBITDA is 0 for ETF:', self.ticker)
+            return 'None'
