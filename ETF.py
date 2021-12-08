@@ -52,8 +52,11 @@ class ETF:
                 weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
                 weighted_denom += to_number(self.holdings[ticker])
 
+            except OverflowError:
+                pass
+
             except Exception as e:
-                print('passing on:', ticker, "(weighted revenue growth)" , e)
+                print('passing on:', ticker, "(weighted revenue growth)", e)
 
         return to_percent_string(weighted_numer / weighted_denom)
 
@@ -66,6 +69,9 @@ class ETF:
                 stock = Stock(ticker)
                 weighted_numer += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
                 weighted_denom += to_number(self.holdings[ticker])
+
+            except OverflowError:
+                pass
 
             except Exception as e:
                 # Some companies don't have this. That is fine. Don't really need to notify.
@@ -84,6 +90,9 @@ class ETF:
                 stock = Stock(ticker)
                 weighted_EBITDA += to_number(stock.ebitda)
                 weighted_EV += to_number(stock.enterprise_value)
+
+            except OverflowError:
+                pass
 
             except Exception as e:
                 print('passing on:', ticker, "(weighted EV/EBITDA)", e)
