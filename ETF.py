@@ -49,8 +49,10 @@ class ETF:
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
-                weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
-                weighted_denom += to_number(self.holdings[ticker])
+
+                if stock.revenue_growth_yoy is not None:
+                    weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
+                    weighted_denom += to_number(self.holdings[ticker])
 
             except OverflowError:
                 pass
@@ -67,8 +69,10 @@ class ETF:
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
-                weighted_numer += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
-                weighted_denom += to_number(self.holdings[ticker])
+
+                if stock.revenue_growth_3y is not None:
+                    weighted_numer += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
+                    weighted_denom += to_number(self.holdings[ticker])
 
             except OverflowError:
                 pass
@@ -88,8 +92,10 @@ class ETF:
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
-                weighted_EBITDA += to_number(stock.ebitda)
-                weighted_EV += to_number(stock.enterprise_value)
+
+                if stock.ebitda is not None:
+                    weighted_EBITDA += to_number(stock.ebitda)
+                    weighted_EV += to_number(stock.enterprise_value)
 
             except OverflowError:
                 pass
