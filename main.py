@@ -5,6 +5,13 @@ from Stock import *
 from ETF import *
 
 
+stock = Stock('tsla')
+print(stock.revenue_growth_yoy)
+print(stock.revenue_growth_3y)
+
+
+
+"""
 tickers = ['arkk', 'qqq', 'spy', 'vti']
 
 for ticker in tickers:
@@ -14,7 +21,7 @@ for ticker in tickers:
     print(etf.weighted_EV_to_EBITDA_ratio)
     print()
 
-
+"""
 """
 tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
 

@@ -13,7 +13,9 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             html_doc = requests.get(url).text
 
             # Search the html_doc using regex for the chart content and set to chartData variable.
-            chartData = ast.literal_eval(re.search('var chartData = \[.*]', html_doc).group(0)[16:])
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
 
             revenue_current = chartData[-1]['v1']
             revenue_3Y = chartData[-13]['v1']
@@ -30,11 +32,13 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             html_doc = requests.get(url).text
 
             # Search the html_doc using regex for the chart content and set to chartData variable.
-            chartData = ast.literal_eval(re.search('var chartData = \[.*]', html_doc).group(0)[16:])
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
 
             revenue_current = chartData[-1]['v1']
             revenue_last = chartData[-5]['v1']
-            revenue_growth = to_percent_string((revenue_current / revenue_last) ** (1 / 3) - 1)
+            revenue_growth = to_percent_string((revenue_current / revenue_last) - 1)
 
             return revenue_growth
         except Exception as e:
@@ -47,7 +51,9 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         html_doc = requests.get(url).text
 
         # Search the html_doc using regex for the chart content and set to chartData variable.
-        chartData = ast.literal_eval(re.search('var chartData = \[.*]', html_doc).group(0)[16:])
+        result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+        result = result.replace('null', '"NULL"')
+        chartData = ast.literal_eval(result)
 
         return to_billions_string(chartData[-1]['v1'] * 1000000000)
 
