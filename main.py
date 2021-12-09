@@ -22,7 +22,7 @@ for ticker in tickers:
 """
 #tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
 #tickers = ['wmt', 'tgt', 'cost', 'hd', 'low', 'bby']  # Physical retail
-tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb']  # Big Tech
+tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb', 'tsla', 'nflx', 'coin']  # Big Tech
 
 # Tickers are now callable as ticker objects
 
