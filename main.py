@@ -34,6 +34,7 @@ for ticker in tickers:
     print('EBITDA past 3Y:', stock.ebitda_growth_3y)
     print('Sales past 3Y:', stock.revenue_growth_3y)
     print('Revenue/Employee:', stock.revenue_per_employee)
+    print('Gross profit/Employee:', stock.gross_profit_per_employee)
     print('EBITDA/Employee:', stock.ebitda_per_employee)
     print()
 

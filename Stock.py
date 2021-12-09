@@ -44,19 +44,19 @@ class Stock:
         self.debt_long_term = get_macrotrends_metrics(ticker, 'Long Term Debt')
         self.employees = finviz_fundamentals['Employees']
 
-        self.gross_income = None
+        self.gross_profit = None
         self.operating_income = None
         self.cash = None
         self.free_cash_flow = None
 
-        # Gross income
+        # Gross profit
         try:
             if self.gross_margin != '-':
-                self.gross_income = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
+                self.gross_profit = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
             else:
-                self.gross_income = None
+                self.gross_profit = None
         except Exception as e:
-            print('gross_income', e)
+            print('gross_profit', e)
 
         # Operating income
         try:
@@ -106,3 +106,9 @@ class Stock:
             self.ebitda_per_employee = to_thousands_string(to_number(self.ebitda) / to_number(self.employees))
         except Exception as e:
             print('EBITDA per employee value', ticker, e)
+
+        # Gross profit per Employee
+        try:
+            self.gross_profit_per_employee = to_thousands_string(to_number(self.gross_profit) / to_number(self.employees))
+        except Exception as e:
+            print('Gross profit per employee value', ticker, e)
