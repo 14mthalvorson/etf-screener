@@ -31,7 +31,9 @@ for ticker in tickers:
     print(stock.name)
     print('EV/Revenue:', stock.ev_to_sales_ratio)
     print('EV/EBITDA:', stock.ev_to_ebitda_ratio)
+    print('EBITDA past 3Y:', stock.ebitda_growth_3y)
     print('Sales past 3Y:', stock.revenue_growth_3y)
     print('Revenue/Employee:', stock.revenue_per_employee)
+    print('EBITDA/Employee:', stock.ebitda_per_employee)
     print()
 

@@ -29,6 +29,7 @@ class Stock:
         self.revenue_growth_yoy = get_macrotrends_metrics(ticker, 'Sales Y/Y')
         self.revenue_growth_3y = get_macrotrends_metrics(ticker, 'Sales past 3Y')
         self.revenue_growth_5y = finviz_fundamentals['Sales past 5Y']
+        self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
         self.gross_margin = finviz_fundamentals['Gross Margin']
         self.operating_margin = finviz_fundamentals['Oper. Margin']
         self.profit_margin = finviz_fundamentals['Profit Margin']
@@ -99,3 +100,9 @@ class Stock:
             self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
         except Exception as e:
             print('Revenue per employee value', ticker, e)
+
+        # EBITDA per Employee
+        try:
+            self.ebitda_per_employee = to_thousands_string(to_number(self.ebitda) / to_number(self.employees))
+        except Exception as e:
+            print('EBITDA per employee value', ticker, e)
