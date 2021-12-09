@@ -7,7 +7,7 @@ from ETF import *
 
 
 
-
+"""
 
 tickers = ['arkk', 'qqq', 'spy', 'vti']
 
@@ -20,17 +20,18 @@ for ticker in tickers:
 
 
 """
-tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
-
+#tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
+#tickers = ['wmt', 'tgt', 'cost', 'hd', 'low', 'bby']  # Physical retail
+tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb']  # Big Tech
 
 # Tickers are now callable as ticker objects
 
 for ticker in tickers:
     stock = Stock(ticker)
     print(stock.name)
-    #print('EV/Revenue:', stock.ev_to_sales_ratio)
-    #print('EV/EBITDA:', stock.ev_to_ebitda_ratio)
-    #print('Sales past 3Y:', stock.revenue_growth_3y)
+    print('EV/Revenue:', stock.ev_to_sales_ratio)
+    print('EV/EBITDA:', stock.ev_to_ebitda_ratio)
+    print('Sales past 3Y:', stock.revenue_growth_3y)
     print('Revenue/Employee:', stock.revenue_per_employee)
     print()
-    """
+
