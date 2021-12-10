@@ -16,6 +16,7 @@ class Stock:
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
 
+        # Basic Data Collection
         self.name = finviz_fundamentals['Company']
         self.price = finviz_fundamentals['Price']
         self.market_cap = finviz_fundamentals['Market Cap']
@@ -49,6 +50,11 @@ class Stock:
         self.cash = None
         self.free_cash_flow = None
 
+        # Value checks
+        if self.revenue == '-':
+            self.revenue = None
+
+        # Calculated Metrics
         # Gross profit
         try:
             if self.gross_margin != '-':
