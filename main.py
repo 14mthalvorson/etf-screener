@@ -9,7 +9,7 @@ from ETF import *
 
 
 
-tickers = ['arkk', 'tecl', 'qqq', 'spy', 'vti']
+tickers = ['arkk', 'bulz', 'fngg', 'fngu', 'tecl', 'qqq', 'spy', 'vti']
 
 for ticker in tickers:
     etf = ETF(ticker)

@@ -106,6 +106,9 @@ class ETF:
             except OverflowError:
                 pass
 
+            except HTTPError:
+                pass
+
             except Exception as e:
                 print('passing on:', ticker, "(weighted EV/EBITDA)", e)
 
