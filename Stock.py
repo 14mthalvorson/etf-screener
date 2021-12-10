@@ -109,6 +109,9 @@ class Stock:
 
         # Gross profit per Employee
         try:
-            self.gross_profit_per_employee = to_thousands_string(to_number(self.gross_profit) / to_number(self.employees))
+            if self.gross_profit is not None:
+                self.gross_profit_per_employee = to_thousands_string(to_number(self.gross_profit) / to_number(self.employees))
+            else:
+                self.gross_profit_per_employee = None
         except Exception as e:
             print('Gross profit per employee value', ticker, e)
