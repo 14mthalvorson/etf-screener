@@ -58,7 +58,8 @@ class ETF:
                 pass
 
             except Exception as e:
-                print('passing on:', ticker, "(weighted revenue growth)", e)
+                #print('passing on:', ticker, "(weighted revenue growth)", e)
+                pass
 
         if weighted_denom != 0:
             return to_percent_string(weighted_numer / weighted_denom)
@@ -106,11 +107,9 @@ class ETF:
             except OverflowError:
                 pass
 
-            except HTTPError:
-                pass
-
             except Exception as e:
-                print('passing on:', ticker, "(weighted EV/EBITDA)", e)
+                pass
+                #print('passing on:', ticker, "(weighted EV/EBITDA)", e)
 
         if weighted_EBITDA != 0:
             return to_ratio_string(weighted_EV / weighted_EBITDA)
