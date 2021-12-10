@@ -87,8 +87,6 @@ class ETF:
                 pass
 
         if weighted_denom != 0:
-            print(weighted_numer)
-            print(weighted_denom)
             return to_percent_string(weighted_numer / weighted_denom)
         else:
             return None
@@ -118,3 +116,18 @@ class ETF:
             return to_ratio_string(weighted_EV / weighted_EBITDA)
         else:
             return 'None'
+
+    def display_holdings_metric(self):
+        for ticker in self.holdings.keys():
+            try:
+                stock = Stock(ticker)
+
+                if stock.revenue_growth_3y is not None and stock.ev_to_ebitda_ratio and to_number(stock.ev_to_ebitda_ratio) > 0:
+                    print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_ebitda_ratio)
+
+            except OverflowError:
+                pass
+
+            except Exception as e:
+                pass
+                # print('passing on:', ticker, "(weighted EV/EBITDA)", e)
