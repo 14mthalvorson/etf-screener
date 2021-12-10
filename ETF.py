@@ -114,5 +114,4 @@ class ETF:
         if weighted_EBITDA != 0:
             return to_ratio_string(weighted_EV / weighted_EBITDA)
         else:
-            print('Weighted EBITDA is 0 for ETF:', self.ticker)
             return 'None'
