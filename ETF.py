@@ -60,7 +60,10 @@ class ETF:
             except Exception as e:
                 print('passing on:', ticker, "(weighted revenue growth)", e)
 
-        return to_percent_string(weighted_numer / weighted_denom)
+        if weighted_denom != 0:
+            return to_percent_string(weighted_numer / weighted_denom)
+        else:
+            return None
 
     def calculate_weighted_revenue_growth_3y(self):
         weighted_numer = 0
@@ -81,7 +84,10 @@ class ETF:
                 # Some companies don't have this. That is fine. Don't really need to notify.
                 pass
 
-        return to_percent_string(weighted_numer / weighted_denom)
+        if weighted_denom != 0:
+            return to_percent_string(weighted_numer / weighted_denom)
+        else:
+            return None
 
     # EV/EBITDA Ratio
     # 1. Sum all weighted EBITDA. 2. Sum all weighted EV. 3. Calculate the ratio.
