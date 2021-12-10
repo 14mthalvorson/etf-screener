@@ -85,19 +85,28 @@ class Stock:
 
         # EV to EBITDA Ratio
         try:
-            self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
+            if self.ebitda is not None and to_number(self.ebitda) != 0:
+                self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
+            else:
+                self.ev_to_ebitda_ratio = None
         except Exception as e:
-            print('enterprise value', ticker, e)
+            print('enterprise value/ebitda', ticker, e)
 
         # EV to Sales Ratio
         try:
-            self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
+            if self.revenue is not None and to_number(self.revenue) != 0:
+                self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
+            else:
+                self.ev_to_sales_ratio = None
         except Exception as e:
             print('EV to Sales Ratio', ticker, e)
 
         # Revenue per Employee
         try:
-            self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
+            if self.revenue is not None:
+                self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
+            else:
+                self.revenue_per_employee = None
         except Exception as e:
             print('Revenue per employee value', ticker, e)
 
