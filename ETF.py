@@ -74,7 +74,8 @@ class ETF:
             try:
                 stock = Stock(ticker)
 
-                if stock.revenue_growth_3y is not None:
+                # Ignore outliers above 100% 3Y revenue growth
+                if stock.revenue_growth_3y is not None and to_number(stock.revenue_growth_3y) < 1.00:
                     weighted_numer += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
                     weighted_denom += to_number(self.holdings[ticker])
 
