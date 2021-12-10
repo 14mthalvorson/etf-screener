@@ -9,8 +9,9 @@ class ETF:
         self.ticker = ticker
         self.holdings = self.fill_holdings_from_marketwatch()
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
-        self.weighted_revenue_growth_3y = self.calculate_weighted_revenue_growth_3y()
-        self.weighted_EV_to_EBITDA_ratio = self.calculate_weighted_EV_to_EBITDA_ratio()
+        self.weighted_revenue_growth_3y = None
+        self.weighted_EV_to_EBITDA_ratio = None
+        self.calculate_weighted_growth_and_valuation_metrics()
 
     # Holdings is a dictionary of weighted holdings
     def __int__(self, ticker, holdings):
@@ -66,6 +67,38 @@ class ETF:
         else:
             return None
 
+    def calculate_weighted_growth_and_valuation_metrics(self):
+        weighted_ev_to_ebitda = 0
+        weighted_revenue_growth_3y = 0
+        weighted_denom = 0
+
+        for ticker in self.holdings.keys():
+            try:
+                stock = Stock(ticker)
+
+                # Ignore outliers above 100% 3Y revenue growth
+                if stock.revenue_growth_3y is not None and to_number(stock.revenue_growth_3y) < 1.00 and stock.ev_to_ebitda_ratio is not None and to_number(stock.ev_to_ebitda_ratio) > 0:
+                    weighted_revenue_growth_3y += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
+                    weighted_ev_to_ebitda += to_number(stock.ev_to_ebitda_ratio) * to_number(self.holdings[ticker])
+                    weighted_denom += to_number(self.holdings[ticker])
+
+            except OverflowError:
+                pass
+
+            except Exception as e:
+                # Some companies don't have this. That is fine. Don't really need to notify.
+                pass
+
+        if weighted_denom != 0:
+            self.weighted_revenue_growth_3y = to_percent_string(weighted_revenue_growth_3y / weighted_denom)
+            self.weighted_EV_to_EBITDA_ratio = to_ratio_string(weighted_ev_to_ebitda / weighted_denom)
+            return
+        else:
+            self.weighted_revenue_growth_3y = None
+            self.weighted_EV_to_EBITDA_ratio = None
+            return
+
+    """
     def calculate_weighted_revenue_growth_3y(self):
         weighted_numer = 0
         weighted_denom = 0
@@ -116,8 +149,9 @@ class ETF:
             return to_ratio_string(weighted_EV / weighted_EBITDA)
         else:
             return 'None'
+            """
 
-    def display_holdings_metric(self):
+    def display_hardcoded_metrics(self):
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
