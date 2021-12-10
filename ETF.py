@@ -86,6 +86,8 @@ class ETF:
                 pass
 
         if weighted_denom != 0:
+            print(weighted_numer)
+            print(weighted_denom)
             return to_percent_string(weighted_numer / weighted_denom)
         else:
             return None

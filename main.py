@@ -9,7 +9,9 @@ from ETF import *
 
 
 
-tickers = ['arkk', 'bulz', 'fngg', 'fngu', 'tecl', 'qqq', 'spy', 'vti']
+#tickers = ['arkk', 'bulz', 'fngg', 'fngu', 'tecl', 'qqq', 'spy', 'vti']
+#tickers = ['iyw', 'rom', 'tecl']  # 1x, 2x, 3x comparison
+tickers = ['arkk', 'arkw', 'arkg', 'arkf', 'arkq', 'arkx']  # ARK invest ETFs
 
 for ticker in tickers:
     etf = ETF(ticker)
@@ -23,7 +25,7 @@ for ticker in tickers:
 """
 #tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
 #tickers = ['wmt', 'tgt', 'cost', 'hd', 'low', 'bby']  # Physical retail
-tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb', 'tsla', 'nflx', 'coin']  # Big Tech
+tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb', 'tsla', 'nflx', 'coin']  # Big Tech + some more
 
 # Tickers are now callable as ticker objects
 
