@@ -7,15 +7,16 @@ from ETF import *
 
 
 
-"""
 
-tickers = ['arkk', 'qqq', 'spy', 'vti']
+
+tickers = ['arkk', 'tecl', 'qqq', 'spy', 'vti']
 
 for ticker in tickers:
     etf = ETF(ticker)
     print(ticker)
     print(etf.holdings)
     print(etf.weighted_EV_to_EBITDA_ratio)
+    print(etf.weighted_revenue_growth_3y)
     print()
 
 
@@ -37,4 +38,4 @@ for ticker in tickers:
     print('Gross profit/Employee:', stock.gross_profit_per_employee)
     print('EBITDA/Employee:', stock.ebitda_per_employee)
     print()
-
+"""
