@@ -1,17 +1,24 @@
 # I just use this script to collect whatever data I need in the moment
-# TODO: Investigate TSLA, VEEV, SE, WDAY, PINS
 
 from Stock import *
 from ETF import *
 
+fngs = ETF('fngs')
+
+#etf = ETF('spy')
+etf = fngs
+print(etf.weighted_EV_to_EBITDA_ratio)
+print(etf.weighted_revenue_growth_3y)
+etf.display_hardcoded_metrics()
 
 
-
-
-
+"""
 #tickers = ['arkk', 'bulz', 'fngg', 'fngu', 'tecl', 'qqq', 'spy', 'vti']
+#tickers = ['qqq', 'qld', 'tqqq']  # 1x, 2x, 3x comparison
+#tickers = ['spy', 'sso', 'upro']  # 1x, 2x, 3x comparison
 #tickers = ['iyw', 'rom', 'tecl']  # 1x, 2x, 3x comparison
-tickers = ['arkk', 'arkw', 'arkg', 'arkf', 'arkq', 'arkx']  # ARK invest ETFs
+#tickers = ['arkk', 'arkw', 'arkg', 'arkf', 'arkq', 'arkx']  # ARK invest ETFs
+tickers = ['qqq']
 
 for ticker in tickers:
     etf = ETF(ticker)
@@ -22,7 +29,7 @@ for ticker in tickers:
     print()
 
 
-"""
+
 #tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
 #tickers = ['wmt', 'tgt', 'cost', 'hd', 'low', 'bby']  # Physical retail
 tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb', 'tsla', 'nflx', 'coin']  # Big Tech + some more
