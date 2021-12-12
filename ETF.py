@@ -115,9 +115,9 @@ class ETF:
                     print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_ebitda_ratio + '\t' + self.holdings[stock.ticker])
                 """
 
-                # Revenue growth past 3y and EV/EBITDA
-                if stock.employees is not None and stock.revenue is not None and to_number(stock.employees) > 0:
-                    print(stock.ticker + '\t' + stock.revenue + '\t' + to_thousands_string(to_number(stock.revenue) / to_number(stock.employees)))
+                # Gross profit vs employees
+                if stock.employees is not None and stock.gross_profit is not None and stock.gross_profit_per_employee is not None:
+                    print(stock.ticker + '\t' + stock.gross_profit + '\t' + stock.employees + '\t' + stock.gross_profit_per_employee)
 
             except OverflowError:
                 pass
