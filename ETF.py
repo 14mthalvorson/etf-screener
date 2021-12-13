@@ -20,7 +20,8 @@ class ETF:
                          'prp': '1.00%', 'txn': '1.00%', 'hon': '1.00%', 'amat': '1.00%', 'lrcx': '1.00%', 'adi': '1.00%', 'orcl': '1.00%', 'ibm': '1.00%', 'adsk': '1.00%', 'hd': '1.00%',
                          'xom': '1.00%', 'mrna': '1.00%', 'pfe': '1.00%', 'jnj': '1.00%', 'pg': '1.00%', 'unh': '1.00%', 'roku': '1.00%', 'brk.b': '1.00%', 'jpm': '1.00%', 'bac': '1.00%',
                          'nke': '1.00%', 'tmo': '1.00%', 'csco': '1.00%', 'ko': '1.00%', 'acn': '1.00%', 'abt': '1.00%', 'cvx': '1.00%', 'vz': '1.00%', 't': '1.00%', 'tmus': '1.00%',
-                         'wfc': '1.00%', 'mcd': '1.00%', 'dpz': '1.00%', 'ups': '1.00%', 'mrk': '1.00%', 'low': '1.00%', 'ms': '1.00%', 'gs': '1.00%', 'mdt': '1.00%', 'pm': '1.00%', }
+                         'wfc': '1.00%', 'mcd': '1.00%', 'dpz': '1.00%', 'ups': '1.00%', 'mrk': '1.00%', 'low': '1.00%', 'ms': '1.00%', 'gs': '1.00%', 'mdt': '1.00%', 'pm': '1.00%',
+                         'amt': '0.00%', 'cci': '0.00%', 'sbac': '0.00%', 'dlr': '0.00%', 'eqix': '0.00%', 'mdb': '0.00%', 'evbg': '0.00%', 'mrvl': '0.00%', 'zg': '0.00%', 'rdfn': '0.00%',}
 
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
         self.weighted_revenue_growth_3y = None
@@ -109,15 +110,19 @@ class ETF:
             try:
                 stock = Stock(ticker)
 
-                """
                 # Revenue growth past 3y and EV/EBITDA
                 if stock.revenue_growth_3y is not None and stock.ev_to_ebitda_ratio and to_number(stock.ev_to_ebitda_ratio) > 0:
                     print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_ebitda_ratio + '\t' + self.holdings[stock.ticker])
                 """
-
                 # Gross profit vs employees
                 if stock.employees is not None and stock.gross_profit is not None and stock.gross_profit_per_employee is not None:
-                    print(stock.ticker + '\t' + stock.gross_profit + '\t' + stock.employees + '\t' + stock.gross_profit_per_employee)
+                    print(stock.ticker + '\t' + str(to_number(stock.gross_profit)) + '\t' + stock.employees + '\t' + str(to_number(stock.gross_profit_per_employee)))
+                
+
+                # Revenue vs revenue growth
+                if stock.revenue is not None and stock.revenue_growth_3y is not None:
+                    print(stock.ticker + '\t' + str(to_number(stock.revenue)) + '\t' + stock.revenue_growth_3y)
+"""
 
             except OverflowError:
                 pass
