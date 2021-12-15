@@ -9,8 +9,9 @@ class ETF:
         self.ticker = ticker
         self.holdings = self.fill_holdings_from_marketwatch()
 
+        """
         # Hardcode ETF weightings here
-        # self.holdings = {'amzn':'10.00%', 'aapl':'10.00%', 'googl':'10.00%', 'fb':'10.00%', 'nflx':'10.00%', 'nvda':'10.00%', 'tsla':'10.00%', 'twtr':'10.00%', 'bidu':'10.00%', 'baba':'10.00%'}
+        self.holdings = {'amzn':'10.00%', 'aapl':'10.00%', 'googl':'10.00%', 'fb':'10.00%', 'nflx':'10.00%', 'nvda':'10.00%', 'tsla':'10.00%', 'msft':'10.00%'}  # Mega-cap tech stocks
         self.holdings = {'amzn': '1.00%', 'aapl': '1.00%', 'msft': '1.00%', 'googl': '1.00%', 'goog': '1.00%', 'fb': '1.00%', 'tsm': '1.00%', 'tsla': '1.00%', 'nvda': '1.00%', 'v': '1.00%',
                          'ma': '1.00%', 'adbe': '1.00%', 'dis': '1.00%', 'nflx': '1.00%', 'crm': '1.00%', 'pypl': '1.00%', 'shop': '1.00%', 'se': '1.00%', 'now': '1.00%', 'snow': '1.00%',
                          'abnb': '1.00%', 'team': '1.00%', 'sq': '1.00%', 'snap': '1.00%', 'wday': '1.00%', 'coin': '1.00%', 'zm': '1.00%', 'ddog': '1.00%', 'twlo': '1.00%', 'ttd': '1.00%',
@@ -22,6 +23,9 @@ class ETF:
                          'nke': '1.00%', 'tmo': '1.00%', 'csco': '1.00%', 'ko': '1.00%', 'acn': '1.00%', 'abt': '1.00%', 'cvx': '1.00%', 'vz': '1.00%', 't': '1.00%', 'tmus': '1.00%',
                          'wfc': '1.00%', 'mcd': '1.00%', 'dpz': '1.00%', 'ups': '1.00%', 'mrk': '1.00%', 'low': '1.00%', 'ms': '1.00%', 'gs': '1.00%', 'mdt': '1.00%', 'pm': '1.00%',
                          'amt': '0.00%', 'cci': '0.00%', 'sbac': '0.00%', 'dlr': '0.00%', 'eqix': '0.00%', 'mdb': '0.00%', 'evbg': '0.00%', 'mrvl': '0.00%', 'zg': '0.00%', 'rdfn': '0.00%',}
+        """
+
+        self.holdings = {'amzn':'10.00%', 'aapl':'10.00%', 'googl':'10.00%', 'fb':'10.00%', 'nflx':'10.00%', 'nvda':'10.00%', 'tsla':'10.00%', 'msft':'10.00%'}
 
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
         self.weighted_revenue_growth_3y = None
