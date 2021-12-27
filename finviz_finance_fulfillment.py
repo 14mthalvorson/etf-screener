@@ -91,7 +91,7 @@ from finvizfinance.quote import finvizfinance
 # Multiple values - Takes a ticker and a list of desired metric names and returns a dictionary of the desired metrics
 def get_finviz_metrics(ticker, metric_names):
     stock = finvizfinance(ticker)
-    fundamentals = stock.TickerFundament()
+    fundamentals = stock.ticker_fundament()
 
     if isinstance(metric_names, list):
         metrics = {}
