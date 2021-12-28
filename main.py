@@ -3,12 +3,12 @@
 from Stock import *
 from ETF import *
 
+
 # Single ETF analysis
-etf = ETF('arkg')
+etf = ETF('qqq')
 print(etf.weighted_EV_to_EBITDA_ratio)
 print(etf.weighted_revenue_growth_3y)
 etf.display_hardcoded_metrics()
-
 
 """
 # Multiple ETF Analysis
@@ -17,11 +17,12 @@ etf.display_hardcoded_metrics()
 #tickers = ['spy', 'sso', 'upro']  # 1x, 2x, 3x comparison
 #tickers = ['iyw', 'rom', 'tecl']  # 1x, 2x, 3x comparison
 #tickers = ['arkk', 'arkw', 'arkg', 'arkf', 'arkq', 'arkx']  # ARK invest ETFs
-tickers = ['qqq']
+
+tickers = ['qqq', 'fngg', 'fngs', 'voo', 'vti', 'spy', 'rom', 'iyw']
 for ticker in tickers:
     etf = ETF(ticker)
     print(ticker)
-    print(etf.holdings)
+    #print(etf.holdings)
     print(etf.weighted_EV_to_EBITDA_ratio)
     print(etf.weighted_revenue_growth_3y)
     print()
@@ -39,8 +40,5 @@ for ticker in tickers:
     print('EV/EBITDA:', stock.ev_to_ebitda_ratio)
     print('EBITDA past 3Y:', stock.ebitda_growth_3y)
     print('Sales past 3Y:', stock.revenue_growth_3y)
-    print('Revenue/Employee:', stock.revenue_per_employee)
-    print('Gross profit/Employee:', stock.gross_profit_per_employee)
-    print('EBITDA/Employee:', stock.ebitda_per_employee)
     print()
-"""
+    """
