@@ -9,6 +9,7 @@ class ETF:
         self.ticker = ticker
         self.holdings = self.fill_holdings_from_marketwatch()
 
+
         # Hardcode ETF weightings here
         # self.holdings = {'amzn':'10.00%', 'aapl':'10.00%', 'googl':'10.00%', 'fb':'10.00%', 'nflx':'10.00%', 'nvda':'10.00%', 'tsla':'10.00%', 'twtr':'10.00%', 'bidu':'10.00%', 'baba':'10.00%'}
         self.holdings = {'amzn': '1.00%', 'aapl': '1.00%', 'msft': '1.00%', 'googl': '1.00%', 'goog': '1.00%', 'fb': '1.00%', 'tsm': '1.00%', 'tsla': '1.00%', 'nvda': '1.00%', 'v': '1.00%',
@@ -28,6 +29,7 @@ class ETF:
                         'bl': '1.00%', 'akam': '1.00%', 'estc': '1.00%', 'ttwo': '1.00%', 'anss': '1.00%', 'acc': '1.00%', 'anet': '1.00%', 'axp': '1.00%', 'o': '1.00%', 'pton': '1.00%',
                          'wix': '1.00%', 'irm': '1.00%', 'bmy': '1.00%', 'panw': '1.00%', 'plan': '1.00%', 'vrsn': '1.00%', 'splk': '1.00%', 'spgi': '1.00%', 'pd': '1.00%', 'cybr': '1.00%',
                          'smar': '1.00%', 'rpd': '1.00%', 'band': '1.00%', 'fivn': '1.00%', 'mime': '1.00%', 'logi': '1.00%', 'awk': '1.00%', 'qtwo': '1.00%', 'evbg': '1.00%', 'newr': '1.00%'}
+
 
         self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
         self.weighted_revenue_growth_3y = None
@@ -54,6 +56,9 @@ class ETF:
         return weighted_holdings
 
     def calculate_weighted_ev_ebitda_ratio(self):
+        pass
+
+    def calculate_weighted_ev_gp_ratio(self):
         pass
 
     def calculate_weighted_revenue_growth(self):
