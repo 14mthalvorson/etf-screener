@@ -117,6 +117,7 @@ class ETF:
             return
 
     def display_hardcoded_metrics(self):
+        print('Ticker\tSales Growth past 3y\tEV/GP')
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
