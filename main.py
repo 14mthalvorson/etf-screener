@@ -1,4 +1,5 @@
 from ETF import *
+from Stock import *
 
 
 # Single or Custom ETF analysis
@@ -9,8 +10,13 @@ from ETF import *
 # 'GP/Employees'
 # 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
 #
-columns = ['Ticker', 'Sales Growth 3Y', 'EV/OP']
+
+
+
 etf = ETF('op')
+#conditions = [['Operating Profit', '>', '5.00%']]
+columns = ['Ticker', 'Sales Growth 3Y', 'EV/OP', 'Operating Margin']
+
 etf.display_metrics(columns)
 
 """
