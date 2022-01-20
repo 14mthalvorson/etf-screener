@@ -119,41 +119,39 @@ class ETF:
             self.weighted_EV_to_EBITDA_ratio = None
             return
 
+    # For each stock in an ETF, displays data selected in metrics
     def display_hardcoded_metrics(self):
-        print('Ticker\tSales Growth past 3y\tEV/GP')
+        metrics = ['Sales Growth 3Y', 'EV/EBITDA', 'EV/GP', 'GP/Employees', 'Weighting']
+        header = 'Ticker\t'
+        for metric_title in metrics:
+            header += metric_title + '\t'
+        print(header)
+
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
+                line = stock.ticker + '\t'
 
+                if 'Sales Growth 3Y' in metrics:
+                    line += stock.revenue_growth_3y + '\t'
 
-                # Revenue growth past 3y and EV/EBITDA
-                if stock.revenue_growth_3y is not None and stock.ev_to_ebitda_ratio and to_number(stock.ev_to_ebitda_ratio) > 0:
-                    print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_ebitda_ratio + '\t' + self.holdings[stock.ticker])
-                """
-                # Gross profit vs employees
-                if stock.employees is not None and stock.gross_profit is not None and stock.gross_profit_per_employee is not None:
-                    print(stock.ticker + '\t' + str(to_number(stock.gross_profit)) + '\t' + stock.employees + '\t' + str(to_number(stock.gross_profit_per_employee)))
-                
+                if 'EV/EBITDA' in metrics:
+                    line += stock.ev_to_ebitda_ratio + '\t'
 
-                # Revenue vs revenue growth
-                if stock.revenue is not None and stock.revenue_growth_3y is not None:
-                    print(stock.ticker + '\t' + str(to_number(stock.revenue)) + '\t' + stock.revenue_growth_3y)
-                """
+                if 'EV/GP' in metrics:
+                    line += stock.ev_to_gp_ratio + '\t'
 
-                '''
-                # EV/EBITDA
-                if stock.revenue_growth_3y is not None and stock.ev_to_ebitda_ratio and to_number(stock.ev_to_ebitda_ratio) > 0 and stock.ev_to_gp_ratio is not None:
-                    print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_ebitda_ratio + '\t' + stock.ev_to_gp_ratio)
-                
+                if 'GP/Employees' in metrics:
+                    line += stock.gross_profit_per_employee + '\t'
 
-                # EV/GP
-                if stock.revenue_growth_3y is not None and stock.ev_to_gp_ratio is not None:
-                    print(stock.ticker + '\t' + stock.revenue_growth_3y + '\t' + stock.ev_to_gp_ratio)
-                '''
+                if 'Weighting' in metrics:
+                    line += self.holdings[stock.ticker] + '\t'
+
+                print(line)
 
             except OverflowError:
                 pass
 
             except Exception as e:
                 pass
-                # print('passing on:', ticker, "(weighted EV/EBITDA)", e)
+                # print('passing on:', ticker, "displayed hardcoded metrics", e)

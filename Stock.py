@@ -3,7 +3,6 @@ from yfinance_fulfillment import *
 from utilities import *
 
 
-
 class Stock:
 
     def __init__(self, ticker):
