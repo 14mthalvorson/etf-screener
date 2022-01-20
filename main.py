@@ -5,12 +5,12 @@ from ETF import *
 # Possibilities:
 # 'Ticker', 'Weighting'
 # 'Sales Growth 3Y'
-# 'EV/EBITDA', 'EV/GP'
+# 'EV/EBITDA', 'EV/GP', 'EV/OP'
 # 'GP/Employees'
 # 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
 #
-columns = ['Ticker', 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin']
-etf = ETF('ebitda')
+columns = ['Ticker', 'Sales Growth 3Y', 'EV/OP']
+etf = ETF('op')
 etf.display_metrics(columns)
 
 """

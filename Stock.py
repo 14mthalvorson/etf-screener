@@ -115,6 +115,15 @@ class Stock:
         except Exception as e:
             print('enterprise value/gross profit', ticker, e)
 
+        # EV to Operating Profit Ratio
+        try:
+            if self.operating_income is not None and to_number(self.operating_income) != 0 and self.enterprise_value is not None:
+                self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.operating_income))
+            else:
+                self.ev_to_op_ratio = None
+        except Exception as e:
+            print('enterprise value/operating profit', ticker, e)
+
         # EV to Sales Ratio
         try:
             if self.revenue is not None and to_number(self.revenue) != 0:

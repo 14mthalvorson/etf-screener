@@ -8,7 +8,7 @@ class ETF:
     def __init__(self, ticker):
         self.ticker = ticker
 
-        if self.ticker == 'ebitda':
+        if self.ticker == 'op' or self.ticker == 'ebitda':
             self.holdings = {'amzn': '10.00%', 'aapl': '10.00%', 'googl': '10.00%', 'fb': '10.00%',
                              'cost': '10.00%', 'wmt': '10.00%', 'wday': '10.00%', 'docu': '10.00%', 'appf': '10.00%',
                              'unh': '10.00%', 'panw': '10.00%', 'team': '10.00%', 'bl': '10.00%', 'shop': '10.00%',
@@ -29,7 +29,7 @@ class ETF:
                              'awk': '10.00%', 'mu': '10.00%', 'spgi': '10.00%', 'txn': '10.00%', 'dlr': '10.00%',
                              'mcd': '10.00%', 'avgo': '10.00%', 'amt': '10.00%', 'cci': '10.00%', 'ma': '10.00%',
                              'sbac': '10.00%', 'o': '10.00%', 'mrna': '10.00%', 'vrsn': '10.00%', 'v': '10.00%',
-                             'nvda': '10.00%', 'tsla': '10.00%', 'msft': '10.00%', 'tsm': '1.00%'}  # EBITDA relevant stocks
+                             'nvda': '10.00%', 'tsla': '10.00%', 'msft': '10.00%', 'tsm': '1.00%'}  # EBITDA/Operating profit relevant stocks
         elif self.ticker == 'gp' or self.ticker == 'all':
             self.holdings = {'amzn': '1.00%', 'aapl': '1.00%', 'msft': '1.00%', 'googl': '1.00%', 'goog': '1.00%',
                              'fb': '1.00%', 'tsm': '1.00%', 'tsla': '1.00%', 'nvda': '1.00%', 'v': '1.00%',
@@ -180,6 +180,8 @@ class ETF:
                         line += stock.ev_to_ebitda_ratio + '\t'
                     if metric_title == 'EV/GP':
                         line += stock.ev_to_gp_ratio + '\t'
+                    if metric_title == 'EV/OP':
+                        line += stock.ev_to_op_ratio + '\t'
                     if metric_title == 'EBITDA Margin':
                         line += stock.ebitda_margin + '\t'
                     if metric_title == 'Gross Margin':
