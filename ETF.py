@@ -151,8 +151,7 @@ class ETF:
         for ticker in self.holdings.keys():
             try:
                 stock = Stock(ticker)
-                line = stock.ticker + '\t'
-
+                line = ''
                 for metric_title in columns:
                     if metric_title == 'Ticker':
                         line += stock.ticker + '\t'
