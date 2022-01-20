@@ -9,7 +9,7 @@ from ETF import *
 # 'GP/Employees'
 # 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
 #
-columns = ['Ticker', 'Sales Growth 3Y', 'EV/EBITDA', 'EBITDA Margin']
+columns = ['Ticker', 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin']
 etf = ETF('ebitda')
 etf.display_metrics(columns)
 

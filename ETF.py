@@ -181,13 +181,13 @@ class ETF:
                     if metric_title == 'EV/GP':
                         line += stock.ev_to_gp_ratio + '\t'
                     if metric_title == 'EBITDA Margin':
-                        line += stock.ebitda_margin
+                        line += stock.ebitda_margin + '\t'
                     if metric_title == 'Gross Margin':
-                        line += stock.gross_margin
+                        line += stock.gross_margin + '\t'
                     if metric_title == 'Operating Margin':
-                        line += stock.operating_margin
+                        line += stock.operating_margin + '\t'
                     if metric_title == 'Net Margin':
-                        line += stock.profit_margin
+                        line += stock.profit_margin + '\t'
                     if metric_title == 'GP/Employees':
                         line += stock.gross_profit_per_employee + '\t'
                     if metric_title == 'Weighting':
