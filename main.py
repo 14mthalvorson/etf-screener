@@ -1,10 +1,8 @@
 from ETF import *
 
 
-# Single ETF analysis
-etf = ETF('qqq')
-print(etf.weighted_EV_to_EBITDA_ratio)
-print(etf.weighted_revenue_growth_3y)
+# Single or Custom ETF analysis
+etf = ETF('all')
 etf.display_hardcoded_metrics()
 
 """
