@@ -141,11 +141,10 @@ class ETF:
             return
 
     # For each stock in an ETF, displays data selected in metrics
-    def display_hardcoded_metrics(self):
-        possibilities = ['Sales Growth 3Y', 'EV/EBITDA', 'EV/GP', 'GP/Employees', 'EBITDA Margin', 'Weighting']
-        metrics = ['EBITDA Margin']
-        header = 'Ticker\t'
-        for metric_title in metrics:
+    def display_metrics(self, columns):
+
+        header = ''
+        for metric_title in columns:
             header += metric_title + '\t'
         print(header)
 
@@ -154,24 +153,21 @@ class ETF:
                 stock = Stock(ticker)
                 line = stock.ticker + '\t'
 
-                if 'Sales Growth 3Y' in metrics:
-                    line += stock.revenue_growth_3y + '\t'
-
-                if 'EV/EBITDA' in metrics:
-                    line += stock.ev_to_ebitda_ratio + '\t'
-
-                if 'EV/GP' in metrics:
-                    line += stock.ev_to_gp_ratio + '\t'
-
-                if 'EBITDA Margin' in metrics:
-                    line += stock.ebitda_margin
-
-                if 'GP/Employees' in metrics:
-                    line += stock.gross_profit_per_employee + '\t'
-
-                if 'Weighting' in metrics:
-                    line += self.holdings[stock.ticker] + '\t'
-
+                for metric_title in columns:
+                    if metric_title == 'Ticker':
+                        line += stock.ticker + '\t'
+                    if metric_title == 'Sales Growth 3Y':
+                        line += stock.revenue_growth_3y + '\t'
+                    if metric_title == 'EV/EBITDA':
+                        line += stock.ev_to_ebitda_ratio + '\t'
+                    if metric_title == 'EV/GP':
+                        line += stock.ev_to_gp_ratio + '\t'
+                    if metric_title == 'EBITDA Margin':
+                        line += stock.ebitda_margin
+                    if metric_title == 'GP/Employees':
+                        line += stock.gross_profit_per_employee + '\t'
+                    if metric_title == 'Weighting':
+                        line += self.holdings[stock.ticker] + '\t'
                 print(line)
 
             except OverflowError:
