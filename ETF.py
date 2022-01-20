@@ -9,7 +9,7 @@ class ETF:
         self.ticker = ticker
 
         if self.ticker == 'ebitda':
-            self.holdings = {'amzn': '10.00%', 'aapl': '10.00%', 'googl': '10.00%', 'fb': '10.00%', 'nflx': '10.00%',
+            self.holdings = {'amzn': '10.00%', 'aapl': '10.00%', 'googl': '10.00%', 'fb': '10.00%',
                              'cost': '10.00%', 'wmt': '10.00%', 'wday': '10.00%', 'docu': '10.00%', 'appf': '10.00%',
                              'unh': '10.00%', 'panw': '10.00%', 'team': '10.00%', 'bl': '10.00%', 'shop': '10.00%',
                              'mrvl': '10.00%', 'tgt': '10.00%', 'meli': '10.00%', 'dis': '10.00%', 'band': '10.00%',
@@ -20,12 +20,12 @@ class ETF:
                              'pypl': '10.00%', 'amd': '10.00%', 'cvx': '10.00%', 't': '10.00%', 'etsy': '10.00%',
                              'morn': '10.00%', 'mdt': '10.00%', 'ttd': '10.00%', 'pg': '10.00%', 'mrk': '10.00%',
                              'ttwo': '10.00%', 'intu': '10.00%', 'abt': '10.00%', 'vmw': '10.00%', 'cmcsa': '10.00%',
-                             'jnj': '10.00%', 'tmus': '10.00%', 'veev': '10.00%', 'csco': '10.00%', 'mtch': '10.00%',
+                             'jnj': '10.00%', 'veev': '10.00%', 'csco': '10.00%', 'mtch': '10.00%',
                              'amat': '10.00%', 'pfe': '10.00%', 'lrcx': '10.00%', 'zm': '10.00%', 'tmo': '10.00%',
                              'ko': '10.00%', 'anet': '10.00%', 'orcl': '10.00%', 'qcom': '10.00%', 'anss': '10.00%',
                              'vz': '10.00%', 'adi': '10.00%', 'isrg': '10.00%', 'akam': '10.00%', 'ms': '10.00%',
                              'dsgx': '10.00%', 'adbe': '10.00%', 'irm': '10.00%', 'intc': '10.00%',
-                             'coin': '10.00%', 'eqix': '10.00%', 'pm': '10.00%', 'acc': '10.00%', 'gs': '10.00%',
+                             'coin': '10.00%', 'eqix': '10.00%', 'pm': '10.00%', 'acc': '10.00%',
                              'awk': '10.00%', 'mu': '10.00%', 'spgi': '10.00%', 'txn': '10.00%', 'dlr': '10.00%',
                              'mcd': '10.00%', 'avgo': '10.00%', 'amt': '10.00%', 'cci': '10.00%', 'ma': '10.00%',
                              'sbac': '10.00%', 'o': '10.00%', 'mrna': '10.00%', 'vrsn': '10.00%', 'v': '10.00%',
@@ -182,6 +182,12 @@ class ETF:
                         line += stock.ev_to_gp_ratio + '\t'
                     if metric_title == 'EBITDA Margin':
                         line += stock.ebitda_margin
+                    if metric_title == 'Gross Margin':
+                        line += stock.gross_margin
+                    if metric_title == 'Operating Margin':
+                        line += stock.operating_margin
+                    if metric_title == 'Net Margin':
+                        line += stock.profit_margin
                     if metric_title == 'GP/Employees':
                         line += stock.gross_profit_per_employee + '\t'
                     if metric_title == 'Weighting':

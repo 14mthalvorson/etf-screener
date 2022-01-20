@@ -3,12 +3,12 @@ from ETF import *
 
 # Single or Custom ETF analysis
 # Possibilities:
-# 'Ticker'
+# 'Ticker', 'Weighting'
 # 'Sales Growth 3Y'
 # 'EV/EBITDA', 'EV/GP'
 # 'GP/Employees'
-# 'EBITDA Margin'
-# 'Weighting'
+# 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
+#
 columns = ['Ticker', 'Sales Growth 3Y', 'EV/EBITDA', 'EBITDA Margin']
 etf = ETF('ebitda')
 etf.display_metrics(columns)
