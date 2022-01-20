@@ -142,7 +142,8 @@ class ETF:
 
     # For each stock in an ETF, displays data selected in metrics
     def display_hardcoded_metrics(self):
-        metrics = ['Sales Growth 3Y', 'EV/EBITDA', 'EV/GP', 'GP/Employees', 'Weighting']
+        possibilities = ['Sales Growth 3Y', 'EV/EBITDA', 'EV/GP', 'GP/Employees', 'EBITDA Margin', 'Weighting']
+        metrics = ['EBITDA Margin']
         header = 'Ticker\t'
         for metric_title in metrics:
             header += metric_title + '\t'
@@ -161,6 +162,9 @@ class ETF:
 
                 if 'EV/GP' in metrics:
                     line += stock.ev_to_gp_ratio + '\t'
+
+                if 'EBITDA Margin' in metrics:
+                    line += stock.ebitda_margin
 
                 if 'GP/Employees' in metrics:
                     line += stock.gross_profit_per_employee + '\t'

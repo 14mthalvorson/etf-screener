@@ -97,6 +97,15 @@ class Stock:
         except Exception as e:
             print('enterprise value/ebitda', ticker, e)
 
+        # EBITDA Margin
+        try:
+            if self.ebitda is not None and to_number(self.ebitda) != 0 and self.revenue is not None:
+                self.ebitda_margin = to_percent_string(to_number(self.ebitda) / to_number(self.revenue))
+            else:
+                self.ebitda_margin = None
+        except Exception as e:
+            print('ebitda margin', ticker, e)
+
         # EV to Gross Profit Ratio
         try:
             if self.gross_profit is not None and to_number(self.gross_profit) != 0:

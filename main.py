@@ -2,7 +2,7 @@ from ETF import *
 
 
 # Single or Custom ETF analysis
-etf = ETF('all')
+etf = ETF('ebitda')
 etf.display_hardcoded_metrics()
 
 """
