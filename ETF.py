@@ -7,69 +7,52 @@ class ETF:
 
     def __init__(self, ticker):
         self.ticker = ticker
+        self.holdings = None
 
-        if self.ticker == 'op' or self.ticker == 'ebitda':
-            self.holdings = {'amzn': '10.00%', 'aapl': '10.00%', 'googl': '10.00%', 'fb': '10.00%',
-                             'cost': '10.00%', 'wmt': '10.00%', 'unh': '10.00%', 'shop': '10.00%',
-                             'tgt': '10.00%', 'meli': '10.00%', 'dis': '10.00%',
-                             'low': '10.00%', 'ups': '10.00%', 'pins': '10.00%',
-                             'roku': '10.00%', 'upst': '10.00%', 'nke': '10.00%', 'hd': '10.00%',
-                             'acn': '10.00%', 'ibm': '10.00%', 'adsk': '10.00%', 'mime': '10.00%',
-                             'dpz': '10.00%', 'tyl': '10.00%', 'logi': '10.00%', 'hon': '10.00%',
-                             'pypl': '10.00%', 'amd': '10.00%', 'cvx': '10.00%', 't': '10.00%', 'etsy': '10.00%',
-                             'morn': '10.00%', 'mdt': '10.00%', 'ttd': '10.00%', 'pg': '10.00%', 'mrk': '10.00%',
-                             'ttwo': '10.00%', 'intu': '10.00%', 'abt': '10.00%', 'vmw': '10.00%', 'cmcsa': '10.00%',
-                             'jnj': '10.00%', 'veev': '10.00%', 'csco': '10.00%', 'mtch': '10.00%',
-                             'amat': '10.00%', 'pfe': '10.00%', 'lrcx': '10.00%', 'zm': '10.00%', 'tmo': '10.00%',
-                             'ko': '10.00%', 'anet': '10.00%', 'orcl': '10.00%', 'qcom': '10.00%', 'anss': '10.00%',
-                             'vz': '10.00%', 'adi': '10.00%', 'isrg': '10.00%', 'akam': '10.00%', 'ms': '10.00%',
-                             'dsgx': '10.00%', 'adbe': '10.00%', 'irm': '10.00%', 'intc': '10.00%',
-                             'coin': '10.00%', 'eqix': '10.00%', 'pm': '10.00%', 'acc': '10.00%',
-                             'awk': '10.00%', 'mu': '10.00%', 'spgi': '10.00%', 'txn': '10.00%', 'dlr': '10.00%',
-                             'mcd': '10.00%', 'avgo': '10.00%', 'amt': '10.00%', 'cci': '10.00%', 'ma': '10.00%',
-                             'sbac': '10.00%', 'o': '10.00%', 'mrna': '10.00%', 'vrsn': '10.00%', 'v': '10.00%',
-                             'nvda': '10.00%', 'tsla': '10.00%', 'msft': '10.00%', 'tsm': '1.00%'}  # EBITDA/Operating profit relevant stocks
-        elif self.ticker == 'gp' or self.ticker == 'all':
-            self.holdings = {'amzn': '1.00%', 'aapl': '1.00%', 'msft': '1.00%', 'googl': '1.00%', 'goog': '1.00%',
-                             'fb': '1.00%', 'tsm': '1.00%', 'tsla': '1.00%', 'nvda': '1.00%', 'v': '1.00%',
-                             'ma': '1.00%', 'adbe': '1.00%', 'dis': '1.00%', 'nflx': '1.00%', 'crm': '1.00%',
-                             'pypl': '1.00%', 'shop': '1.00%', 'se': '1.00%', 'now': '1.00%', 'snow': '1.00%',
-                             'abnb': '1.00%', 'team': '1.00%', 'sq': '1.00%', 'snap': '1.00%', 'wday': '1.00%',
-                             'coin': '1.00%', 'zm': '1.00%', 'ddog': '1.00%', 'twlo': '1.00%', 'ttd': '1.00%',
-                             'crwd': '1.00%', 'net': '1.00%', 'zs': '1.00%', 'veev': '1.00%', 'u': '1.00%',
-                             'pltr': '1.00%', 'twtr': '1.00%', 'hubs': '1.00%', 'okta': '1.00%', 'etsy': '1.00%',
-                             'bill': '1.00%', 'pins': '1.00%', 'tyl': '1.00%', 'hood': '1.00%', 'rng': '1.00%',
-                             'zen': '1.00%', 'coup': '1.00%', 'open': '1.00%', 'appf': '1.00%', 'amd': '1.00%',
-                             'mu': '1.00%', 'intc': '1.00%', 'intu': '1.00%', 'isrg': '1.00%', 'cost': '1.00%',
-                             'wmt': '1.00%', 'tgt': '1.00%', 'qcom': '1.00%', 'avgo': '1.00%', 'cmcsa': '1.00%',
-                             'prp': '1.00%', 'txn': '1.00%', 'hon': '1.00%', 'amat': '1.00%', 'lrcx': '1.00%',
-                             'adi': '1.00%', 'orcl': '1.00%', 'ibm': '1.00%', 'adsk': '1.00%', 'hd': '1.00%',
-                             'xom': '1.00%', 'mrna': '1.00%', 'pfe': '1.00%', 'jnj': '1.00%', 'pg': '1.00%',
-                             'unh': '1.00%', 'roku': '1.00%', 'brk.b': '1.00%', 'jpm': '1.00%', 'bac': '1.00%',
-                             'nke': '1.00%', 'tmo': '1.00%', 'csco': '1.00%', 'ko': '1.00%', 'acn': '1.00%',
-                             'abt': '1.00%', 'cvx': '1.00%', 'vz': '1.00%', 't': '1.00%', 'tmus': '1.00%',
-                             'wfc': '1.00%', 'mcd': '1.00%', 'dpz': '1.00%', 'ups': '1.00%', 'mrk': '1.00%',
-                             'low': '1.00%', 'ms': '1.00%', 'gs': '1.00%', 'mdt': '1.00%', 'pm': '1.00%',
-                             'tdoc': '1.00%', 'morn': '1.00%', 'sbac': '1.00%', 'dlr': '1.00%',
-                             'amt': '1.00%', 'eqix': '1.00%', 'cci': '1.00%', 'we': '1.00%', 'apps': '1.00%',
-                             'gtlb': '1.00%', 'sofi': '1.00%', 'upst': '1.00%', 'path': '1.00%', 'mttr': '1.00%',
-                             'upwk': '1.00%', 'ai': '1.00%', 'docu': '1.00%', 'fvrr': '1.00%', 'sklz': '1.00%',
-                             'cour': '1.00%', 'appn': '1.00%', 'jamf': '1.00%', 'rblx': '1.00%', 'cpng': '1.00%',
-                             'spot': '1.00%', 'meli': '1.00%', 'rdfn': '1.00%', 'vmw': '1.00%', 'api': '1.00%',
-                             'cvna': '1.00%', 'avlr': '1.00%', 'dsgx': '1.00%', 'lmnd': '1.00%', 'asan': '1.00%',
-                             'frog': '1.00%', 'zg': '1.00%', 'domo': '1.00%', 'eght': '1.00%', 'mtch': '1.00%',
-                             'bl': '1.00%', 'akam': '1.00%', 'estc': '1.00%', 'ttwo': '1.00%', 'anss': '1.00%',
-                             'acc': '1.00%', 'anet': '1.00%', 'axp': '1.00%', 'o': '1.00%', 'pton': '1.00%',
-                             'wix': '1.00%', 'irm': '1.00%', 'bmy': '1.00%', 'panw': '1.00%', 'plan': '1.00%',
-                             'vrsn': '1.00%', 'splk': '1.00%', 'spgi': '1.00%', 'pd': '1.00%', 'cybr': '1.00%',
-                             'smar': '1.00%', 'rpd': '1.00%', 'band': '1.00%', 'fivn': '1.00%', 'mime': '1.00%',
-                             'logi': '1.00%', 'awk': '1.00%', 'qtwo': '1.00%', 'evbg': '1.00%', 'newr': '1.00%',
-                             'amt': '0.00%', 'cci': '0.00%', 'sbac': '0.00%', 'dlr': '0.00%', 'eqix': '0.00%',
-                             'mdb': '0.00%', 'evbg': '0.00%', 'mrvl': '0.00%', 'zg': '0.00%',
-                             'rdfn': '0.00%'}  # GP relevant companies
-        elif self.ticker == 'mega':
-            self.holdings = {'amzn': '10.00%', 'aapl': '10.00%', 'googl': '10.00%', 'fb': '10.00%', 'nflx': '10.00%',
-                             'nvda': '10.00%', 'tsla': '10.00%', 'msft': '10.00%'}  # Mega-cap tech stocks
+        if ' ' in self.ticker:
+            self.set_holdings_from_string(self.ticker)
+            self.ticker = 'custom'
+
+        elif self.ticker == 'op' or self.ticker == 'ebitda':  # EBITDA/Operating profit relevant stocks
+            ticker_string = 'amzn aapl googl fb cost wmt unh shop tgt meli dis low ups pins roku upst nke hd acn ibm ' \
+                            'adsk mime dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
+                            'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
+                            'dsgx adbe irm intc coin eqix pm acc awk mu spgi txn dlr mcd avgo amt cci ma sbac o mrna vrsn ' \
+                            'v nvda tsla msft tsm'
+            self.set_holdings_from_string(ticker_string)
+
+        elif self.ticker == 'gp' or self.ticker == 'all':  # GP relevant companies
+            ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm v ma adbe dis crm pypl shop se now snow abnb team ' \
+                            'sq snap wsay coin zm ddog twlo ttd crwd net zs veev u pltr twtr hubs okta etsy bill pins tyl ' \
+                            'hood rng zen coup open appf amd mu intc intu isrg cost wmt tgt qcom avgo cmcsa psp' \
+                            'txn hon amat lrcx adi orcl ibm adsk hd xom mrna pfe jnj pg unh roku brk.b jpm bac nke tmo ' \
+                            'csco ko acn abt cvx vz t tmus wfcmcd dpz ups mrk low ms gs mdt pm tdoc morn sbac dlr amt ' \
+                            'eqix cci we apps gtlb sofi upst path mttr upwk ai docu fvrr sklz cour appn jamf rblx ' \
+                            'cpng spot meli rdfn vmw api cvna avlr dsgx lmnd asan frog zg domo eght mtch bl akam estc ' \
+                            'ttwo anss acc anet axp o pton wix irm bmy panw plan vrsn splk spgi pd cybr smar rpd band ' \
+                            'fivn mime logi awk qtwo evbg newr mdb mrvl'
+            self.set_holdings_from_string(ticker_string)
+
+        elif self.ticker == 'mine':  # My Holdings
+            ticker_string = 'amzn etsy tdoc coin fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
+                            'crm pypl adbe hubs aappf chgg team zen ttd twlo mdb rng okta payc evbg qtwo veev newr crwd ' \
+                            'awk cost logi mime zs fivn smar band rpd cybr pd tyl dis spgi dpz cmcsa ddog qcom avgo splk ' \
+                            'plan panw vrsn bmy irm pdi pton zm wix axp csco o z anet now anss soxx snap tdoc arkk arkw ' \
+                            'arkg arkf ttwo clou coup bill estc akam bl wday twtr mtch fngu eght domo net apps se api zg ' \
+                            'frog snow pltr asan wcld lmnd cvna avlr dsgx abnb ibb idna xbi open qqq vmw tsm rdfn adsk ' \
+                            'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
+                            'coin mrvl upwk googl mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
+                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
+            self.set_holdings_from_string(ticker_string)
+
+        elif self.ticker == 'mega':  # Mega-cap tech stocks
+            ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm'
+            self.set_holdings_from_string(ticker_string)
+
+        elif self.ticker == 'reit':  # Digital REIT stocks
+            ticker_string = 'sbac dlr eqix amt acc o cci irm'
+            self.set_holdings_from_string(ticker_string)
+
         else:
             self.holdings = self.fill_holdings_from_marketwatch()
 
@@ -96,6 +79,10 @@ class ETF:
         weighted_holdings = {ticker_results[i]: weightings_results[i] for i in range(len(ticker_results))}
 
         return weighted_holdings
+
+    # Takes space delimited list of tickers and set equal-weight holdings
+    def set_holdings_from_string(self, ticker_string):
+        self.holdings = {ticker: '1.00%' for ticker in ticker_string.lower().split(' ')}
 
     def calculate_weighted_ev_ebitda_ratio(self):
         pass
@@ -175,6 +162,8 @@ class ETF:
                         line += stock.ticker + '\t'
                     if metric_title == 'Sales Growth 3Y':
                         line += stock.revenue_growth_3y + '\t'
+                    if metric_title == 'Median Rev Growth 3Y':
+                        line += stock.med_rev_growth_3y + '\t'
                     if metric_title == 'EV/EBITDA':
                         line += stock.ev_to_ebitda_ratio + '\t'
                     if metric_title == 'EV/GP':

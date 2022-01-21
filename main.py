@@ -2,20 +2,20 @@ from ETF import *
 from Stock import *
 
 
-# Single or Custom ETF analysis
-# Possibilities:
-# 'Ticker', 'Weighting'
-# 'Sales Growth 3Y'
-# 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
-# 'EV/GP', 'EV/OP', 'Adj EV/OP', 'EV/EBITDA'
-# 'GP/Employees'
-# '52W High'
+'''
+~~~ ETF Analysis ~~~
+Possibilities for columns:
+'Ticker', 'Weighting'
+'Sales Growth 3Y', 'Median Rev Growth 3Y'
+'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
+'EV/GP', 'EV/OP', 'Adj EV/OP', 'EV/EBITDA'
+'GP/Employees'
+'52W High'
+'''
 
-
-
-etf = ETF('qqq')
+etf = ETF('mine')
 # conditions = [['Operating Profit', '>', '5.00%']]
-columns = ['Ticker', 'Sales Growth 3Y', 'Adj EV/OP', 'Operating Margin', '52W High', 'Beta']
+columns = ['Ticker', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/OP', 'Gross Margin', 'Operating Margin', '52W High']
 
 etf.display_metrics(columns)
 
