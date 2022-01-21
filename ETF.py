@@ -157,42 +157,44 @@ class ETF:
             try:
                 stock = Stock(ticker)
                 line = ''
+
                 for metric_title in columns:
-                    if metric_title == 'Ticker':
-                        line += stock.ticker + '\t'
-                    if metric_title == 'Sales Growth 3Y':
-                        line += stock.revenue_growth_3y + '\t'
-                    if metric_title == 'Median Rev Growth 3Y':
-                        line += stock.med_rev_growth_3y + '\t'
-                    if metric_title == 'EV/EBITDA':
-                        line += stock.ev_to_ebitda_ratio + '\t'
-                    if metric_title == 'EV/GP':
-                        line += stock.ev_to_gp_ratio + '\t'
-                    if metric_title == 'EV/OP':
-                        line += stock.ev_to_op_ratio + '\t'
-                    if metric_title == 'Adj EV/OP':
-                        line += stock.adj_ev_to_op_ratio + '\t'
-                    if metric_title == 'EBITDA Margin':
-                        line += stock.ebitda_margin + '\t'
-                    if metric_title == 'Gross Margin':
-                        line += stock.gross_margin + '\t'
-                    if metric_title == 'Operating Margin':
-                        line += stock.operating_margin + '\t'
-                    if metric_title == 'Net Margin':
-                        line += stock.profit_margin + '\t'
-                    if metric_title == 'Beta':
-                        line += stock.beta + '\t'
-                    if metric_title == 'GP/Employees':
-                        line += stock.gross_profit_per_employee + '\t'
-                    if metric_title == '52W High':
-                        line += stock.high_52W + '\t'
-                    if metric_title == 'Weighting':
-                        line += self.holdings[stock.ticker] + '\t'
+                    try:
+                        if metric_title == 'Ticker':
+                            line += stock.ticker + '\t'
+                        if metric_title == 'Sales Growth 3Y':
+                            line += stock.revenue_growth_3y + '\t'
+                        if metric_title == 'Median Rev Growth 3Y':
+                            line += stock.med_rev_growth_3y + '\t'
+                        if metric_title == 'EV/EBITDA':
+                            line += stock.ev_to_ebitda_ratio + '\t'
+                        if metric_title == 'EV/GP':
+                            line += stock.ev_to_gp_ratio + '\t'
+                        if metric_title == 'EV/OP':
+                            line += stock.ev_to_op_ratio + '\t'
+                        if metric_title == 'Adj EV/OP':
+                            line += stock.adj_ev_to_op_ratio + '\t'
+                        if metric_title == 'EBITDA Margin':
+                            line += stock.ebitda_margin + '\t'
+                        if metric_title == 'Gross Margin':
+                            line += stock.gross_margin + '\t'
+                        if metric_title == 'Operating Margin':
+                            line += stock.operating_margin + '\t'
+                        if metric_title == 'Net Margin':
+                            line += stock.profit_margin + '\t'
+                        if metric_title == 'Beta':
+                            line += stock.beta + '\t'
+                        if metric_title == 'GP/Employees':
+                            line += stock.gross_profit_per_employee + '\t'
+                        if metric_title == '52W High':
+                            line += stock.high_52W + '\t'
+                        if metric_title == 'Weighting':
+                            line += self.holdings[stock.ticker] + '\t'
+                    except Exception as e:
+                        line += '' + '\t'
                 print(line)
 
             except OverflowError:
                 pass
-
             except Exception as e:
                 pass
-                # print('passing on:', ticker, "displayed hardcoded metrics", e)

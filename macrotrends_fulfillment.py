@@ -100,7 +100,10 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
-            sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            if len(chartData) >= 12:
+                sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            else:
+                sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
 
             return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
         except Exception as e:

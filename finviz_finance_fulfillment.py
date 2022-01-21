@@ -99,13 +99,14 @@ def get_finviz_metrics(ticker, metric_names):
         for metric_name in metric_names:
             try:
                 metrics[metric_name] = fundamentals[metric_name]
+                if metrics[metric_name] == '-':
+                    metrics[metric_name] = None
             except Exception as e:
                 print(e)
-
         return metrics
 
     else:
         try:
             return fundamentals[metric_names]
         except Exception as e:
-            print(e)
+            return None

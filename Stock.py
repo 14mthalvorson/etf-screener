@@ -47,36 +47,27 @@ class Stock:
         self.debt_long_term = get_macrotrends_metrics(ticker, 'Long Term Debt')
         self.employees = finviz_fundamentals['Employees']
 
-        self.gross_profit = None
-        self.operating_income = None
-        self.cash = None
-        self.free_cash_flow = None
-
         # Value checks
         if self.revenue == '-':
             self.revenue = None
 
-        # Calculated Metrics
         # Gross profit
         try:
-            if self.gross_margin != '-':
-                self.gross_profit = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
-            else:
-                self.gross_profit = None
+            self.gross_profit = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
         except Exception as e:
-            print('gross_profit', e)
+            self.gross_profit = None
 
         # Operating income
         try:
             self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
         except Exception as e:
-            pass
+            self.operating_income = None
 
         # Adjusted operating income: max op margin 3y * current revenue
         try:
             self.adj_operating_income = to_billions_string(to_number(self.max_operating_margin_3y) * to_number(self.revenue))
         except Exception as e:
-            pass
+            self.adj_operating_income = None
 
         # Cash
         try:
@@ -86,10 +77,9 @@ class Stock:
 
         # Free cash flow
         try:
-            if self.pfcf_ratio != '-':
-                self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
+            self.free_cash_flow = to_billions_string(to_number(self.market_cap) / to_number(self.pfcf_ratio))
         except Exception as e:
-            print('free cash flow', ticker, e)
+            self.free_cash_flow = None
 
         # Enterprise value
         try:
@@ -99,79 +89,54 @@ class Stock:
 
         # EV to EBITDA Ratio
         try:
-            if self.ebitda is not None and to_number(self.ebitda) != 0:
-                self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
-            else:
-                self.ev_to_ebitda_ratio = None
+            self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
         except Exception as e:
-            print('enterprise value/ebitda', ticker, e)
+            self.ev_to_ebitda_ratio = None
 
         # EBITDA Margin
         try:
-            if self.ebitda is not None and to_number(self.ebitda) != 0 and self.revenue is not None:
-                self.ebitda_margin = to_percent_string(to_number(self.ebitda) / to_number(self.revenue))
-            else:
-                self.ebitda_margin = None
+            self.ebitda_margin = to_percent_string(to_number(self.ebitda) / to_number(self.revenue))
         except Exception as e:
-            print('ebitda margin', ticker, e)
+            self.ebitda_margin = None
 
         # EV to Gross Profit Ratio
         try:
-            if self.gross_profit is not None and to_number(self.gross_profit) != 0:
-                self.ev_to_gp_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.gross_profit))
-            else:
-                self.ev_to_gp_ratio = None
+            self.ev_to_gp_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.gross_profit))
         except Exception as e:
-            print('enterprise value/gross profit', ticker, e)
+            self.ev_to_gp_ratio = None
 
         # EV to Operating Profit Ratio
         try:
-            if self.operating_income is not None and to_number(self.operating_income) != 0 and self.enterprise_value is not None:
-                self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.operating_income))
-            else:
-                self.ev_to_op_ratio = None
+            self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.operating_income))
         except Exception as e:
-            print('enterprise value/operating profit', ticker, e)
+            self.ev_to_op_ratio = None
 
         # Adjusted EV to Operating Profit Ratio
         try:
-            if self.adj_operating_income is not None and to_number(self.adj_operating_income) != 0 and self.enterprise_value is not None:
-                self.adj_ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_operating_income))
-            else:
-                self.adj_ev_to_op_ratio = self.ev_to_op_ratio
+            self.adj_ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_operating_income))
         except Exception as e:
             self.adj_ev_to_op_ratio = self.ev_to_op_ratio
-            # print('enterprise value/operating profit', ticker, e)
 
         # EV to Sales Ratio
         try:
-            if self.revenue is not None and to_number(self.revenue) != 0:
-                self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
-            else:
-                self.ev_to_sales_ratio = None
+            self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
         except Exception as e:
-            print('EV to Sales Ratio', ticker, e)
+            self.ev_to_sales_ratio = None
 
         # Revenue per Employee
         try:
-            if self.revenue is not None:
-                self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
-            else:
-                self.revenue_per_employee = None
+            self.revenue_per_employee = to_thousands_string(to_number(self.revenue) / to_number(self.employees))
         except Exception as e:
-            print('Revenue per employee value', ticker, e)
+            self.revenue_per_employee = None
 
         # EBITDA per Employee
         try:
             self.ebitda_per_employee = to_thousands_string(to_number(self.ebitda) / to_number(self.employees))
         except Exception as e:
-            print('EBITDA per employee value', ticker, e)
+            self.ebitda_per_employee = None
 
         # Gross profit per Employee
         try:
-            if self.gross_profit is not None:
-                self.gross_profit_per_employee = to_thousands_string(to_number(self.gross_profit) / to_number(self.employees))
-            else:
-                self.gross_profit_per_employee = None
+            self.gross_profit_per_employee = to_thousands_string(to_number(self.gross_profit) / to_number(self.employees))
         except Exception as e:
-            print('Gross profit per employee value', ticker, e)
+            self.gross_profit_per_employee = None

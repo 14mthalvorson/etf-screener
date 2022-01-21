@@ -13,9 +13,12 @@ Possibilities for columns:
 '52W High'
 '''
 
+
 etf = ETF('mine')
 # conditions = [['Operating Profit', '>', '5.00%']]
-columns = ['Ticker', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/OP', 'Gross Margin', 'Operating Margin', '52W High']
+# columns = ['Ticker', '52W High']
+# columns = ['Ticker', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/OP', 'Gross Margin', 'Operating Margin', '52W High']
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', '52W High']
 
 etf.display_metrics(columns)
 
