@@ -10,7 +10,7 @@ class Stock:
 
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
-                                                 'Oper. Margin', 'Profit Margin', 'SMA200', '52W High', '52W Low',
+                                                 'Oper. Margin', 'Profit Margin', 'Beta', 'SMA200', '52W High', '52W Low',
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
 
         yfinance_fundamentals = get_yfinance_metrics(ticker, ['Sales past 3Y'])
@@ -34,6 +34,7 @@ class Stock:
         self.operating_margin = finviz_fundamentals['Oper. Margin']
         self.max_operating_margin_3y = get_macrotrends_metrics(ticker, 'Max Operating Margin 3Y')
         self.profit_margin = finviz_fundamentals['Profit Margin']
+        self.beta = finviz_fundamentals['Beta']
         self.sma200 = finviz_fundamentals['SMA200']
         self.high_52W = finviz_fundamentals['52W High']
         self.low_52W = finviz_fundamentals['52W Low']

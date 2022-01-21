@@ -191,8 +191,12 @@ class ETF:
                         line += stock.operating_margin + '\t'
                     if metric_title == 'Net Margin':
                         line += stock.profit_margin + '\t'
+                    if metric_title == 'Beta':
+                        line += stock.beta + '\t'
                     if metric_title == 'GP/Employees':
                         line += stock.gross_profit_per_employee + '\t'
+                    if metric_title == '52W High':
+                        line += stock.high_52W + '\t'
                     if metric_title == 'Weighting':
                         line += self.holdings[stock.ticker] + '\t'
                 print(line)
