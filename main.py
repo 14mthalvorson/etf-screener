@@ -6,16 +6,14 @@ from Stock import *
 # Possibilities:
 # 'Ticker', 'Weighting'
 # 'Sales Growth 3Y'
-# 'EV/EBITDA', 'EV/GP', 'EV/OP'
+# 'EV/GP', 'EV/OP', 'Adj EV/OP', 'EV/EBITDA'
 # 'GP/Employees'
 # 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
-#
-
 
 
 etf = ETF('op')
-#conditions = [['Operating Profit', '>', '5.00%']]
-columns = ['Ticker', 'Sales Growth 3Y', 'EV/OP', 'Operating Margin']
+# conditions = [['Operating Profit', '>', '5.00%']]
+columns = ['Ticker', 'Sales Growth 3Y', 'Adj EV/OP', 'EV/OP', 'Operating Margin']
 
 etf.display_metrics(columns)
 

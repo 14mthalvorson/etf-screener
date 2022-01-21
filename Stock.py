@@ -32,6 +32,7 @@ class Stock:
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
         self.gross_margin = finviz_fundamentals['Gross Margin']
         self.operating_margin = finviz_fundamentals['Oper. Margin']
+        self.max_operating_margin_3y = get_macrotrends_metrics(ticker, 'Max Operating Margin 3Y')
         self.profit_margin = finviz_fundamentals['Profit Margin']
         self.sma200 = finviz_fundamentals['SMA200']
         self.high_52W = finviz_fundamentals['52W High']
@@ -66,6 +67,12 @@ class Stock:
         # Operating income
         try:
             self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
+        except Exception as e:
+            pass
+
+        # Adjusted operating income: max op margin 3y * current revenue
+        try:
+            self.adj_operating_income = to_billions_string(to_number(self.max_operating_margin_3y) * to_number(self.revenue))
         except Exception as e:
             pass
 
@@ -123,6 +130,16 @@ class Stock:
                 self.ev_to_op_ratio = None
         except Exception as e:
             print('enterprise value/operating profit', ticker, e)
+
+        # Adjusted EV to Operating Profit Ratio
+        try:
+            if self.adj_operating_income is not None and to_number(self.adj_operating_income) != 0 and self.enterprise_value is not None:
+                self.adj_ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_operating_income))
+            else:
+                self.adj_ev_to_op_ratio = self.ev_to_op_ratio
+        except Exception as e:
+            self.adj_ev_to_op_ratio = self.ev_to_op_ratio
+            # print('enterprise value/operating profit', ticker, e)
 
         # EV to Sales Ratio
         try:
