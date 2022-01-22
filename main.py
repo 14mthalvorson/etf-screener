@@ -38,18 +38,3 @@ for ticker in tickers:
     print(etf.weighted_revenue_growth_3y)
     print()
 """
-"""
-# Multi stock analysis
-#tickers = ['sq', 'shop', 'etsy', 'team', 'now', 'fb', 'amzn', 'crm', 'nvda', 'nflx', 'appf', 'googl', 'adbe', 'pypl', 'msft', 'aapl', 'ma', 'v']
-#tickers = ['wmt', 'tgt', 'cost', 'hd', 'low', 'bby']  # Physical retail
-tickers = ['aapl', 'msft', 'amzn', 'googl', 'fb', 'tsla', 'nflx', 'coin']  # Big Tech + some more
-# Tickers are now callable as ticker objects
-for ticker in tickers:
-    stock = Stock(ticker)
-    print(stock.name)
-    print('EV/Revenue:', stock.ev_to_sales_ratio)
-    print('EV/EBITDA:', stock.ev_to_ebitda_ratio)
-    print('EBITDA past 3Y:', stock.ebitda_growth_3y)
-    print('Sales past 3Y:', stock.revenue_growth_3y)
-    print()
-"""
