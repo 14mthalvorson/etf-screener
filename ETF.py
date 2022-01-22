@@ -18,7 +18,7 @@ class ETF:
                             'adsk mime dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
                             'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
                             'dsgx adbe irm intc coin eqix pm acc awk mu spgi txn dlr mcd avgo amt cci ma sbac o mrna vrsn ' \
-                            'v nvda tsla msft tsm'
+                            'v nvda tsla msft tsm nflx wm now dt cdns'
             self.set_holdings_from_string(ticker_string)
 
         elif self.ticker == 'gp' or self.ticker == 'all':  # GP relevant companies
@@ -30,18 +30,18 @@ class ETF:
                             'eqix cci we apps gtlb sofi upst path mttr upwk ai docu fvrr sklz cour appn jamf rblx ' \
                             'cpng spot meli rdfn vmw api cvna avlr dsgx lmnd asan frog zg domo eght mtch bl akam estc ' \
                             'ttwo anss acc anet axp o pton wix irm bmy panw plan vrsn splk spgi pd cybr smar rpd band ' \
-                            'fivn mime logi awk qtwo evbg newr mdb mrvl'
+                            'fivn mime logi awk qtwo evbg newr mdb mrvl etsy wm chgg payc wday ter sumo dt cdns tenb glob'
             self.set_holdings_from_string(ticker_string)
 
         elif self.ticker == 'mine':  # My Holdings
-            ticker_string = 'amzn etsy tdoc coin fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
-                            'crm pypl adbe hubs aappf chgg team zen ttd twlo mdb rng okta payc evbg qtwo veev newr crwd ' \
+            ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
+                            'crm pypl adbe hubs appf chgg team zen ttd twlo mdb rng okta payc evbg qtwo veev newr crwd ' \
                             'awk cost logi mime zs fivn smar band rpd cybr pd tyl dis spgi dpz cmcsa ddog qcom avgo splk ' \
-                            'plan panw vrsn bmy irm pdi pton zm wix axp csco o z anet now anss soxx snap tdoc arkk arkw ' \
+                            'plan panw vrsn bmy irm pdi pton zm wix axp csco o anet now anss soxx snap arkk arkw ' \
                             'arkg arkf ttwo clou coup bill estc akam bl wday twtr mtch fngu eght domo net apps se api zg ' \
-                            'frog snow pltr asan wcld lmnd cvna avlr dsgx abnb ibb idna xbi open qqq vmw tsm rdfn adsk ' \
+                            'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb idna xbi open qqq vmw tsm rdfn adsk ' \
                             'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
-                            'coin mrvl upwk googl mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
+                            'coin mrvl upwk mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
                             'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
             self.set_holdings_from_string(ticker_string)
 
