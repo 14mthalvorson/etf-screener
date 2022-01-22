@@ -174,6 +174,8 @@ class ETF:
                             line += stock.ev_to_op_ratio + '\t'
                         if metric_title == 'Adj EV/OP':
                             line += stock.adj_ev_to_op_ratio + '\t'
+                        if metric_title == 'Potential EV/OP':
+                            line += stock.ev_to_pot_op_ratio + '\t'
                         if metric_title == 'EBITDA Margin':
                             line += stock.ebitda_margin + '\t'
                         if metric_title == 'Gross Margin':

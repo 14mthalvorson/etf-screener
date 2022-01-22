@@ -69,6 +69,13 @@ class Stock:
         except Exception as e:
             self.adj_operating_income = None
 
+        # Potential operating income: (max op margin 3y + 0.05) * current revenue
+        try:
+            self.pot_operating_income = to_billions_string(
+                (to_number(self.max_operating_margin_3y) + 0.05) * to_number(self.revenue))
+        except Exception as e:
+            self.pot_operating_income = None
+
         # Cash
         try:
             self.cash = to_billions_string(to_number(self.market_cap) / to_number(self.pc_ratio))
@@ -116,6 +123,12 @@ class Stock:
             self.adj_ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_operating_income))
         except Exception as e:
             self.adj_ev_to_op_ratio = self.ev_to_op_ratio
+
+        # EV to Potential Operating Profit Ratio
+        try:
+            self.ev_to_pot_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.pot_operating_income))
+        except Exception as e:
+            self.ev_to_pot_op_ratio = self.adj_ev_to_op_ratio
 
         # EV to Sales Ratio
         try:

@@ -8,17 +8,17 @@ Possibilities for columns:
 'Ticker', 'Weighting'
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
 'EBITDA Margin', 'Gross Margin', 'Operating Margin', 'Net Margin'
-'EV/GP', 'EV/OP', 'Adj EV/OP', 'EV/EBITDA'
+'EV/GP', 'EV/OP', 'Adj EV/OP', 'EV/EBITDA', 'Potential EV/OP'
 'GP/Employees'
 '52W High'
 '''
 
 
-etf = ETF('pins tdoc coin snow')
-# conditions = [['Operating Profit', '>', '5.00%']]
+etf = ETF('op')
+# conditions = [['Operating Profit', '>', '5.00%'], ['Years Public', '>=', '1.0']]
 # columns = ['Ticker', '52W High']
 # columns = ['Ticker', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/OP', 'Gross Margin', 'Operating Margin', '52W High']
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', '52W High']
+columns = ['Ticker', 'Median Rev Growth 3Y', 'Potential EV/OP', 'Adj EV/OP', 'Operating Margin', '52W High']
 
 etf.display_metrics(columns)
 
