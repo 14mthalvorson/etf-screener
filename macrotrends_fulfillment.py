@@ -100,9 +100,10 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
-            if len(chartData) >= 12:
+            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':
                 sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
             else:
+                chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
                 sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
 
             return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)

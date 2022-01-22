@@ -14,7 +14,7 @@ Possibilities for columns:
 '''
 
 
-etf = ETF('mine')
+etf = ETF('pins tdoc coin snow')
 # conditions = [['Operating Profit', '>', '5.00%']]
 # columns = ['Ticker', '52W High']
 # columns = ['Ticker', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/OP', 'Gross Margin', 'Operating Margin', '52W High']
