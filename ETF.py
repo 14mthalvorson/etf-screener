@@ -23,11 +23,11 @@ class ETF:
             self.set_holdings_from_string(ticker_string)
 
         elif self.ticker == 'op':  # Operating profit relevant stocks
-            ticker_string = 'amzn aapl googl fb cost wmt unh shop tgt meli dis low ups pins roku upst nke hd acn ibm ' \
-                            'adsk mime dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
+            ticker_string = 'amzn aapl googl fb cost wmt unh tgt dis low ups pins roku upst nke hd acn ibm ' \
+                            'adsk dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
                             'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
                             'dsgx adbe irm intc coin eqix pm acc awk mu spgi txn dlr mcd avgo amt cci ma sbac o vrsn ' \
-                            'v nvda tsla msft tsm nflx wm now dt cdns'
+                            'v nvda msft tsm nflx wm dt cdns'
             self.set_holdings_from_string(ticker_string)
 
         elif self.ticker == 'gp' or self.ticker == 'all':  # GP relevant companies
