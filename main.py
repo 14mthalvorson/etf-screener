@@ -14,7 +14,7 @@ Possibilities for columns:
 '''
 
 
-etf = ETF('mine')
+etf = ETF('fb coin aapl msft googl amzn')
 # conditions = [['Operating Margin', '>', '10.00%'], ['Years Public', '>=', '1.0']]
 # columns = ['Ticker', '52W High']
 columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/EBITDA', 'EBITDA Margin', 'Operating Margin', '52W High']
