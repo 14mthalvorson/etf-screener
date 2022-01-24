@@ -14,11 +14,12 @@ Possibilities for columns:
 '''
 
 
-etf = ETF('fb coin aapl msft googl amzn')
+
 # conditions = [['Operating Margin', '>', '10.00%'], ['Years Public', '>=', '1.0']]
 # columns = ['Ticker', '52W High']
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/EBITDA', 'EBITDA Margin', 'Operating Margin', '52W High']
 
+etf = ETF('qqq')
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBITDA', 'Adj EV/OP', 'EBITDA Margin', 'Operating Margin', '52W High', 'Weighting']
 etf.display_metrics(columns)
 
 """
