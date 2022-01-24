@@ -69,6 +69,11 @@ Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise 
 - Macrotrends (scraped from the website using requests library)
 - Marketwatch (scraped from the website using requests library)
 
+## Required Libraries to Pip Install
+- requests
+- yfinance
+- finvizfinance
+
 ## Future Goals
 - Improve data sources for international stocks
 - Add conditional statements for filtering lists of stocks (e.g. show revenue growth for QQQ holdings where Operating Margin > 10%)
