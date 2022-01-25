@@ -53,7 +53,7 @@ AMAT	23.39%	11.69	17.51	18.51	31.57%	29.90%	-16.62%	0.87%
 - Examples from [Macrotrends](https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/revenue): Quarterly Revenue, EBITDA (and EBITDA Margin), Cash/Debt, historical P/S, PE Ratio
 #### Pulls ETF holdings data from [Marketwatch](https://www.marketwatch.com/investing/fund/qqq/holdings)
 #### Calculates aggregate ETF metrics based on the financial metrics of the underlying holdings
-- Example: Calculate "Weighted 3Y Revenue Growth" for QQQ, SPY, or VIG
+- Example: Calculate "Weighted Average Revenue Growth" for QQQ, SPY, or VIG
 #### Calculates new financial metrics (not found in any of the data sources)
 Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise Value to EBIT ratio" for the holdings of QQQ
 1. Look up QQQ holdings in Marketwatch (top 25)
