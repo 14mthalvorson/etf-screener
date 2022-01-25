@@ -110,6 +110,23 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
+    elif metric_name == '% Change in Share Count 3Y':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=shares-outstanding&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v2', 'NULL') != 'NULL'][-13:]  # Remove list items with 'v3' items == 'NULL'
+            if len(chartData) == 13:
+                return to_percent_string((chartData[-1]['v2'] / chartData[0]['v2']) ** (1.0/3) - 1)
+        except Exception as e:
+            return None
+
     elif metric_name == 'Long Term Debt':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
@@ -124,6 +141,6 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
 
             return to_billions_string(to_number(chartData[-1]['v2']) * 1000000000)
 
-        except:
+        except Exception as e:
             return 0
 

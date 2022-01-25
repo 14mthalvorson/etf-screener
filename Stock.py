@@ -51,6 +51,7 @@ class Stock:
         self.research_development = to_billions_string(yfinance_metrics['Research & Development'])
 
         self.dividend_yield = finviz_fundamentals['Dividend %']
+        self.share_count_growth_3y = get_macrotrends_metrics(ticker, '% Change in Share Count 3Y')
         self.beta = finviz_fundamentals['Beta']
         self.sma200 = finviz_fundamentals['SMA200']
         self.high_52W = finviz_fundamentals['52W High']

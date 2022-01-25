@@ -159,6 +159,8 @@ class ETF:
                         if metric_title == 'R&D':
                             line += stock.research_development + '\t'
 
+                        if metric_title == 'Share Count Growth 3Y':
+                            line += stock.share_count_growth_3y + '\t'
                         if metric_title == 'Beta':
                             line += stock.beta + '\t'
                         if metric_title == 'GP/Employees':

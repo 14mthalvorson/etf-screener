@@ -11,13 +11,18 @@ Possibilities for columns:
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Debt', 'R&D'
-'Beta', 'GP/Employees'
+'Share Count Growth 3Y', 'Beta', 'GP/Employees'
 '52W High'
 '''
 
+'''
+stock = Stock('AAPL')
+print(stock.share_count_growth)
+exit(0)
+'''
 
-etf = ETF('aapl msft googl')
-columns = ['Ticker', 'Market Cap', 'Enterprise Value', 'R&D', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
+etf = ETF('aapl msft googl amzn fb tsla nvda')
+columns = ['Ticker', 'Market Cap', 'Enterprise Value', 'R&D', 'Share Count Growth 3Y', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
 etf.display_metrics(columns)
 
 '''
