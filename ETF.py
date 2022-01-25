@@ -6,15 +6,15 @@ from Stock import *
 class ETF:
 
     def __init__(self, ticker):
-        self.ticker = ticker
-        self.holdings = None
+        self.etf_ticker = ticker
+        self.ticker_list = None
 
-        if ' ' in self.ticker:
-            self.set_holdings_from_string(self.ticker)
-            self.ticker = 'custom'
+        if ' ' in self.etf_ticker:
+            self.set_holdings_from_string(ticker)
+            self.etf_ticker = 'custom'
 
         # Only include in the list if evaluating this stock with this metric is a decent valuation method.
-        elif self.ticker == 'ebitda':  # EBITDA relevant stocks
+        elif self.etf_ticker == 'ebitda':  # EBITDA relevant stocks
             ticker_string = 'amzn aapl googl fb cost wmt unh shop tgt meli dis low ups pins roku upst nke hd acn ibm ' \
                             'adsk mime dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
                             'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
@@ -22,7 +22,7 @@ class ETF:
                             'v nvda tsla msft tsm wm now dt cdns'
             self.set_holdings_from_string(ticker_string)
 
-        elif self.ticker == 'op':  # Operating profit relevant stocks
+        elif self.etf_ticker == 'op' or self.etf_ticker == 'ebit':  # Operating profit relevant stocks
             ticker_string = 'amzn aapl googl fb cost wmt unh tgt dis low ups pins roku upst nke hd acn ibm ' \
                             'adsk dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
                             'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
@@ -30,7 +30,7 @@ class ETF:
                             'v nvda msft tsm nflx wm dt cdns'
             self.set_holdings_from_string(ticker_string)
 
-        elif self.ticker == 'gp' or self.ticker == 'all':  # GP relevant companies
+        elif self.etf_ticker == 'gp' or self.etf_ticker == 'all':  # GP relevant companies
             ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm v ma adbe dis crm pypl shop se now snow abnb team ' \
                             'sq snap wsay coin zm ddog twlo ttd crwd net zs veev u pltr twtr hubs okta etsy bill pins tyl ' \
                             'hood rng zen coup open appf amd mu intc intu isrg cost wmt tgt qcom avgo cmcsa psp' \
@@ -42,7 +42,7 @@ class ETF:
                             'fivn mime logi awk qtwo evbg newr mdb mrvl etsy wm chgg payc wday ter sumo dt cdns tenb glob'
             self.set_holdings_from_string(ticker_string)
 
-        elif self.ticker == 'mine':  # My Holdings
+        elif self.etf_ticker == 'mine':  # My Holdings
             ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
                             'crm pypl adbe hubs appf chgg team zen ttd twlo mdb rng okta payc evbg qtwo veev newr crwd ' \
                             'awk cost logi mime zs fivn smar band rpd cybr pd tyl dis spgi dpz cmcsa ddog qcom avgo splk ' \
@@ -54,26 +54,28 @@ class ETF:
                             'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
             self.set_holdings_from_string(ticker_string)
 
-        elif self.ticker == 'mega':  # Mega-cap tech stocks
+        elif self.etf_ticker == 'mega':  # Mega-cap tech stocks
             ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm'
             self.set_holdings_from_string(ticker_string)
 
-        elif self.ticker == 'reit':  # Digital REIT stocks
+        elif self.etf_ticker == 'reit':  # Digital REIT stocks
             ticker_string = 'sbac dlr eqix amt acc o cci irm'
             self.set_holdings_from_string(ticker_string)
 
         else:
             self.holdings = self.fill_holdings_from_marketwatch()
 
-        self.weighted_revenue_growth = self.calculate_weighted_revenue_growth()
-        self.weighted_revenue_growth_3y = None
-        self.weighted_EV_to_EBITDA_ratio = None
-        self.calculate_weighted_growth_and_valuation_metrics()
+        self.stocks = {}
+        for ticker in self.holdings.keys():
+            try:
+                self.stocks[ticker] = Stock(ticker)
+            except Exception as e:
+                pass
 
     def fill_holdings_from_marketwatch(self):
 
         # Retrieve URL from dictionary
-        url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % self.ticker
+        url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % self.etf_ticker
 
         # Get HTML from URL
         html_doc = requests.get(url).text
@@ -93,114 +95,74 @@ class ETF:
     def set_holdings_from_string(self, ticker_string):
         self.holdings = {ticker: '1.00%' for ticker in ticker_string.lower().split(' ')}
 
-    def calculate_weighted_ev_ebitda_ratio(self):
-        pass
-
-    def calculate_weighted_ev_gp_ratio(self):
-        pass
-
-    def calculate_weighted_revenue_growth(self):
-        weighted_numer = 0
-        weighted_denom = 0
-
-        for ticker in self.holdings.keys():
-            try:
-                stock = Stock(ticker)
-
-                if stock.revenue_growth_yoy is not None:
-                    weighted_numer += to_number(stock.revenue_growth_yoy) * to_number(self.holdings[ticker])
-                    weighted_denom += to_number(self.holdings[ticker])
-
-            except OverflowError:
-                pass
-
-            except Exception as e:
-                #print('passing on:', ticker, "(weighted revenue growth)", e)
-                pass
-
-        if weighted_denom != 0:
-            return to_percent_string(weighted_numer / weighted_denom)
-        else:
-            return None
-
-    def calculate_weighted_growth_and_valuation_metrics(self):
-        weighted_ev_to_ebitda = 0
-        weighted_revenue_growth_3y = 0
-        weighted_denom = 0
-
-        for ticker in self.holdings.keys():
-            try:
-                stock = Stock(ticker)
-
-                # Ignore outliers above 100% 3Y revenue growth
-                if stock.revenue_growth_3y is not None and to_number(stock.revenue_growth_3y) < 1.00 and stock.ev_to_ebitda_ratio is not None and to_number(stock.ev_to_ebitda_ratio) > 0:
-                    weighted_revenue_growth_3y += to_number(stock.revenue_growth_3y) * to_number(self.holdings[ticker])
-                    weighted_ev_to_ebitda += to_number(stock.ev_to_ebitda_ratio) * to_number(self.holdings[ticker])
-                    weighted_denom += to_number(self.holdings[ticker])
-
-            except OverflowError:
-                pass
-
-            except Exception as e:
-                # Some companies don't have this. That is fine. Don't really need to notify.
-                pass
-
-        if weighted_denom != 0:
-            self.weighted_revenue_growth_3y = to_percent_string(weighted_revenue_growth_3y / weighted_denom)
-            self.weighted_EV_to_EBITDA_ratio = to_ratio_string(weighted_ev_to_ebitda / weighted_denom)
-            return
-        else:
-            self.weighted_revenue_growth_3y = None
-            self.weighted_EV_to_EBITDA_ratio = None
-            return
-
-    # For each stock in an ETF, displays data selected in metrics
+    # For each stock in an ETF, displays data selected in columns
     def display_metrics(self, columns):
-
         header = ''
         for metric_title in columns:
             header += metric_title + '\t'
         print(header)
 
-        for ticker in self.holdings.keys():
+        for ticker in self.stocks.keys():
             try:
-                stock = Stock(ticker)
+                stock = self.stocks[ticker]
                 line = ''
 
                 for metric_title in columns:
                     try:
                         if metric_title == 'Ticker':
                             line += stock.ticker + '\t'
+                        if metric_title == 'Weighting':
+                            line += self.holdings[stock.ticker] + '\t'
+                        if metric_title == 'Price':
+                            line += stock.price + '\t'
+                        if metric_title == 'Market Cap':
+                            line += stock.market_cap + '\t'
+                        if metric_title == 'Shares Outstanding':
+                            line += stock.shares + '\t'
+
+                        if metric_title == 'Revenue':
+                            line += stock.revenue + '\t'
+                        if metric_title == 'Gross Profit':
+                            line += stock.gross_profit + '\t'
+                        if metric_title == 'EBITDA':
+                            line += stock.ebitda + '\t'
+                        if metric_title == 'EBIT':
+                            line += stock.operating_income + '\t'
+                        if metric_title == 'Net Income':
+                            line += stock.net_income + '\t'
+                        if metric_title == 'CapEx':
+                            line += stock.capex + '\t'
+
+                        if metric_title == 'EV/GP':
+                            line += stock.ev_to_gp_ratio + '\t'
+                        if metric_title == 'EV/EBITDA':
+                            line += stock.ev_to_ebitda_ratio + '\t'
+                        if metric_title == 'EV/EBIT':
+                            line += stock.ev_to_op_ratio + '\t'
+                        if metric_title == 'Adj EV/EBIT':
+                            line += stock.adj_ev_to_ebit_ratio + '\t'
+
                         if metric_title == 'Sales Growth 3Y':
                             line += stock.revenue_growth_3y + '\t'
                         if metric_title == 'Median Rev Growth 3Y':
                             line += stock.med_rev_growth_3y + '\t'
-                        if metric_title == 'EV/EBITDA':
-                            line += stock.ev_to_ebitda_ratio + '\t'
-                        if metric_title == 'EV/GP':
-                            line += stock.ev_to_gp_ratio + '\t'
-                        if metric_title == 'EV/OP':
-                            line += stock.ev_to_op_ratio + '\t'
-                        if metric_title == 'Adj EV/OP':
-                            line += stock.adj_ev_to_op_ratio + '\t'
-                        if metric_title == 'Potential EV/OP':
-                            line += stock.ev_to_pot_op_ratio + '\t'
-                        if metric_title == 'EBITDA Margin':
-                            line += stock.ebitda_margin + '\t'
+
                         if metric_title == 'Gross Margin':
                             line += stock.gross_margin + '\t'
-                        if metric_title == 'Operating Margin':
+                        if metric_title == 'EBITDA Margin':
+                            line += stock.ebitda_margin + '\t'
+                        if metric_title == 'EBIT Margin':
                             line += stock.operating_margin + '\t'
                         if metric_title == 'Net Margin':
-                            line += stock.profit_margin + '\t'
+                            line += stock.net_margin + '\t'
+
                         if metric_title == 'Beta':
                             line += stock.beta + '\t'
                         if metric_title == 'GP/Employees':
                             line += stock.gross_profit_per_employee + '\t'
                         if metric_title == '52W High':
                             line += stock.high_52W + '\t'
-                        if metric_title == 'Weighting':
-                            line += self.holdings[stock.ticker] + '\t'
+
                     except Exception as e:
                         line += '' + '\t'
                 print(line)

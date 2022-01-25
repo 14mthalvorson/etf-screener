@@ -126,3 +126,4 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
 
         except:
             return 0
+
