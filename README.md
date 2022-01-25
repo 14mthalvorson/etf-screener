@@ -64,6 +64,7 @@ Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise 
 - Can just simply copy/paste the data into Excel or Google Sheets to graph the results. In the long-run, I can automate this too if I wanted but the time savings here isn't worth automation yet...
 
 ## Current Data Sources
+[Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
 - Yahoo finance (from the Yahoo Finance and yfinance Python libraries)
 - Finviz finance (from the finviz Python library)
 - Macrotrends (scraped from the website using requests library)
