@@ -5,17 +5,19 @@ from Stock import *
 '''
 ~~~ ETF Analysis ~~~
 Possibilities for columns:
-'Ticker', 'Weighting', 'Price', 'Market Cap', 'Shares Outstanding'
-'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income', 'CapEx'
+'Ticker', 'Weighting', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
+'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
+'Cash', 'Debt', 'R&D'
 'Beta', 'GP/Employees'
 '52W High'
 '''
 
-etf = ETF('aapl msft googl amzn fb tsla nvda crm shop sq coin')
-columns = ['Ticker', 'Market Cap', 'CapEx', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
+
+etf = ETF('aapl msft googl')
+columns = ['Ticker', 'Market Cap', 'Enterprise Value', 'R&D', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
 etf.display_metrics(columns)
 
 '''

@@ -14,6 +14,8 @@ class Stock:
                                                  'Oper. Margin', 'Profit Margin', 'Beta', 'SMA200', '52W High', '52W Low',
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
 
+        yfinance_metrics = get_yfinance_metrics(ticker)
+
         # Only run this when needed
         '''
         yahoo_financial_metrics = get_yahoo_financials_metrics(ticker)
@@ -44,6 +46,9 @@ class Stock:
         self.operating_margin = finviz_fundamentals['Oper. Margin']
         self.max_operating_margin_3y = get_macrotrends_metrics(ticker, 'Max Operating Margin 3Y')
         self.net_margin = finviz_fundamentals['Profit Margin']
+
+        self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
+        self.research_development = to_billions_string(yfinance_metrics['Research & Development'])
 
         self.dividend_yield = finviz_fundamentals['Dividend %']
         self.beta = finviz_fundamentals['Beta']
@@ -89,17 +94,8 @@ class Stock:
         except Exception as e:
             self.net_income = None
 
-        # Cash
-        try:
-            self.cash = to_billions_string(to_number(self.market_cap) / to_number(self.pc_ratio))
-        except Exception as e:
-            self.cash = 0
-
         # Enterprise value
-        try:
-            self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.debt_long_term) - to_number(self.cash))
-        except Exception as e:
-            self.enterprise_value = self.market_cap
+        self.enterprise_value = self.market_cap
 
         # EV to EBITDA Ratio
         try:

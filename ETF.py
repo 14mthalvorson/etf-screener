@@ -117,6 +117,8 @@ class ETF:
                             line += stock.price + '\t'
                         if metric_title == 'Market Cap':
                             line += stock.market_cap + '\t'
+                        if metric_title == 'Enterprise Value':
+                            line += stock.enterprise_value + '\t'
                         if metric_title == 'Shares Outstanding':
                             line += stock.shares + '\t'
 
@@ -130,8 +132,6 @@ class ETF:
                             line += stock.operating_income + '\t'
                         if metric_title == 'Net Income':
                             line += stock.net_income + '\t'
-                        if metric_title == 'CapEx':
-                            line += stock.capex + '\t'
 
                         if metric_title == 'EV/GP':
                             line += stock.ev_to_gp_ratio + '\t'
@@ -155,6 +155,9 @@ class ETF:
                             line += stock.operating_margin + '\t'
                         if metric_title == 'Net Margin':
                             line += stock.net_margin + '\t'
+
+                        if metric_title == 'R&D':
+                            line += stock.research_development + '\t'
 
                         if metric_title == 'Beta':
                             line += stock.beta + '\t'
