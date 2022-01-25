@@ -53,7 +53,7 @@ AMAT	23.39%	11.69	17.51	18.51	31.57%	29.90%	-16.62%	0.87%
 - Examples from [Macrotrends](https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/revenue): Quarterly Revenue, EBITDA (and EBITDA Margin), Cash/Debt, historical P/S, PE Ratio
 #### Pulls ETF holdings data from [Marketwatch](https://www.marketwatch.com/investing/fund/qqq/holdings)
 #### Calculates aggregate ETF metrics based on the financial metrics of the underlying holdings
-- Example: Calculate "Weighted 3Y Revenue Growth" for QQQ, SPY, or VIG
+- Example: Calculate "Weighted Average Revenue Growth" for QQQ, SPY, or VIG
 #### Calculates new financial metrics (not found in any of the data sources)
 Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise Value to EBIT ratio" for the holdings of QQQ
 1. Look up QQQ holdings in Marketwatch (top 25)
@@ -64,10 +64,17 @@ Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise 
 - Can just simply copy/paste the data into Excel or Google Sheets to graph the results. In the long-run, I can automate this too if I wanted but the time savings here isn't worth automation yet...
 
 ## Current Data Sources
-- Yahoo finance (from the yfinance Python library)
+[Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
+- Yahoo finance (from the Yahoo Finance and yfinance Python libraries)
 - Finviz finance (from the finviz Python library)
 - Macrotrends (scraped from the website using requests library)
 - Marketwatch (scraped from the website using requests library)
+
+## Required Libraries to Pip Install
+- requests
+- yfinance
+- yahoofinance
+- finvizfinance
 
 ## Future Goals
 - Improve data sources for international stocks
