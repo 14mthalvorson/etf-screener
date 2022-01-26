@@ -180,7 +180,7 @@ class ETF:
                         line += '' + '\t'
 
                 if only_nums:
-                    line = ''.join(x for x in line if x not in 'BMK')
+                    line = ''.join(x for i, x in enumerate(line) if i-1 < 0 or x not in 'BMK' or line[i-1] not in '1234567890')
                 print(line)
 
             except OverflowError:

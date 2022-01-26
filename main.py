@@ -15,15 +15,9 @@ Possibilities for columns:
 '52W High'
 '''
 
-'''
-stock = Stock('AAPL')
-print(stock.cash)
-exit(0)
-'''
-
-etf = ETF('aapl msft googl amzn fb tsla nvda crm adbe shop sq coin')
-columns = ['Ticker', 'Market Cap', 'Enterprise Value', 'R&D', 'R&D/Revenue', 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Share Count Growth 3Y', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
-etf.display_metrics(columns, only_nums=True)
+etf = ETF('mine')
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', '52W High', 'EBITDA']
+etf.display_metrics(columns)
 
 '''
 # Multiple ETF Analysis

@@ -45,17 +45,20 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             return None
 
     elif metric_name == 'EBITDA':
-        # This URL is from a specific chart on the Macrotrends revenue page
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
 
-        url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=ebitda&statement=income-statement&freq=Q' % ticker
-        html_doc = requests.get(url).text
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=ebitda&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
 
-        # Search the html_doc using regex for the chart content and set to chartData variable.
-        result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
-        result = result.replace('null', '"NULL"')
-        chartData = ast.literal_eval(result)
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
 
-        return to_billions_string(chartData[-1]['v1'] * 1000000000)
+            return to_billions_string(chartData[-1]['v1'] * 1000000000)
+        except Exception as e:
+            return None
 
     elif metric_name == 'EBITDA past 3Y':
         try:
