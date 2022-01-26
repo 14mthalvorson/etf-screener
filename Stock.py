@@ -2,10 +2,10 @@ from macrotrends_fulfillment import *
 from yfinance_fulfillment import *
 from yahoo_finance_fulfillment import *
 from utilities import *
+from ETF import *
 
 
 class Stock:
-
     def __init__(self, ticker):
         self.ticker = ticker
 
@@ -13,6 +13,9 @@ class Stock:
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'Beta', 'SMA200', '52W High', '52W Low',
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
+
+        if finviz_fundamentals['Market Cap'] is None:  # Probably an ETF
+            pass
 
         # Basic Data Collection
         self.name = finviz_fundamentals['Company']

@@ -54,6 +54,21 @@ class ETF:
                             'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
             self.set_holdings_from_string(ticker_string)
 
+        elif self.etf_ticker == 'market_cap':  # GP relevant companies
+            ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
+                            'asml dis ko cvx adbe csco abbv pep nke cmcsa lly tmo avgo acn orcl vz wfc abt crm cost nvs ' \
+                            'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl bhp sap lin ry txn pm unp low ' \
+                            'tte ptr intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus bx sny shop c amgn blk ' \
+                            'ba rio ibm amat cop jd cat deo gs amt bud de sbux pld lfc gsk hdb antm lmt el bp tgt isrg ' \
+                            'ge chtr mmm now bkng infy bti eqnr spgi syk mu zts adp mdlz mo abnb pnc se usb bns cni ' \
+                            'bam tfc gild enb lrcx cb f pbr adi snow tjx cme vale mufg snp mmc ci pdd cci shw duk csx ' \
+                            'gm bmo ibn'
+            self.set_holdings_from_string(ticker_string)
+
+        elif self.etf_ticker == 'revenue':  # GP relevant companies
+            ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm v ma adbe dis crm pypl shop'
+            self.set_holdings_from_string(ticker_string)
+
         elif self.etf_ticker == 'mega':  # Mega-cap tech stocks
             ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm'
             self.set_holdings_from_string(ticker_string)
