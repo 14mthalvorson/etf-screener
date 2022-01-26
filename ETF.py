@@ -73,11 +73,11 @@ class ETF:
                             'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
                             'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
-        elif ticker == 'letf':  # GP relevant companies
+        elif ticker == 'letf':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
 
         elif ticker == 'mega':  # Mega-cap tech stocks
-            self.ticker_string = 'aapl amzn googl fb nflx nvda tsla msft tsm'
+            self.ticker_string = 'aapl amzn googl fb nflx nvda reit qqq tsla msft tsm'
 
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
@@ -104,7 +104,6 @@ class ETF:
             self.sma200 = finviz_fundamentals['SMA200']
             self.high_52W = finviz_fundamentals['52W High']
             self.perf_year = finviz_fundamentals['Perf Year']
-
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -144,6 +143,8 @@ class ETF:
                     try:
                         if metric_title == 'Ticker':
                             line += component.ticker + '\t'
+                        if metric_title == 'Type':
+                            line += component.type + '\t'
                         if metric_title == 'Weight':
                             line += self.weights[component.ticker] + '\t'
                         if metric_title == 'Price':

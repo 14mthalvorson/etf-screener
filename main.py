@@ -1,11 +1,11 @@
-from ETF import *
-from Stock import *
+from ETF import ETF
+from Stock import Stock
 
 
 '''
 ~~~ ETF Analysis ~~~
 Possibilities for columns:
-'Ticker', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
+'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
@@ -17,7 +17,7 @@ Possibilities for columns:
 
 
 etf = ETF('mega')
-columns = ['Ticker', 'Price', 'Revenue', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'SMA200', '52W High', 'Perf Year', 'Weight']
+columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
 '''

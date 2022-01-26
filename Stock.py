@@ -1,6 +1,5 @@
-from macrotrends_fulfillment import *
-from yfinance_fulfillment import *
-from yahoo_finance_fulfillment import *
+from macrotrends_fulfillment import get_macrotrends_metrics
+from finviz_finance_fulfillment import get_finviz_metrics
 from utilities import *
 from ETF import *
 
