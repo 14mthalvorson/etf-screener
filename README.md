@@ -27,7 +27,7 @@ columns = ['Ticker', 'R&D/Revenue']
 etf.display_metrics(columns)
 ```
 
-- Among the top holdings of ARKK, display the 3 year median quarterly revenue growth and each company's ratio EV/Gross Profit.
+- Among the top holdings of ARKK, display the median quarterly revenue growth (across the last 3 years) and each company's EV/Gross Profit ratio.
 ```
 etf = ETF('arkk')
 columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP']
