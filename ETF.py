@@ -77,7 +77,7 @@ class ETF:
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
 
         elif ticker == 'mega':  # Mega-cap tech stocks
-            self.ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm'
+            self.ticker_string = 'aapl amzn googl fb nflx nvda tsla msft tsm'
 
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
@@ -88,7 +88,7 @@ class ETF:
             self.fill_holdings_from_marketwatch(ticker)
             self.ticker_string = ' '.join(list(self.weights.keys()))
         else:
-            self.weights = {ticker: '1:00%' for ticker in self.ticker_string.split(' ')}
+            self.weights = {ticker: '1.00%' for ticker in self.ticker_string.split(' ')}
 
         # Set ticker
         self.ticker = ticker
