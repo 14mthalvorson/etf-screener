@@ -144,7 +144,7 @@ class ETF:
                     try:
                         if metric_title == 'Ticker':
                             line += component.ticker + '\t'
-                        if metric_title == 'Weighting':
+                        if metric_title == 'Weight':
                             line += self.weights[component.ticker] + '\t'
                         if metric_title == 'Price':
                             line += component.price + '\t'

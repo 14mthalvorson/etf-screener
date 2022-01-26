@@ -5,7 +5,7 @@ from Stock import *
 '''
 ~~~ ETF Analysis ~~~
 Possibilities for columns:
-'Ticker', 'Weighting', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
+'Ticker', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
@@ -16,8 +16,8 @@ Possibilities for columns:
 '''
 
 
-etf = ETF('aapl qqq msft')
-columns = ['Ticker', 'Price', 'Revenue', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'SMA200', '52W High', 'Perf Year']
+etf = ETF('mega')
+columns = ['Ticker', 'Price', 'Revenue', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'SMA200', '52W High', 'Perf Year', 'Weight']
 etf.display_metrics(columns, only_nums=True)
 
 '''
