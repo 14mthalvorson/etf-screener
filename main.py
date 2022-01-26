@@ -23,7 +23,7 @@ exit(0)
 
 etf = ETF('aapl msft googl amzn fb tsla nvda crm adbe shop sq coin')
 columns = ['Ticker', 'Market Cap', 'Enterprise Value', 'R&D', 'R&D/Revenue', 'Cash', 'Long Term Debt', 'Share Count Growth 3Y', 'Adj EV/EBIT', 'Median Rev Growth 3Y', 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', '52W High']
-etf.display_metrics(columns)
+etf.display_metrics(columns, only_nums=True)
 
 '''
 # Multiple ETF Analysis

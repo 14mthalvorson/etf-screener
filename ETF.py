@@ -96,7 +96,7 @@ class ETF:
         self.holdings = {ticker: '1.00%' for ticker in ticker_string.lower().split(' ')}
 
     # For each stock in an ETF, displays data selected in columns
-    def display_metrics(self, columns):
+    def display_metrics(self, columns, only_nums=False):
         header = ''
         for metric_title in columns:
             header += metric_title + '\t'
@@ -176,6 +176,9 @@ class ETF:
 
                     except Exception as e:
                         line += '' + '\t'
+
+                if only_nums:
+                    line = ''.join(x for x in line if x not in 'BMK')
                 print(line)
 
             except OverflowError:
