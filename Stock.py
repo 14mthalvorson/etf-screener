@@ -14,16 +14,7 @@ class Stock:
                                                  'Oper. Margin', 'Profit Margin', 'Beta', 'SMA200', '52W High', '52W Low',
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
 
-        yfinance_metrics = get_yfinance_metrics(ticker)
-
-        # Only run this when needed
-        '''
-        yahoo_financial_metrics = get_yahoo_financials_metrics(ticker)
-        
-        '''
-
         # Basic Data Collection
-
         self.name = finviz_fundamentals['Company']
         self.price = finviz_fundamentals['Price']
         self.market_cap = finviz_fundamentals['Market Cap']
@@ -48,7 +39,7 @@ class Stock:
         self.net_margin = finviz_fundamentals['Profit Margin']
 
         self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
-        self.research_development = to_billions_string(yfinance_metrics['Research & Development'])
+        self.research_development = get_macrotrends_metrics(ticker, 'Research and Development')
 
         self.dividend_yield = finviz_fundamentals['Dividend %']
         self.share_count_growth_3y = get_macrotrends_metrics(ticker, '% Change in Share Count 3Y')

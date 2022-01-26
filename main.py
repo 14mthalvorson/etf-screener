@@ -17,7 +17,7 @@ Possibilities for columns:
 
 '''
 stock = Stock('AAPL')
-print(stock.share_count_growth)
+print(stock.research_development)
 exit(0)
 '''
 
