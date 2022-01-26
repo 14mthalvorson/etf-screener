@@ -8,6 +8,7 @@ from ETF import *
 class Stock:
     def __init__(self, ticker):
         self.ticker = ticker
+        self.type = 'Stock'
 
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
@@ -15,7 +16,7 @@ class Stock:
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees'])
 
         if finviz_fundamentals['Market Cap'] is None:  # Probably an ETF
-            pass
+            self.type = 'ETF'
 
         # Basic Data Collection
         self.name = finviz_fundamentals['Company']
