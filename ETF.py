@@ -160,6 +160,8 @@ class ETF:
                             line += stock.cash + '\t'
                         if metric_title == 'Long Term Debt':
                             line += stock.long_term_debt + '\t'
+                        if metric_title == 'Debt/EBIT':
+                            line += stock.debt_to_ebit + '\t'
                         if metric_title == 'R&D':
                             line += stock.research_development + '\t'
                         if metric_title == 'R&D/Revenue':
