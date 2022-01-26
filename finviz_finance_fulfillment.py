@@ -90,23 +90,22 @@ from finvizfinance.quote import finvizfinance
 # Single value - Takes a ticker and a single desired metrics and returns the value of the desired metric
 # Multiple values - Takes a ticker and a list of desired metric names and returns a dictionary of the desired metrics
 def get_finviz_metrics(ticker, metric_names):
-    stock = finvizfinance(ticker)
-    fundamentals = stock.ticker_fundament()
+    try:
+        stock = finvizfinance(ticker)
+        fundamentals = stock.ticker_fundament()
 
-    if isinstance(metric_names, list):
-        metrics = {}
+        if isinstance(metric_names, list):
+            metrics = {}
 
-        for metric_name in metric_names:
-            try:
-                metrics[metric_name] = fundamentals[metric_name]
-                if metrics[metric_name] == '-':
-                    metrics[metric_name] = None
-            except Exception as e:
-                print(e)
-        return metrics
-
-    else:
-        try:
+            for metric_name in metric_names:
+                try:
+                    metrics[metric_name] = fundamentals[metric_name]
+                    if metrics[metric_name] == '-':
+                        metrics[metric_name] = None
+                except Exception as e:
+                    print(e)
+            return metrics
+        else:
             return fundamentals[metric_names]
-        except Exception as e:
-            return None
+    except Exception as e:
+        return None

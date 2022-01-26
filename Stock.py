@@ -160,6 +160,6 @@ class Stock:
 
         # Long Term Debt / EBIT: Reflects ability to pay off debt
         try:
-            self.debt_to_revenue = to_ratio_string(to_number(self.long_term_debt) / to_number(self.revenue))
+            self.debt_to_gp = to_ratio_string(to_number(self.long_term_debt) / to_number(self.gross_profit))
         except Exception as e:
-            self.debt_to_revenue = None
+            self.debt_to_gp = None
