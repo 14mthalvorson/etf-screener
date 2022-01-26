@@ -10,13 +10,13 @@ Possibilities for columns:
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
 'Sales Growth 3Y', 'Median Rev Growth 3Y'
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
-'Cash', 'Long Term Debt', 'Debt/EBIT', 'R&D', 'R&D/Revenue'
+'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/Revenue', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees'
 '52W High'
 '''
 
 etf = ETF('mine')
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', '52W High', 'EBITDA']
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', '52W High']
 etf.display_metrics(columns)
 
 '''

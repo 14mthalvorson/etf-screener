@@ -157,3 +157,9 @@ class Stock:
             self.debt_to_ebit = to_ratio_string(to_number(self.long_term_debt) / to_number(self.ebit))
         except Exception as e:
             self.debt_to_ebit = None
+
+        # Long Term Debt / EBIT: Reflects ability to pay off debt
+        try:
+            self.debt_to_revenue = to_ratio_string(to_number(self.long_term_debt) / to_number(self.revenue))
+        except Exception as e:
+            self.debt_to_revenue = None
