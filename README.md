@@ -27,7 +27,7 @@ columns = ['Ticker', 'R&D/Revenue']
 etf.display_metrics(columns)
 ```
 
-- Among the top holdings of ARKK, display the 3 year median quarterly revenue growth and each company's ratio EV/Gross Profit.
+- Among the top holdings of ARKK, display the median quarterly revenue growth (across the last 3 years) and each company's EV/Gross Profit ratio.
 ```
 etf = ETF('arkk')
 columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP']
@@ -35,7 +35,7 @@ etf.display_metrics(columns)
 ```
 
 ## How to Use
-In main.py, copy and paste the following (or choose any example from above):
+In **main.py**, copy and paste the following (or choose any example from above) and then run **main.py**.
 ```
 etf = ETF('qqq')
 columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'EBITDA Margin', 'EBIT Margin', '52W High']
@@ -70,6 +70,7 @@ HON	-6.28%	13.05	19.36	22.19	21.77%	20.60%	-13.68%	0.91%
 TMUS	6.38%	4.52	8.44	20.01	30.46%	9.50%	-28.99%	0.89%	
 AMAT	23.39%	11.69	17.51	18.51	31.57%	29.90%	-16.62%	0.87%
 ```
+After copying the data over to Excel or Google Sheets, you can easily make simple graphs of the data.
 ###### In Google Sheets: 
 ![EV/EBIT Graph](EV_to_EBIT_graph.PNG)
 
