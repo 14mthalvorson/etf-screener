@@ -1,23 +1,47 @@
 # A financial screener for public stocks and ETFs
 
-This project was designed for my personal use to aggregate financial data from a collection of sources, calculate some new metrics, and output the data in a convenient format for using in Excel or Google Sheets. After manually collecting this data many times, I wanted to automate all of these processes to save time, improve accuracy, and provide a platform for further building off of.
+This project was designed for my personal use to aggregate financial data from a collection of sources, calculate some new metrics, and output the data in a convenient format for using in Excel or Google Sheets. After manually collecting this data many times, I wanted to automate all of these processes to save time, improve accuracy, and provide a programmatic platform for further building off of.
 
 [Financial Metrics Available and Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
 
-## How to Use
-The capabilities are outlined to a greater extent below but here are some examples of the capabilities of the screener.
+## Examples of Capabilities
 
-
-###### In main.py, run:
+- Among the stocks in QQQ, find the 52W drawdowns off of the highs.
 ```
 etf = ETF('qqq')
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBITDA', 'Adj EV/OP', 'EBITDA Margin', 'Operating Margin', '52W High', 'Weighting']
+columns = ['Ticker', '52W High']
 etf.display_metrics(columns)
 ```
-_Note: The input formatting is very similar to SQL:_
-* _SELECT columns FROM etf ticker name WHERE (conditionals section I hope to add in the future)_
 
+- Among the stocks in SPY, identify the stocks by the debt load.
+```
+etf = ETF('spy')
+columns = ['Ticker', 'Debt/EBIT']
+etf.display_metrics(columns)
+```
 
+- Among the Big Tech companies, list each company by the % of revenue going to Research & Development.
+```
+etf = ETF('aapl msft googl amzn fb')
+columns = ['Ticker', 'R&D/Revenue']
+etf.display_metrics(columns)
+```
+
+- Among the top holdings of ARKK, display the 3 year median quarterly revenue growth and each company's ratio EV/Gross Profit.
+```
+etf = ETF('arkk')
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP']
+etf.display_metrics(columns)
+```
+
+## How to Use
+In main.py, copy and paste the following (or choose any example from above):
+```
+etf = ETF('qqq')
+columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'EBITDA Margin', 'EBIT Margin', '52W High']
+etf.display_metrics(columns)
+```
+_Note: The input formatting is very similar to SQL: SELECT columns FROM etf ticker name WHERE (conditionals I hope to add in the future)_
 ###### Console Output:
 ```
 Ticker	Median Rev Growth 3Y	EV/GP	EV/EBITDA	Adj EV/OP	EBITDA Margin	Operating Margin	52W High	Weighting	
