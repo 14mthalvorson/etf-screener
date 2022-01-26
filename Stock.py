@@ -49,12 +49,12 @@ class Stock:
         self.dividend_yield = finviz_fundamentals['Dividend %']
         self.share_count_growth_3y = get_macrotrends_metrics(ticker, '% Change in Share Count 3Y')
         self.beta = finviz_fundamentals['Beta']
+        self.employees = finviz_fundamentals['Employees']
+
         self.sma200 = finviz_fundamentals['SMA200']
         self.high_52W = finviz_fundamentals['52W High']
         self.low_52W = finviz_fundamentals['52W Low']
         self.perf_year = finviz_fundamentals['Perf Year']
-
-        self.employees = finviz_fundamentals['Employees']
 
         # Value checks
         if self.revenue == '-':

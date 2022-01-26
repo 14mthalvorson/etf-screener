@@ -97,9 +97,14 @@ class ETF:
         self.set_components()
 
         if self.is_real_etf:
-            finviz_fundamentals = get_finviz_metrics(ticker, ['Dividend %', 'Price', 'SMA200', 'Sales', '52W High', 'Perf Year'])
+            finviz_fundamentals = get_finviz_metrics(ticker, ['Dividend %', 'Price', 'SMA200', '52W High', 'Perf Year'])
 
             self.dividend_yield = finviz_fundamentals['Dividend %']
+            self.price = finviz_fundamentals['Price']
+            self.sma200 = finviz_fundamentals['SMA200']
+            self.high_52W = finviz_fundamentals['52W High']
+            self.perf_year = finviz_fundamentals['Perf Year']
+
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -205,8 +210,13 @@ class ETF:
                             line += component.beta + '\t'
                         if metric_title == 'GP/Employees':
                             line += component.gross_profit_per_employee + '\t'
+
                         if metric_title == '52W High':
                             line += component.high_52W + '\t'
+                        if metric_title == 'Perf Year':
+                            line += component.perf_year + '\t'
+                        if metric_title == 'SMA200':
+                            line += component.sma200 + '\t'
 
                     except Exception as e:
                         line += '' + '\t'

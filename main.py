@@ -12,12 +12,12 @@ Possibilities for columns:
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
-'52W High'
+'Perf Year', 'SMA200', '52W High'
 '''
 
 
 etf = ETF('aapl qqq msft')
-columns = ['Ticker', 'Revenue', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', '52W High']
+columns = ['Ticker', 'Price', 'Revenue', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
 '''
