@@ -129,7 +129,7 @@ class ETF:
                         if metric_title == 'EBITDA':
                             line += stock.ebitda + '\t'
                         if metric_title == 'EBIT':
-                            line += stock.operating_income + '\t'
+                            line += stock.ebit + '\t'
                         if metric_title == 'Net Income':
                             line += stock.net_income + '\t'
 
@@ -152,7 +152,7 @@ class ETF:
                         if metric_title == 'EBITDA Margin':
                             line += stock.ebitda_margin + '\t'
                         if metric_title == 'EBIT Margin':
-                            line += stock.operating_margin + '\t'
+                            line += stock.ebit_margin + '\t'
                         if metric_title == 'Net Margin':
                             line += stock.net_margin + '\t'
 

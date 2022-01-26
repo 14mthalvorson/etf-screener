@@ -34,8 +34,8 @@ class Stock:
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
         self.gross_margin = finviz_fundamentals['Gross Margin']
-        self.operating_margin = finviz_fundamentals['Oper. Margin']
-        self.max_operating_margin_3y = get_macrotrends_metrics(ticker, 'Max Operating Margin 3Y')
+        self.ebit_margin = finviz_fundamentals['Oper. Margin']
+        self.max_ebit_margin_3y = get_macrotrends_metrics(ticker, 'Max EBIT Margin 3Y')
         self.net_margin = finviz_fundamentals['Profit Margin']
 
         self.cash = get_macrotrends_metrics(ticker, 'Cash')
@@ -62,24 +62,17 @@ class Stock:
         except Exception as e:
             self.gross_profit = None
 
-        # Operating income
+        # EBIT
         try:
-            self.operating_income = to_billions_string(to_number(self.operating_margin) * to_number(self.revenue))
+            self.ebit = to_billions_string(to_number(self.ebit_margin) * to_number(self.revenue))
         except Exception as e:
-            self.operating_income = None
+            self.ebit = None
 
-        # Adjusted operating income: max op margin 3y * current revenue
+        # Adjusted EBIT: max op margin 3y * current revenue
         try:
-            self.adj_operating_income = to_billions_string(to_number(self.max_operating_margin_3y) * to_number(self.revenue))
+            self.adj_ebit = to_billions_string(to_number(self.max_ebit_margin_3y) * to_number(self.revenue))
         except Exception as e:
-            self.adj_operating_income = None
-
-        # Potential operating income: (max op margin 3y + 0.05) * current revenue
-        try:
-            self.pot_operating_income = to_billions_string(
-                (to_number(self.max_operating_margin_3y) + 0.05) * to_number(self.revenue))
-        except Exception as e:
-            self.pot_operating_income = None
+            self.adj_ebit = None
 
         # Net Income
         try:
@@ -111,21 +104,21 @@ class Stock:
         except Exception as e:
             self.ev_to_gp_ratio = None
 
-        # EV to Operating Profit Ratio
+        # EV to EBIT Ratio
         try:
-            self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.operating_income))
+            self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebit))
         except Exception as e:
             self.ev_to_op_ratio = None
 
         # Adjusted EV to EBIT Ratio
         try:
-            self.adj_ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_operating_income))
+            self.adj_ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
         except Exception as e:
             self.adj_ev_to_ebit_ratio = self.ev_to_op_ratio
 
         # Potential EV to EBIT Ratio
         try:
-            self.ev_to_pot_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.pot_operating_income))
+            self.ev_to_pot_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
         except Exception as e:
             self.ev_to_pot_ebit_ratio = self.adj_ev_to_ebit_ratio
 
@@ -158,3 +151,9 @@ class Stock:
             self.research_over_revenue = to_percent_string(to_number(self.research_development) / to_number(self.revenue))
         except Exception as e:
             self.research_over_revenue = None
+
+        # Long Term Debt / EBIT: Reflects ability to pay off debt
+        try:
+            self.debt_to_ebit = to_ratio_string(to_number(self.long_term_debt) / to_number(self.ebit))
+        except Exception as e:
+            self.debt_to_ebit = None
