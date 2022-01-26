@@ -131,13 +131,31 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
-            url = 'http://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=long-term-debt&statement=balance-sheet&freq=Q' % ticker
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=long-term-debt&statement=balance-sheet&freq=Q' % ticker
             html_doc = requests.get(url).text
 
             # Search the html_doc using regex for the chart content and set to chartData variable.
             result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v2', 'NULL') != 'NULL']
+
+            return to_billions_string(to_number(chartData[-1]['v2']) * 1000000000)
+
+        except Exception as e:
+            return 0
+
+    elif metric_name == 'Cash':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=cash-on-hand&statement=balance-sheet&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v2', 'NULL') != 'NULL']
 
             return to_billions_string(to_number(chartData[-1]['v2']) * 1000000000)
 

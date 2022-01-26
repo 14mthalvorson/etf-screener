@@ -38,6 +38,7 @@ class Stock:
         self.max_operating_margin_3y = get_macrotrends_metrics(ticker, 'Max Operating Margin 3Y')
         self.net_margin = finviz_fundamentals['Profit Margin']
 
+        self.cash = get_macrotrends_metrics(ticker, 'Cash')
         self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
         self.research_development = get_macrotrends_metrics(ticker, 'Research and Development')
 
@@ -87,7 +88,10 @@ class Stock:
             self.net_income = None
 
         # Enterprise value
-        self.enterprise_value = self.market_cap
+        try:
+            self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.long_term_debt) - to_number(self.cash))
+        except Exception as e:
+            self.enterprise_value = self.market_cap
 
         # EV to EBITDA Ratio
         try:
@@ -149,4 +153,8 @@ class Stock:
         except Exception as e:
             self.gross_profit_per_employee = None
 
-
+        # R&D / Revenue
+        try:
+            self.research_over_revenue = to_percent_string(to_number(self.research_development) / to_number(self.revenue))
+        except Exception as e:
+            self.research_over_revenue = None

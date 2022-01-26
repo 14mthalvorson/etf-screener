@@ -156,8 +156,14 @@ class ETF:
                         if metric_title == 'Net Margin':
                             line += stock.net_margin + '\t'
 
+                        if metric_title == 'Cash':
+                            line += stock.cash + '\t'
+                        if metric_title == 'Long Term Debt':
+                            line += stock.long_term_debt + '\t'
                         if metric_title == 'R&D':
                             line += stock.research_development + '\t'
+                        if metric_title == 'R&D/Revenue':
+                            line += stock.research_over_revenue + '\t'
 
                         if metric_title == 'Share Count Growth 3Y':
                             line += stock.share_count_growth_3y + '\t'
