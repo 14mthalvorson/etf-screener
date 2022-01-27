@@ -117,15 +117,15 @@ class Stock:
 
         # EV to EBIT Ratio
         try:
-            self.ev_to_op_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebit))
+            self.ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebit))
         except Exception as e:
-            self.ev_to_op_ratio = None
+            self.ev_to_ebit_ratio = None
 
         # Adjusted EV to EBIT Ratio
         try:
             self.adj_ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
         except Exception as e:
-            self.adj_ev_to_ebit_ratio = self.ev_to_op_ratio
+            self.adj_ev_to_ebit_ratio = self.ev_to_ebit_ratio
 
         # Potential EV to EBIT Ratio
         try:

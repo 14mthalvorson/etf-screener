@@ -139,6 +139,22 @@ class ETF:
         except Exception as e:
             self.weighted_median_EV_to_GP = None
 
+        # Weighted Median EV/EBIT
+        relative_EV_to_EBITs = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    if self.components[ticker].ev_to_ebit_ratio is not None and to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
+                        relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
+                    else:
+                        relative_EV_to_EBITs.append(1000)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_median_EV_to_EBIT = get_median_from_list(relative_EV_to_EBITs)
+        except Exception as e:
+            self.weighted_median_EV_to_EBIT = None
+
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
@@ -206,7 +222,7 @@ class ETF:
                         if metric_title == 'EV/EBITDA':
                             line += component.ev_to_ebitda_ratio + '\t'
                         if metric_title == 'EV/EBIT':
-                            line += component.ev_to_op_ratio + '\t'
+                            line += component.ev_to_ebit_ratio + '\t'
                         if metric_title == 'Adj EV/EBIT':
                             line += component.adj_ev_to_ebit_ratio + '\t'
 
@@ -258,6 +274,8 @@ class ETF:
                             line += component.weighted_median_EV + '\t'
                         if metric_title == 'Weighted Median EV/GP':
                             line += component.weighted_median_EV_to_GP + '\t'
+                        if metric_title == 'Weighted Median EV/EBIT':
+                            line += component.weighted_median_EV_to_EBIT + '\t'
 
                     except Exception as e:
                         line += '' + '\t'
