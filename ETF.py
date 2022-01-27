@@ -120,9 +120,9 @@ class ETF:
             except Exception as e:
                 pass
         try:
-            self.weighted_med_EV = get_median_from_list(relative_EVs)
+            self.weighted_median_EV = get_median_from_list(relative_EVs)
         except Exception as e:
-            self.weighted_med_EV = None
+            self.weighted_median_EV = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
