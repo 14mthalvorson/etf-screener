@@ -31,3 +31,9 @@ def to_percent_string(value):
 # Round to nearest hundredths
 def to_ratio_string(value):
     return '{:.2f}'.format(value)
+
+
+# Returns median (lower num if multiple)
+def get_median_from_list(vals):
+    vals.sort(key=lambda x: to_number(x))
+    return vals[len(vals)//2]

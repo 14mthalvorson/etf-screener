@@ -3,8 +3,7 @@ from Stock import Stock
 
 
 '''
-~~~ ETF Analysis ~~~
-Possibilities for columns:
+Stock & ETF Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
@@ -13,11 +12,16 @@ Possibilities for columns:
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
 'Perf Year', 'SMA200', '52W High'
+Stock only Columns:
+
+ETF only Columns:
+'Weighted Median EV'
 '''
 
 
-etf = ETF('mega')
-columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
+etf = ETF('ETFs')
+columns = ['Ticker', 'Weighted Median EV']
+# columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
 '''

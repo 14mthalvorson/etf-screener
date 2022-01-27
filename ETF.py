@@ -1,5 +1,6 @@
 import requests
 import re
+from utilities import *
 from Stock import Stock
 from finviz_finance_fulfillment import get_finviz_metrics
 
@@ -73,11 +74,14 @@ class ETF:
                             'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
                             'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
-        elif ticker == 'letf':  # Leveraged ETFs
+        elif ticker == 'ETFs':  # Popular ETFs
+            self.ticker_string = 'qqq spy arkk'
+
+        elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
 
         elif ticker == 'mega':  # Mega-cap tech stocks
-            self.ticker_string = 'aapl amzn googl fb nflx nvda reit qqq tsla msft tsm'
+            self.ticker_string = 'aapl amzn googl fb nflx nvda tsla msft tsm'
 
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
@@ -96,6 +100,7 @@ class ETF:
         # Set components
         self.set_components()
 
+        # Query Finviz metrics for real ETFs
         if self.is_real_etf:
             finviz_fundamentals = get_finviz_metrics(ticker, ['Dividend %', 'Price', 'SMA200', '52W High', 'Perf Year'])
 
@@ -104,6 +109,20 @@ class ETF:
             self.sma200 = finviz_fundamentals['SMA200']
             self.high_52W = finviz_fundamentals['52W High']
             self.perf_year = finviz_fundamentals['Perf Year']
+
+        # Calculate additional metrics based on components and weights
+        # Weighted Median Enterprise Value
+        relative_EVs = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    relative_EVs.append(self.components[ticker].enterprise_value)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_med_EV = get_median_from_list(relative_EVs)
+        except Exception as e:
+            self.weighted_med_EV = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -218,6 +237,10 @@ class ETF:
                             line += component.perf_year + '\t'
                         if metric_title == 'SMA200':
                             line += component.sma200 + '\t'
+
+                        # ETF Only Metrics
+                        if metric_title == 'Weighted Median EV':
+                            line += component.weighted_median_EV + '\t'
 
                     except Exception as e:
                         line += '' + '\t'
