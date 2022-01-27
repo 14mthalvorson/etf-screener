@@ -111,6 +111,7 @@ class ETF:
             self.perf_year = finviz_fundamentals['Perf Year']
 
         # Calculate additional metrics based on components and weights
+
         # Weighted Median Enterprise Value
         relative_EVs = []
         for ticker in self.weights.keys():
@@ -123,6 +124,19 @@ class ETF:
             self.weighted_median_EV = get_median_from_list(relative_EVs)
         except Exception as e:
             self.weighted_median_EV = None
+
+        # Weighted Median EV/GP
+        relative_EV_to_GPs = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    relative_EVs.append(self.components[ticker].ev_to_gp_ratio)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_median_EV_to_GP = get_median_from_list(relative_EV_to_GPs)
+        except Exception as e:
+            self.weighted_median_EV_to_GP = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -241,6 +255,8 @@ class ETF:
                         # ETF Only Metrics
                         if metric_title == 'Weighted Median EV':
                             line += component.weighted_median_EV + '\t'
+                        if metric_title == 'Weighted Median EV/GP':
+                            line += component.weighted_median_EV_to_GP + '\t'
 
                     except Exception as e:
                         line += '' + '\t'
