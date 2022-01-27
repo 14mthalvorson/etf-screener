@@ -130,7 +130,8 @@ class ETF:
         for ticker in self.weights.keys():
             try:
                 for i in range(int(to_number(self.weights[ticker]) * 100)):
-                    relative_EVs.append(self.components[ticker].ev_to_gp_ratio)
+                    if self.components[ticker].ev_to_gp_ratio is not None:
+                        relative_EV_to_GPs.append(self.components[ticker].ev_to_gp_ratio)
             except Exception as e:
                 pass
         try:
