@@ -7,6 +7,7 @@ Stock & ETF Columns:
 'Ticker', 'Name', 'Type'
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 'Median Rev Growth 3Y'
+'52W High'
 
 Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
@@ -25,9 +26,9 @@ ETF Columns:
 '''
 
 etf = ETF('qqq amzn fb googl msft aapl')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT']
-# columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', '52W High']
 etf.display_metrics(columns, only_nums=True)
+
 
 '''
 # Multiple ETF Analysis

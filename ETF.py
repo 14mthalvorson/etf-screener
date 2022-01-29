@@ -306,7 +306,7 @@ class ETF:
                         if metric_title == 'GP/Employees':
                             line += component.gross_profit_per_employee + '\t'
 
-                        if metric_title == '52W High':
+                        if metric_title == '52W High':  # Works for both stocks and ETFs
                             line += component.high_52W + '\t'
                         if metric_title == 'Perf Year':
                             line += component.perf_year + '\t'
