@@ -4,6 +4,11 @@ from Stock import Stock
 
 '''
 Stock & ETF Columns:
+'Ticker', 'Type'
+'EV/GP', 'EV/EBIT'
+'Median Rev Growth 3Y'
+
+Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
@@ -14,19 +19,13 @@ Stock & ETF Columns:
 'Perf Year', 'SMA200', '52W High'
 Stock only Columns:
 
-ETF only Columns:
+ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 '''
 
-etf = ETF('mega')
+etf = ETF('vig fb qqq googl spy amzn msft aapl meta')
 columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT']
-# columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
-etf.display_metrics(columns, only_nums=True)
-exit(0)
-
-etf = ETF('ETFs')
-columns = ['Ticker', 'Weighted Median Median Rev Growth 3Y', 'Weighted Median EV/GP', 'Weighted Median EV/EBIT']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 

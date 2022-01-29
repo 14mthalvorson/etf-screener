@@ -74,8 +74,11 @@ class ETF:
                             'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
                             'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
-        elif ticker == 'ETFs':  # Popular ETFs
+        elif ticker == 'top_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
+
+        elif ticker == 'my_ETFs':  # Popular ETFs
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou idna xbi arkw arkf arkg'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
@@ -222,18 +225,27 @@ class ETF:
                             line += component.net_income + '\t'
 
                         if metric_title == 'EV/GP':
-                            line += component.ev_to_gp_ratio + '\t'
+                            if component.type == 'Stock':
+                                line += component.ev_to_gp_ratio + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_median_EV_to_GP + '\t'
                         if metric_title == 'EV/EBITDA':
                             line += component.ev_to_ebitda_ratio + '\t'
                         if metric_title == 'EV/EBIT':
-                            line += component.ev_to_ebit_ratio + '\t'
+                            if component.type == 'Stock':
+                                line += component.ev_to_ebit_ratio + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_median_EV_to_EBIT + '\t'
                         if metric_title == 'Adj EV/EBIT':
                             line += component.adj_ev_to_ebit_ratio + '\t'
 
                         if metric_title == 'Sales Growth 3Y':
                             line += component.revenue_growth_3y + '\t'
                         if metric_title == 'Median Rev Growth 3Y':
-                            line += component.med_rev_growth_3y + '\t'
+                            if component.type == 'Stock':
+                                line += component.med_rev_growth_3y + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_med_med_rev_growth_3y + '\t'
 
                         if metric_title == 'Gross Margin':
                             line += component.gross_margin + '\t'
