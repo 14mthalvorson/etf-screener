@@ -5,13 +5,13 @@ from Stock import Stock
 '''
 Stock & ETF Columns:
 'Ticker', 'Name', 'Type'
-'EV/GP', 'EV/EBIT'
+'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 'Median Rev Growth 3Y'
 
 Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
-'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
+'EV/GP', 'EV/EBITDA', 'Adj EV/EBIT', 'EV/EBIT'
 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'Median Rev Growth'
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
@@ -20,12 +20,12 @@ Stock Columns:
 Stock only Columns:
 
 ETF Columns:
-'Weighted Median EV/GP', 'Weighted Median EV/EBIT'
+'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 '''
 
 etf = ETF('qqq amzn')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT']
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 

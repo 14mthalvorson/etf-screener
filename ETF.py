@@ -150,6 +150,23 @@ class ETF:
         except Exception as e:
             self.weighted_median_EV_to_EBIT = None
 
+        # Weighted Median Adj. EV/EBIT
+        relative_adj_EV_to_EBITs = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    if self.components[ticker].adj_ev_to_ebit_ratio is not None:
+                        if to_number(self.components[ticker].adj_ev_to_ebit_ratio) > 0:
+                            relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
+                        else:
+                            relative_adj_EV_to_EBITs.append(1000000)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_median_adj_EV_to_EBIT = get_median_from_list(relative_adj_EV_to_EBITs)
+        except Exception as e:
+            self.weighted_median_adj_EV_to_EBIT = None
+
         # Weighted Median "Median Revenue Growth 3Y"
         relative_med_rev_growth = []
         for ticker in self.weights.keys():
@@ -243,7 +260,10 @@ class ETF:
                             elif component.type == 'ETF':
                                 line += component.weighted_median_EV_to_EBIT + '\t'
                         if metric_title == 'Adj EV/EBIT':
-                            line += component.adj_ev_to_ebit_ratio + '\t'
+                            if component.type == 'Stock':
+                                line += component.adj_ev_to_ebit_ratio + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_median_adj_EV_to_EBIT + '\t'
 
                         if metric_title == 'Sales Growth 3Y':
                             line += component.revenue_growth_3y + '\t'
@@ -298,6 +318,8 @@ class ETF:
                             line += component.weighted_median_EV_to_GP + '\t'
                         if metric_title == 'Weighted Median EV/EBIT':
                             line += component.weighted_median_EV_to_EBIT + '\t'
+                        if metric_title == 'Weighted Median Adj EV/EBIT':
+                            line += component.weighted_median_adj_EV_to_EBIT + '\t'
                         if metric_title == 'Weighted Median Median Rev Growth 3Y':
                             line += component.weighted_med_med_rev_growth_3y + '\t'
 
