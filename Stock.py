@@ -4,15 +4,8 @@ from utilities import *
 from ETF import *
 
 
-cache = {}
-
-
 class Stock:
     def __init__(self, ticker):
-        if ticker in cache:
-            self = cache[ticker]
-        else:
-            cache[ticker] = self
 
         self.ticker = ticker
         self.type = 'Stock'

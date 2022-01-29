@@ -19,9 +19,6 @@ ETF only Columns:
 'Weighted Median EV/GP', 'Weighted Median EV/EBIT'
 '''
 
-aapl = Stock('aapl')
-print(aapl.type)
-exit(0)
 
 etf = ETF('ETFs')
 columns = ['Ticker', 'Weighted Median EV', 'Weighted Median EV/GP', 'Weighted Median EV/EBIT']

@@ -75,7 +75,7 @@ class ETF:
                             'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
         elif ticker == 'ETFs':  # Popular ETFs
-            self.ticker_string = 'qqq spy arkk'
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
@@ -112,19 +112,6 @@ class ETF:
 
         # Calculate additional metrics based on components and weights
 
-        # Weighted Median Enterprise Value
-        relative_EVs = []
-        for ticker in self.weights.keys():
-            try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
-                    relative_EVs.append(self.components[ticker].enterprise_value)
-            except Exception as e:
-                pass
-        try:
-            self.weighted_median_EV = get_median_from_list(relative_EVs)
-        except Exception as e:
-            self.weighted_median_EV = None
-
         # Weighted Median EV/GP
         relative_EV_to_GPs = []
         for ticker in self.weights.keys():
@@ -144,13 +131,17 @@ class ETF:
         for ticker in self.weights.keys():
             try:
                 for i in range(int(to_number(self.weights[ticker]) * 100)):
-                    if self.components[ticker].ev_to_ebit_ratio is not None and to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
-                        relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
-                    else:
-                        relative_EV_to_EBITs.append(1000)
+                    if self.components[ticker].ev_to_ebit_ratio is not None:
+                        if to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
+                            print(ticker, self.components[ticker].ev_to_ebit_ratio)
+                            relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
+                        else:
+                            print(ticker, 1000)
+                            relative_EV_to_EBITs.append(1000)
             except Exception as e:
                 pass
         try:
+            print(self.ticker, sorted(relative_EV_to_EBITs, key=lambda x: to_number(x)))
             self.weighted_median_EV_to_EBIT = get_median_from_list(relative_EV_to_EBITs)
         except Exception as e:
             self.weighted_median_EV_to_EBIT = None
