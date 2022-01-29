@@ -246,6 +246,8 @@ class ETF:
                                 line += component.med_rev_growth_3y + '\t'
                             elif component.type == 'ETF':
                                 line += component.weighted_med_med_rev_growth_3y + '\t'
+                        if metric_title == 'Median Rev Growth':
+                            line += component.med_rev_growth + '\t'
 
                         if metric_title == 'Gross Margin':
                             line += component.gross_margin + '\t'

@@ -92,7 +92,7 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
-    elif metric_name == 'Median Rev Growth 3Y':
+    elif metric_name == 'Median Rev Growth':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
@@ -108,6 +108,27 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
                 sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
             else:
                 sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
+
+            return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
+        except Exception as e:
+            return None
+
+    elif metric_name == 'Median Rev Growth 3Y':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
+            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':
+                sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            else:
+                return None
 
             return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
         except Exception as e:

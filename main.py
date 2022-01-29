@@ -12,7 +12,7 @@ Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'Adj EV/EBIT'
-'Sales Growth 3Y', 'Median Rev Growth 3Y'
+'Sales Growth 3Y', 'Median Rev Growth 3Y', 'Median Rev Growth'
 'Gross Margin', 'EBITDA Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
@@ -24,8 +24,8 @@ ETF Columns:
 'Weighted Median Median Rev Growth 3Y'
 '''
 
-etf = ETF('vig fb qqq googl spy amzn msft aapl meta')
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT']
+etf = ETF('aapl msft amzn googl shop coin pltr')
+columns = ['Ticker', 'Type', 'Median Rev Growth 3Y', 'Median Rev Growth', 'EV/GP', 'EV/EBIT']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
