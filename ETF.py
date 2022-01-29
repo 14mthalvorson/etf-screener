@@ -54,7 +54,7 @@ class ETF:
                             'awk cost logi mime zs fivn smar band rpd cybr pd tyl dis spgi dpz cmcsa ddog qcom avgo splk ' \
                             'plan panw vrsn bmy irm pdi pton zm wix axp csco o anet now anss soxx snap arkk arkw ' \
                             'arkg arkf ttwo clou coup bill estc akam bl wday twtr mtch fngu eght domo net apps se api zg ' \
-                            'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb idna xbi open qqq vmw tsm rdfn adsk ' \
+                            'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb xbi open qqq vmw tsm rdfn adsk ' \
                             'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
                             'coin mrvl upwk mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
                             'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
@@ -78,7 +78,10 @@ class ETF:
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
 
         elif ticker == 'my_ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou idna xbi arkw arkf arkg'
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
+
+        elif ticker == 'sector_ETFs':  # Leveraged ETFs
+            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xop iyr xhb itb vnq gdxj iye oih xme xrt smh ibb kbe xtl'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
@@ -105,8 +108,9 @@ class ETF:
 
         # Query Finviz metrics for real ETFs
         if self.is_real_etf:
-            finviz_fundamentals = get_finviz_metrics(ticker, ['Dividend %', 'Price', 'SMA200', '52W High', 'Perf Year'])
+            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA200', '52W High', 'Perf Year'])
 
+            self.name = finviz_fundamentals['Company']
             self.dividend_yield = finviz_fundamentals['Dividend %']
             self.price = finviz_fundamentals['Price']
             self.sma200 = finviz_fundamentals['SMA200']
@@ -198,9 +202,11 @@ class ETF:
 
                 for metric_title in columns:
                     try:
-                        if metric_title == 'Ticker':
+                        if metric_title == 'Ticker':  # Works for both stocks and ETFs
                             line += component.ticker + '\t'
-                        if metric_title == 'Type':
+                        if metric_title == 'Name':  # Works for both stocks and ETFs
+                            line += component.name + '\t'
+                        if metric_title == 'Type':  # Works for both stocks and ETFs
                             line += component.type + '\t'
                         if metric_title == 'Weight':
                             line += self.weights[component.ticker] + '\t'

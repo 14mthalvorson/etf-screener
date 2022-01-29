@@ -4,7 +4,7 @@ from Stock import Stock
 
 '''
 Stock & ETF Columns:
-'Ticker', 'Type'
+'Ticker', 'Name', 'Type'
 'EV/GP', 'EV/EBIT'
 'Median Rev Growth 3Y'
 
@@ -24,8 +24,8 @@ ETF Columns:
 'Weighted Median Median Rev Growth 3Y'
 '''
 
-etf = ETF('aapl msft amzn googl shop coin pltr')
-columns = ['Ticker', 'Type', 'Median Rev Growth 3Y', 'Median Rev Growth', 'EV/GP', 'EV/EBIT']
+etf = ETF('qqq amzn')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBIT']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
