@@ -24,7 +24,7 @@ ETF Columns:
 'Weighted Median Median Rev Growth 3Y'
 '''
 
-etf = ETF('qqq amzn')
+etf = ETF('qqq amzn fb googl msft aapl')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)

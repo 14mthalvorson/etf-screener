@@ -76,7 +76,7 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
-    elif metric_name == 'Max Operating Margin 3Y':
+    elif metric_name == 'Max EBIT Margin 3Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
