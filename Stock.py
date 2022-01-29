@@ -90,23 +90,35 @@ class Stock:
         except Exception as e:
             self.enterprise_value = self.market_cap
 
-        # EV to EBITDA Ratio
-        try:
-            self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
-        except Exception as e:
-            self.ev_to_ebitda_ratio = None
-
         # EBITDA Margin
         try:
             self.ebitda_margin = to_percent_string(to_number(self.ebitda) / to_number(self.revenue))
         except Exception as e:
             self.ebitda_margin = None
 
+        # EV to Sales Ratio
+        try:
+            if to_number(self.revenue) > 0:
+                self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
+            else:
+                self.ev_to_sales_ratio = None
+        except Exception as e:
+            self.ev_to_sales_ratio = None
+
         # EV to Gross Profit Ratio
         try:
-            self.ev_to_gp_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.gross_profit))
+            if to_number(self.gross_profit) > 0:
+                self.ev_to_gp_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.gross_profit))
+            else:
+                self.ev_to_gp_ratio = None
         except Exception as e:
             self.ev_to_gp_ratio = None
+
+        # EV to EBITDA Ratio
+        try:
+            self.ev_to_ebitda_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebitda))
+        except Exception as e:
+            self.ev_to_ebitda_ratio = None
 
         # EV to EBIT Ratio
         try:
@@ -119,18 +131,6 @@ class Stock:
             self.adj_ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
         except Exception as e:
             self.adj_ev_to_ebit_ratio = self.ev_to_ebit_ratio
-
-        # Potential EV to EBIT Ratio
-        try:
-            self.ev_to_pot_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
-        except Exception as e:
-            self.ev_to_pot_ebit_ratio = self.adj_ev_to_ebit_ratio
-
-        # EV to Sales Ratio
-        try:
-            self.ev_to_sales_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.revenue))
-        except Exception as e:
-            self.ev_to_sales_ratio = None
 
         # Revenue per Employee
         try:

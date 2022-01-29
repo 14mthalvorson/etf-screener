@@ -133,18 +133,29 @@ class ETF:
                 for i in range(int(to_number(self.weights[ticker]) * 100)):
                     if self.components[ticker].ev_to_ebit_ratio is not None:
                         if to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
-                            print(ticker, self.components[ticker].ev_to_ebit_ratio)
                             relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
                         else:
-                            print(ticker, 1000)
-                            relative_EV_to_EBITs.append(1000)
+                            relative_EV_to_EBITs.append(1000000)
             except Exception as e:
                 pass
         try:
-            print(self.ticker, sorted(relative_EV_to_EBITs, key=lambda x: to_number(x)))
             self.weighted_median_EV_to_EBIT = get_median_from_list(relative_EV_to_EBITs)
         except Exception as e:
             self.weighted_median_EV_to_EBIT = None
+
+        # Weighted Median "Median Revenue Growth 3Y"
+        relative_med_rev_growth = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    if self.components[ticker].med_rev_growth_3y is not None:
+                        relative_med_rev_growth.append(self.components[ticker].ev_to_ebit_ratio)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_med_med_rev_growth_3y = get_median_from_list(relative_med_rev_growth)
+        except Exception as e:
+            self.weighted_med_med_rev_growth_3y = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -261,12 +272,12 @@ class ETF:
                             line += component.sma200 + '\t'
 
                         # ETF Only Metrics
-                        if metric_title == 'Weighted Median EV':
-                            line += component.weighted_median_EV + '\t'
                         if metric_title == 'Weighted Median EV/GP':
                             line += component.weighted_median_EV_to_GP + '\t'
                         if metric_title == 'Weighted Median EV/EBIT':
                             line += component.weighted_median_EV_to_EBIT + '\t'
+                        if metric_title == 'Weighted Median Median Rev Growth 3Y':
+                            line += component.weighted_med_med_rev_growth_3y + '\t'
 
                     except Exception as e:
                         line += '' + '\t'

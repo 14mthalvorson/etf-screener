@@ -15,13 +15,13 @@ Stock & ETF Columns:
 Stock only Columns:
 
 ETF only Columns:
-'Weighted Median EV'
 'Weighted Median EV/GP', 'Weighted Median EV/EBIT'
+'Weighted Median Median Rev Growth 3Y'
 '''
 
 
 etf = ETF('ETFs')
-columns = ['Ticker', 'Weighted Median EV', 'Weighted Median EV/GP', 'Weighted Median EV/EBIT']
+columns = ['Ticker', 'Weighted Median EV/GP', 'Weighted Median EV/EBIT', 'Weighted Median Median Rev Growth 3Y']
 # columns = ['Ticker', 'Type', 'Sales Growth 3Y', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Cash', 'Long Term Debt', 'Debt/GP', 'Dividend %', 'Share Count Growth 3Y', 'SMA200', '52W High', 'Perf Year']
 etf.display_metrics(columns, only_nums=True)
 
