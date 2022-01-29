@@ -75,7 +75,7 @@ class ETF:
                             'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
         elif ticker == 'ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn'
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
@@ -149,13 +149,15 @@ class ETF:
             try:
                 for i in range(int(to_number(self.weights[ticker]) * 100)):
                     if self.components[ticker].med_rev_growth_3y is not None:
-                        relative_med_rev_growth.append(self.components[ticker].ev_to_ebit_ratio)
+                        relative_med_rev_growth.append(self.components[ticker].med_rev_growth_3y)
             except Exception as e:
                 pass
         try:
             self.weighted_med_med_rev_growth_3y = get_median_from_list(relative_med_rev_growth)
         except Exception as e:
             self.weighted_med_med_rev_growth_3y = None
+
+        # Weighted Mean "Median Revenue Growth 3Y"
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
