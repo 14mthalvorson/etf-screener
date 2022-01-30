@@ -38,15 +38,23 @@ class ETF:
                             'v nvda msft tsm nflx wm dt cdns'
 
         elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
-            self.ticker_string = 'amzn aapl googl fb nflx nvda tsla msft tsm v ma adbe dis crm pypl shop se now snow abnb team ' \
-                            'sq snap wsay coin zm ddog twlo ttd crwd net zs veev u pltr twtr hubs okta etsy bill pins tyl ' \
-                            'hood rng zen coup open appf amd mu intc intu isrg cost wmt tgt qcom avgo cmcsa psp' \
-                            'txn hon amat lrcx adi orcl ibm adsk hd xom mrna pfe jnj pg unh roku brk.b jpm bac nke tmo ' \
-                            'csco ko acn abt cvx vz t tmus wfcmcd dpz ups mrk low ms gs mdt pm tdoc morn sbac dlr amt ' \
-                            'eqix cci we apps gtlb sofi upst path mttr upwk ai docu fvrr sklz cour appn jamf rblx ' \
-                            'cpng spot meli rdfn vmw api cvna avlr dsgx lmnd asan frog zg domo eght mtch bl akam estc ' \
-                            'ttwo anss acc anet axp o pton wix irm bmy panw plan vrsn splk spgi pd cybr smar rpd band ' \
-                            'fivn mime logi awk qtwo evbg newr mdb mrvl etsy wm chgg payc wday ter sumo dt cdns tenb glob'
+            self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
+                                 'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
+                                 'ba baba bac bam band bbl bhp bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
+                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cmcssa cme cni coin cop cost coup cour ' \
+                                 'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
+                                 'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
+                                 'frog fvrr gdxj ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
+                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm kbe ko lfc lin lly lmnd ' \
+                                 'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli meta mime mmc mmm mo moat morn mrk ' \
+                                 'mrna mrvl ms msft mtch mttr mu mufg nee net newr nflx nke now nvda nvo nvs o oih ' \
+                                 'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
+                                 'psp pton pypl qcom qld qqq qtwo rblx rdfn rio rng roku rom rpd rtx ry sap sbac sbux ' \
+                                 'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
+                                 'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
+                                 'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
+                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfcmcd wix wm wmt wsay ' \
+                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts'
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
@@ -206,10 +214,12 @@ class ETF:
                 pass
 
     # For each stock in an ETF, displays data selected in columns
-    def display_metrics(self, columns, only_nums=False):
+    def display_metrics(self, columns, only_nums=False, extra_header=False):
         header = ''
         for metric_title in columns:
             header += metric_title + '\t'
+        if extra_header:
+            header += '=IF(C1="Stock", E1, IFERROR(0/0))\t=IF(C1="ETF", E1, IFERROR(0/0))\t=IF(C1="Stock", F1, IFERROR(0/0))\t=IF(C1="ETF", F1, IFERROR(0/0))\t'
         print(header)
 
         for ticker in self.components.keys():
