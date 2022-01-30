@@ -37,3 +37,24 @@ def to_ratio_string(value):
 def get_median_from_list(vals):
     vals.sort(key=lambda x: to_number(x))
     return vals[len(vals)//2]
+
+
+def clean_tickers():
+    with open('input.txt', 'r+') as f:
+        data = f.read()
+        for string in ['Stock', 'ETF', '\t', '\n']:
+            while string in data:
+                data = data.replace(string, ' ')
+        while '  ' in data:
+            data = data.replace('  ', ' ')
+        data = data.lower()
+        data = ''.join([x for x in data if x in ' abcdefghijklmnopqrstuvwxyz'])
+        data.strip()
+        data = data.split(' ')
+        data = list(set(data))
+        data.sort()
+        data = [x for x in data if x != '']
+        data = ' '.join(data)
+
+        with open('output.txt', 'w+') as g:
+            g.write(data)
