@@ -255,10 +255,10 @@ class ETF:
 
         for i, ticker in enumerate(tickers):
             try:
-                if i != 0:
-                    component = self.components[ticker]  # Either a stock or an ETF
-                else:
+                if include_overall and i == 0:
                     component = self
+                else:
+                    component = self.components[ticker]  # Either a stock or an ETF
 
                 line = ''
 
@@ -324,12 +324,12 @@ class ETF:
                             if component.type == 'Stock':
                                 line += component.gross_margin + '\t'
                             elif component.type == 'ETF':
-                                line += component.weighted_med_gross_margin
+                                line += component.weighted_med_gross_margin + '\t'
                         if metric_title == 'EBITDA Margin':
                             if component.type == 'Stock':
                                 line += component.ebitda_margin + '\t'
                             elif component.type == 'ETF':
-                                line += component.weighted_med_adj_ebit_margin
+                                line += component.weighted_med_adj_ebit_margin + '\t'
                         if metric_title == 'EBIT Margin':
                             line += component.ebit_margin + '\t'
                         if metric_title == 'Net Margin':

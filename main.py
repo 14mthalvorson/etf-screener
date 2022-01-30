@@ -28,4 +28,4 @@ ETF Columns:
 
 etf = ETF('qqq amzn fb')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High']
-etf.display_metrics(columns, only_nums=True, extra_header=True, include_overall=False)
+etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=False)
