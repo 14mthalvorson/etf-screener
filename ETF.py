@@ -326,8 +326,10 @@ class ETF:
                             elif component.type == 'ETF':
                                 line += component.weighted_med_gross_margin + '\t'
                         if metric_title == 'EBITDA Margin':
+                            line += component.ebitda_margin + '\t'
+                        if metric_title == 'Adj EBIT Margin':
                             if component.type == 'Stock':
-                                line += component.ebitda_margin + '\t'
+                                line += component.adj_ebit_margin + '\t'
                             elif component.type == 'ETF':
                                 line += component.weighted_med_adj_ebit_margin + '\t'
                         if metric_title == 'EBIT Margin':
