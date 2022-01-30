@@ -227,9 +227,13 @@ class ETF:
         if include_overall:
             tickers.insert(0, self.ticker)
 
-        for ticker in tickers:
+        for i, ticker in enumerate(tickers):
             try:
-                component = self.components[ticker]  # Either a stock or an ETF
+                if i != 0:
+                    component = self.components[ticker]  # Either a stock or an ETF
+                else:
+                    component = self
+
                 line = ''
 
                 for metric_title in columns:
