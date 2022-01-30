@@ -214,7 +214,7 @@ class ETF:
                 pass
 
     # For each stock in an ETF, displays data selected in columns
-    def display_metrics(self, columns, only_nums=False, extra_header=False):
+    def display_metrics(self, columns, only_nums=False, extra_header=False, include_overall=False):
         header = ''
         for metric_title in columns:
             header += metric_title + '\t'
@@ -222,7 +222,12 @@ class ETF:
             header += '=IF(C1="Stock", E1, IFERROR(0/0))\t=IF(C1="ETF", E1, IFERROR(0/0))\t=IF(C1="Stock", F1, IFERROR(0/0))\t=IF(C1="ETF", F1, IFERROR(0/0))\t'
         print(header)
 
-        for ticker in self.components.keys():
+        tickers = sorted(list(self.components.keys()))
+
+        if include_overall:
+            tickers.insert(0, self.ticker)
+
+        for ticker in tickers:
             try:
                 component = self.components[ticker]  # Either a stock or an ETF
                 line = ''

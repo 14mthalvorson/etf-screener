@@ -18,16 +18,15 @@ Stock Columns:
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
 'Perf Year', 'SMA200', '52W High'
-Stock only Columns:
 
 ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 '''
 
-etf = ETF('qqq amzn fb googl msft aapl')
+etf = ETF('qqq')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', '52W High']
-etf.display_metrics(columns, only_nums=True)
+etf.display_metrics(columns, only_nums=True, extra_header=True, include_overall=True)
 
 
 '''
