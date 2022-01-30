@@ -189,7 +189,33 @@ class ETF:
         except Exception as e:
             self.weighted_med_med_rev_growth_3y = None
 
-        # Weighted Mean "Median Revenue Growth 3Y"
+        # Weighted Median Gross Margin
+        relative_med_gross_margin = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    if self.components[ticker].gross_margin is not None:
+                        relative_med_gross_margin.append(self.components[ticker].gross_margin)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_med_gross_margin = get_median_from_list(relative_med_gross_margin)
+        except Exception as e:
+            self.weighted_med_gross_margin = None
+
+        # Weighted Median Adj EBIT Margin
+        relative_med_adj_ebit_margin = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                    if self.components[ticker].adj_ebit_margin is not None:
+                        relative_med_adj_ebit_margin.append(self.components[ticker].adj_ebit_margin)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_med_adj_ebit_margin = get_median_from_list(relative_med_adj_ebit_margin)
+        except Exception as e:
+            self.weighted_med_adj_ebit_margin = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -295,9 +321,15 @@ class ETF:
                             line += component.med_rev_growth + '\t'
 
                         if metric_title == 'Gross Margin':
-                            line += component.gross_margin + '\t'
+                            if component.type == 'Stock':
+                                line += component.gross_margin + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_med_gross_margin
                         if metric_title == 'EBITDA Margin':
-                            line += component.ebitda_margin + '\t'
+                            if component.type == 'Stock':
+                                line += component.ebitda_margin + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_med_adj_ebit_margin
                         if metric_title == 'EBIT Margin':
                             line += component.ebit_margin + '\t'
                         if metric_title == 'Net Margin':
@@ -341,6 +373,10 @@ class ETF:
                             line += component.weighted_median_adj_EV_to_EBIT + '\t'
                         if metric_title == 'Weighted Median Median Rev Growth 3Y':
                             line += component.weighted_med_med_rev_growth_3y + '\t'
+                        if metric_title == 'Weighted Median Gross Margin':
+                            line += component.weighted_med_gross_margin + '\t'
+                        if metric_title == 'Weighted Median Adj EBIT Margin':
+                            line += component.weighted_med_adj_ebit_margin + '\t'
 
                     except Exception as e:
                         line += '' + '\t'
