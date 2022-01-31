@@ -144,7 +144,7 @@ class ETF:
         relative_EV_to_GPs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].ev_to_gp_ratio is not None:
                         relative_EV_to_GPs.append(self.components[ticker].ev_to_gp_ratio)
             except Exception as e:
@@ -158,7 +158,7 @@ class ETF:
         relative_EV_to_EBITs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].ev_to_ebit_ratio is not None:
                         if to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
                             relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
@@ -175,7 +175,7 @@ class ETF:
         relative_adj_EV_to_EBITs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].adj_ev_to_ebit_ratio is not None:
                         if to_number(self.components[ticker].adj_ev_to_ebit_ratio) > 0:
                             relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
@@ -192,7 +192,7 @@ class ETF:
         relative_med_rev_growth = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].med_rev_growth_3y is not None:
                         relative_med_rev_growth.append(self.components[ticker].med_rev_growth_3y)
             except Exception as e:
@@ -206,7 +206,7 @@ class ETF:
         relative_med_gross_margin = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].gross_margin is not None:
                         relative_med_gross_margin.append(self.components[ticker].gross_margin)
             except Exception as e:
@@ -220,7 +220,7 @@ class ETF:
         relative_med_adj_ebit_margin = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 100)):
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
                     if self.components[ticker].adj_ebit_margin is not None:
                         relative_med_adj_ebit_margin.append(self.components[ticker].adj_ebit_margin)
             except Exception as e:

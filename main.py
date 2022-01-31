@@ -4,7 +4,7 @@ from Stock import Stock
 
 '''
 Stock & ETF Columns:
-'Ticker', 'Name', 'Type'
+'Ticker', 'Name', 'Type', 'Weight'
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 'Median Rev Growth 3Y'
 'Gross Margin', 'Adj EBIT Margin'
@@ -26,6 +26,7 @@ ETF Columns:
 'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
 '''
 
-etf = ETF('spy')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High']
-etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
+etf = ETF('spy qqq vig aapl msft googl amzn fb')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
+# columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
+etf.display_metrics(columns, only_nums=False, extra_header=False, include_overall=False)
