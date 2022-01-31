@@ -6,89 +6,91 @@ This project was designed for my personal use to aggregate financial data from a
 
 ## Examples of Capabilities
 
-- Among the stocks in QQQ, find the 52W drawdowns off of the highs.
+- Example 1: Find the weighted median financial metrics for QQQ.
+
+Input:
 ```
 etf = ETF('qqq')
-columns = ['Ticker', '52W High']
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
+etf.display_metrics(columns, include_overall=True)
+```
+In the output below, note the format is tab separated (for an easy copy/paste into Excel or Google Sheets). This doesn't always line up in the console but it should correctly space in a spreadsheet. The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed.
+
+Output:
+```
+Ticker	Name	Type	Median Rev Growth 3Y	EV/GP	Adj EV/EBIT	Gross Margin	Adj EBIT Margin	52W High	Weight	
+qqq	Invesco QQQ Trust	ETF	13.99%	15.52	24.92	56.50%	30.30%	-11.17%		
+aapl	Apple Inc.	Stock	8.91%	17.76	24.92	41.80%	29.78%	-4.46%	11.69%	
+adbe	Adobe Inc.	Stock	22.02%	17.07	41.00	88.20%	36.76%	-23.62%	1.8%	
+adi	Analog Devices, Inc.	Stock	-1.62%	19.53	38.22	61.80%	31.61%	-14.58%	0.64%	
+adp	Automatic Data Processing, Inc.	Stock	5.62%	13.05	24.58	42.50%	22.52%	-17.19%	0.63%	
+amat	Applied Materials, Inc.	Stock	23.39%	11.06	17.51	47.30%	29.87%	-17.29%	0.95%	
+amd	Advanced Micro Devices, Inc.	Stock	49.89%	18.83	43.49	46.80%	20.27%	-30.53%	1.16%	
+amgn	Amgen Inc.	Stock	5.16%	7.49	13.06	75.40%	43.22%	-12.97%	0.96%	
+amzn	Amazon.com, Inc.	Stock	26.39%	7.63	47.15	41.30%	6.68%	-20.72%	6.78%	
+atvi	Activision Blizzard, Inc.	Stock	16.65%	8.41	17.43	72.60%	35.05%	-24.41%	0.46%	
+avgo	Broadcom Inc.	Stock	10.03%	15.52	30.69	61.40%	31.03%	-13.56%	1.82%	
+bkng	Booking Holdings Inc.	Stock	3.94%		28.67		36.77%	-8.60%	0.74%	
+chtr	Charter Communications, Inc.	Stock	5.15%	8.14	18.54	44.70%	19.63%	-28.13%	0.79%	
+cmcsa	Comcast Corporation	Stock	17.85%	3.98	13.26	67.00%	20.11%	-19.11%	1.53%	
+cost	Costco Wholesale Corporation	Stock	12.39%	8.18	30.51	12.80%	3.43%	-11.61%	1.67%	
+csco	Cisco Systems, Inc.	Stock	3.97%	6.69	15.32	63.70%	27.81%	-13.40%	1.78%	
+csx	CSX Corporation	Stock	-1.47%	9.28	15.38	75.70%	45.66%	-9.97%	0.57%	
+exc	Exelon Corporation	Stock	-2.23%	4.33	19.41	58.10%	12.98%	-0.11%	0.42%	
+fb	Meta Platforms, Inc.	Stock	28.59%	8.80	15.95	80.90%	44.62%	-18.49%	4.78%	
+fisv	Fiserv, Inc.	Stock	16.91%	10.78	18.14	50.70%	30.10%	-16.99%	0.52%	
+gild	Gilead Sciences, Inc.	Stock	5.06%	4.73	8.99	80.50%	42.31%	-7.34%	0.65%	
+googl	Alphabet Inc.	Stock	20.03%	11.92	22.22	56.50%	30.30%	-10.38%	7.19%	
+hon	Honeywell International Inc.	Stock	-6.28%	12.69	21.59	32.30%	19.01%	-13.67%	0.96%	
+intc	Intel Corporation	Stock	0.14%	4.59	7.72	55.40%	32.91%	-28.72%	1.39%	
+intu	Intuit Inc.	Stock	14.67%	17.81	48.19	82.10%	30.30%	-22.55%	1.21%	
+isrg	Intuitive Surgical, Inc.	Stock	17.45%	23.75	50.57	69.30%	32.56%	-23.13%	0.73%	
+kdp	Keurig Dr Pepper Inc.	Stock	7.62%	9.33	22.67	56.40%	23.20%	-3.56%	0.40%	
+klac	KLA Corporation	Stock	26.69%	11.69	18.45	61.80%	39.20%	-14.84%	0.42%	
+lrcx	Lam Research Corporation	Stock	18.25%	11.34	16.89	46.20%	31.06%	-19.39%	0.59%	
+mdlz	Mondelez International, Inc.	Stock	2.58%	9.70	23.45	39.20%	16.21%	-3.51%	0.69%	
+meli	MercadoLibre, Inc.	Stock	66.40%	20.30	137.38	42.10%	6.26%	-43.59%	0.40%	
+mrna	Moderna, Inc.	Stock		5.44	7.27	85.90%	64.33%	-65.96%	0.48%	
+mrvl	Marvell Technology, Inc.	Stock	9.92%	32.88	81.08	45.90%	18.56%	-23.92%	0.41%	
+msft	Microsoft Corporation	Stock	13.99%	17.19	28.07	68.80%	42.14%	-11.06%	10.13%	
+mu	Micron Technology, Inc.	Stock	13.58%	7.23	6.40	41.50%	46.84%	-16.43%	0.66%	
+nflx	Netflix, Inc.	Stock	24.88%	15.99	29.23	41.60%	22.76%	-39.07%	1.78%	
+nvda	NVIDIA Corporation	Stock	49.90%	37.09	67.57	64.40%	35.34%	-29.33%	4.15%	
+pep	PepsiCo, Inc.	Stock	5.72%	6.42	21.82	53.90%	15.87%	-2.10%	1.6%	
+pypl	PayPal Holdings, Inc.	Stock	18.57%	16.18	44.91	47.80%	17.23%	-44.56%	1.47%	
+qcom	QUALCOMM Incorporated	Stock	11.88%	9.97	17.59	57.50%	32.59%	-9.21%	1.36%	
+regn	Regeneron Pharmaceuticals, Inc.	Stock	31.54%	5.11	8.03	86.60%	55.18%	-11.36%	0.49%	
+sbux	Starbucks Corporation	Stock	7.03%	14.30	24.66	28.90%	16.76%	-22.17%	0.91%	
+tmus	T-Mobile US, Inc.	Stock	6.38%	4.42	19.57	56.90%	12.85%	-27.98%	0.96%	
+tsla	Tesla, Inc.	Stock	45.50%	68.36	180.79	25.30%	9.57%	-24.67%	4.26%	
+txn	Texas Instruments Incorporated	Stock	-0.88%	13.00	18.67	67.50%	47.02%	-11.26%	1.16%	
+vrtx	Vertex Pharmaceuticals Incorporated	Stock	33.44%	7.73	14.45	88.10%	47.15%	-0.10%	0.46%
+```
+
+- Example 2: You can also compare stocks and ETFs at the same time.
+
+Input:
+```
+etf = ETF('spy qqq vig aapl msft googl amzn fb')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High']
 etf.display_metrics(columns)
 ```
 
-- Among the stocks in SPY, identify the stocks by the debt load.
+Output:
 ```
-etf = ETF('spy')
-columns = ['Ticker', 'Debt/EBIT']
-etf.display_metrics(columns)
-```
-
-- Among the Big Tech companies, list each company by the % of revenue going to Research & Development.
-```
-etf = ETF('aapl msft googl amzn fb')
-columns = ['Ticker', 'R&D/Revenue']
-etf.display_metrics(columns)
-```
-
-- Among the top holdings of ARKK, display the median quarterly revenue growth (across the last 3 years) and each company's EV/Gross Profit ratio.
-```
-etf = ETF('arkk')
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP']
-etf.display_metrics(columns)
+Ticker	Name	Type	Median Rev Growth 3Y	EV/GP	Adj EV/EBIT	Gross Margin	Adj EBIT Margin	52W High	Weight			
+aapl	Apple Inc.	Stock	8.91%	17.76	24.92	41.80%	29.78%	-4.46%	
+amzn	Amazon.com, Inc.	Stock	26.39%	7.63	47.15	41.30%	6.68%	-20.72%	
+fb	Meta Platforms, Inc.	Stock	28.59%	8.80	15.95	80.90%	44.62%	-18.49%	
+googl	Alphabet Inc.	Stock	20.03%	11.92	22.22	56.50%	30.30%	-10.38%	
+msft	Microsoft Corporation	Stock	13.99%	17.19	28.07	68.80%	42.14%	-11.06%	
+qqq	Invesco QQQ Trust	ETF	13.99%	15.52	24.92	56.50%	30.30%	-11.17%
+spy	SPDR S&P 500 ETF Trust	ETF	13.99%	17.19	24.92	56.50%	29.78%	-6.26%	
+vig	Vanguard Dividend Appreciation Index Fund ETF Shares	ETF	7.07%	10.14	21.59	57.00%	23.58%	-5.92%		
 ```
 
-## How to Use
-In **main.py**, copy and paste the following (or choose any example from above) and then run **main.py**.
-```
-etf = ETF('qqq')
-columns = ['Ticker', 'Median Rev Growth 3Y', 'EV/GP', 'EV/EBITDA', 'EV/EBIT', 'EBITDA Margin', 'EBIT Margin', '52W High']
-etf.display_metrics(columns)
-```
-_Note: The input formatting is very similar to SQL: SELECT columns FROM etf ticker name WHERE (conditionals I hope to add in the future)_
-###### Console Output:
-```
-Ticker	Median Rev Growth 3Y	EV/GP	EV/EBITDA	Adj EV/OP	EBITDA Margin	Operating Margin	52W High	Weighting	
-AAPL	8.91%	17.79	22.63	24.97	32.87%	29.80%	-11.65%	11.70%	
-MSFT	13.99%	18.00	25.27	29.44	49.10%	42.10%	-15.24%	10.64%	
-AMZN	26.39%	8.09	25.33	50.01	13.19%	6.20%	-23.38%	7.61%	
-TSLA	45.50%	85.43	125.76	206.32	15.69%	9.60%	-25.21%	6.08%	
-NVDA	49.90%	38.09	61.19	69.39	40.09%	35.30%	-32.54%	5.32%	
-GOOG	20.03%		21.17	24.89	35.62%		-14.14%	3.91%	
-GOOGL	20.03%	12.20	19.36	22.76	35.62%	30.30%	-13.36%	3.66%	
-FB	28.59%	9.23	15.31	16.73	48.75%	41.80%	-19.68%	3.31%	
-ADBE	22.02%	17.99	39.84	43.21	39.84%	32.60%	-25.71%	2.08%	
-NFLX	24.88%	17.91	12.47	34.74	63.46%	21.20%	-44.77%	1.85%	
-COST	12.39%	8.10	23.98	30.21	4.32%	3.40%	-14.45%	1.55%	
-CSCO	3.97%	7.16	14.81	16.40	30.79%	27.00%	-11.49%	1.51%	
-CMCSA	17.85%	4.24	9.61	14.03	29.35%	17.50%	-18.98%	1.49%	
-AVGO	10.03%	15.25	17.65	30.16	53.04%	31.00%	-20.09%	1.48%	
-PEP	5.72%	6.52	19.10	22.14	18.40%	14.60%	-2.21%	1.44%	
-PYPL	18.57%	16.74	36.26	46.47	22.06%	17.00%	-47.71%	1.42%	
-QCOM	11.88%	10.03	17.01	17.69	33.90%	29.10%	-12.14%	1.33%	
-INTC	0.14%	4.79	6.60	8.20	40.87%	25.90%	-24.16%	1.30%	
-AMD	49.89%	20.25	40.80	46.76	23.23%	19.90%	-29.14%	1.25%	
-INTU	14.67%	18.28	53.01	49.46	28.29%	24.10%	-25.41%	1.16%	
-TXN	-0.88%	13.71	17.31	19.36	52.59%	47.00%	-11.83%	1.16%	
-HON	-6.28%	13.05	19.36	22.19	21.77%	20.60%	-13.68%	0.91%	
-TMUS	6.38%	4.52	8.44	20.01	30.46%	9.50%	-28.99%	0.89%	
-AMAT	23.39%	11.69	17.51	18.51	31.57%	29.90%	-16.62%	0.87%
-```
-After copying the data over to Excel or Google Sheets, you can easily make simple graphs of the data.
-###### In Google Sheets: 
-![EV/EBIT Graph](EV_to_EBIT_graph.PNG)
+The sources for the financial data are listed in the spreadsheet linked at the top of the README. For the ETFs, the holdings are pulled from Marketwatch. Only the top 25 are listed so that is what I am using right now for the weighted medians. I've hardcoded a few (QQQ, SPY) that I use frequently beyond the top 25. It doesn't make much of a difference thankfully when calculating the weighted medians.
 
-## Current Capabilities
-#### Pulls financial metrics for individual stocks from different sources
-- Examples from [Finviz](https://finviz.com/quote.ashx?t=AAPL): Market Cap, Revenue, P/E, P/S, Gross/Operating/Net Margins, Drawdown from 52W High, Stock Performance Data
-- Examples from [Macrotrends](https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/revenue): Quarterly Revenue, EBITDA (and EBITDA Margin), Cash/Debt, historical P/S, PE Ratio
-#### Pulls ETF holdings data from [Marketwatch](https://www.marketwatch.com/investing/fund/qqq/holdings)
-#### Calculates aggregate ETF metrics based on the financial metrics of the underlying holdings
-- Example: Calculate "Weighted Average Revenue Growth" for QQQ, SPY, or VIG
-#### Calculates new financial metrics (not found in any of the data sources)
-Example: Calculate the "Median 3Y Quarterly Revenue Growth" and the "Enterprise Value to EBIT ratio" for the holdings of QQQ
-1. Look up QQQ holdings in Marketwatch (top 25)
-2. For each of these stocks, pull the last 3 years of quarterly revenue growth rates from Macrotrends. Calculate the medians.
-3. Pull the market caps from finviz. Pull the cash, debt, revenue, and operating (EBIT) margin from Macrotrends. Calculate the individual EVs, then EV/EBIT ratios.
-4. Using the Median 3Y Quarterly Revenue Growth" and "Enterprise Value to EBIT ratio" for each of the individual holdings, calculating the weighted metric for the overall ETF.
-#### Outputs results in an Excel-friendly tab-delimited format
-- Can just simply copy/paste the data into Excel or Google Sheets to graph the results. In the long-run, I can automate this too if I wanted but the time savings here isn't worth automation yet...
 
 ## Current Data Sources
 [Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
