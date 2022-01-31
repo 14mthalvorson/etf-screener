@@ -110,13 +110,15 @@ class ETF:
                             'bkng': '0.74%', 'mdlz': '0.69%', 'amgn': '0.96%', 'isrg': '0.73%', 'gild': '0.65%',
                             'csx': '0.57%', 'exc': '0.42%', 'regn': '0.49%', 'mrna': '0.48%', 'vrtx': '0.46%',
                             'kdp': '0.40%', 'meli': '0.40%', 'atvi': '0.46%', 'klac': '0.42%', 'mrvl': '0.41%'}
+            self.ticker_string = 'qqq'
+            self.is_real_etf = True
 
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
             self.fill_holdings_from_marketwatch(ticker)
             self.ticker_string = ' '.join(list(self.weights.keys()))
-        else:
+        elif self.weights is None:
             self.weights = {ticker: '1.00%' for ticker in self.ticker_string.split(' ')}
 
         # Set ticker
