@@ -100,6 +100,17 @@ class ETF:
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
 
+        elif ticker == 'qqq':  # Hardcoded more than top 25 QQQ holdings
+            self.weights = {'aapl': '11.69%', 'msft': '10.13%', 'googl': '7.19%', 'amzn': '6.78%', 'fb': '4.78%',
+                            'tsla': '4.26%', 'nvda': '4.15%', 'avgo': '1.82%', 'adbe': '1.8%', 'csco': '1.78%',
+                            'nflx': '1.78%', 'cost': '1.67%', 'pep': '1.6%', 'cmcsa': '1.53%', 'pypl': '1.47%',
+                            'intc': '1.39%', 'qcom': '1.36%', 'intu': '1.21%', 'txn': '1.16%', 'amd': '1.16%',
+                            'tmus': '0.96%', 'hon': '0.96%', 'amat': '0.95%', 'sbux': '0.91%', 'mu': '0.66%',
+                            'adi': '0.64%', 'adp': '0.63%', 'lrcx': '0.59%', 'fisv': '0.52%', 'chtr': '0.79%',
+                            'bkng': '0.74%', 'mdlz': '0.69%', 'amgn': '0.96%', 'isrg': '0.73%', 'gild': '0.65%',
+                            'csx': '0.57%', 'exc': '0.42%', 'regn': '0.49%', 'mrna': '0.48%', 'vrtx': '0.46%',
+                            'kdp': '0.40%', 'meli': '0.40%', 'atvi': '0.46%', 'klac': '0.42%', 'mrvl': '0.41%'}
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
