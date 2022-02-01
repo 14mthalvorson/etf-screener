@@ -76,6 +76,8 @@ class Stock:
         # This is capped at +10% of current EBIT margin
         try:
             self.adj_ebit_margin = to_percent_string(min(to_number(self.ebit_margin) + 0.10, to_number(self.max_ebit_margin)))
+            if self.ebit_margin is not None:
+                self.adj_ebit_margin = to_percent_string((to_number(self.adj_ebit_margin) + to_number(self.ebit_margin)) / 2)
         except Exception as e:
             self.adj_ebit_margin = None
 
