@@ -1,6 +1,6 @@
 # A financial screener for public stocks and ETFs
 
-This project was designed for my personal use to aggregate financial data from a collection of sources, calculate some new metrics, and output the data in a convenient format for using in Excel or Google Sheets. After manually collecting this data many times, I wanted to automate all of these processes to save time, improve accuracy, and provide a programmatic platform for further building off of.
+This project was designed for my personal use to calculate aggregate financial metrics for ETFs, similar to those you can easily find for stocks. This project aggregates financial data from a collection of sources, calculates some new metrics, and outputs the data in a convenient format for using in Excel or Google Sheets. After manually collecting this data many times, I wanted to automate all of these processes to save time, improve accuracy, and provide a programmatic platform for further building off of.
 
 [Financial Metrics Available and Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
 
@@ -104,6 +104,9 @@ The sources for the financial data are listed in the spreadsheet linked at the t
 - yfinance
 - yahoofinance
 - finvizfinance
+
+## Assumptions
+- I don't do automatic checks on the accuracy of data. Most of the numbers are pulled from Macrotrends and Finviz. The only discrepancies I notice are usually small differences in gross/operating/net margins. In the screener, I usually just average the two sources if they are both available. Maybe in the future I'll source and pull data directly from the SEC quarterly reports.
 
 ## Future Goals
 - Improve data sources for international stocks
