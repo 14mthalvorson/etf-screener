@@ -125,8 +125,10 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
             chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
-            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':
+            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':  # Ideally take last 12 quarters of history
                 sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            elif len(chartData) >= 6 and chartData[-6]['v3'] != 'NULL':  # At minimum, require 6 quarters of history
+                sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
             else:
                 return None
 
