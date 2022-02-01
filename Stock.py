@@ -79,7 +79,7 @@ class Stock:
             if self.ebit_margin is not None:
                 self.adj_ebit_margin = to_percent_string((to_number(self.adj_ebit_margin) + to_number(self.ebit_margin)) / 2)
         except Exception as e:
-            self.adj_ebit_margin = None
+            self.adj_ebit_margin = self.ebit_margin
 
         # Adjusted EBIT: max op margin 3y * current revenue
         try:

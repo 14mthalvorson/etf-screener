@@ -113,6 +113,29 @@ class ETF:
             self.ticker_string = 'qqq'
             self.is_real_etf = True
 
+        elif ticker == 'spy':  # Hardcoded more than top 25 SPY holdings
+            self.weights = {'aapl': '7.12', 'msft': '6.11', 'amzn': '3.41', 'googl': '2.13', 'tsla': '1.99',
+                            'goog': '1.98', 'fb': '1.94', 'nvda': '1.60', 'brk.b': '1.50', 'jnj': '1.19',
+                            'unh': '1.16', 'jpm': '1.15', 'pg': '1.02', 'hd': '1.01', 'v': '0.99', 'ma': '0.88',
+                            'bac': '0.87', 'xom': '0.84', 'pfe': '0.77', 'dis': '0.68', 'adbe': '0.66', 'cvx': '0.66',
+                            'abbv': '0.63', 'avgo': '0.63', 'pep': '0.63', 'ko': '0.62', 'csco': '0.61', 'tmo': '0.60',
+                            'cmcsa': '0.60', 'crm': '0.60', 'abt': '0.59', 'acn': '0.58', 'cost': '0.58', 'vz': '0.58',
+                            'wfc': '0.56', 'mrk': '0.54', 'pypl': '0.53', 'wmt': '0.52', 'intc': '0.52', 'qcom': '0.51',
+                            'lly': '0.51', 'mcd': '0.51', 'nflx': '0.49', 'nke': '0.49', 'dhr': '0.48', 't': '0.47',
+                            'txn': '0.43', 'low': '0.43', 'lin': '0.43', 'pm': '0.42', 'unp': '0.41', 'intu': '0.41',
+                            'nee': '0.40', 'ups': '0.39', 'ms': '0.38', 'bmy': '0.38', 'hon': '0.37', 'cvs': '0.37',
+                            'mdt': '0.36', 'amd': '0.36', 'rtx': '0.35', 'schw': '0.34', 'orcl': '0.34', 'c': '0.34',
+                            'amgn': '0.34', 'amat': '0.33', 'gs': '0.31', 'ibm': '0.31', 'blk': '0.31', 'cop': '0.31',
+                            'now': '0.30', 'pld': '0.30', 'sbux': '0.30', 'amt': '0.30', 'axp': '0.30', 'ba': '0.29',
+                            'cat': '0.29', 'tgt': '0.28', 'antm': '0.28', 'de': '0.28', 'ge': '0.27', 'isrg': '0.26',
+                            'bkng': '0.26', 'spgi': '0.26', 'mmm': '0.25', 'lmt': '0.25', 'zts': '0.25', 'mo': '0.24',
+                            'mdlz': '0.24', 'mu': '0.24', 'adi': '0.23', 'pnc': '0.23', 'adp': '0.23', 'tjx': '0.23',
+                            'gild': '0.22', 'cb': '0.22', 'tfc': '0.22', 'syk': '0.22', 'lrcx': '0.22', 'cme': '0.22',
+                            'duk': '0.21', 'f': '0.21', 'cci': '0.21', 'usb': '0.20', 'mmc': '0.20', 'gm': '0.20',
+                            'ci': '0.20', 'csx': '0.20'}
+            self.ticker_string = 'spy'
+            self.is_real_etf = True
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True

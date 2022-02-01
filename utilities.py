@@ -58,3 +58,19 @@ def clean_tickers():
 
         with open('output.txt', 'w+') as g:
             g.write(data)
+
+
+# Takes two columns of data (tickers, weights) and outputs
+def clean_tickers_to_dict():
+    with open('input.txt', 'r+') as f:
+        data = f.read()
+        data = data.lower()
+        data = data.split('\n')
+        for i, item in enumerate(data):
+            data[i] = item.split('\t')
+            print(data[i])
+
+        data = {a: b for [a, b] in data}
+
+        with open('output.txt', 'w+') as g:
+            g.write(str(data))
