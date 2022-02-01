@@ -76,6 +76,7 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
+    # This is capped at +10% of current EBIT margin
     elif metric_name == 'Max EBIT Margin 3Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page

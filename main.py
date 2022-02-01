@@ -26,7 +26,6 @@ ETF Columns:
 'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
 '''
 
-etf = ETF('arkw')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
-# columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
+etf = ETF('arkk spy')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', 'EBIT Margin', '52W High', 'Weight']
 etf.display_metrics(columns, only_nums=True, extra_header=True, include_overall=True)

@@ -230,6 +230,20 @@ class ETF:
         except Exception as e:
             self.weighted_med_adj_ebit_margin = None
 
+        # Weighted Median EBIT Margin (not adjusted)
+        relative_med_ebit_margin = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                    if self.components[ticker].ebit_margin is not None:
+                        relative_med_ebit_margin.append(self.components[ticker].ebit_margin)
+            except Exception as e:
+                pass
+        try:
+            self.weighted_med_ebit_margin = get_median_from_list(relative_med_ebit_margin)
+        except Exception as e:
+            self.weighted_med_ebit_margin = None
+
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
@@ -346,7 +360,10 @@ class ETF:
                             elif component.type == 'ETF':
                                 line += component.weighted_med_adj_ebit_margin + '\t'
                         if metric_title == 'EBIT Margin':
-                            line += component.ebit_margin + '\t'
+                            if component.type == 'Stock':
+                                line += component.ebit_margin + '\t'
+                            elif component.type == 'ETF':
+                                line += component.weighted_med_ebit_margin + '\t'
                         if metric_title == 'Net Margin':
                             line += component.net_margin + '\t'
 

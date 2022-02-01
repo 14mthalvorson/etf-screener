@@ -40,7 +40,7 @@ class Stock:
 
         self.gross_margin = finviz_fundamentals['Gross Margin']
         self.ebit_margin = finviz_fundamentals['Oper. Margin']
-        self.adj_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 3Y')
+        self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 3Y')
         self.net_margin = finviz_fundamentals['Profit Margin']
 
         self.cash = get_macrotrends_metrics(ticker, 'Cash')
@@ -72,6 +72,12 @@ class Stock:
             self.ebit = to_billions_string(to_number(self.ebit_margin) * to_number(self.revenue))
         except Exception as e:
             self.ebit = None
+
+        # This is capped at +10% of current EBIT margin
+        try:
+            self.adj_ebit_margin = to_percent_string(min(to_number(self.ebit_margin) + 0.10, to_number(self.max_ebit_margin)))
+        except Exception as e:
+            self.adj_ebit_margin = None
 
         # Adjusted EBIT: max op margin 3y * current revenue
         try:
