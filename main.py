@@ -1,10 +1,11 @@
 from ETF import ETF
 from Stock import Stock
+from Crypto import Crypto
 
 
 '''
 Stock & ETF Columns:
-'Ticker', 'Name', 'Type', 'Weight'
+'Ticker', 'Name', 'Type', 'Weight', 'Price'
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 'Median Rev Growth 3Y'
 'Gross Margin', 'Adj EBIT Margin'
@@ -24,8 +25,13 @@ ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
+
+Crypto:
+'Ticker', 'Name', 'Type', 'Weight', 'Price'
+'52W High'?
 '''
 
-etf = ETF('spy')
+
+etf = ETF('crypto')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
-etf.display_metrics(columns, only_nums=True, extra_header=True, include_overall=False)
+etf.display_metrics(columns, only_nums=False, extra_header=False, include_overall=False)

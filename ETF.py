@@ -2,6 +2,7 @@ import requests
 import re
 from utilities import *
 from Stock import Stock
+from Crypto import Crypto
 from finviz_finance_fulfillment import get_finviz_metrics
 
 
@@ -54,7 +55,8 @@ class ETF:
                                  'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
                                  'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfcmcd wix wm wmt wsay ' \
-                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts'
+                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts ' \
+                                 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
@@ -65,7 +67,7 @@ class ETF:
                             'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb xbi open qqq vmw tsm rdfn adsk ' \
                             'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
                             'coin mrvl upwk mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
-                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
+                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt BTCUSD ETHUSD LTCUSD'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -99,6 +101,9 @@ class ETF:
 
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
+
+        elif ticker == 'crypto':  # Cryptocurrencies
+            self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
         elif ticker == 'qqq':  # Hardcoded more than top 25 QQQ holdings
             self.weights = {'aapl': '11.69%', 'msft': '10.13%', 'googl': '7.19%', 'amzn': '6.78%', 'fb': '4.78%',
@@ -283,9 +288,12 @@ class ETF:
     def set_components(self):
         for ticker in self.weights.keys():
             try:  # Try to make the ticker a stock. If it is likely not a stock, it is probably an ETF.
-                self.components[ticker] = Stock(ticker)
-                if self.components[ticker].type == 'ETF':
-                    self.components[ticker] = ETF(ticker)
+                if 'USD' in ticker and ticker != 'USD':
+                    self.components[ticker] = Crypto(ticker)
+                else:
+                    self.components[ticker] = Stock(ticker)
+                    if self.components[ticker].type == 'ETF':
+                        self.components[ticker] = ETF(ticker)
             except Exception as e:
                 pass
 
@@ -308,7 +316,7 @@ class ETF:
                 if include_overall and i == 0:
                     component = self
                 else:
-                    component = self.components[ticker]  # Either a stock or an ETF
+                    component = self.components[ticker]  # Either a stock, a crypto, or an ETF
 
                 line = ''
 
@@ -345,19 +353,19 @@ class ETF:
                         if metric_title == 'EV/GP':
                             if component.type == 'Stock':
                                 line += component.ev_to_gp_ratio + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_median_EV_to_GP + '\t'
                         if metric_title == 'EV/EBITDA':
                             line += component.ev_to_ebitda_ratio + '\t'
                         if metric_title == 'EV/EBIT':
                             if component.type == 'Stock':
                                 line += component.ev_to_ebit_ratio + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_median_EV_to_EBIT + '\t'
                         if metric_title == 'Adj EV/EBIT':
                             if component.type == 'Stock':
                                 line += component.adj_ev_to_ebit_ratio + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_median_adj_EV_to_EBIT + '\t'
 
                         if metric_title == 'Sales Growth 3Y':
@@ -365,7 +373,7 @@ class ETF:
                         if metric_title == 'Median Rev Growth 3Y':
                             if component.type == 'Stock':
                                 line += component.med_rev_growth_3y + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_med_med_rev_growth_3y + '\t'
                         if metric_title == 'Median Rev Growth':
                             line += component.med_rev_growth + '\t'
@@ -373,19 +381,19 @@ class ETF:
                         if metric_title == 'Gross Margin':
                             if component.type == 'Stock':
                                 line += component.gross_margin + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_med_gross_margin + '\t'
                         if metric_title == 'EBITDA Margin':
                             line += component.ebitda_margin + '\t'
                         if metric_title == 'Adj EBIT Margin':
                             if component.type == 'Stock':
                                 line += component.adj_ebit_margin + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_med_adj_ebit_margin + '\t'
                         if metric_title == 'EBIT Margin':
                             if component.type == 'Stock':
                                 line += component.ebit_margin + '\t'
-                            elif component.type == 'ETF':
+                            else:
                                 line += component.weighted_med_ebit_margin + '\t'
                         if metric_title == 'Net Margin':
                             line += component.net_margin + '\t'

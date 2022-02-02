@@ -1,7 +1,6 @@
 from macrotrends_fulfillment import get_macrotrends_metrics
-from finviz_finance_fulfillment import get_finviz_metrics
-from utilities import *
 from ETF import *
+from finviz_finance_fulfillment import get_finviz_metrics
 
 
 class Stock:
