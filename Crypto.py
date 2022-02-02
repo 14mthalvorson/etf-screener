@@ -1,7 +1,13 @@
-from macrotrends_fulfillment import get_macrotrends_metrics
-from ETF import *
+# Supports Bitcoin, Ethereum, Ripple, Litecoin
 import warnings
 from finvizfinance import crypto
+
+
+mappings = {
+    'BTCUSD': {'name': 'Bitcoin', 'line': 8},
+    'ETHUSD': {'name': 'Ethereum', 'line': 10},
+    'XRPUSD': {'name': 'Ripple', 'line': 9},
+    'LTCUSD': {'name': 'Litecoin', 'line': 11}}
 
 
 class Crypto:
@@ -14,9 +20,9 @@ class Crypto:
         c = crypto.Crypto()
         df = c.performance()
 
-        if ticker == 'BTCUSD':
-            data = df.iloc[8]
-            self.name = 'Bitcoin'
+        if ticker in mappings:
+            data = df.iloc[mappings[ticker]['line']]
+            self.name = mappings[ticker]['name']
 
         self.price = data['Price']
         self.perf_year = data['Perf Year']
