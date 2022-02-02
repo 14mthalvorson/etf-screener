@@ -1,6 +1,7 @@
 # Supports Bitcoin, Ethereum, Ripple, Litecoin
 import warnings
 from finvizfinance import crypto
+from coinbase_fulfillment import get_coinbase_data
 
 
 mappings = {
@@ -26,6 +27,9 @@ class Crypto:
 
         self.price = data['Price']
         self.perf_year = data['Perf Year']
+
+        # Get Coinbase data
+        self.all_time_high = get_coinbase_data(ticker, 'All Time High')
 
         # Truncate price to hundredths
         if '.' in self.price:
