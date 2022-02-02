@@ -114,8 +114,8 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'spy':  # Hardcoded more than top 25 SPY holdings
-            self.weights = {'aapl': '7.12', 'msft': '6.11', 'amzn': '3.41', 'googl': '2.13', 'tsla': '1.99',
-                            'goog': '1.98', 'fb': '1.94', 'nvda': '1.60', 'brk.b': '1.50', 'jnj': '1.19',
+            self.weights = {'aapl': '7.12', 'msft': '6.11', 'amzn': '3.41', 'googl': '4.13', 'tsla': '1.99',
+                            'fb': '1.94', 'nvda': '1.60', 'brk.b': '1.50', 'jnj': '1.19',
                             'unh': '1.16', 'jpm': '1.15', 'pg': '1.02', 'hd': '1.01', 'v': '0.99', 'ma': '0.88',
                             'bac': '0.87', 'xom': '0.84', 'pfe': '0.77', 'dis': '0.68', 'adbe': '0.66', 'cvx': '0.66',
                             'abbv': '0.63', 'avgo': '0.63', 'pep': '0.63', 'ko': '0.62', 'csco': '0.61', 'tmo': '0.60',
