@@ -2,13 +2,7 @@
 import warnings
 from finvizfinance import crypto
 from coinbase_fulfillment import get_coinbase_data
-
-
-mappings = {
-    'BTCUSD': {'name': 'Bitcoin', 'line': 8},
-    'ETHUSD': {'name': 'Ethereum', 'line': 10},
-    'XRPUSD': {'name': 'Ripple', 'line': 9},
-    'LTCUSD': {'name': 'Litecoin', 'line': 11}}
+from utilities import mappings
 
 
 class Crypto:

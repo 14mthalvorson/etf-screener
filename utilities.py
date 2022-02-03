@@ -1,3 +1,10 @@
+mappings = {
+    'BTCUSD': {'name': 'Bitcoin', 'line': 8},
+    'ETHUSD': {'name': 'Ethereum', 'line': 10},
+    'XRPUSD': {'name': 'Ripple', 'line': 9},
+    'LTCUSD': {'name': 'Litecoin', 'line': 11}}
+
+
 def to_number(value):
     value = str(value)
     if value[-1:] == 'B':

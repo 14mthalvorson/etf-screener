@@ -31,6 +31,10 @@ Crypto:
 '52W High'?
 '''
 
+c = Crypto('ETHUSD')
+print(c.all_time_high)
+
+exit(0)
 
 etf = ETF('crypto')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
