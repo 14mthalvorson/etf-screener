@@ -112,6 +112,6 @@ The sources for the financial data are listed in the spreadsheet linked at the t
 - Improve data sources for international stocks
 - Add conditional statements for filtering lists of stocks (e.g. show revenue growth for QQQ holdings where Operating Margin > 10%)
 - Review and add more error handling
-- Adding some crypto metrics. Obvi crypto won't have the fundamentals stocks have but I could pull price data
+- Adding some crypto metrics. Obvi crypto won't have the fundamentals stocks have but I could pull price data. Need to figure out the best API for this or the best place to scrape the data from.
 
 
