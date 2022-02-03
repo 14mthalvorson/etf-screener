@@ -25,14 +25,15 @@ ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
+'% at 52W High', '% at 52W Low'
 
 Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
 '52W High'?
 '''
 
-c = Crypto('ETHUSD')
-print(c.all_time_high)
+e = ETF('spy')
+print(e.percent_at_high)
 
 exit(0)
 

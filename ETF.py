@@ -55,8 +55,7 @@ class ETF:
                                  'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
                                  'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfcmcd wix wm wmt wsay ' \
-                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts ' \
-                                 'BTCUSD ETHUSD XRPUSD LTCUSD'
+                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts '
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
@@ -67,7 +66,7 @@ class ETF:
                             'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb xbi open qqq vmw tsm rdfn adsk ' \
                             'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
                             'coin mrvl upwk mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
-                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt BTCUSD ETHUSD LTCUSD'
+                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -271,6 +270,25 @@ class ETF:
             self.weighted_med_ebit_margin = get_median_from_list(relative_med_ebit_margin)
         except Exception as e:
             self.weighted_med_ebit_margin = None
+
+        # Weighted % holdings within 5% of 52W High
+        numer = 0
+        denom = 0
+
+        for ticker in self.weights.keys():
+            try:
+                if self.components[ticker].high_52W is not None:
+                    if to_number(self.components[ticker].high_52W) >= -0.05:
+                        numer += to_number(self.weights[ticker])
+                    denom += to_number(self.weights[ticker])
+            except Exception as e:
+                pass
+        if denom == 0:
+            self.percent_at_high = to_percent_string(0)
+        else:
+            self.percent_at_high = to_percent_string(numer / denom)
+
+        # Weighted % holdings within 5% of 52W Low
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
