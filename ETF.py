@@ -289,6 +289,21 @@ class ETF:
             self.percent_at_high = to_percent_string(numer / denom)
 
         # Weighted % holdings within 5% of 52W Low
+        numer = 0
+        denom = 0
+
+        for ticker in self.weights.keys():
+            try:
+                if self.components[ticker].low_52W is not None:
+                    if to_number(self.components[ticker].low_52W) <= 0.05:
+                        numer += to_number(self.weights[ticker])
+                    denom += to_number(self.weights[ticker])
+            except Exception as e:
+                pass
+        if denom == 0:
+            self.percent_at_low = to_percent_string(0)
+        else:
+            self.percent_at_low = to_percent_string(numer / denom)
 
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
@@ -458,6 +473,11 @@ class ETF:
                             line += component.weighted_med_gross_margin + '\t'
                         if metric_title == 'Weighted Median Adj EBIT Margin':
                             line += component.weighted_med_adj_ebit_margin + '\t'
+
+                        if metric_title == '% at 52W High':
+                            line += component.percent_at_high + '\t'
+                        if metric_title == '% at 52W Low':
+                            line += component.percent_at_low + '\t'
 
                     except Exception as e:
                         line += '' + '\t'

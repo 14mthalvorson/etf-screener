@@ -32,8 +32,10 @@ Crypto:
 '52W High'?
 '''
 
-e = ETF('spy')
-print(e.percent_at_high)
+e = ETF('vig')
+print(e.percent_at_low)
+e = ETF('qqq')
+print(e.percent_at_low)
 
 exit(0)
 
