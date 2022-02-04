@@ -105,6 +105,9 @@ class ETF:
         elif ticker == 'reit':  # Digital REIT stocks
             self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
 
+        elif ticker == 'fngg':  # FNGG ETF Holdings
+            self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
+
         elif ticker == 'crypto':  # Cryptocurrencies
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
@@ -191,6 +194,34 @@ class ETF:
                             'cah': '0.287%', 'incy': '0.272%', 'bio': '0.265%', 'abmd': '0.262%', 'xray': '0.228%',
                             'hsic': '0.21%', 'uhs': '0.19%', 'ogn': '0.166%', 'dva': '0.142%'}
             self.ticker_string = 'xlv'
+            self.is_real_etf = True
+
+        elif ticker == 'xlf':  # Hardcoded more than top 25 XLF (Financials) holdings
+            self.weights = {'brk.b': '13.25%', 'jpm': '10.086%', 'bac': '7.675%', 'wfc': '5.049%', 'ms': '3.37%',
+                            'schw': '3.067%', 'c': '2.972%', 'gs': '2.796%', 'axp': '2.65%', 'blk': '2.642%',
+                            'spgi': '2.285%', 'cb': '2.05%', 'pnc': '2.018%', 'cme': '1.989%', 'tfc': '1.94%',
+                            'usb': '1.832%', 'mmc': '1.762%', 'ice': '1.654%', 'pgr': '1.473%', 'cof': '1.449%',
+                            'aon': '1.399%', 'mco': '1.263%', 'aig': '1.134%', 'met': '1.112%', 'bk': '1.06%',
+                            'msci': '1.022%', 'pru': '0.984%', 'trv': '0.971%', 'afl': '0.891%', 'stt': '0.815%',
+                            'sivb': '0.81%', 'all': '0.801%', 'amp': '0.782%', 'dfs': '0.78%', 'trow': '0.763%',
+                            'ajg': '0.735%', 'fitb': '0.725%', 'frc': '0.72%', 'wtw': '0.67%', 'ntrs': '0.57%',
+                            'hig': '0.564%', 'key': '0.547%', 'syf': '0.531%', 'cfg': '0.518%', 'mtb': '0.517%',
+                            'hban': '0.517%', 'rf': '0.516%', 'ndaq': '0.478%', 'rjf': '0.459%', 'sbny': '0.432%',
+                            'cinf': '0.414%', 'pfg': '0.411%', 'fds': '0.362%', 'bro': '0.359%', 'mktx': '0.305%',
+                            'cma': '0.286%', 'cboe': '0.286%', 'wrb': '0.285%', 'l': '0.281%', 'lnc': '0.262%',
+                            're': '0.258%', 'zion': '0.247%', 'gl': '0.218%', 'ben': '0.2%', 'aiz': '0.199%',
+                            'pbct': '0.196%', 'ivz': '0.174%'}
+            self.ticker_string = 'xlf'
+            self.is_real_etf = True
+
+        elif ticker == 'xlu':  # Hardcoded more than top 25 XLU (Utilities) holdings
+            self.weights = {'nee': '15.297%', 'duk': '8.344%', 'so': '7.551%', 'd': '6.751%', 'aep': '4.674%',
+                            'sre': '4.502%', 'exc': '4.408%', 'xel': '3.85%', 'peg': '3.491%', 'ed': '3.166%',
+                            'es': '3.115%', 'wec': '3.106%', 'awk': '2.942%', 'eix': '2.4%', 'dte': '2.393%',
+                            'fe': '2.386%', 'aee': '2.333%', 'etr': '2.315%', 'ppl': '2.293%', 'cms': '1.927%',
+                            'cnp': '1.821%', 'ceg': '1.799%', 'evrg': '1.553%', 'lnt': '1.542%', 'aes': '1.493%',
+                            'ato': '1.455%', 'ni': '1.202%', 'nrg': '0.993%', 'pnw': '0.82%'}
+            self.ticker_string = 'xlu'
             self.is_real_etf = True
 
         # Set weights and ticker_string if not set
