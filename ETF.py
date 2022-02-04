@@ -58,15 +58,16 @@ class ETF:
                                  'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts '
 
         elif ticker == 'mine':  # My Holdings
-            self.ticker_string = 'amzn etsy tdoc fb hood pltr pins sq shop ma aapl nflx nvda tsla v googl amd msft wm mu ' \
-                            'crm pypl adbe hubs appf chgg team zen ttd twlo mdb rng okta payc evbg qtwo veev newr crwd ' \
-                            'awk cost logi mime zs fivn smar band rpd cybr pd tyl dis spgi dpz cmcsa ddog qcom avgo splk ' \
-                            'plan panw vrsn bmy irm pdi pton zm wix axp csco o anet now anss soxx snap arkk arkw ' \
-                            'arkg arkf ttwo clou coup bill estc akam bl wday twtr mtch fngu eght domo net apps se api zg ' \
-                            'frog snow asan wcld lmnd cvna avlr dsgx abnb ibb xbi open qqq vmw tsm rdfn adsk ' \
-                            'ter meli u spot roku cpng rblx sumo jamf dt cdns appn tenb glob cour sklz fvrr mrna docu ai ' \
-                            'coin mrvl upwk mttr meta tqqq path sofi qld usd fngg fngo gtlb we upro rom bulz tmf ' \
-                            'ltpz amt cci eqix dlr sbac vpn tyd vig vpu morn edv abt'
+            self.ticker_string = 'aapl abnb abt adbe adsk ai akam amd amt amzn anet anss api appf appn apps arkf ' \
+                                 'arkg arkk arkw asan avgo avlr awk axp band bill bl bmy bulz cci cdns chgg clou ' \
+                                 'cmcsa coin cost coup cour cpng crm crwd csco cvna cybr ddog dis dlr docu domo dpz ' \
+                                 'dsgx dt edv eght eqix estc etsy evbg fb fivn fngg fngo fngu frog fvrr glob googl ' \
+                                 'gtlb hood hubs ibb idna irm jamf lmnd logi ltpz ma mdb meli meta metv mime morn ' \
+                                 'mrna mrvl msft mtch mttr mu net newr nflx now nvda o okta open panw path payc pd ' \
+                                 'pdi pins plan pltr pton pypl qcom qld qqq qtwo rblx rdfn rng roku rom rpd sbac se ' \
+                                 'shop sklz smar snap snow sofi soxx spgi splk spot sq sumo tdoc team tenb ter tmf ' \
+                                 'tqqq tsla tsm ttd ttwo twlo twtr tyd tyl u upro upwk usd v veev vig vmw vpn vpu ' \
+                                 'vrsn wcld wday we wix wm xbi z zen zg zm zs'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -85,6 +86,9 @@ class ETF:
 
         elif ticker == 'top_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
+
+        elif ticker == 'm1_ETFs':  # Popular ETFs
+            self.ticker_string = 'qqq spy xlv xlf xlu moat vig soxx'
 
         elif ticker == 'my_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
@@ -138,6 +142,19 @@ class ETF:
                             'duk': '0.21', 'f': '0.21', 'cci': '0.21', 'usb': '0.20', 'mmc': '0.20', 'gm': '0.20',
                             'ci': '0.20', 'csx': '0.20'}
             self.ticker_string = 'spy'
+            self.is_real_etf = True
+
+        elif ticker == 'moat':  # Hardcoded more than top 25 moat holdings
+            self.weights = {'lng': '3.12', 'wfc': '2.99', 'lmt': '2.93', 'brk.b': '2.9', 'pm': '2.8', 'd': '2.8',
+                            'mo': '2.79', 'mrk': '2.79', 'ctva': '2.77', 'bmy': '2.76', 'stz': '2.72', 'azpn': '2.7',
+                            'cpb': '2.68', 'emr': '2.63', 'k': '2.62', 'pii': '2.55', 'googl': '2.54', 'ba': '2.49',
+                            'wu': '2.48', 'cmp': '2.46', 'msft': '2.45', 'gild': '2.38', 'tyl': '2.37',
+                            'intc': '2.36', 'zbh': '2.27', 'blkb': '2.21', 'mdt': '2.18', 'efx': '2.12',
+                            'biib': '2.12', 'crm': '2.08', 'gwre': '2.07', 'amzn': '2.04', 'veev': '2.04',
+                            'fb': '1.74', 'ko': '1.44', 'rtx': '1.4', 'cmcsa': '1.31', 'chrw': '1.3', 'klac': '1.29',
+                            'rop': '1.27', 'lrcx': '1.23', 'hon': '1.21', 'mchp': '1.2', 'dis': '1.18',
+                            'now': '1.09', 'meli': '1.06'}
+            self.ticker_string = 'moat'
             self.is_real_etf = True
 
         # Set weights and ticker_string if not set
