@@ -29,10 +29,9 @@ ETF Columns:
 
 Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
-'52W High'?
 '''
 
 
-etf = ETF('sector_ETFs')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', '% at 52W High', '% at 52W Low', 'SMA20', 'SMA50', 'SMA200', 'Weight']
+etf = ETF('mine')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', '% at 52W High', '% at 52W Low', 'SMA20', 'SMA50', 'SMA200', 'Perf Year']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=False)
