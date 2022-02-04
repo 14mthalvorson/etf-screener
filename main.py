@@ -9,7 +9,7 @@ Stock & ETF Columns:
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 'Median Rev Growth 3Y'
 'Gross Margin', 'Adj EBIT Margin'
-'52W High'
+'52W High', 'SMA20', 'SMA50', 'SMA200'
 
 Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
@@ -19,7 +19,7 @@ Stock Columns:
 'Gross Margin', 'EBITDA Margin', 'Adj EBIT Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
-'Perf Year', 'SMA200', '52W High'
+'Perf Year', 'SMA20', 'SMA50', 'SMA200', '52W High'
 
 ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
@@ -32,13 +32,7 @@ Crypto:
 '52W High'?
 '''
 
-e = ETF('vig')
-print(e.percent_at_low)
-e = ETF('qqq')
-print(e.percent_at_low)
 
-exit(0)
-
-etf = ETF('crypto')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
-etf.display_metrics(columns, only_nums=False, extra_header=False, include_overall=False)
+etf = ETF('vig')
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', '% at 52W High', '% at 52W Low', 'SMA20', 'SMA50', 'SMA200', 'Weight']
+etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=False)

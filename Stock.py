@@ -51,6 +51,8 @@ class Stock:
         self.beta = finviz_fundamentals['Beta']
         self.employees = finviz_fundamentals['Employees']
 
+        self.sma20 = finviz_fundamentals['SMA20']
+        self.sma50 = finviz_fundamentals['SMA50']
         self.sma200 = finviz_fundamentals['SMA200']
         self.high_52W = finviz_fundamentals['52W High']
         self.low_52W = finviz_fundamentals['52W Low']

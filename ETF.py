@@ -89,7 +89,7 @@ class ETF:
         elif ticker == 'my_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
 
-        elif ticker == 'sector_ETFs':  # Leveraged ETFs
+        elif ticker == 'sector_ETFs':  # Sector ETFs
             self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xop iyr xhb itb vnq gdxj iye oih xme xrt smh ibb kbe xtl'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
@@ -161,6 +161,8 @@ class ETF:
             self.name = finviz_fundamentals['Company']
             self.dividend_yield = finviz_fundamentals['Dividend %']
             self.price = finviz_fundamentals['Price']
+            self.sma20 = finviz_fundamentals['SMA20']
+            self.sma50 = finviz_fundamentals['SMA50']
             self.sma200 = finviz_fundamentals['SMA200']
             self.high_52W = finviz_fundamentals['52W High']
             self.perf_year = finviz_fundamentals['Perf Year']
@@ -457,6 +459,10 @@ class ETF:
                             line += component.high_52W + '\t'
                         if metric_title == 'Perf Year':
                             line += component.perf_year + '\t'
+                        if metric_title == 'SMA20':
+                            line += component.sma20 + '\t'
+                        if metric_title == 'SMA50':
+                            line += component.sma50 + '\t'
                         if metric_title == 'SMA200':
                             line += component.sma200 + '\t'
 
