@@ -160,6 +160,39 @@ class ETF:
             self.ticker_string = 'vig'
             self.is_real_etf = True
 
+        elif ticker == 'vtv':  # Hardcoded more than top 25 VTV holdings
+            self.weights = {'brk.b': '2.85%', 'unh': '2.58%', 'jpm': '2.55%', 'jnj': '2.45%', 'pg': '2.16%',
+                            'pfe': '1.81%', 'bac': '1.69%', 'avgo': '1.42%', 'xom': '1.41%', 'abt': '1.36%',
+                            'csco': '1.31%', 'pep': '1.31%', 'abbv': '1.30%', 'lly': '1.30%', 'ko': '1.25%',
+                            'cmcsa': '1.25%', 'cvx': '1.23%', 'intc': '1.14%', 'wmt': '1.10%', 'vz': '1.07%',
+                            'mrk': '1.05%', 'wfc': '1.04%', 'nee': '0.97%', 't': '0.96%', 'pm': '0.81%',
+                            'hon': '0.78%', 'orcl': '0.78%', 'ms': '0.77%', 'mdt': '0.76%', 'bmy': '0.75%',
+                            'cvs': '0.74%', 'schw': '0.71%', 'gs': '0.70%', 'rtx': '0.70%', 'amgn': '0.69%',
+                            'blk': '0.68%', 'pld': '0.68%', 'c': '0.65%', 'ibm': '0.63%', 'antm': '0.61%',
+                            'cat': '0.61%', 'tgt': '0.60%', 'dhr': '0.58%', 'ge': '0.57%', 'qcom': '0.56%',
+                            'mmm': '0.56%', 'de': '0.52%', 'cop': '0.52%', 'axp': '0.52%', 'adi': '0.51%',
+                            'mdlz': '0.50%', 'gild': '0.50%', 'bx': '0.48%', 'mmc': '0.48%', 'mo': '0.47%',
+                            'pnc': '0.46%', 'csx': '0.45%', 'lmt': '0.45%', 'cme': '0.45%', 'f': '0.44%'}
+            self.ticker_string = 'vtv'
+            self.is_real_etf = True
+
+        elif ticker == 'xlv':  # Hardcoded more than top 25 XLV (Healthcare) holdings
+            self.weights = {'unh': '9.112%', 'jnj': '9.002%', 'pfe': '5.93%', 'abbv': '4.927%', 'tmo': '4.637%',
+                            'abt': '4.554%', 'mrk': '3.95%', 'lly': '3.847%', 'dhr': '3.649%', 'cvs': '2.842%',
+                            'bmy': '2.815%', 'mdt': '2.72%', 'amgn': '2.498%', 'antm': '2.171%', 'isrg': '2.018%',
+                            'zts': '1.882%', 'syk': '1.667%', 'gild': '1.624%', 'bdx': '1.539%', 'ci': '1.427%',
+                            'ew': '1.377%', 'regn': '1.299%', 'vrtx': '1.227%', 'bsx': '1.202%', 'mrna': '1.145%',
+                            'hca': '1.142%', 'ilmn': '1.103%', 'hum': '1.085%', 'iqv': '0.946%', 'cnc': '0.941%',
+                            'idxx': '0.904%', 'bax': '0.852%', 'a': '0.85%', 'mck': '0.808%', 'dxcm': '0.803%',
+                            'algn': '0.731%', 'rmd': '0.682%', 'mtd': '0.68%', 'biib': '0.64%', 'wst': '0.589%',
+                            'cern': '0.536%', 'lh': '0.527%', 'zbh': '0.502%', 'pki': '0.469%', 'ste': '0.451%',
+                            'abc': '0.409%', 'wat': '0.399%', 'coo': '0.381%', 'holx': '0.368%', 'vtrs': '0.362%',
+                            'ctlt': '0.347%', 'crl': '0.336%', 'dgx': '0.33%', 'tech': '0.315%', 'tfx': '0.289%',
+                            'cah': '0.287%', 'incy': '0.272%', 'bio': '0.265%', 'abmd': '0.262%', 'xray': '0.228%',
+                            'hsic': '0.21%', 'uhs': '0.19%', 'ogn': '0.166%', 'dva': '0.142%'}
+            self.ticker_string = 'xlv'
+            self.is_real_etf = True
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
