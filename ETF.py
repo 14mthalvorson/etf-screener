@@ -156,7 +156,7 @@ class ETF:
 
         # Query Finviz metrics for real ETFs
         if self.is_real_etf:
-            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA200', '52W High', 'Perf Year'])
+            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year'])
 
             self.name = finviz_fundamentals['Company']
             self.dividend_yield = finviz_fundamentals['Dividend %']
