@@ -17,8 +17,8 @@ except Exception as e:
     print(2, 'Error with Macrotrends and retrieving revenue growth.')
 
 try:
-    etf = ETF('qqq')
-    print('QQQ weights: ', etf.weights)
+    etf = ETF('vig')
+    print('VIG weights: ', etf.weights)
 except Exception as e:
     print(3, 'Error with Marketwatch and getting ETF holdings.')
     print(e)
