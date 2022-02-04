@@ -144,17 +144,20 @@ class ETF:
             self.ticker_string = 'spy'
             self.is_real_etf = True
 
-        elif ticker == 'moat':  # Hardcoded more than top 25 moat holdings
-            self.weights = {'lng': '3.12', 'wfc': '2.99', 'lmt': '2.93', 'brk.b': '2.9', 'pm': '2.8', 'd': '2.8',
-                            'mo': '2.79', 'mrk': '2.79', 'ctva': '2.77', 'bmy': '2.76', 'stz': '2.72', 'azpn': '2.7',
-                            'cpb': '2.68', 'emr': '2.63', 'k': '2.62', 'pii': '2.55', 'googl': '2.54', 'ba': '2.49',
-                            'wu': '2.48', 'cmp': '2.46', 'msft': '2.45', 'gild': '2.38', 'tyl': '2.37',
-                            'intc': '2.36', 'zbh': '2.27', 'blkb': '2.21', 'mdt': '2.18', 'efx': '2.12',
-                            'biib': '2.12', 'crm': '2.08', 'gwre': '2.07', 'amzn': '2.04', 'veev': '2.04',
-                            'fb': '1.74', 'ko': '1.44', 'rtx': '1.4', 'cmcsa': '1.31', 'chrw': '1.3', 'klac': '1.29',
-                            'rop': '1.27', 'lrcx': '1.23', 'hon': '1.21', 'mchp': '1.2', 'dis': '1.18',
-                            'now': '1.09', 'meli': '1.06'}
-            self.ticker_string = 'moat'
+        elif ticker == 'vig':  # Hardcoded more than top 25 VIG holdings
+            self.weights = {'msft': '4.83%', 'unh': '3.76%', 'jnj': '3.58%', 'hd': '3.47%', 'jpm': '3.31%',
+                            'pg': '3.16%', 'v': '2.77%', 'avgo': '2.15%', 'acn': '2.07%', 'cost': '1.98%',
+                            'abt': '1.97%', 'pep': '1.91%', 'ko': '1.82%', 'cmcsa': '1.82%', 'nke': '1.67%',
+                            'wmt': '1.63%', 'qcom': '1.62%', 'mcd': '1.59%', 'nee': '1.45%', 'low': '1.42%',
+                            'lin': '1.41%', 'txn': '1.38%', 'unp': '1.29%', 'ups': '1.23%', 'hon': '1.15%',
+                            'orcl': '1.14%', 'bmy': '1.11%', 'mdt': '1.10%', 'sbux': '1.09%', 'blk': '1.04%',
+                            'spgi': '0.90%', 'tgt': '0.90%', 'cat': '0.88%', 'adp': '0.83%', 'mmm': '0.81%',
+                            'adi': '0.75%', 'syk': '0.71%', 'mmc': '0.69%', 'lmt': '0.69%', 'shw': '0.68%',
+                            'pnc': '0.67%', 'csx': '0.66%', 'cb': '0.66%', 'cme': '0.65%', 'tfc': '0.62%',
+                            'cl': '0.58%', 'bdx': '0.57%', 'itw': '0.56%', 'etn': '0.55%', 'apd': '0.53%',
+                            'klac': '0.52%', 'wm': '0.51%', 'mco': '0.50%', 'ecl': '0.46%', 'noc': '0.46%',
+                            'emr': '0.44%', 'tel': '0.42%', 'rop': '0.41%', 'atvi': '0.41%', 'gd': '0.38%'}
+            self.ticker_string = 'vig'
             self.is_real_etf = True
 
         # Set weights and ticker_string if not set

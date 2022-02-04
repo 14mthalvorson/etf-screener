@@ -49,22 +49,18 @@ def get_median_from_list(vals):
 def clean_tickers():
     with open('input.txt', 'r+') as f:
         data = f.read()
-        for string in ['Stock', 'ETF', '\t', '\n']:
-            while string in data:
-                data = data.replace(string, ' ')
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-        data = data.lower()
-        data = ''.join([x for x in data if x in ' abcdefghijklmnopqrstuvwxyz'])
-        data.strip()
-        data = data.split(' ')
-        data = list(set(data))
-        data.sort()
-        data = [x for x in data if x != '']
-        data = ' '.join(data)
+        data = data.replace(')', '')
+        data = data.replace('(', '\t')
+        data = data.split('\n')
+        for i, item in enumerate(data):
+            data[i] = item.split('\t')
+            for j, thing in enumerate(data[i]):
+                data[i][j] = data[i][j].strip()
+
+        data = {b: c for [a, b, c] in data}
 
         with open('output.txt', 'w+') as g:
-            g.write(data)
+            g.write(str(data).lower())
 
 
 # Takes two columns of data (tickers, weights) and outputs
