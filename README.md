@@ -89,7 +89,7 @@ spy	SPDR S&P 500 ETF Trust	ETF	13.99%	17.19	24.92	56.50%	29.78%	-6.26%
 vig	Vanguard Dividend Appreciation Index Fund ETF Shares	ETF	7.07%	10.14	21.59	57.00%	23.58%	-5.92%		
 ```
 
-The sources for the financial data are listed in the spreadsheet linked at the top of the README. For the ETFs, the holdings are pulled from Marketwatch. Only the top 25 are listed so that is what I am using right now for the weighted medians. I've hardcoded a few (QQQ, SPY) that I use frequently beyond the top 25. It doesn't make much of a difference thankfully when calculating the weighted medians.
+The sources for the financial data are listed in the spreadsheet linked at the top of the README. For the ETFs, the holdings are pulled from Marketwatch. Marketwatch only lists the top 25 holdings so that what most of the ETFs will use to analyze. I've hardcoded a few (QQQ, SPY, MOAT) beyond the top 25 that I use more frequently. This also helps during the times that Marketwatch is sometimes not available. I use a couple functions (clean tickers) in the utilities file to do this. Overall, it doesn't make much of a difference thankfully when calculating the weighted medians.
 
 
 ## Current Data Sources
