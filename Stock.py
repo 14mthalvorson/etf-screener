@@ -62,6 +62,9 @@ class Stock:
         if self.revenue == '-':
             self.revenue = None
 
+        if to_number(self.med_rev_growth_3y) < -0.25:
+            self.med_rev_growth_3y = None
+
         # Gross profit
         try:
             self.gross_profit = to_billions_string(to_number(self.gross_margin) * to_number(self.revenue))
