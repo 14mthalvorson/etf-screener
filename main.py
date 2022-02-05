@@ -32,6 +32,6 @@ Crypto:
 '''
 
 
-etf = ETF('vig')
+etf = ETF('xbi')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'SMA20', 'SMA50', 'SMA200', 'Perf Year', 'Weight', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)

@@ -50,12 +50,12 @@ class ETF:
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli meta mime mmc mmm mo moat morn mrk ' \
                                  'mrna mrvl ms msft mtch mttr mu mufg nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
-                                 'psp pton pypl qcom qld qqq qtwo rblx rdfn rio rng roku rom rpd rtx ry sap sbac sbux ' \
+                                 'pton pypl qcom qld qqq qtwo rblx rdfn rio rng roku rom rpd rtx ry sap sbac sbux ' \
                                  'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
                                  'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
                                  'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfcmcd wix wm wmt wsay ' \
-                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlv xly xme xom xop xrt xtl zen zg zm zs zts '
+                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlc xlv xly xme xom xop xrt xtl zen zg zm zs zts'
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'aapl abnb abt adbe adsk ai akam amd amt amzn anet anss api appf appn apps arkf ' \
@@ -94,7 +94,7 @@ class ETF:
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
 
         elif ticker == 'sector_ETFs':  # Sector ETFs
-            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xop iyr xhb itb vnq gdxj iye oih xme xrt smh ibb kbe xtl'
+            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq gdxj iye oih xme xrt smh ibb kbe xtl'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
@@ -112,38 +112,83 @@ class ETF:
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
         elif ticker == 'qqq':  # Hardcoded more than top 25 QQQ holdings
-            self.weights = {'aapl': '11.69%', 'msft': '10.13%', 'googl': '7.19%', 'amzn': '6.78%', 'fb': '4.78%',
-                            'tsla': '4.26%', 'nvda': '4.15%', 'avgo': '1.82%', 'adbe': '1.8%', 'csco': '1.78%',
-                            'nflx': '1.78%', 'cost': '1.67%', 'pep': '1.6%', 'cmcsa': '1.53%', 'pypl': '1.47%',
-                            'intc': '1.39%', 'qcom': '1.36%', 'intu': '1.21%', 'txn': '1.16%', 'amd': '1.16%',
-                            'tmus': '0.96%', 'hon': '0.96%', 'amat': '0.95%', 'sbux': '0.91%', 'mu': '0.66%',
-                            'adi': '0.64%', 'adp': '0.63%', 'lrcx': '0.59%', 'fisv': '0.52%', 'chtr': '0.79%',
-                            'bkng': '0.74%', 'mdlz': '0.69%', 'amgn': '0.96%', 'isrg': '0.73%', 'gild': '0.65%',
-                            'csx': '0.57%', 'exc': '0.42%', 'regn': '0.49%', 'mrna': '0.48%', 'vrtx': '0.46%',
-                            'kdp': '0.40%', 'meli': '0.40%', 'atvi': '0.46%', 'klac': '0.42%', 'mrvl': '0.41%'}
+            self.weights = {'aapl': '12.738%', 'msft': '10.156%', 'amzn': '6.324%', 'googl': '7.936%', 'tsla': '4.019%',
+                            'nvda': '3.783%', 'fb': '3.783%', 'adbe': '1.811%', 'pep': '1.806%',
+                            'avgo': '1.781%', 'csco': '1.734%', 'cost': '1.717%', 'cmcsa': '1.686%', 'qcom': '1.494%',
+                            'intc': '1.463%', 'nflx': '1.338%', 'txn': '1.208%', 'intu': '1.13%', 'tmus': '1.124%',
+                            'pypl': '1.088%', 'amd': '1.08%', 'hon': '0.983%', 'amgn': '0.94%', 'amat': '0.918%',
+                            'sbux': '0.839%', 'chtr': '0.815%', 'isrg': '0.76%', 'bkng': '0.746%', 'mdlz': '0.706%',
+                            'mu': '0.683%', 'adi': '0.649%', 'adp': '0.644%', 'lrcx': '0.618%', 'gild': '0.611%',
+                            'csx': '0.572%', 'fisv': '0.523%', 'mrna': '0.495%', 'regn': '0.489%', 'vrtx': '0.462%',
+                            'atvi': '0.458%', 'klac': '0.422%', 'mrvl': '0.421%', 'ilmn': '0.415%', 'kdp': '0.409%',
+                            'jd': '0.397%', 'mar': '0.393%', 'nxpi': '0.393%', 'asml': '0.39%', 'adsk': '0.389%',
+                            'abnb': '0.386%', 'meli': '0.376%', 'xlnx': '0.375%', 'panw': '0.362%', 'ftnt': '0.362%',
+                            'snps': '0.345%', 'idxx': '0.34%', 'mnst': '0.339%', 'aep': '0.338%', 'ctsh': '0.337%',
+                            'wday': '0.335%', 'orly': '0.332%', 'lcid': '0.331%', 'khc': '0.327%', 'payx': '0.319%',
+                            'wba': '0.319%', 'exc': '0.319%', 'team': '0.318%', 'lulu': '0.307%', 'mchp': '0.307%',
+                            'cdns': '0.302%', 'dxcm': '0.302%', 'ctas': '0.297%', 'algn': '0.296%', 'ea': '0.289%',
+                            'odfl': '0.281%', 'bidu': '0.279%', 'xel': '0.279%', 'ebay': '0.267%', 'ddog': '0.264%',
+                            'crwd': '0.262%', 'zs': '0.256%', 'rost': '0.25%', 'zm': '0.249%', 'pcar': '0.245%',
+                            'fast': '0.242%', 'biib': '0.241%', 'vrsk': '0.236%', 'mtch': '0.236%', 'cprt': '0.227%',
+                            'dltr': '0.221%', 'ntes': '0.211%', 'anss': '0.211%', 'okta': '0.201%', 'siri': '0.199%',
+                            'sgen': '0.184%', 'vrsn': '0.181%', 'pdd': '0.171%', 'swks': '0.171%', 'docu': '0.167%',
+                            'splk': '0.138%', 'ceg': '0.13%'}
             self.ticker_string = 'qqq'
             self.is_real_etf = True
 
         elif ticker == 'spy':  # Hardcoded more than top 25 SPY holdings
-            self.weights = {'aapl': '7.12', 'msft': '6.11', 'amzn': '3.41', 'googl': '4.13', 'tsla': '1.99',
-                            'fb': '1.94', 'nvda': '1.60', 'brk.b': '1.50', 'jnj': '1.19',
-                            'unh': '1.16', 'jpm': '1.15', 'pg': '1.02', 'hd': '1.01', 'v': '0.99', 'ma': '0.88',
-                            'bac': '0.87', 'xom': '0.84', 'pfe': '0.77', 'dis': '0.68', 'adbe': '0.66', 'cvx': '0.66',
-                            'abbv': '0.63', 'avgo': '0.63', 'pep': '0.63', 'ko': '0.62', 'csco': '0.61', 'tmo': '0.60',
-                            'cmcsa': '0.60', 'crm': '0.60', 'abt': '0.59', 'acn': '0.58', 'cost': '0.58', 'vz': '0.58',
-                            'wfc': '0.56', 'mrk': '0.54', 'pypl': '0.53', 'wmt': '0.52', 'intc': '0.52', 'qcom': '0.51',
-                            'lly': '0.51', 'mcd': '0.51', 'nflx': '0.49', 'nke': '0.49', 'dhr': '0.48', 't': '0.47',
-                            'txn': '0.43', 'low': '0.43', 'lin': '0.43', 'pm': '0.42', 'unp': '0.41', 'intu': '0.41',
-                            'nee': '0.40', 'ups': '0.39', 'ms': '0.38', 'bmy': '0.38', 'hon': '0.37', 'cvs': '0.37',
-                            'mdt': '0.36', 'amd': '0.36', 'rtx': '0.35', 'schw': '0.34', 'orcl': '0.34', 'c': '0.34',
-                            'amgn': '0.34', 'amat': '0.33', 'gs': '0.31', 'ibm': '0.31', 'blk': '0.31', 'cop': '0.31',
-                            'now': '0.30', 'pld': '0.30', 'sbux': '0.30', 'amt': '0.30', 'axp': '0.30', 'ba': '0.29',
-                            'cat': '0.29', 'tgt': '0.28', 'antm': '0.28', 'de': '0.28', 'ge': '0.27', 'isrg': '0.26',
-                            'bkng': '0.26', 'spgi': '0.26', 'mmm': '0.25', 'lmt': '0.25', 'zts': '0.25', 'mo': '0.24',
-                            'mdlz': '0.24', 'mu': '0.24', 'adi': '0.23', 'pnc': '0.23', 'adp': '0.23', 'tjx': '0.23',
-                            'gild': '0.22', 'cb': '0.22', 'tfc': '0.22', 'syk': '0.22', 'lrcx': '0.22', 'cme': '0.22',
-                            'duk': '0.21', 'f': '0.21', 'cci': '0.21', 'usb': '0.20', 'mmc': '0.20', 'gm': '0.20',
-                            'ci': '0.20', 'csx': '0.20'}
+            self.weights = {'aapl': '7.107666%', 'msft': '5.965681%', 'amzn': '3.194360%', 'googl': '4.374%',
+                            'tsla': '1.912091%', 'nvda': '1.579144%', 'brk.b': '1.522630%', 'fb': '1.483880%',
+                            'unh': '1.214215%', 'jnj': '1.199590%', 'jpm': '1.159040%', 'pg': '1.048071%',
+                            'v': '1.024148%', 'hd': '1.015449%', 'ma': '0.893443%', 'xom': '0.889748%',
+                            'bac': '0.881877%', 'pfe': '0.790265%', 'cvx': '0.682994%', 'dis': '0.671143%',
+                            'abbv': '0.656220%', 'adbe': '0.640114%', 'pep': '0.639565%', 'ko': '0.631725%',
+                            'avgo': '0.630636%', 'tmo': '0.618314%', 'csco': '0.614070%', 'cost': '0.608044%',
+                            'abt': '0.606727%', 'cmcsa': '0.598096%', 'vz': '0.587396%', 'wfc': '0.580134%',
+                            'acn': '0.576389%', 'crm': '0.549432%', 'wmt': '0.530024%', 'qcom': '0.529059%',
+                            'mrk': '0.526076%', 'intc': '0.517914%', 'mcd': '0.513691%', 'lly': '0.512679%',
+                            'nke': '0.488689%', 'dhr': '0.486310%', 'nflx': '0.473847%', 't': '0.461224%',
+                            'ups': '0.439826%', 'txn': '0.427726%', 'low': '0.427537%', 'pm': '0.425558%',
+                            'lin': '0.421537%', 'unp': '0.414311%', 'intu': '0.399085%', 'nee': '0.392138%',
+                            'ms': '0.387284%', 'pypl': '0.385207%', 'amd': '0.383152%', 'cvs': '0.377340%',
+                            'bmy': '0.374470%', 'rtx': '0.367593%', 'mdt': '0.362671%', 'schw': '0.352483%',
+                            'orcl': '0.348547%', 'hon': '0.348202%', 'c': '0.341520%', 'amgn': '0.334095%',
+                            'ibm': '0.325135%', 'amat': '0.325093%', 'gs': '0.321312%', 'cop': '0.316099%',
+                            'axp': '0.304517%', 'pld': '0.304174%', 'blk': '0.303070%', 'amt': '0.300105%',
+                            'ba': '0.299357%', 'sbux': '0.297529%', 'now': '0.294392%', 'antm': '0.290040%',
+                            'cat': '0.286188%', 'ge': '0.284134%', 'de': '0.276861%', 'tgt': '0.274456%',
+                            'isrg': '0.267869%', 'bkng': '0.263558%', 'spgi': '0.262086%', 'lmt': '0.252863%',
+                            'zts': '0.250739%', 'mmm': '0.250492%', 'mdlz': '0.250051%', 'mo': '0.244828%',
+                            'mu': '0.243013%', 'cb': '0.235566%', 'pnc': '0.232757%', 'adi': '0.229474%',
+                            'adp': '0.228519%', 'cme': '0.227966%', 'tfc': '0.222503%', 'tjx': '0.221781%',
+                            'syk': '0.221604%', 'lrcx': '0.218617%', 'gild': '0.215861%', 'duk': '0.213562%',
+                            'usb': '0.210119%', 'cci': '0.206757%', 'f': '0.205487%', 'bdx': '0.204622%',
+                            'gm': '0.203000%', 'mmc': '0.202808%', 'csx': '0.202457%', 'chtr': '0.199148%',
+                            'so': '0.193051%', 'ci': '0.190160%', 'ice': '0.189623%', 'tmus': '0.186520%',
+                            'fis': '0.185389%', 'el': '0.185086%', 'cl': '0.183736%', 'ew': '0.183135%',
+                            'shw': '0.182909%', 'itw': '0.182221%', 'nsc': '0.177027%', 'd': '0.172433%',
+                            'eog': '0.171831%', 'regn': '0.171784%', 'pgr': '0.169011%', 'eqix': '0.168482%',
+                            'fisv': '0.166785%', 'cof': '0.166444%', 'etn': '0.164603%', 'apd': '0.163719%',
+                            'vrtx': '0.163437%', 'atvi': '0.161652%', 'aon': '0.160655%', 'fdx': '0.160304%',
+                            'bsx': '0.159741%', 'mrna': '0.152555%', 'hca': '0.152120%', 'emr': '0.152027%',
+                            'klac': '0.150331%', 'wm': '0.149393%', 'noc': '0.148128%', 'fcx': '0.147696%',
+                            'psa': '0.147370%', 'ilmn': '0.147070%', 'mco': '0.145128%', 'hum': '0.144148%',
+                            'slb': '0.142040%', 'nxpi': '0.138469%', 'adsk': '0.137735%', 'pxd': '0.133048%',
+                            'xlnx': '0.132229%', 'aig': '0.130268%', 'nem': '0.130038%', 'met': '0.129223%',
+                            'jci': '0.129184%', 'gd': '0.128951%', 'rop': '0.128095%', 'dg': '0.127325%',
+                            'iqv': '0.126206%', 'spg': '0.125948%', 'tel': '0.125489%', 'cnc': '0.125154%',
+                            'mpc': '0.124956%', 'aph': '0.124531%', 'ecl': '0.123997%', 'info': '0.122042%',
+                            'snps': '0.121938%', 'bk': '0.121754%', 'kmb': '0.121022%', 'idxx': '0.120732%',
+                            'dow': '0.120224%', 'ctsh': '0.119093%', 'aep': '0.118824%', 'orly': '0.117346%',
+                            'msci': '0.117297%', 'mar': '0.116698%', 'hpq': '0.114642%', 'sre': '0.114577%',
+                            'bax': '0.113305%', 'a': '0.113290%', 'pru': '0.113043%', 'exc': '0.112742%',
+                            'trv': '0.112587%', 'azo': '0.112321%', 'adm': '0.111441%', 'gpn': '0.111414%',
+                            'lhx': '0.110534%', 'gis': '0.110217%', 'dlr': '0.109325%', 'mck': '0.108911%',
+                            'mchp': '0.108558%', 'dd': '0.107062%', 'cmg': '0.106869%', 'syy': '0.106705%',
+                            'cdns': '0.106679%', 'dxcm': '0.106641%', 'ftnt': '0.106011%', 'ph': '0.105872%',
+                            'hlt': '0.105773%', 'carr': '0.105638%', 'msi': '0.105047%', 'afl': '0.103188%',
+                            'stz': '0.103030%', 'ea': '0.102879%', 'o': '0.102485%', 'tt': '0.101058%',
+                            'psx': '0.100562%', 'payx': '0.100212%'}
             self.ticker_string = 'spy'
             self.is_real_etf = True
 
@@ -284,6 +329,39 @@ class ETF:
             self.ticker_string = 'xbi'
             self.is_real_etf = True
 
+        elif ticker == 'vtwo':  # Vanguard Russell 2000
+            self.weights = {'amc': '0.46%', 'syna': '0.37%', 'lscc': '0.34%', 'egp': '0.30%', 'bj': '0.30%',
+                            'ttek': '0.30%', 'saia': '0.29%', 'ovv': '0.29%', 'thc': '0.28%', 'wsc': '0.28%',
+                            'car': '0.28%', 'stag': '0.28%', 'slab': '0.27%', 'ntla': '0.27%', 'm': '0.27%',
+                            'omcl': '0.26%', 'bhvn': '0.25%', 'crox': '0.25%', 'iivi': '0.24%', 'foxf': '0.24%',
+                            'amba': '0.23%', 'pfgc': '0.23%', 'eme': '0.22%', 'chk': '0.22%', 'kbr': '0.22%',
+                            'arwr': '0.22%', 'rpd': '0.22%', 'ffin': '0.22%', 'sgms': '0.21%', 'medp': '0.21%',
+                            'trno': '0.21%', 'asgn': '0.21%', 'bpmc': '0.21%', 'gbci': '0.20%', 'txrh': '0.20%',
+                            'iipr': '0.20%', 'novt': '0.20%', 'insp': '0.20%', 'expo': '0.20%', 'ssd': '0.20%',
+                            'swav': '0.20%', 'gt': '0.19%', 'hele': '0.19%', 'wcc': '0.19%', 'gtls': '0.19%',
+                            'amn': '0.19%', 'smtc': '0.19%', 'arna': '0.19%', 'roll': '0.19%', 'nsa': '0.18%',
+                            'bl': '0.18%', 'powi': '0.18%', 'cade': '0.18%', 'ssb': '0.18%', 'wk': '0.18%',
+                            'halo': '0.18%', 'ufpi': '0.18%', 'apps': '0.18%', 'vly': '0.18%', 'ccmp': '0.18%',
+                            'bcpc': '0.18%', 'aqua': '0.18%', 'mxl': '0.18%', 'wts': '0.18%', 'asan': '0.17%',
+                            'hli': '0.17%', 'vrns': '0.17%', 'apg': '0.17%', 'wing': '0.17%', 'spsc': '0.17%',
+                            'atkr': '0.17%', '—': '0.17%', 'rog': '0.17%', 'cit': '0.17%', 'avnt': '0.17%',
+                            'tenb': '0.17%', 'trup': '0.17%', 'vg': '0.16%', 'ar': '0.16%', 'rhp': '0.16%',
+                            'esnt': '0.16%', 'onto': '0.16%', 'adc': '0.16%', 'mms': '0.16%', 'neog': '0.16%',
+                            'irdm': '0.16%', 'sigi': '0.16%', 'mime': '0.16%', 'bxmt': '0.16%', 'jbt': '0.16%'}
+            self.ticker_string = 'vtwo'
+            self.is_real_etf = True
+
+        elif ticker == 'xlc':  # XLC - SPY Communications sector
+            self.weights = {'googl': '23.8290%', 'fb': '17.8399%', 't': '5.2009%', 'vz': '5.1836%', 'tmus': '5.0897%',
+                            'atvi': '5.0472%', 'cmcsa': '4.9552%', 'chtr': '4.8334%', 'dis': '4.4452%',
+                            'nflx': '3.2145%', 'ea': '3.1868%', 'mtch': '2.6019%', 'twtr': '2.2630%',
+                            'viac': '1.6483%', 'ttwo': '1.5426%', 'omc': '1.3552%', 'ipg': '1.1813%',
+                            'lyv': '1.1736%', 'foxa': '1.0754%', 'lumn': '0.9538%', 'nwsa': '0.7242%',
+                            'disck': '0.7132%', 'dish': '0.6319%', 'fox': '0.4520%', 'disca': '0.4018%',
+                            'nws': '0.2253%'}
+            self.ticker_string = 'xlc'
+            self.is_real_etf = True
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
@@ -317,7 +395,7 @@ class ETF:
         relative_EV_to_GPs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].ev_to_gp_ratio is not None:
                         relative_EV_to_GPs.append(self.components[ticker].ev_to_gp_ratio)
             except Exception as e:
@@ -331,7 +409,7 @@ class ETF:
         relative_EV_to_EBITs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].ev_to_ebit_ratio is not None:
                         if to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
                             relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
@@ -348,7 +426,7 @@ class ETF:
         relative_adj_EV_to_EBITs = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].adj_ev_to_ebit_ratio is not None:
                         if to_number(self.components[ticker].adj_ev_to_ebit_ratio) > 0:
                             relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
@@ -365,7 +443,7 @@ class ETF:
         relative_med_rev_growth = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].med_rev_growth_3y is not None:
                         relative_med_rev_growth.append(self.components[ticker].med_rev_growth_3y)
             except Exception as e:
@@ -379,7 +457,7 @@ class ETF:
         relative_med_gross_margin = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].gross_margin is not None:
                         relative_med_gross_margin.append(self.components[ticker].gross_margin)
             except Exception as e:
@@ -393,7 +471,7 @@ class ETF:
         relative_med_adj_ebit_margin = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].adj_ebit_margin is not None:
                         relative_med_adj_ebit_margin.append(self.components[ticker].adj_ebit_margin)
             except Exception as e:
@@ -407,7 +485,7 @@ class ETF:
         relative_med_ebit_margin = []
         for ticker in self.weights.keys():
             try:
-                for i in range(int(to_number(self.weights[ticker]) * 300)):
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].ebit_margin is not None:
                         relative_med_ebit_margin.append(self.components[ticker].ebit_margin)
             except Exception as e:
@@ -636,7 +714,5 @@ class ETF:
                     line = ''.join(x for i, x in enumerate(line) if i-1 < 0 or x not in 'BMK' or line[i-1] not in '1234567890')
                 print(line)
 
-            except OverflowError:
-                pass
             except Exception as e:
                 pass

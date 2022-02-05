@@ -49,15 +49,14 @@ def get_median_from_list(vals):
 def clean_tickers():
     with open('input.txt', 'r+') as f:
         data = f.read()
-        data = data.replace(')', '')
-        data = data.replace('(', '\t')
         data = data.split('\n')
         for i, item in enumerate(data):
             data[i] = item.split('\t')
             for j, thing in enumerate(data[i]):
                 data[i][j] = data[i][j].strip()
+            data[i][1] = float(data[i][1])
 
-        data = {b: c for [a, b, c] in data}
+        data = {a: str(round(b, 3)) + '%' for [a, b] in data}
 
         with open('output.txt', 'w+') as g:
             g.write(str(data).lower())
@@ -71,9 +70,24 @@ def clean_tickers_to_dict():
         data = data.split('\n')
         for i, item in enumerate(data):
             data[i] = item.split('\t')
-            print(data[i])
 
-        data = {a: b for [a, b] in data}
+        data = {a: str(b) + '%' for [a, b] in data}
 
         with open('output.txt', 'w+') as g:
             g.write(str(data))
+
+
+def clean_vanguard_tickers_to_dict():
+    with open('input.txt', 'r+') as f:
+        data = f.read()
+        data = data.lower()
+        data = data.replace('(', '\t')
+        data = data.replace(')', '')
+        data = data.split('\n')
+        for i, item in enumerate(data):
+            data[i] = item.split('\t')
+
+        data = {b: c for [a, b, c] in data}
+
+        with open('output.txt', 'w+') as g:
+            g.write(str(data).lower())
