@@ -62,7 +62,7 @@ class Stock:
         if self.revenue == '-':
             self.revenue = None
 
-        if to_number(self.med_rev_growth_3y) < -0.25:
+        if self.med_rev_growth_3y is not None and to_number(self.med_rev_growth_3y) < -0.25:
             self.med_rev_growth_3y = None
 
         # Gross profit
