@@ -45,8 +45,8 @@ class ETF:
                                  'c cat cb cci cdns chgg chtr ci clou cmcsa cmcssa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
-                                 'frog fvrr gdxj ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
-                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm kbe ko lfc lin lly lmnd ' \
+                                 'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
+                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lfc lin lly lmnd ' \
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli meta mime mmc mmm mo moat morn mrk ' \
                                  'mrna mrvl ms msft mtch mttr mu mufg nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
@@ -68,6 +68,10 @@ class ETF:
                                  'shop sklz smar snap snow sofi soxx spgi splk spot sq sumo tdoc team tenb ter tmf ' \
                                  'tqqq tsla tsm ttd ttwo twlo twtr tyd tyl u upro upwk usd v veev vig vmw vpn vpu ' \
                                  'vrsn wcld wday we wix wm xbi z zen zg zm zs'
+
+        elif ticker == 'my_top':  # My Top Holdings
+            self.ticker_string = 'googl amzn tmf tqqq fb qld coin msft crm shop crwd ttd aapl se fngu adbe nvda ddog ' \
+                                 'veev sq pltr net now hubs soxx fngg twlo etsy pins tdoc BTCUSD ETHUSD'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -94,7 +98,7 @@ class ETF:
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
 
         elif ticker == 'sector_ETFs':  # Sector ETFs
-            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq gdxj iye oih xme xrt smh ibb kbe xtl'
+            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq iye oih xme xrt smh ibb xtl'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
             self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
