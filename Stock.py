@@ -3,8 +3,17 @@ from ETF import *
 from finviz_finance_fulfillment import get_finviz_metrics
 
 
+with open('morningstar.txt', 'r+') as f:
+    data = f.read()
+    data = data.split('\n')
+    for i, line in enumerate(data):
+        data[i] = data[i].split(' ')
+    morningstar_FVEs = {a: b for [a, b] in data}
+
+
 class Stock:
     def __init__(self, ticker):
+        ticker = ticker.lower()
 
         self.ticker = ticker
         self.type = 'Stock'
@@ -58,12 +67,20 @@ class Stock:
         self.low_52W = finviz_fundamentals['52W Low']
         self.perf_year = finviz_fundamentals['Perf Year']
 
+        self.morningstar_FVE = morningstar_FVEs.get(ticker, None)
+
         # Value checks
         if self.revenue == '-':
             self.revenue = None
 
         if self.med_rev_growth_3y is not None and to_number(self.med_rev_growth_3y) < -0.25:
             self.med_rev_growth_3y = None
+
+        # Price / FVE
+        try:
+            self.price_to_FVE = to_ratio_string(to_number(self.price) / to_number(self.morningstar_FVE))
+        except Exception as e:
+            self.price_to_FVE = None
 
         # Gross profit
         try:

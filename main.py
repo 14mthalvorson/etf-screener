@@ -10,6 +10,7 @@ Stock & ETF Columns:
 'Median Rev Growth 3Y'
 'Gross Margin', 'Adj EBIT Margin'
 '52W High', 'SMA20', 'SMA50', 'SMA200'
+'Price to FVE'
 
 Stock Columns:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
@@ -20,12 +21,14 @@ Stock Columns:
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
 'Perf Year', 'SMA20', 'SMA50', 'SMA200', '52W High'
+'Morningstar FVE', 'Price to FVE'
 
 ETF Columns:
 'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
 'Weighted Median Median Rev Growth 3Y'
 'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
 '% at 52W High', '% at 52W Low'
+'Price to FVE'
 
 Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
@@ -33,5 +36,5 @@ Crypto:
 
 
 etf = ETF('my_top')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'SMA20', 'SMA50', 'SMA200', 'Perf Year', 'Weight', '% at 52W High', '% at 52W Low']
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'SMA20', 'SMA50', 'SMA200', 'Perf Year', 'Weight', '% at 52W High', '% at 52W Low', 'Morningstar FVE', 'Price to FVE']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)

@@ -499,6 +499,20 @@ class ETF:
         except Exception as e:
             self.weighted_med_ebit_margin = None
 
+        # Weighted Median Price to FVE
+        price_to_FVEs = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
+                    if self.components[ticker].price_to_FVE is not None:
+                        price_to_FVEs.append(self.components[ticker].price_to_FVE)
+            except Exception as e:
+                pass
+        try:
+            self.price_to_FVE = get_median_from_list(price_to_FVEs)
+        except Exception as e:
+            self.price_to_FVE = None
+
         # Weighted % holdings within 5% of 52W High
         numer = 0
         denom = 0
@@ -710,6 +724,11 @@ class ETF:
                             line += component.percent_at_high + '\t'
                         if metric_title == '% at 52W Low':
                             line += component.percent_at_low + '\t'
+
+                        if metric_title == 'Price to FVE':
+                            line += component.price_to_FVE + '\t'
+                        if metric_title == 'Morningstar FVE':
+                            line += component.morningstar_FVE + '\t'
 
                     except Exception as e:
                         line += '' + '\t'
