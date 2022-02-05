@@ -1,6 +1,6 @@
 # A financial screener for public stocks and ETFs
 
-This project was designed for my personal use to calculate aggregate financial metrics for ETFs, similar to those you can easily find for stocks. This project aggregates financial data from a collection of sources, calculates some new metrics, and outputs the data in a convenient format for using in Excel or Google Sheets. After manually collecting this data many times, I wanted to automate all of these processes to save time, improve accuracy, and provide a programmatic platform for further building off of.
+The main goal of this screener is to calculate aggregate financial metrics for ETFs, similar to those you can easily find for stocks. These metrics are mainly around the growth, valuation, and general health of an ETF. The high-level process of calculating these metrics includes scraping the weighted holdings of an ETF, pulling the financial data of these underlying holdings, running data validation checks, and finally performing the metric calculations. The output is usually in a tab-delimited format for an easy copy/paste into Excel or Google Sheets. This process originally started off with me manually doing a lot of this work and I figured I could automate much of this process to save time, improve accuracy, and provide a programmatic platform for further building off of. This project is designed for my personal use and is not intended for use in any production systems.
 
 [Financial Metrics Available and Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
 
@@ -14,7 +14,7 @@ etf = ETF('qqq')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
 etf.display_metrics(columns, include_overall=True)
 ```
-In the output below, note the format is tab separated (for an easy copy/paste into Excel or Google Sheets). This doesn't always line up in the console but it should correctly space in a spreadsheet. The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed.
+The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed.
 
 Output:
 ```
