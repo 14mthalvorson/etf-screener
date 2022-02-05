@@ -224,6 +224,66 @@ class ETF:
             self.ticker_string = 'xlu'
             self.is_real_etf = True
 
+        elif ticker == 'xly':  # Hardcoded more than top 25 XLY (Consumer Discretionary) holdings
+            self.weights = {'amzn': '21.148%', 'tsla': '17.826%', 'mcd': '5.316%', 'nke': '4.566%', 'hd': '4.507%',
+                            'low': '4.425%', 'sbux': '3.09%', 'tgt': '2.842%', 'bkng': '2.734%', 'tjx': '2.292%',
+                            'f': '2.132%', 'gm': '2.106%', 'dg': '1.308%', 'orly': '1.215%', 'mar': '1.21%',
+                            'azo': '1.163%', 'cmg': '1.112%', 'hlt': '1.097%', 'yum': '1.004%', 'ebay': '0.978%',
+                            'aptv': '0.974%', 'rost': '0.915%', 'dltr': '0.81%', 'dhi': '0.785%', 'expe': '0.732%',
+                            'len': '0.706%', 'tsco': '0.682%', 'bby': '0.587%', 'vfc': '0.567%', 'ulta': '0.541%',
+                            'grmn': '0.519%', 'gpc': '0.515%', 'pool': '0.501%', 'dri': '0.491%', 'rcl': '0.486%',
+                            'nvr': '0.486%', 'kmx': '0.471%', 'mgm': '0.457%', 'ccl': '0.447%', 'czr': '0.446%',
+                            'dpz': '0.443%', 'etsy': '0.44%', 'lvs': '0.412%', 'lkq': '0.408%', 'bbwi': '0.402%',
+                            'aap': '0.4%', 'phm': '0.365%', 'whr': '0.341%', 'has': '0.332%', 'tpr': '0.29%',
+                            'bwa': '0.289%', 'wynn': '0.242%', 'nwl': '0.241%', 'mhk': '0.231%', 'nclh': '0.207%',
+                            'penn': '0.206%', 'pvh': '0.185%', 'rl': '0.155%', 'uaa': '0.098%', 'ua': '0.095%'}
+            self.ticker_string = 'xly'
+            self.is_real_etf = True
+
+        elif ticker == 'soxx':  # Hardcoded more than top 25 SOXX (Semiconductors) holdings
+            self.weights = {'avgo': '9.33%', 'qcom': '8.82%', 'nvda': '6.52%', 'intc': '6.26%', 'amd': '4.84%',
+                            'mu': '4.34%', 'mrvl': '4.29%', 'tsm': '4.28%', 'amat': '4.12%', 'klac': '4.07%',
+                            'txn': '4.06%', 'adi': '4.0%', 'nxpi': '3.95%', 'xlnx': '3.95%', 'lrcx': '3.85%',
+                            'mchp': '3.77%', 'asml': '3.42%', 'on': '2.23%', 'swks': '2.14%', 'ter': '1.7%',
+                            'mpwr': '1.6%', 'entg': '1.59%', 'qrvo': '1.32%', 'stm': '1.24%', 'wolf': '0.97%',
+                            'mksi': '0.77%', 'umc': '0.73%', 'lscc': '0.69%', 'oled': '0.57%', 'asx': '0.47%'}
+            self.ticker_string = 'soxx'
+            self.is_real_etf = True
+
+        elif ticker == 'xbi':  # Hardcoded more than top 25 XBI (Biotech) holdings
+            self.weights = {'arna': '1.784%', 'bhvn': '1.266%', 'bcrx': '1.242%', 'vrtx': '1.133%', 'abbv': '1.085%',
+                            'incy': '1.081%', 'ebs': '1.078%', 'alks': '1.063%', 'exel': '1.043%', 'amgn': '1.028%',
+                            'ptct': '1.02%', 'ions': '1.02%', 'uthr': '1.02%', 'sage': '1.017%', 'acad': '1.005%',
+                            'bmrn': '1.0%', 'irwd': '0.985%', 'nbix': '0.966%', 'halo': '0.962%', 'gbt': '0.956%',
+                            'agio': '0.945%', 'apls': '0.931%', 'sgen': '0.916%', 'exas': '0.916%', 'biib': '0.916%',
+                            'isee': '0.904%', 'cdna': '0.903%', 'gild': '0.901%', 'dvax': '0.898%', 'regn': '0.896%',
+                            'hznp': '0.881%', 'ptgx': '0.881%', 'cytk': '0.86%', 'tptx': '0.857%', 'mrtx': '0.846%',
+                            'rare': '0.84%', 'fold': '0.833%', 'iova': '0.831%', 'hrtx': '0.825%', 'tvtx': '0.814%',
+                            'cldx': '0.804%', 'lgnd': '0.803%', 'ntla': '0.802%', 'mygn': '0.798%', 'insm': '0.795%',
+                            'alny': '0.794%', 'vcel': '0.792%', 'dcph': '0.791%', 'beam': '0.791%', 'srpt': '0.786%',
+                            'krtx': '0.784%', 'ccxi': '0.784%', 'bpmc': '0.761%', 'dnli': '0.754%', 'fate': '0.745%',
+                            'vir': '0.743%', 'blue': '0.74%', 'ntra': '0.739%', 'swtx': '0.728%', 'vxrt': '0.728%',
+                            'kod': '0.725%', 'prta': '0.717%', 'fgen': '0.716%', 'rlay': '0.716%', 'agen': '0.715%',
+                            'twst': '0.71%', 'icpt': '0.708%', 'kymr': '0.691%', 'verv': '0.691%', 'atra': '0.685%',
+                            'vcyt': '0.684%', 'rcus': '0.679%', 'arwr': '0.676%', 'zntl': '0.659%', 'arct': '0.656%',
+                            'cere': '0.65%', 'nvta': '0.633%', 'kpti': '0.631%', 'ocgn': '0.629%', 'cdmo': '0.628%',
+                            'mrna': '0.617%', 'rvmd': '0.609%', 'gthx': '0.601%', 'edit': '0.599%', 'tgtx': '0.592%',
+                            'rxrx': '0.578%', 'myov': '0.576%', 'ino': '0.575%', 'allo': '0.569%', 'rgnx': '0.528%',
+                            'mnkd': '0.525%', 'tsvt': '0.518%', 'enta': '0.515%', 'nvax': '0.514%', 'dmtk': '0.504%',
+                            'opk': '0.503%', 'alt': '0.497%', 'orgo': '0.497%', 'alec': '0.493%', 'srne': '0.481%',
+                            'kura': '0.473%', 'avxl': '0.456%', 'qure': '0.452%', 'mcrb': '0.45%', 'ibrx': '0.448%',
+                            'mdgl': '0.443%', 'sndx': '0.44%', 'clvs': '0.428%', 'rckt': '0.425%', 'rdus': '0.42%',
+                            'morf': '0.401%', 'chrs': '0.396%', 'imgn': '0.39%', 'cccc': '0.39%', 'xncr': '0.372%',
+                            'sgmo': '0.362%', 'vnda': '0.35%', 'mgnx': '0.347%', 'albo': '0.34%', 'krys': '0.33%',
+                            'cris': '0.326%', 'pmvp': '0.322%', 'idya': '0.304%', 'rapt': '0.301%', 'nrix': '0.294%',
+                            'kros': '0.293%', 'goss': '0.287%', 'btai': '0.277%', 'sana': '0.276%', 'alxo': '0.268%',
+                            'egrx': '0.264%', 'bbio': '0.262%', 'grts': '0.254%', 'itos': '0.253%', 'akba': '0.241%',
+                            'anab': '0.239%', 'cvm': '0.238%', 'cprx': '0.237%', 'fmtx': '0.23%', 'repl': '0.229%',
+                            'cmrx': '0.226%', 'vbiv': '0.225%', 'mrsn': '0.219%', 'rigl': '0.217%', 'fdmt': '0.212%',
+                            'srrk': '0.211%', 'imvt': '0.21%'}
+            self.ticker_string = 'xbi'
+            self.is_real_etf = True
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
