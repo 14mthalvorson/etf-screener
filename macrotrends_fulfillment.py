@@ -148,9 +148,7 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             res.sort(key=lambda x: to_number(x))
             answer = res[len(res) // 2]
             # If answer is more than 20% different than neighboring values, it has a high chance of not being a good figure to use
-            if to_number(res[len(res) // 2 + 1]) - to_number(res[len(res) // 2]) > 0.2:
-                return None
-            if to_number(res[len(res) // 2]) - to_number(res[len(res) // 2 - 1]) > 0.2:
+            if to_number(res[len(res) // 2 + 1]) - to_number(res[len(res) // 2 - 1]) > 0.2:
                 return None
 
             return answer
