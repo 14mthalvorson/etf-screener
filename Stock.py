@@ -43,7 +43,7 @@ class Stock:
         self.revenue_growth_3y = get_macrotrends_metrics(ticker, 'Sales past 3Y')
         self.revenue_growth_5y = finviz_fundamentals['Sales past 5Y']
         self.med_rev_growth = get_macrotrends_metrics(ticker, 'Median Rev Growth')
-        self.med_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Rev Growth 3Y')
+        self.med_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Rev Growth 3Y')  # Annualized Revenue Growth Rate, median of last 13 quarters
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
         self.gross_margin = finviz_fundamentals['Gross Margin']

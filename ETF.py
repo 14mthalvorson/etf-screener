@@ -71,7 +71,7 @@ class ETF:
 
         elif ticker == 'my_top':  # My Top Holdings
             self.ticker_string = 'googl amzn tmf tqqq fb qld coin msft crm shop crwd ttd aapl se fngu adbe nvda ddog ' \
-                                 'veev sq pltr net now hubs soxx fngg twlo etsy pins tdoc BTCUSD ETHUSD'
+                                 'veev sq pltr net now hubs soxx fngg twlo etsy pins tdoc qqq'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
