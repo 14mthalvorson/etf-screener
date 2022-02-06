@@ -71,7 +71,7 @@ class ETF:
 
         elif ticker == 'my_top':  # My Top Holdings
             self.ticker_string = 'googl amzn tmf tqqq fb qld coin msft crm shop crwd ttd aapl se fngu adbe nvda ddog ' \
-                                 'veev sq pltr net now hubs soxx fngg twlo etsy pins tdoc qqq'
+                                 'veev sq pltr net now hubs soxx fngg fngu bulz twlo etsy pins tdoc qqq'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -112,8 +112,11 @@ class ETF:
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
 
-        elif ticker == 'fngu':  # FNGG ETF Holdings
+        elif ticker == 'fngu':  # FNGU ETF Holdings
             self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
+
+        elif ticker == 'bulz':  # BULZ ETF Holdings
+            self.ticker_string = 'aapl amd amzn crm fb googl intc msft mu nflx nvda pypl qcom sq tsla'
 
         elif ticker == 'crypto':  # Cryptocurrencies
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
