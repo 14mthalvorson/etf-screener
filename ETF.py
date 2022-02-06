@@ -112,6 +112,9 @@ class ETF:
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
 
+        elif ticker == 'fngu':  # FNGG ETF Holdings
+            self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
+
         elif ticker == 'crypto':  # Cryptocurrencies
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
