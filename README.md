@@ -1,6 +1,6 @@
 # A financial screener for public stocks and ETFs
 
-The main goal of this screener is to calculate aggregate financial metrics for ETFs, similar to those you can easily find for stocks. These metrics are mainly around the growth, valuation, and general health of an ETF. The high-level process of calculating these metrics includes scraping the weighted holdings of an ETF, pulling the financial data of these underlying holdings, running data validation checks, and finally performing the metric calculations. The output is usually in a tab-delimited format for an easy copy/paste into Excel or Google Sheets. This process originally started off with me manually doing a lot of this work and I figured I could automate much of this process to save time, improve accuracy, and provide a programmatic platform for further building off of. This project is designed for my personal use and is not intended for use in any production systems.
+The main goal of this screener is to calculate aggregate financial metrics for ETFs, similar to those you can easily find for stocks. These metrics are mainly around the growth, valuation, and general health of an ETF. The high-level process of calculating these metrics includes scraping the weighted holdings of an ETF, pulling the financial data of these underlying holdings, running data validation checks, and finally performing the metric calculations. The output is usually in a tab-separated format for an easy copy/paste into Excel or Google Sheets. This process originally started off with me manually doing a lot of this work and I figured I could automate much of this process to save time, improve accuracy, and provide a programmatic platform for further building off of. This project is designed for my personal use and is not intended for use in any production systems.
 
 [Financial Metrics Available and Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
 
@@ -14,7 +14,7 @@ etf = ETF('qqq')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
 etf.display_metrics(columns, include_overall=True)
 ```
-The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed.
+The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed. As noted above, the output is tab-separated format (which doesn't output as clearly here but it works very well in a spreadsheet). 
 
 Output:
 ```
