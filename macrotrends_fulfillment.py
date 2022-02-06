@@ -115,6 +115,42 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             return None
 
     elif metric_name == 'Median Rev Growth 3Y':
+        '''
+        This is an important metric. Used in many calculations.
+        Ideally, take the annualized revenue growth rate from the last 13 quarters (will need 17 quarters of TTM revenue)
+
+        Calculation:
+        Take v1 row. Clean all the null values out. Chop down to max 20 values.
+        Starting with index 4, calculate revenue growth rate for as many values as possible.
+        When done, take median.
+
+        Return None if errors.
+        '''
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v1', 'NULL') != 'NULL']  # Remove list items with 'v1' items == 'NULL'
+            chartData = chartData[-17:]
+            res = []
+            for i, point in enumerate(chartData):
+                if i >= 4:
+                    try:
+                        res.append(to_percent_string(to_number(chartData[i]['v1']) / to_number(chartData[i - 4]['v1']) - 1))
+                    except Exception as e:
+                        pass
+            res.sort(key=lambda x: to_number(x))
+            return res[len(res) // 2]
+        except Exception as e:
+            return None
+
+    elif metric_name == 'Old Median Rev Growth 3Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
