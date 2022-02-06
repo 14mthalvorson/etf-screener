@@ -115,8 +115,12 @@ class Stock:
             self.net_income = None
 
         # Enterprise value
+        # If company has more cash than market cap, set EV to traditional market cap
         try:
-            self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.long_term_debt) - to_number(self.cash))
+            if to_number(self.cash) < to_number(self.market_cap):
+                self.enterprise_value = to_billions_string(to_number(self.market_cap) + to_number(self.long_term_debt) - to_number(self.cash))
+            else:
+                self.enterprise_value = self.market_cap
         except Exception as e:
             self.enterprise_value = self.market_cap
 
