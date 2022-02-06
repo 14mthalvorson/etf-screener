@@ -7,6 +7,9 @@ from utilities import mappings
 
 
 def get_coinbase_data(ticker, metric_name):
+    return None
+
+    '''
     try:
         name = mappings[ticker]['name'].lower()
         if metric_name == 'All Time High':
@@ -24,4 +27,4 @@ def get_coinbase_data(ticker, metric_name):
     except Exception as e:
         print(e)
         return None
-
+    '''

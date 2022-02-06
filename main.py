@@ -35,6 +35,7 @@ Crypto:
 '''
 
 
-etf = ETF('my_top')
-columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'SMA20', 'SMA50', 'SMA200', 'Perf Year', 'Weight', '% at 52W High', '% at 52W Low', 'Morningstar FVE', 'Price to FVE']
-etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
+etf = ETF('all')
+# columns = ['Ticker', 'Price to FVE']
+columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', '% at 52W High', '% at 52W Low']
+etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=False)
