@@ -93,35 +93,14 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
-    elif metric_name == 'Median Rev Growth':
-        try:
-            # This URL is from a specific chart on the Macrotrends revenue page
-
-            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
-            html_doc = requests.get(url).text
-
-            # Search the html_doc using regex for the chart content and set to chartData variable.
-            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
-            result = result.replace('null', '"NULL"')
-            chartData = ast.literal_eval(result)
-            chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
-            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':
-                sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
-            else:
-                sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
-
-            return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
-        except Exception as e:
-            return None
-
-    elif metric_name == 'Median Rev Growth 3Y':
+    elif metric_name == 'Median TTM Rev Growth 3Y':
         '''
         This is an important metric. Used in many calculations.
         Ideally, take the annualized revenue growth rate from the last 13 quarters (will need 17 quarters of TTM revenue)
 
         Calculation:
         Take v1 row. Clean all the null values out. Chop down to max 20 values.
-        Starting with index 4, calculate revenue growth rate for as many values as possible.
+        Starting with index 4, calculate TTM (annual) revenue growth rate for as many values as possible.
         When done, take median.
 
         Return None if errors.
@@ -148,14 +127,15 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             res.sort(key=lambda x: to_number(x))
             answer = res[len(res) // 2]
             # If answer is more than 20% different than neighboring values, it has a high chance of not being a good figure to use
+            '''
             if to_number(res[len(res) // 2 + 1]) - to_number(res[len(res) // 2 - 1]) > 0.2:
                 return None
-
+            '''
             return answer
         except Exception as e:
             return None
 
-    elif metric_name == 'Old Median Rev Growth 3Y':
+    elif metric_name == 'Median Q/Q Rev Growth 3Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
@@ -169,10 +149,52 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
             if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':  # Ideally take last 12 quarters of history
                 sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
-            elif len(chartData) >= 6 and chartData[-6]['v3'] != 'NULL':  # At minimum, require 6 quarters of history
+            elif len(chartData) >= 6 and chartData[-6]['v3'] != 'NULL':  # At minimum, require 3 quarters of history
                 sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
             else:
                 return None
+
+            return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
+        except Exception as e:
+            return None
+
+    elif metric_name == 'Annualized Rev Growth 3Y':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v1', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
+            chartData = chartData[-13:]
+            while len(chartData) > 0 and chartData[0].get('v1', 'NULL') == 'NULL':
+                chartData.pop(0)
+
+            return to_percent_string((to_number(chartData[-1]['v1']) / to_number(chartData[0]['v1'])) ** (4.0 / (len(chartData) - 1)) - 1)
+
+        except Exception as e:
+            return None
+
+    elif metric_name == 'Median Rev Growth':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
+            if len(chartData) >= 12 and chartData[-12]['v3'] != 'NULL':
+                sorted_list = sorted(chartData[-12:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            else:
+                sorted_list = sorted(chartData, key=lambda x: x.get('v3', chartData[-1]['v3']))
 
             return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
         except Exception as e:

@@ -43,7 +43,9 @@ class Stock:
         self.revenue_growth_3y = get_macrotrends_metrics(ticker, 'Sales past 3Y')
         self.revenue_growth_5y = finviz_fundamentals['Sales past 5Y']
         self.med_rev_growth = get_macrotrends_metrics(ticker, 'Median Rev Growth')
-        self.med_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Rev Growth 3Y')  # Annualized Revenue Growth Rate, median of last 13 quarters
+        self.med_ttm_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median TTM Rev Growth 3Y')  # TTM Revenue Growth Rate, median of up to last 13 quarters
+        self.med_qoq_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 3Y')  # Median Q/Q rev growth rate
+        self.annualized_rev_growth_3y = get_macrotrends_metrics(ticker, 'Annualized Rev Growth 3Y')  # Annualized Revenue Growth Rate
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
         self.gross_margin = finviz_fundamentals['Gross Margin']
@@ -73,8 +75,19 @@ class Stock:
         if self.revenue == '-':
             self.revenue = None
 
-        if self.med_rev_growth_3y is not None and to_number(self.med_rev_growth_3y) < -0.25:
-            self.med_rev_growth_3y = None
+        if self.med_ttm_rev_growth_3y is not None and to_number(self.med_ttm_rev_growth_3y) < -0.25:
+            self.med_ttm_rev_growth_3y = None
+
+        # Adjusted Revenue Growth 3Y
+        # Ideally, take median annualized. If not valid, take median Q/Q.
+        if self.med_ttm_rev_growth_3y is not None:
+            self.adj_rev_growth_3y = self.med_ttm_rev_growth_3y
+        elif self.med_qoq_rev_growth_3y is not None:
+            self.adj_rev_growth_3y = self.med_qoq_rev_growth_3y
+        elif self.annualized_rev_growth_3y is not None:
+            self.adj_rev_growth_3y = self.annualized_rev_growth_3y
+        else:
+            self.adj_rev_growth_3y = None
 
         # Price / FVE
         try:
