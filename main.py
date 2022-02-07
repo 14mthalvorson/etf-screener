@@ -35,7 +35,7 @@ Crypto:
 '''
 
 
-etf = ETF('wfc jpm gs ms bac aapl amzn')
+etf = ETF('my_top')
 # columns = ['Ticker', 'Price to FVE']
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', '% at 52W High', '% at 52W Low']
-etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=False)
+etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
