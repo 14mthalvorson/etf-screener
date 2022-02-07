@@ -407,12 +407,17 @@ class ETF:
                 self.perf_year = finviz_fundamentals['Perf Year']
 
         if self.leverage is None:
-            if '3x' in self.name or '3X' in self.name or 'ProShares UltraPro':
-                self.leverage = '3x'
-            elif '2x' in self.name or '2X' in self.name or 'ProShares Ultra':
-                self.leverage = '2x'
-            else:
-                self.leverage = '1x'
+            try:
+                if '3x' in self.name or '3X' in self.name or 'ProShares UltraPro' in self.name:
+                    print(self.name, '3x')
+                    self.leverage = '3x'
+                elif '2x' in self.name or '2X' in self.name or 'ProShares Ultra' in self.name:
+                    print(self.name, '2x')
+                    self.leverage = '2x'
+                else:
+                    self.leverage = '1x'
+            except Exception as e:
+                pass
 
         # Weighted Median EV/GP
         relative_EV_to_GPs = []
