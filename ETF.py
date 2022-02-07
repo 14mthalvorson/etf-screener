@@ -572,8 +572,12 @@ class ETF:
                 if 'USD' in ticker and ticker != 'USD':
                     self.components[ticker] = Crypto(ticker)
                 else:
-                    self.components[ticker] = Stock(ticker)
-                    if self.components[ticker].type == 'ETF':
+                    try:
+                        self.components[ticker] = Stock(ticker)
+                        if self.components[ticker].type == 'ETF':
+                            self.components[ticker] = ETF(ticker)
+                    except Exception as e:
+                        # Some new ETFs not in Finviz can fall here
                         self.components[ticker] = ETF(ticker)
             except Exception as e:
                 pass
