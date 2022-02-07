@@ -84,7 +84,7 @@ class Stock:
         # 5 year: Annualized
         try:
             revs = []
-            for var in [self.med_qoq_rev_growth_3y, self.med_ttm_rev_growth_3y, self.annualized_rev_growth_3y, self.qoq_rev_growth, self.annualized_rev_growth_5y]:
+            for var in [self.qoq_rev_growth, self.ttm_rev_growth, self.med_qoq_rev_growth_3y, self.med_ttm_rev_growth_3y, self.annualized_rev_growth_3y, self.annualized_rev_growth_5y]:
                 if var is not None:
                     revs.append(var)
             revs.sort(key=lambda x: to_number(x))
