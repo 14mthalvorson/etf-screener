@@ -111,7 +111,6 @@ class ETF:
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
-            self.is_real_etf = True
 
         elif ticker == 'fngu':  # FNGU ETF Holdings
             self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
@@ -393,14 +392,15 @@ class ETF:
         if self.is_real_etf:
             finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year'])
 
-            self.name = finviz_fundamentals['Company']
-            self.dividend_yield = finviz_fundamentals['Dividend %']
-            self.price = finviz_fundamentals['Price']
-            self.sma20 = finviz_fundamentals['SMA20']
-            self.sma50 = finviz_fundamentals['SMA50']
-            self.sma200 = finviz_fundamentals['SMA200']
-            self.high_52W = finviz_fundamentals['52W High']
-            self.perf_year = finviz_fundamentals['Perf Year']
+            if finviz_fundamentals is not None:
+                self.name = finviz_fundamentals['Company']
+                self.dividend_yield = finviz_fundamentals['Dividend %']
+                self.price = finviz_fundamentals['Price']
+                self.sma20 = finviz_fundamentals['SMA20']
+                self.sma50 = finviz_fundamentals['SMA50']
+                self.sma200 = finviz_fundamentals['SMA200']
+                self.high_52W = finviz_fundamentals['52W High']
+                self.perf_year = finviz_fundamentals['Perf Year']
 
         # Calculate additional metrics based on components and weights
 
