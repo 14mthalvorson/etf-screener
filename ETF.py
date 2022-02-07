@@ -41,20 +41,20 @@ class ETF:
         elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
             self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
                                  'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
-                                 'ba baba bac bam band bbl bhp bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
-                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cmcssa cme cni coin cop cost coup cour ' \
+                                 'ba baba bac bam band bhp bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
+                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
                                  'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
                                  'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lfc lin lly lmnd ' \
-                                 'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli meta mime mmc mmm mo moat morn mrk ' \
+                                 'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
                                  'mrna mrvl ms msft mtch mttr mu mufg nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
                                  'pton pypl qcom qld qqq qtwo rblx rdfn rio rng roku rom rpd rtx ry sap sbac sbux ' \
                                  'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
                                  'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
-                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfcmcd wix wm wmt wsay ' \
+                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfc wix wm wmt w ' \
                                  'xbi xhb xlb xle xlf xli xlk xlp xlu xlc xlv xly xme xom xop xrt xtl zen zg zm zs zts'
 
         elif ticker == 'mine':  # My Holdings
@@ -62,7 +62,7 @@ class ETF:
                                  'arkg arkk arkw asan avgo avlr awk axp band bill bl bmy bulz cci cdns chgg clou ' \
                                  'cmcsa coin cost coup cour cpng crm crwd csco cvna cybr ddog dis dlr docu domo dpz ' \
                                  'dsgx dt edv eght eqix estc etsy evbg fb fivn fngg fngo fngu frog fvrr glob googl ' \
-                                 'gtlb hood hubs ibb idna irm jamf lmnd logi ltpz ma mdb meli meta metv mime morn ' \
+                                 'gtlb hood hubs ibb idna irm jamf lmnd logi ltpz ma mdb meli metv mime morn ' \
                                  'mrna mrvl msft mtch mttr mu net newr nflx now nvda o okta open panw path payc pd ' \
                                  'pdi pins plan pltr pton pypl qcom qld qqq qtwo rblx rdfn rng roku rom rpd sbac se ' \
                                  'shop sklz smar snap snow sofi soxx spgi splk spot sq sumo tdoc team tenb ter tmf ' \
@@ -86,7 +86,7 @@ class ETF:
         elif ticker == 'revenue':  # GP relevant companies
             self.ticker_string = 'wmt amzn aapl unh cvs tm xom googl cost msft t ci tte hd jd cvx f lfc vz antm bp gm ' \
                             'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
-                            'ms bhp rio jpm tsm ul bbl vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
+                            'ms bhp rio jpm tsm ul vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
         elif ticker == 'top_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
@@ -95,7 +95,7 @@ class ETF:
             self.ticker_string = 'qqq spy xlv xlf xlu moat vig soxx'
 
         elif ticker == 'my_ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu meta ibb clou xbi arkw arkf arkg'
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu metv ibb clou xbi arkw arkf arkg'
 
         elif ticker == 'sector_ETFs':  # Sector ETFs
             self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq iye oih xme xrt smh ibb xtl'
@@ -135,7 +135,7 @@ class ETF:
                             'atvi': '0.458%', 'klac': '0.422%', 'mrvl': '0.421%', 'ilmn': '0.415%', 'kdp': '0.409%',
                             'jd': '0.397%', 'mar': '0.393%', 'nxpi': '0.393%', 'asml': '0.39%', 'adsk': '0.389%',
                             'abnb': '0.386%', 'meli': '0.376%', 'xlnx': '0.375%', 'panw': '0.362%', 'ftnt': '0.362%',
-                            'snps': '0.345%', 'idxx': '0.34%', 'mnst': '0.339%', 'aep': '0.338%', 'ctsh': '0.337%',
+                            'snps': '0.345%', 'idxx': '0.34%', 'mnst': '0.339%', 'aep': '0.468%', 'ctsh': '0.337%',
                             'wday': '0.335%', 'orly': '0.332%', 'lcid': '0.331%', 'khc': '0.327%', 'payx': '0.319%',
                             'wba': '0.319%', 'exc': '0.319%', 'team': '0.318%', 'lulu': '0.307%', 'mchp': '0.307%',
                             'cdns': '0.302%', 'dxcm': '0.302%', 'ctas': '0.297%', 'algn': '0.296%', 'ea': '0.289%',
@@ -144,7 +144,7 @@ class ETF:
                             'fast': '0.242%', 'biib': '0.241%', 'vrsk': '0.236%', 'mtch': '0.236%', 'cprt': '0.227%',
                             'dltr': '0.221%', 'ntes': '0.211%', 'anss': '0.211%', 'okta': '0.201%', 'siri': '0.199%',
                             'sgen': '0.184%', 'vrsn': '0.181%', 'pdd': '0.171%', 'swks': '0.171%', 'docu': '0.167%',
-                            'splk': '0.138%', 'ceg': '0.13%'}
+                            'splk': '0.138%'}
             self.ticker_string = 'qqq'
             self.is_real_etf = True
 

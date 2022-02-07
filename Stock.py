@@ -89,6 +89,8 @@ class Stock:
                     revs.append(var)
             revs.sort(key=lambda x: to_number(x))
             self.adj_rev_growth_3y = revs[len(revs) // 2]
+            if to_number(self.adj_rev_growth_3y) > 2.00 or to_number(self.adj_rev_growth_3y) < -0.20:  # Cap max growth to 200%, min growth to -20%
+                self.adj_rev_growth_3y = None
         except Exception as e:
             self.adj_rev_growth_3y = self.annualized_rev_growth_3y
 
