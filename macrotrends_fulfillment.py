@@ -159,6 +159,10 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             return None
 
     elif metric_name == 'Annualized Rev Growth 3Y':
+        '''
+        Doesn't remove null quarters because that would mess up the length of time
+        Just makes sure the ends are valid.
+        '''
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
@@ -169,7 +173,8 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
-            chartData = [x for x in chartData if x.get('v1', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
+            while len(chartData) > 0 and chartData[-1].get('v1', 'NULL') == 'NULL':
+                chartData.pop(-1)
             chartData = chartData[-13:]
             while len(chartData) > 0 and chartData[0].get('v1', 'NULL') == 'NULL':
                 chartData.pop(0)
