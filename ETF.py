@@ -452,6 +452,20 @@ class ETF:
         except Exception as e:
             self.weighted_median_adj_EV_to_EBIT = None
 
+        # Median Adj Rev Growth
+        rev_growth = []
+        for ticker in self.weights.keys():
+            try:
+                for i in range(int(to_number(self.weights[ticker]) * 1000)):
+                    if self.components[ticker].adj_rev_growth_3y is not None:
+                        rev_growth.append(self.components[ticker].adj_rev_growth_3y)
+            except Exception as e:
+                pass
+        try:
+            self.adj_rev_growth_3y = get_median_from_list(rev_growth)
+        except Exception as e:
+            self.adj_rev_growth_3y = None
+
         # Weighted Median "Median Revenue Growth 3Y"
         relative_med_rev_growth = []
         for ticker in self.weights.keys():
@@ -656,15 +670,8 @@ class ETF:
                             else:
                                 line += component.weighted_median_adj_EV_to_EBIT + '\t'
 
-                        if metric_title == 'Sales Growth 3Y':
-                            line += component.revenue_growth_3y + '\t'
-                        if metric_title == 'Median Rev Growth 3Y':
-                            if component.type == 'Stock':
-                                line += component.med_rev_growth_3y + '\t'
-                            else:
-                                line += component.weighted_med_med_rev_growth_3y + '\t'
-                        if metric_title == 'Median Rev Growth':
-                            line += component.med_rev_growth + '\t'
+                        if metric_title == 'Adj Rev Growth 3Y':
+                            line += component.adj_rev_growth_3y + '\t'
 
                         if metric_title == 'Gross Margin':
                             if component.type == 'Stock':

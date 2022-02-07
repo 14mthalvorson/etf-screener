@@ -38,14 +38,13 @@ class Stock:
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
 
-        self.revenue_growth_qoq = finviz_fundamentals['Sales Q/Q']
-        self.revenue_growth_yoy = get_macrotrends_metrics(ticker, 'Sales Y/Y')
-        self.revenue_growth_3y = get_macrotrends_metrics(ticker, 'Sales past 3Y')
-        self.revenue_growth_5y = finviz_fundamentals['Sales past 5Y']
-        self.med_rev_growth = get_macrotrends_metrics(ticker, 'Median Rev Growth')
+        self.qoq_rev_growth = finviz_fundamentals['Sales Q/Q']  # This Q revenue / Q revenue 1 year ago
+        self.ttm_rev_growth = get_macrotrends_metrics(ticker, 'TTM Rev Growth')
         self.med_ttm_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median TTM Rev Growth 3Y')  # TTM Revenue Growth Rate, median of up to last 13 quarters
         self.med_qoq_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 3Y')  # Median Q/Q rev growth rate
         self.annualized_rev_growth_3y = get_macrotrends_metrics(ticker, 'Annualized Rev Growth 3Y')  # Annualized Revenue Growth Rate
+        self.annualized_rev_growth_5y = finviz_fundamentals['Sales past 5Y']
+
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
         self.gross_margin = finviz_fundamentals['Gross Margin']
@@ -79,15 +78,19 @@ class Stock:
             self.med_ttm_rev_growth_3y = None
 
         # Adjusted Revenue Growth 3Y
-        # Ideally, take median annualized. If not valid, take median Q/Q.
-        if self.med_ttm_rev_growth_3y is not None:
-            self.adj_rev_growth_3y = self.med_ttm_rev_growth_3y
-        elif self.med_qoq_rev_growth_3y is not None:
-            self.adj_rev_growth_3y = self.med_qoq_rev_growth_3y
-        elif self.annualized_rev_growth_3y is not None:
+        # Averages a lot of revenue growth rate metrics
+        # 1 year: Q/Q, TTM
+        # 3 year: Annualized, Median TTM, Median Q/Q
+        # 5 year: Annualized
+        try:
+            revs = []
+            for var in [self.med_qoq_rev_growth_3y, self.med_ttm_rev_growth_3y, self.annualized_rev_growth_3y, self.qoq_rev_growth, self.annualized_rev_growth_5y]:
+                if var is not None:
+                    revs.append(var)
+            revs.sort(key=lambda x: to_number(x))
+            self.adj_rev_growth_3y = revs[len(revs) // 2]
+        except Exception as e:
             self.adj_rev_growth_3y = self.annualized_rev_growth_3y
-        else:
-            self.adj_rev_growth_3y = None
 
         # Price / FVE
         try:
