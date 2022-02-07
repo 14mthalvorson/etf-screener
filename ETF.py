@@ -17,6 +17,7 @@ class ETF:
         self.ticker = None  # Name/Ticker of this ETF
         self.type = 'ETF'
         self.is_real_etf = False
+        self.leverage = None
 
         # Set ticker_string
         if ' ' in ticker:
@@ -41,16 +42,16 @@ class ETF:
         elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
             self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
                                  'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
-                                 'ba baba bac bam band bhp bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
+                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
                                  'c cat cb cci cdns chgg chtr ci clou cmcsa cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
                                  'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
-                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lfc lin lly lmnd ' \
+                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lin lly lmnd ' \
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
-                                 'mrna mrvl ms msft mtch mttr mu mufg nee net newr nflx nke now nvda nvo nvs o oih ' \
+                                 'mrna mrvl ms msft mtch mttr mu nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
-                                 'pton pypl qcom qld qqq qtwo rblx rdfn rio rng roku rom rpd rtx ry sap sbac sbux ' \
+                                 'pton pypl qcom qld qqq qtwo rblx rdfn rng roku rom rpd rtx ry sap sbac sbux ' \
                                  'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
                                  'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
@@ -76,17 +77,17 @@ class ETF:
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
                             'asml dis ko cvx adbe csco abbv pep nke cmcsa lly tmo avgo acn orcl vz wfc abt crm cost nvs ' \
-                            'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl bhp sap lin ry txn pm unp low ' \
+                            'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl sap lin ry txn pm unp low ' \
                             'tte intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus bx sny shop c amgn blk ' \
-                            'ba rio ibm amat cop jd cat deo gs amt bud de sbux pld lfc gsk hdb antm lmt el bp tgt isrg ' \
+                            'ba ibm amat cop jd cat deo gs amt bud de sbux pld gsk hdb antm lmt el bp tgt isrg ' \
                             'ge chtr mmm now bkng infy bti eqnr spgi syk mu zts adp mdlz mo abnb pnc se usb bns cni ' \
-                            'bam tfc gild enb lrcx cb f pbr adi snow tjx cme vale mufg mmc ci pdd cci shw duk csx ' \
+                            'bam tfc gild enb lrcx cb f pbr adi snow tjx cme vale mmc ci pdd cci shw duk csx ' \
                             'gm bmo ibn'
 
         elif ticker == 'revenue':  # GP relevant companies
-            self.ticker_string = 'wmt amzn aapl unh cvs tm xom googl cost msft t ci tte hd jd cvx f lfc vz antm bp gm ' \
+            self.ticker_string = 'wmt amzn aapl unh cvs tm xom googl cost msft t ci tte hd jd cvx f vz antm bp gm ' \
                             'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
-                            'ms bhp rio jpm tsm ul vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
+                            'ms jpm tsm ul vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
 
         elif ticker == 'top_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
@@ -111,14 +112,17 @@ class ETF:
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
+            self.leverage = '2x'
 
         elif ticker == 'fngu':  # FNGU ETF Holdings
             self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
             self.is_real_etf = True
+            self.leverage = '3x'
 
         elif ticker == 'bulz':  # BULZ ETF Holdings
             self.ticker_string = 'aapl amd amzn crm fb googl intc msft mu nflx nvda pypl qcom sq tsla'
             self.is_real_etf = True
+            self.leverage = '3x'
 
         elif ticker == 'crypto':  # Cryptocurrencies
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
@@ -402,7 +406,13 @@ class ETF:
                 self.high_52W = finviz_fundamentals['52W High']
                 self.perf_year = finviz_fundamentals['Perf Year']
 
-        # Calculate additional metrics based on components and weights
+        if self.leverage is None:
+            if '3x' in self.name or '3X' in self.name or 'ProShares UltraPro':
+                self.leverage = '3x'
+            elif '2x' in self.name or '2X' in self.name or 'ProShares Ultra':
+                self.leverage = '2x'
+            else:
+                self.leverage = '1x'
 
         # Weighted Median EV/GP
         relative_EV_to_GPs = []
@@ -744,6 +754,9 @@ class ETF:
                             line += component.percent_at_high + '\t'
                         if metric_title == '% at 52W Low':
                             line += component.percent_at_low + '\t'
+
+                        if metric_title == 'Leverage':
+                            line += component.leverage + '\t'
 
                         if metric_title == 'Price to FVE':
                             line += component.price_to_FVE + '\t'
