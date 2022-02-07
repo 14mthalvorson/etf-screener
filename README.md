@@ -109,6 +109,7 @@ The sources for the financial data are listed in the spreadsheet linked at the t
 - I don't do automatic checks on the accuracy of data. Most of the numbers are pulled from Macrotrends and Finviz. The only discrepancies I notice are usually small differences in gross/operating/net margins. In the screener, I usually just average the two sources if they are both available. Maybe in the future I'll source and pull data directly from the SEC quarterly reports.
 
 ## Future Goals
+- Add sourcing for expense ratios/fees
 - Improve data sources for international stocks
 - Add conditional statements for filtering lists of stocks (e.g. show revenue growth for QQQ holdings where Operating Margin > 10%)
 - Review and add more error handling
