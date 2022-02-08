@@ -55,6 +55,33 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
+    # This is capped at +10% of current EBIT margin
+    elif metric_name == 'Margins':
+        try:
+            url = 'https://www.macrotrends.net/assets/php/fundamental_metric.php?t=%s&chart=profit-margin' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            try:
+                gross_margin = chartData[-1]['v1'] + '%'
+            except Exception as e:
+                gross_margin = None
+            try:
+                ebit_margin = chartData[-1]['v2'] + '%'
+            except Exception as e:
+                ebit_margin = None
+            try:
+                net_margin = chartData[-1]['v3'] + '%'
+            except Exception as e:
+                net_margin = None
+
+            return gross_margin, ebit_margin, net_margin
+        except Exception as e:
+            return None, None, None
+
     elif metric_name == 'TTM Rev Growth':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
