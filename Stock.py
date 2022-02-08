@@ -48,10 +48,8 @@ class Stock:
 
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
-        self.gross_margin = finviz_fundamentals['Gross Margin']
-        self.ebit_margin = finviz_fundamentals['Oper. Margin']
+        self.gross_margin, self.ebit_margin, self.net_margin = get_macrotrends_metrics(ticker, 'Margins')
         self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 3Y')
-        self.net_margin = finviz_fundamentals['Profit Margin']
 
         self.cash = get_macrotrends_metrics(ticker, 'Cash')
         self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
@@ -78,6 +76,13 @@ class Stock:
         if self.med_ttm_rev_growth_3y is not None and to_number(self.med_ttm_rev_growth_3y) < -0.25:
             self.med_ttm_rev_growth_3y = None
 
+        if self.gross_margin is None:
+            self.gross_margin = finviz_fundamentals['Gross Margin']
+        if self.ebit_margin is None:
+            self.ebit_margin = finviz_fundamentals['Oper. Margin']
+        if self.net_margin is None:
+            self.net_margin = finviz_fundamentals['Profit Margin']
+
         # Adjusted Revenue Growth 3Y
         # Averages a lot of revenue growth rate metrics
         # 1 year: Q/Q, TTM
@@ -90,7 +95,7 @@ class Stock:
                     revs.append(var)
             revs.sort(key=lambda x: to_number(x))
             self.adj_rev_growth_3y = revs[len(revs) // 2]
-            if to_number(self.adj_rev_growth_3y) > 2.00 or to_number(self.adj_rev_growth_3y) < -0.20:  # Cap max growth to 200%, min growth to -20%
+            if to_number(self.adj_rev_growth_3y) > 2.00 or to_number(self.adj_rev_growth_3y) < -0.20 or len(revs) <= 2:  # Cap max growth to 200%, min growth to -20%. Also must have values for at least 3 rev metrics.
                 self.adj_rev_growth_3y = None
         except Exception as e:
             self.adj_rev_growth_3y = self.annualized_rev_growth_3y
