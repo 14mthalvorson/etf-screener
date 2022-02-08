@@ -378,6 +378,16 @@ class ETF:
             self.ticker_string = 'xlc'
             self.is_real_etf = True
 
+        elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
+            self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
+                            'iyw': '1.00%', 'spy': '2.00%', 'xlv': '3.00%', 'xlf': '1.00%',
+                            'xlu': '3.2145%', 'vig': '5.00%', 'xbi': '1.00%', 'coin': '1.00%',
+                            'v': '1.00%', 'ma': '1.00%', 'amzn': '1.00%', 'googl': '1.00%',
+                            'fb': '1.00%', 'msft': '1.00%', 'aapl': '1.00%', 'nflx': '1.00%',
+                            'adbe': '1.00%', 'tsm': '1.00%', 'crm': '1.00%', 'amt': '1.00%',
+                            'dlr': '1.00%', 'cci': '1.00%', 'sbac': '1.00%', 'eqix': '1.00%', 'tmf': '20.00%'}
+            self.ticker_string = 'lawp'
+
         # Set weights and ticker_string if not set
         if self.ticker_string is None:  # Actual ETF name was provided
             self.is_real_etf = True
@@ -409,10 +419,8 @@ class ETF:
         if self.leverage is None:
             try:
                 if '3x' in self.name or '3X' in self.name or 'ProShares UltraPro' in self.name:
-                    print(self.name, '3x')
                     self.leverage = '3x'
                 elif '2x' in self.name or '2X' in self.name or 'ProShares Ultra' in self.name:
-                    print(self.name, '2x')
                     self.leverage = '2x'
                 else:
                     self.leverage = '1x'
