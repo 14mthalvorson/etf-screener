@@ -42,7 +42,7 @@ class ETF:
         elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
             self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
                                  'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
-                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz bx ' \
+                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz ' \
                                  'c cat cb cci cdns chgg chtr ci clou cmcsa cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
@@ -78,7 +78,7 @@ class ETF:
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
                             'asml dis ko cvx adbe csco abbv pep nke cmcsa lly tmo avgo acn orcl vz wfc abt crm cost nvs ' \
                             'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl sap lin ry txn pm unp low ' \
-                            'tte intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus bx sny shop c amgn blk ' \
+                            'tte intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus sny shop c amgn blk ' \
                             'ba ibm amat cop jd cat deo gs amt bud de sbux pld gsk hdb antm lmt el bp tgt isrg ' \
                             'ge chtr mmm now bkng infy bti eqnr spgi syk mu zts adp mdlz mo abnb pnc se usb bns cni ' \
                             'bam tfc gild enb lrcx cb f pbr adi snow tjx cme vale mmc ci pdd cci shw duk csx ' \
@@ -91,6 +91,10 @@ class ETF:
 
         elif ticker == 'top_ETFs':  # Popular ETFs
             self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
+
+        elif ticker == 'vanguard':  # Vanguard ETFs
+            self.ticker_string = 'vig esgv vug vym vv mgc mgk mgv vone vong vonv vthr voo voog voov vti vtv vxf ' \
+                                 'vo vot voe ivoo ivog ivov vtwo vtwg vtwv vioo viog viov vb vbk vbr vt'
 
         elif ticker == 'm1_ETFs':  # Popular ETFs
             self.ticker_string = 'qqq spy xlv xlf xlu moat vig soxx'
@@ -379,7 +383,7 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
-            self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
+            self.weights = {'qqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
                             'iyw': '1.00%', 'spy': '2.00%', 'xlv': '3.00%', 'xlf': '1.00%',
                             'xlu': '3.2145%', 'vig': '5.00%', 'xbi': '1.00%', 'coin': '1.00%',
                             'v': '1.00%', 'ma': '1.00%', 'amzn': '1.00%', 'googl': '1.00%',

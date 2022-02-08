@@ -162,6 +162,23 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
+    elif metric_name == 'Median Q/Q Rev Growth 5Y':
+        try:
+            # This URL is from a specific chart on the Macrotrends revenue page
+
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=revenue&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+
+            # Search the html_doc using regex for the chart content and set to chartData variable.
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+            chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL']  # Remove list items with 'v3' items == 'NULL'
+            sorted_list = sorted(chartData[-20:], key=lambda x: x.get('v3', chartData[-1]['v3']))
+            return to_percent_string(sorted_list[len(sorted_list) // 2]['v3'] / 100)
+        except Exception as e:
+            return None
+
     elif metric_name == '% Change in Share Count 3Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page

@@ -43,6 +43,7 @@ class Stock:
         self.med_ttm_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median TTM Rev Growth 3Y')  # TTM Revenue Growth Rate, median of up to last 13 quarters
         self.med_qoq_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 3Y')  # Median Q/Q rev growth rate
         self.annualized_rev_growth_3y = get_macrotrends_metrics(ticker, 'Annualized Rev Growth 3Y')  # Annualized Revenue Growth Rate
+        self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 5Y')
         self.annualized_rev_growth_5y = finviz_fundamentals['Sales past 5Y']
 
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
@@ -84,7 +85,7 @@ class Stock:
         # 5 year: Annualized
         try:
             revs = []
-            for var in [self.qoq_rev_growth, self.ttm_rev_growth, self.med_qoq_rev_growth_3y, self.med_ttm_rev_growth_3y, self.annualized_rev_growth_3y, self.annualized_rev_growth_5y]:
+            for var in [self.qoq_rev_growth, self.ttm_rev_growth, self.med_qoq_rev_growth_3y, self.med_ttm_rev_growth_3y, self.annualized_rev_growth_3y, self.med_qoq_rev_growth_5y, self.annualized_rev_growth_5y]:
                 if var is not None:
                     revs.append(var)
             revs.sort(key=lambda x: to_number(x))
