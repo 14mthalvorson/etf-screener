@@ -43,7 +43,7 @@ class ETF:
             self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
                                  'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
                                  'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz ' \
-                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cmcsa cme cni coin cop cost coup cour ' \
+                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
                                  'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
@@ -95,6 +95,9 @@ class ETF:
         elif ticker == 'vanguard':  # Vanguard ETFs
             self.ticker_string = 'vig esgv vug vym vv mgc mgk mgv vone vong vonv vthr voo voog voov vti vtv vxf ' \
                                  'vo vot voe ivoo ivog ivov vtwo vtwg vtwv vioo viog viov vb vbk vbr vt'
+
+        elif ticker == 'high_returns':  # BULZ ETF Holdings
+            self.ticker_string = 'xlk soxx smh qqq spy xlv arkw tan qcln arkk xlf lit ixn pbw pall'
 
         elif ticker == 'm1_ETFs':  # Popular ETFs
             self.ticker_string = 'qqq spy xlv xlf xlu moat vig soxx'
@@ -380,6 +383,24 @@ class ETF:
                             'disck': '0.7132%', 'dish': '0.6319%', 'fox': '0.4520%', 'disca': '0.4018%',
                             'nws': '0.2253%'}
             self.ticker_string = 'xlc'
+            self.is_real_etf = True
+
+        elif ticker == 'ihi':  # IHI - Medical Devices
+            self.weights = {'tmo': '16.36%', 'abt': '16.02%', 'mdt': '9.71%', 'bdx': '5.36%', 'bsx': '4.94%',
+                            'syk': '4.66%', 'ew': '4.56%', 'isrg': '4.1%', 'idxx': '3.54%', 'bax': '3.51%',
+                            'dxcm': '3.29%', 'rmd': '2.79%', 'zbh': '1.88%', 'ste': '1.83%', 'wat': '1.61%',
+                            'holx': '1.5%', 'podd': '1.35%', 'tfx': '1.19%', 'bio': '1.09%', 'abmd': '1.06%',
+                            'masi': '0.91%', 'pen': '0.63%', 'tndm': '0.6%', 'brkr': '0.55%', 'nvst': '0.55%',
+                            'nvcr': '0.52%', 'gmed': '0.43%', 'swav': '0.43%', 'iart': '0.38%', 'cnmd': '0.32%',
+                            'livn': '0.32%', 'irtc': '0.3%', 'staa': '0.28%', 'atrc': '0.24%', 'itgr': '0.21%',
+                            'gkos': '0.21%', 'nuva': '0.21%', 'nari': '0.19%', 'axnx': '0.19%', 'nvro': '0.18%',
+                            'ocdx': '0.15%', 'cyrx': '0.14%', 'nstg': '0.13%', 'xtsla': '0.12%', 'om': '0.12%',
+                            'sens': '0.12%', 'hska': '0.12%', 'mlab': '0.11%', 'vrex': '0.08%', 'xent': '0.07%',
+                            'lmat': '0.07%', 'ango': '0.06%', 'ntus': '0.06%', 'bfly': '0.06%', 'csii': '0.06%',
+                            'aort': '0.06%', 'usd': '0.05%', 'ingn': '0.05%', 'ofix': '0.05%', 'vray': '0.05%',
+                            'srdx': '0.05%', 'sibn': '0.04%', 'tmdx': '0.03%', 'spne': '0.03%', 'vapo': '0.03%',
+                            'axgn': '0.03%'}
+            self.ticker_string = 'ihi'
             self.is_real_etf = True
 
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
