@@ -51,10 +51,10 @@ class ETF:
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
                                  'mrna mrvl ms msft mtch mttr mu nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
-                                 'pton pypl qcom qld qqq qtwo rblx rdfn rng roku rom rpd rtx ry sap sbac sbux ' \
+                                 'pton pypl qcom qqq qtwo rblx rdfn rng roku rpd rtx ry sap sbac sbux ' \
                                  'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
-                                 'sso sumo syk t td tdoc team tecl tenb ter tfc tgt tjx tm tmf tmo tmus tqqq tsla tsm ' \
-                                 'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp upro ups upst upwk usb usd v vale ' \
+                                 'sumo syk t td tdoc team tenb ter tfc tgt tjx tm tmf tmo tmus tsla tsm ' \
+                                 'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp ups upst upwk usb v vale ' \
                                  'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfc wix wm wmt w ' \
                                  'xbi xhb xlb xle xlf xli xlk xlp xlu xlc xlv xly xme xom xop xrt xtl zen zg zm zs zts'
 
@@ -62,7 +62,7 @@ class ETF:
             self.ticker_string = 'aapl abnb abt adbe adsk ai akam amd amt amzn anet anss api appf appn apps arkf ' \
                                  'arkg arkk arkw asan avgo avlr awk axp band bill bl bmy bulz cci cdns chgg clou ' \
                                  'cmcsa coin cost coup cour cpng crm crwd csco cvna cybr ddog dis dlr docu domo dpz ' \
-                                 'dsgx dt edv eght eqix estc etsy evbg fb fivn fngg fngo fngu frog fvrr glob googl ' \
+                                 'dsgx dt edv eght eqix estc etsy evbg fb fivn fngg fngo frog fvrr glob googl ' \
                                  'gtlb hood hubs ibb idna irm jamf lmnd logi ltpz ma mdb meli metv mime morn ' \
                                  'mrna mrvl msft mtch mttr mu net newr nflx now nvda o okta open panw path payc pd ' \
                                  'pdi pins plan pltr pton pypl qcom qld qqq qtwo rblx rdfn rng roku rom rpd sbac se ' \
@@ -71,7 +71,7 @@ class ETF:
                                  'vrsn wcld wday we wix wm xbi z zen zg zm zs'
 
         elif ticker == 'my_top':  # My Top Holdings
-            self.ticker_string = 'googl amzn tmf tqqq fb qld coin msft crm shop crwd ttd aapl se fngu adbe nvda ddog ' \
+            self.ticker_string = 'googl amzn tmf fb coin msft crm shop crwd ttd aapl se adbe nvda ddog ' \
                                  'veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
 
         elif ticker == 'market_cap':  # GP relevant companies
@@ -121,10 +121,13 @@ class ETF:
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
             self.leverage = '2x'
 
-        elif ticker == 'fngu':  # FNGU ETF Holdings
+        elif ticker == 'fngs' or ticker == 'fngo' or ticker == 'fngu':  # FNGU ETF Holdings
             self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
             self.is_real_etf = True
-            self.leverage = '3x'
+            if ticker == 'fngo':
+                self.leverage = '2x'
+            elif ticker == 'fngu':
+                self.leverage = '3x'
 
         elif ticker == 'bulz':  # BULZ ETF Holdings
             self.ticker_string = 'aapl amd amzn crm fb googl intc msft mu nflx nvda pypl qcom sq tsla'
@@ -621,7 +624,7 @@ class ETF:
             except Exception as e:
                 pass
         if denom == 0:
-            self.percent_at_high = to_percent_string(0)
+            self.percent_at_high = None
         else:
             self.percent_at_high = to_percent_string(numer / denom)
 
@@ -638,7 +641,7 @@ class ETF:
             except Exception as e:
                 pass
         if denom == 0:
-            self.percent_at_low = to_percent_string(0)
+            self.percent_at_low = None
         else:
             self.percent_at_low = to_percent_string(numer / denom)
 
@@ -655,7 +658,7 @@ class ETF:
             except Exception as e:
                 pass
         if denom == 0:
-            self.percent_positive_rev_growth = to_percent_string(0)
+            self.percent_positive_rev_growth = None
         else:
             self.percent_positive_rev_growth = to_percent_string(numer / denom)
 
@@ -671,7 +674,7 @@ class ETF:
             except Exception as e:
                 pass
         if denom == 0:
-            self.percent_positive_ebit_margin = to_percent_string(0)
+            self.percent_positive_ebit_margin = None
         else:
             self.percent_positive_ebit_margin = to_percent_string(numer / denom)
 
