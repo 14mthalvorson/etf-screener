@@ -18,6 +18,7 @@ class ETF:
         self.type = 'ETF'
         self.is_real_etf = False
         self.leverage = None
+        self.expense_ratio = None
 
         # Set ticker_string
         if ' ' in ticker:
@@ -42,7 +43,7 @@ class ETF:
         elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
             self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
                                  'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
-                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz ' \
+                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp bti bud bulz ' \
                                  'c cat cb cci cdns chgg chtr ci clou cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngs ' \
@@ -75,7 +76,7 @@ class ETF:
                                  'veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
 
         elif ticker == 'market_cap':  # GP relevant companies
-            self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
+            self.ticker_string = 'aapl msft googl amzn tsla fb tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
                             'asml dis ko cvx adbe csco abbv pep nke cmcsa lly tmo avgo acn orcl vz wfc abt crm cost nvs ' \
                             'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl sap lin ry txn pm unp low ' \
                             'tte intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus sny shop c amgn blk ' \
@@ -164,7 +165,7 @@ class ETF:
 
         elif ticker == 'spy' or ticker == 'sso' or ticker == 'upro' or ticker == 'voo':  # Hardcoded more than top 25 SPY holdings
             self.weights = {'aapl': '7.107666%', 'msft': '5.965681%', 'amzn': '3.194360%', 'googl': '4.374%',
-                            'tsla': '1.912091%', 'nvda': '1.579144%', 'brk.b': '1.522630%', 'fb': '1.483880%',
+                            'tsla': '1.912091%', 'nvda': '1.579144%', 'fb': '1.483880%',
                             'unh': '1.214215%', 'jnj': '1.199590%', 'jpm': '1.159040%', 'pg': '1.048071%',
                             'v': '1.024148%', 'hd': '1.015449%', 'ma': '0.893443%', 'xom': '0.889748%',
                             'bac': '0.881877%', 'pfe': '0.790265%', 'cvx': '0.682994%', 'dis': '0.671143%',
@@ -235,7 +236,7 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'vtv':  # Hardcoded more than top 25 VTV holdings
-            self.weights = {'brk.b': '2.85%', 'unh': '2.58%', 'jpm': '2.55%', 'jnj': '2.45%', 'pg': '2.16%',
+            self.weights = {'unh': '2.58%', 'jpm': '2.55%', 'jnj': '2.45%', 'pg': '2.16%',
                             'pfe': '1.81%', 'bac': '1.69%', 'avgo': '1.42%', 'xom': '1.41%', 'abt': '1.36%',
                             'csco': '1.31%', 'pep': '1.31%', 'abbv': '1.30%', 'lly': '1.30%', 'ko': '1.25%',
                             'cmcsa': '1.25%', 'cvx': '1.23%', 'intc': '1.14%', 'wmt': '1.10%', 'vz': '1.07%',
@@ -291,7 +292,7 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'xlf' or ticker == 'fas':  # Hardcoded more than top 25 XLF (Financials) holdings
-            self.weights = {'brk.b': '13.25%', 'jpm': '10.086%', 'bac': '7.675%', 'wfc': '5.049%', 'ms': '3.37%',
+            self.weights = {'jpm': '10.086%', 'bac': '7.675%', 'wfc': '5.049%', 'ms': '3.37%',
                             'schw': '3.067%', 'c': '2.972%', 'gs': '2.796%', 'axp': '2.65%', 'blk': '2.642%',
                             'spgi': '2.285%', 'cb': '2.05%', 'pnc': '2.018%', 'cme': '1.989%', 'tfc': '1.94%',
                             'usb': '1.832%', 'mmc': '1.762%', 'ice': '1.654%', 'pgr': '1.473%', 'cof': '1.449%',
@@ -492,12 +493,13 @@ class ETF:
                 pass
 
         # Try setting expense ratio
-        try:
-            url = 'https://www.marketwatch.com/investing/fund/%s?mod=mw_quote_tab' % self.ticker
-            html_doc = requests.get(url).text
-            self.expense_ratio = re.findall('(?<=<small class="label">Net Expense Ratio).*\n.*([0-9]{1}.[0-9]{2}%)(?=<\/span>)', html_doc)[0]
-        except Exception as e:
-            self.expense_ratio = None
+        if self.expense_ratio is None:
+            try:
+                url = 'https://www.marketwatch.com/investing/fund/%s?mod=mw_quote_tab' % self.ticker
+                html_doc = requests.get(url).text
+                self.expense_ratio = re.findall('(?<=<small class="label">Net Expense Ratio).*\n.*([0-9]{1}.[0-9]{2}%)(?=<\/span>)', html_doc)[0]
+            except Exception as e:
+                self.expense_ratio = None
 
         # Weighted Median EV/GP
         relative_EV_to_GPs = []
