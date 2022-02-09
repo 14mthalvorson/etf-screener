@@ -72,7 +72,7 @@ class ETF:
 
         elif ticker == 'my_top':  # My Top Holdings
             self.ticker_string = 'googl amzn tmf tqqq fb qld coin msft crm shop crwd ttd aapl se fngu adbe nvda ddog ' \
-                                 'veev sq pltr net now hubs soxx fngg fngu bulz twlo etsy pins tdoc qqq'
+                                 'veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
 
         elif ticker == 'market_cap':  # GP relevant companies
             self.ticker_string = 'aapl msft googl amzn tsla fb brk.b tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
@@ -641,6 +641,23 @@ class ETF:
         else:
             self.percent_at_low = to_percent_string(numer / denom)
 
+        # Weighted % positive revenue growth
+        numer = 0
+        denom = 0
+
+        for ticker in self.weights.keys():
+            try:
+                if self.components[ticker].adj_rev_growth_3y is not None:
+                    if to_number(self.components[ticker].adj_rev_growth_3y) > 0:
+                        numer += to_number(self.weights[ticker])
+                    denom += to_number(self.weights[ticker])
+            except Exception as e:
+                pass
+        if denom == 0:
+            self.percent_positive_rev_growth = to_percent_string(0)
+        else:
+            self.percent_positive_rev_growth = to_percent_string(numer / denom)
+
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
@@ -815,6 +832,8 @@ class ETF:
                             line += component.percent_at_high + '\t'
                         if metric_title == '% at 52W Low':
                             line += component.percent_at_low + '\t'
+                        if metric_title == '% Pos Rev Growth':
+                            line += component.self.percent_positive_rev_growth + '\t'
 
                         if metric_title == 'Leverage':
                             line += component.leverage + '\t'

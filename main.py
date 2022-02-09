@@ -4,15 +4,23 @@ from Crypto import Crypto
 
 
 '''
-Both Stock & ETF Columns:
-'Ticker', 'Name', 'Type', 'Weight', 'Price'
-'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
+ETF Growth Metrics:
 'Adj Rev Growth 3Y', 'Median TTM Rev Growth 3Y', 'Median Q/Q Rev Growth 3Y', 'Annualized Rev Growth 3Y'
-'Gross Margin', 'Adj EBIT Margin'
-'52W High', 'SMA20', 'SMA50', 'SMA200'
-'Price to FVE'
 
-Stock Columns:
+ETF Valuation Metrics:
+'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
+
+ETF Health Metrics:
+'% Pos Rev Growth', '% at 52W High', '% at 52W Low'
+'52W High', 'SMA20', 'SMA50', 'SMA200'
+
+Other ETF Metrics:
+'Ticker', 'Name', 'Type', 'Weight', 'Price'
+'Gross Margin', 'Adj EBIT Margin'
+'Price to FVE'
+'Leverage'
+
+Stock Metrics:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
 'Revenue', 'Gross Profit', 'EBITDA', 'EBIT', 'Net Income'
 'EV/GP', 'EV/EBITDA', 'Adj EV/EBIT', 'EV/EBIT'
@@ -22,13 +30,6 @@ Stock Columns:
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
 'Perf Year', 'SMA20', 'SMA50', 'SMA200', '52W High'
 'Morningstar FVE', 'Price to FVE'
-
-ETF Columns:
-'Weighted Median EV/GP', 'Weighted Median Adj EV/EBIT', 'Weighted Median EV/EBIT'
-'Weighted Median Median Rev Growth 3Y'
-'Weighted Median Gross Margin', 'Weighted Median Adj EBIT Margin'
-'% at 52W High', '% at 52W Low'
-'Leverage'
 'Price to FVE'
 
 Crypto:
@@ -36,7 +37,7 @@ Crypto:
 '''
 
 
-etf = ETF('vym vong vonv')
+etf = ETF('fngu')
 # columns = ['Ticker', 'Price to FVE']
-columns = ['Ticker', 'Name', 'Type', 'Leverage', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', '% at 52W High', '% at 52W Low']
+columns = ['Ticker', 'Name', 'Type', 'Leverage', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Weight', '% Pos Rev Growth', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
