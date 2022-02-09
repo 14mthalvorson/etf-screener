@@ -47,7 +47,7 @@ class ETF:
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
                                  'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngs ' \
                                  'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
-                                 'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lin lly lmnd ' \
+                                 'ibn infy intc intu irm isrg itb iye iyr jamf jd jnj jpm ko lin lly lmnd ' \
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
                                  'mrna mrvl ms msft mtch mttr mu nee net newr nflx nke now nvda nvo nvs o oih ' \
                                  'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
@@ -109,7 +109,7 @@ class ETF:
             self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq iye oih xme xrt smh ibb xtl'
 
         elif ticker == 'LETFs':  # Leveraged ETFs
-            self.ticker_string = 'qqq qld tqqq tecl bulz rom fngu upro sso fngg iyw fngo fngs spy vpn'
+            self.ticker_string = 'qqq qld tqqq spy sso upro xlk tecl fngs fngo fngu bulz rom fngg vpn'
 
         elif ticker == 'mega':  # Mega-cap tech stocks
             self.ticker_string = 'aapl amzn googl fb nflx nvda tsla msft tsm'
@@ -250,7 +250,7 @@ class ETF:
             self.ticker_string = 'vtv'
             self.is_real_etf = True
 
-        elif ticker == 'xlk' or ticker == 'rom' or ticker == 'tecl':  # Hardcoded more than top 25 XLK (Technology) holdings
+        elif ticker == 'xlk' or ticker == 'tecl':  # Hardcoded more than top 25 XLK (Technology) holdings
             self.weights = {'aapl': '24.886650%', 'msft': '21.017344%', 'nvda': '4.052700%', 'v': '3.682019%',
                             'ma': '3.153710%', 'avgo': '2.337783%', 'adbe': '2.331992%', 'csco': '2.248991%',
                             'acn': '2.099874%', 'crm': '2.053041%', 'qcom': '1.895380%', 'intc': '1.893916%',
@@ -442,9 +442,9 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
-            self.weights = {'qqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
-                            'iyw': '1.00%', 'spy': '2.00%', 'xlv': '3.00%', 'xlf': '1.00%',
-                            'xlu': '3.2145%', 'vig': '5.00%', 'xbi': '1.00%', 'coin': '1.00%',
+            self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
+                            'tecl': '2.00%', 'rom': '2.00%', 'spy': '2.00%', 'cure': '3.00%', 'fas': '1.00%',
+                            'xlu': '1.00%', 'vig': '3.00%', 'xbi': '1.00%', 'ihi': '1.00%', 'coin': '1.00%',
                             'v': '1.00%', 'ma': '1.00%', 'amzn': '1.00%', 'googl': '1.00%',
                             'fb': '1.00%', 'msft': '1.00%', 'aapl': '1.00%', 'nflx': '1.00%',
                             'adbe': '1.00%', 'tsm': '1.00%', 'crm': '1.00%', 'amt': '1.00%',
