@@ -449,11 +449,11 @@ class ETF:
             self.is_real_etf = True
 
         elif ticker == 'vpn':  # VPN Expense Ratio
-            self.weights = {'amt': '12.19%', 'cci': '12.02%', 'eqix': '11.71%', 'dlr': '8.67%', '788 hk': '5.06%',
-                            'cone': '4.78%', 'sbac': '4.53%', 'gds': '4.35%', 'swch': '3.81%', 'nxt au': '3.76%',
-                            'unit': '3.28%', 'kdcreit sp': '2.72%', 'vtwr gr': '2.32%', '2344 tt': '2.21%',
-                            'amd': '2.04%', 'nvda': '1.99%', 'towr ij': '1.97%', 'htws ln': '1.95%',
-                            'tbig ij': '1.91%', 'mchp': '1.9%', 'intc': '1.87%', 'mu': '1.86%', 'vnet': '1.17%',
+            self.weights = {'amt': '12.19%', 'cci': '12.02%', 'eqix': '11.71%', 'dlr': '8.67%',
+                            'cone': '4.78%', 'sbac': '4.53%', 'gds': '4.35%', 'swch': '3.81%',
+                            'unit': '3.28%',
+                            'amd': '2.04%', 'nvda': '1.99%',
+                            'mchp': '1.9%', 'intc': '1.87%', 'mu': '1.86%', 'vnet': '1.17%',
                             'radi': '1.14%', 'cyxt': '0.84%'}
             self.ticker_string = 'vpn'
             self.expense_ratio = '0.59%'
@@ -705,6 +705,31 @@ class ETF:
         else:
             self.percent_positive_ebit_margin = to_percent_string(numer / denom)
 
+        # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
+        martin_score = 0
+
+        if to_number(self.percent_positive_rev_growth) > 0.90:
+            martin_score += 1
+        if to_number(self.percent_positive_rev_growth) > 0.95:
+            martin_score += 1
+        if to_number(self.adj_rev_growth_3y) > 0.08:
+            martin_score += 1
+        if to_number(self.adj_rev_growth_3y) > 0.15:
+            martin_score += 1
+        if to_number(self.percent_positive_ebit_margin) > 0.70:
+            martin_score += 1
+        if to_number(self.percent_positive_ebit_margin) > 0.90:
+            martin_score += 1
+        if to_number(self.weighted_med_adj_ebit_margin) > 0.20:
+            martin_score += 1
+        if to_number(self.weighted_med_gross_margin) > 0.50:
+            martin_score += 1
+        if to_number(self.expense_ratio) < 0.40:
+            martin_score += 1
+
+        self.martin_score = str(martin_score)
+
+
     def fill_holdings_from_marketwatch(self, ticker):
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
         html_doc = requests.get(url).text
@@ -886,6 +911,8 @@ class ETF:
                             line += component.leverage + '\t'
                         if metric_title == 'Expense Ratio':
                             line += component.expense_ratio + '\t'
+                        if metric_title == 'Martin Score':
+                            line += component.martin_score + '\t'
 
                         if metric_title == 'Price to FVE':
                             line += component.price_to_FVE + '\t'
