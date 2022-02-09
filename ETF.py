@@ -499,11 +499,13 @@ class ETF:
                     if self.components[ticker].ev_to_gp_ratio is not None:
                         relative_EV_to_GPs.append(self.components[ticker].ev_to_gp_ratio)
                     else:
-                        relative_EV_to_GPs.append(1000000)
+                        relative_EV_to_GPs.append('1000000.00')
             except Exception as e:
                 pass
         try:
             self.weighted_median_EV_to_GP = get_median_from_list(relative_EV_to_GPs)
+            if self.weighted_median_EV_to_GP == '1000000.00':
+                self.weighted_median_EV_to_GP = None
         except Exception as e:
             self.weighted_median_EV_to_GP = None
 
@@ -515,11 +517,13 @@ class ETF:
                     if self.components[ticker].adj_ev_to_ebit_ratio is not None:
                         relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
                     else:
-                        relative_adj_EV_to_EBITs.append(1000000)
+                        relative_adj_EV_to_EBITs.append('1000000.00')
             except Exception as e:
                 pass
         try:
             self.weighted_median_adj_EV_to_EBIT = get_median_from_list(relative_adj_EV_to_EBITs)
+            if self.weighted_median_adj_EV_to_EBIT == '1000000.00':
+                self.weighted_median_adj_EV_to_EBIT = None
         except Exception as e:
             self.weighted_median_adj_EV_to_EBIT = None
 
