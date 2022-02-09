@@ -429,6 +429,18 @@ class ETF:
             self.ticker_string = 'ihi'
             self.is_real_etf = True
 
+        elif ticker == 'metv':  # IHI - Medical Devices
+            self.weights = {'aapl': '4.35%', 'adbe': '1.14%', 'adsk': '3.81%', 'akam': '1.09%', 'amd': '2.92%',
+                            'amzn': '4.13%', 'atvi': '0.79%', 'baba': '0.91%', 'bsy': '0.60%', 'coin': '1.24%',
+                            'dis': '1.24%', 'ea': '1.97%', 'eqix': '0.47%', 'fb': '6.25%', 'fsly': '1.90%',
+                            'googl': '1.93%', 'intc': '1.49%', 'llnw': '0.75%', 'lumn': '1.17%', 'msft': '7.18%',
+                            'mttr': '0.70%', 'net': '0.84%', 'nke': '0.50%', 'nvda': '8.46%', 'pl': '0.40%',
+                            'ptc': '0.69%', 'pypl': '0.11%', 'qcom': '3.89%', 'rblx': '5.47%', 'se': '3.21%',
+                            'snap': '4.58%', 'sq': '0.10%', 'swks': '0.97%', 'tsm': '4.41%', 'ttwo': '2.66%',
+                            'u': '5.05%'}
+            self.ticker_string = 'metv'
+            self.is_real_etf = True
+
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
             self.weights = {'qqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
                             'iyw': '1.00%', 'spy': '2.00%', 'xlv': '3.00%', 'xlf': '1.00%',
