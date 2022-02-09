@@ -121,10 +121,14 @@ class ETF:
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
             self.leverage = '2x'
+            self.expense_ratio = '1.09%'
 
         elif ticker == 'fngs' or ticker == 'fngo' or ticker == 'fngu':  # FNGU ETF Holdings
             self.ticker_string = 'amzn aapl googl fb tsla twtr nvda nflx baba bidu'
             self.is_real_etf = True
+            if ticker == 'fngs':
+                self.leverage = '1x'
+                self.expense_ratio = '0.57%'
             if ticker == 'fngo':
                 self.leverage = '2x'
             elif ticker == 'fngu':
@@ -133,6 +137,7 @@ class ETF:
         elif ticker == 'bulz':  # BULZ ETF Holdings
             self.ticker_string = 'aapl amd amzn crm fb googl intc msft mu nflx nvda pypl qcom sq tsla'
             self.is_real_etf = True
+            self.expense_ratio = '0.95%'
             self.leverage = '3x'
 
         elif ticker == 'crypto':  # Cryptocurrencies
@@ -430,7 +435,7 @@ class ETF:
             self.ticker_string = 'ihi'
             self.is_real_etf = True
 
-        elif ticker == 'metv':  # IHI - Medical Devices
+        elif ticker == 'metv':  # Metaverse ETF
             self.weights = {'aapl': '4.35%', 'adbe': '1.14%', 'adsk': '3.81%', 'akam': '1.09%', 'amd': '2.92%',
                             'amzn': '4.13%', 'atvi': '0.79%', 'baba': '0.91%', 'bsy': '0.60%', 'coin': '1.24%',
                             'dis': '1.24%', 'ea': '1.97%', 'eqix': '0.47%', 'fb': '6.25%', 'fsly': '1.90%',
@@ -440,6 +445,18 @@ class ETF:
                             'snap': '4.58%', 'sq': '0.10%', 'swks': '0.97%', 'tsm': '4.41%', 'ttwo': '2.66%',
                             'u': '5.05%'}
             self.ticker_string = 'metv'
+            self.expense_ratio = '0.59%'
+            self.is_real_etf = True
+
+        elif ticker == 'vpn':  # VPN Expense Ratio
+            self.weights = {'amt': '12.19%', 'cci': '12.02%', 'eqix': '11.71%', 'dlr': '8.67%', '788 hk': '5.06%',
+                            'cone': '4.78%', 'sbac': '4.53%', 'gds': '4.35%', 'swch': '3.81%', 'nxt au': '3.76%',
+                            'unit': '3.28%', 'kdcreit sp': '2.72%', 'vtwr gr': '2.32%', '2344 tt': '2.21%',
+                            'amd': '2.04%', 'nvda': '1.99%', 'towr ij': '1.97%', 'htws ln': '1.95%',
+                            'tbig ij': '1.91%', 'mchp': '1.9%', 'intc': '1.87%', 'mu': '1.86%', 'vnet': '1.17%',
+                            'radi': '1.14%', 'cyxt': '0.84%'}
+            self.ticker_string = 'vpn'
+            self.expense_ratio = '0.59%'
             self.is_real_etf = True
 
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
