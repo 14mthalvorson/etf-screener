@@ -511,12 +511,11 @@ class ETF:
             try:
                 for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].ev_to_ebit_ratio is not None:
-                        if to_number(self.components[ticker].ev_to_ebit_ratio) > 0:
-                            relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
-                        else:
-                            relative_EV_to_EBITs.append(1000000)
+                        relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
+                    else:
+                        relative_EV_to_EBITs.append(1000000)
             except Exception as e:
-                pass
+                print(e)
         try:
             self.weighted_median_EV_to_EBIT = get_median_from_list(relative_EV_to_EBITs)
         except Exception as e:
@@ -528,10 +527,9 @@ class ETF:
             try:
                 for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].adj_ev_to_ebit_ratio is not None:
-                        if to_number(self.components[ticker].adj_ev_to_ebit_ratio) > 0:
-                            relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
-                        else:
-                            relative_adj_EV_to_EBITs.append(1000000)
+                        relative_adj_EV_to_EBITs.append(self.components[ticker].adj_ev_to_ebit_ratio)
+                    else:
+                        relative_adj_EV_to_EBITs.append(1000000)
             except Exception as e:
                 pass
         try:
