@@ -180,7 +180,7 @@ class Stock:
 
         # EV to EBIT Ratio
         try:
-            if to_number(self.ebit):
+            if to_number(self.ebit) and to_number(self.ebit_margin) > 0.02:
                 self.ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.ebit))
             else:
                 self.ev_to_ebit_ratio = None
@@ -189,7 +189,7 @@ class Stock:
 
         # Adjusted EV to EBIT Ratio
         try:
-            if to_number(self.adj_ebit) > 0:
+            if to_number(self.adj_ebit_margin) > 0.02:
                 self.adj_ev_to_ebit_ratio = to_ratio_string(to_number(self.enterprise_value) / to_number(self.adj_ebit))
             else:
                 self.adj_ev_to_ebit_ratio = None
