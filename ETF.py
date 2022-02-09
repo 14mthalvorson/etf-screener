@@ -134,7 +134,7 @@ class ETF:
         elif ticker == 'crypto':  # Cryptocurrencies
             self.ticker_string = 'BTCUSD ETHUSD XRPUSD LTCUSD'
 
-        elif ticker == 'qqq':  # Hardcoded more than top 25 QQQ holdings
+        elif ticker == 'qqq' or ticker == 'qld' or ticker == 'tqqq':  # Hardcoded more than top 25 QQQ holdings
             self.weights = {'aapl': '12.738%', 'msft': '10.156%', 'amzn': '6.324%', 'googl': '7.936%', 'tsla': '4.019%',
                             'nvda': '3.783%', 'fb': '3.783%', 'adbe': '1.811%', 'pep': '1.806%',
                             'avgo': '1.781%', 'csco': '1.734%', 'cost': '1.717%', 'cmcsa': '1.686%', 'qcom': '1.494%',
@@ -156,10 +156,10 @@ class ETF:
                             'dltr': '0.221%', 'ntes': '0.211%', 'anss': '0.211%', 'okta': '0.201%', 'siri': '0.199%',
                             'sgen': '0.184%', 'vrsn': '0.181%', 'pdd': '0.171%', 'swks': '0.171%', 'docu': '0.167%',
                             'splk': '0.138%'}
-            self.ticker_string = 'qqq'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
-        elif ticker == 'spy':  # Hardcoded more than top 25 SPY holdings
+        elif ticker == 'spy' or ticker == 'sso' or ticker == 'upro' or ticker == 'voo':  # Hardcoded more than top 25 SPY holdings
             self.weights = {'aapl': '7.107666%', 'msft': '5.965681%', 'amzn': '3.194360%', 'googl': '4.374%',
                             'tsla': '1.912091%', 'nvda': '1.579144%', 'brk.b': '1.522630%', 'fb': '1.483880%',
                             'unh': '1.214215%', 'jnj': '1.199590%', 'jpm': '1.159040%', 'pg': '1.048071%',
@@ -212,7 +212,7 @@ class ETF:
                             'hlt': '0.105773%', 'carr': '0.105638%', 'msi': '0.105047%', 'afl': '0.103188%',
                             'stz': '0.103030%', 'ea': '0.102879%', 'o': '0.102485%', 'tt': '0.101058%',
                             'psx': '0.100562%', 'payx': '0.100212%'}
-            self.ticker_string = 'spy'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
         elif ticker == 'vig':  # Hardcoded more than top 25 VIG holdings
@@ -247,7 +247,7 @@ class ETF:
             self.ticker_string = 'vtv'
             self.is_real_etf = True
 
-        elif ticker == 'xlk':  # Hardcoded more than top 25 XLK (Technology) holdings
+        elif ticker == 'xlk' or ticker == 'rom' or ticker == 'tecl':  # Hardcoded more than top 25 XLK (Technology) holdings
             self.weights = {'aapl': '24.886650%', 'msft': '21.017344%', 'nvda': '4.052700%', 'v': '3.682019%',
                             'ma': '3.153710%', 'avgo': '2.337783%', 'adbe': '2.331992%', 'csco': '2.248991%',
                             'acn': '2.099874%', 'crm': '2.053041%', 'qcom': '1.895380%', 'intc': '1.893916%',
@@ -267,10 +267,10 @@ class ETF:
                             'wdc': '0.156165%', 'payc': '0.152895%', 'qrvo': '0.136891%', 'ctxs': '0.122639%',
                             'sedg': '0.122325%', 'jkhy': '0.119720%', 'ffiv': '0.118357%', 'ptc': '0.117606%',
                             'jnpr': '0.109126%', 'cday': '0.101294%', 'dxc': '0.091008%', 'ipgp': '0.051372%'}
-            self.ticker_string = 'xlk'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
-        elif ticker == 'xlv':  # Hardcoded more than top 25 XLV (Healthcare) holdings
+        elif ticker == 'xlv' or ticker == 'cure':  # Hardcoded more than top 25 XLV (Healthcare) holdings
             self.weights = {'unh': '9.112%', 'jnj': '9.002%', 'pfe': '5.93%', 'abbv': '4.927%', 'tmo': '4.637%',
                             'abt': '4.554%', 'mrk': '3.95%', 'lly': '3.847%', 'dhr': '3.649%', 'cvs': '2.842%',
                             'bmy': '2.815%', 'mdt': '2.72%', 'amgn': '2.498%', 'antm': '2.171%', 'isrg': '2.018%',
@@ -284,10 +284,10 @@ class ETF:
                             'ctlt': '0.347%', 'crl': '0.336%', 'dgx': '0.33%', 'tech': '0.315%', 'tfx': '0.289%',
                             'cah': '0.287%', 'incy': '0.272%', 'bio': '0.265%', 'abmd': '0.262%', 'xray': '0.228%',
                             'hsic': '0.21%', 'uhs': '0.19%', 'ogn': '0.166%', 'dva': '0.142%'}
-            self.ticker_string = 'xlv'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
-        elif ticker == 'xlf':  # Hardcoded more than top 25 XLF (Financials) holdings
+        elif ticker == 'xlf' or ticker == 'fas':  # Hardcoded more than top 25 XLF (Financials) holdings
             self.weights = {'brk.b': '13.25%', 'jpm': '10.086%', 'bac': '7.675%', 'wfc': '5.049%', 'ms': '3.37%',
                             'schw': '3.067%', 'c': '2.972%', 'gs': '2.796%', 'axp': '2.65%', 'blk': '2.642%',
                             'spgi': '2.285%', 'cb': '2.05%', 'pnc': '2.018%', 'cme': '1.989%', 'tfc': '1.94%',
@@ -302,17 +302,17 @@ class ETF:
                             'cma': '0.286%', 'cboe': '0.286%', 'wrb': '0.285%', 'l': '0.281%', 'lnc': '0.262%',
                             're': '0.258%', 'zion': '0.247%', 'gl': '0.218%', 'ben': '0.2%', 'aiz': '0.199%',
                             'pbct': '0.196%', 'ivz': '0.174%'}
-            self.ticker_string = 'xlf'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
-        elif ticker == 'xlu':  # Hardcoded more than top 25 XLU (Utilities) holdings
+        elif ticker == 'xlu' or ticker == 'utsl':  # Hardcoded more than top 25 XLU (Utilities) holdings
             self.weights = {'nee': '15.297%', 'duk': '8.344%', 'so': '7.551%', 'd': '6.751%', 'aep': '4.674%',
                             'sre': '4.502%', 'exc': '4.408%', 'xel': '3.85%', 'peg': '3.491%', 'ed': '3.166%',
                             'es': '3.115%', 'wec': '3.106%', 'awk': '2.942%', 'eix': '2.4%', 'dte': '2.393%',
                             'fe': '2.386%', 'aee': '2.333%', 'etr': '2.315%', 'ppl': '2.293%', 'cms': '1.927%',
                             'cnp': '1.821%', 'ceg': '1.799%', 'evrg': '1.553%', 'lnt': '1.542%', 'aes': '1.493%',
                             'ato': '1.455%', 'ni': '1.202%', 'nrg': '0.993%', 'pnw': '0.82%'}
-            self.ticker_string = 'xlu'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
         elif ticker == 'xly':  # Hardcoded more than top 25 XLY (Consumer Discretionary) holdings
@@ -331,14 +331,14 @@ class ETF:
             self.ticker_string = 'xly'
             self.is_real_etf = True
 
-        elif ticker == 'soxx':  # Hardcoded more than top 25 SOXX (Semiconductors) holdings
+        elif ticker == 'soxx' or ticker == 'usd' or ticker == 'soxl':  # Hardcoded more than top 25 SOXX (Semiconductors) holdings
             self.weights = {'avgo': '9.33%', 'qcom': '8.82%', 'nvda': '6.52%', 'intc': '6.26%', 'amd': '4.84%',
                             'mu': '4.34%', 'mrvl': '4.29%', 'tsm': '4.28%', 'amat': '4.12%', 'klac': '4.07%',
                             'txn': '4.06%', 'adi': '4.0%', 'nxpi': '3.95%', 'xlnx': '3.95%', 'lrcx': '3.85%',
                             'mchp': '3.77%', 'asml': '3.42%', 'on': '2.23%', 'swks': '2.14%', 'ter': '1.7%',
                             'mpwr': '1.6%', 'entg': '1.59%', 'qrvo': '1.32%', 'stm': '1.24%', 'wolf': '0.97%',
                             'mksi': '0.77%', 'umc': '0.73%', 'lscc': '0.69%', 'oled': '0.57%', 'asx': '0.47%'}
-            self.ticker_string = 'soxx'
+            self.ticker_string = ticker
             self.is_real_etf = True
 
         elif ticker == 'xbi':  # Hardcoded more than top 25 XBI (Biotech) holdings
@@ -449,6 +449,7 @@ class ETF:
 
         # Set components
         self.set_components()
+        self.num_holdings = str(len(self.components))
 
         # Query Finviz metrics for real ETFs
         if self.is_real_etf:
@@ -718,6 +719,8 @@ class ETF:
                             line += component.name + '\t'
                         if metric_title == 'Type':  # Works for both stocks and ETFs
                             line += component.type + '\t'
+                        if metric_title == 'Num Holdings':
+                            line += component.num_holdings + '\t'
                         if metric_title == 'Weight':
                             line += self.weights[component.ticker] + '\t'
                         if metric_title == 'Price':
