@@ -498,28 +498,14 @@ class ETF:
                 for i in range(int(to_number(self.weights[ticker]) * 1000)):
                     if self.components[ticker].ev_to_gp_ratio is not None:
                         relative_EV_to_GPs.append(self.components[ticker].ev_to_gp_ratio)
+                    else:
+                        relative_EV_to_GPs.append(1000000)
             except Exception as e:
                 pass
         try:
             self.weighted_median_EV_to_GP = get_median_from_list(relative_EV_to_GPs)
         except Exception as e:
             self.weighted_median_EV_to_GP = None
-
-        # Weighted Median EV/EBIT
-        relative_EV_to_EBITs = []
-        for ticker in self.weights.keys():
-            try:
-                for i in range(int(to_number(self.weights[ticker]) * 1000)):
-                    if self.components[ticker].ev_to_ebit_ratio is not None:
-                        relative_EV_to_EBITs.append(self.components[ticker].ev_to_ebit_ratio)
-                    else:
-                        relative_EV_to_EBITs.append(1000000)
-            except Exception as e:
-                print(e)
-        try:
-            self.weighted_median_EV_to_EBIT = get_median_from_list(relative_EV_to_EBITs)
-        except Exception as e:
-            self.weighted_median_EV_to_EBIT = None
 
         # Weighted Median Adj. EV/EBIT
         relative_adj_EV_to_EBITs = []
