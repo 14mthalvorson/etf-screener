@@ -659,6 +659,22 @@ class ETF:
         else:
             self.percent_positive_rev_growth = to_percent_string(numer / denom)
 
+        # Weighted % positive ebit margin
+        numer = 0
+        denom = 0
+
+        for ticker in self.weights.keys():
+            try:
+                if self.components[ticker].ebit_margin is not None and to_number(self.components[ticker].ebit_margin) > 0:
+                    numer += to_number(self.weights[ticker])
+                denom += to_number(self.weights[ticker])
+            except Exception as e:
+                pass
+        if denom == 0:
+            self.percent_positive_ebit_margin = to_percent_string(0)
+        else:
+            self.percent_positive_ebit_margin = to_percent_string(numer / denom)
+
     def fill_holdings_from_marketwatch(self, ticker):
         # Retrieve URL from dictionary
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
@@ -837,6 +853,8 @@ class ETF:
                             line += component.percent_at_low + '\t'
                         if metric_title == '% Pos Rev Growth':
                             line += component.percent_positive_rev_growth + '\t'
+                        if metric_title == '% Pos EBIT Margin':
+                            line += component.percent_positive_ebit_margin + '\t'
 
                         if metric_title == 'Leverage':
                             line += component.leverage + '\t'
