@@ -100,11 +100,8 @@ class ETF:
         elif ticker == 'high_returns':  # BULZ ETF Holdings
             self.ticker_string = 'xlk soxx smh qqq spy xlv arkw tan qcln arkk xlf lit ixn pbw pall'
 
-        elif ticker == 'm1_ETFs':  # Popular ETFs
-            self.ticker_string = 'qqq spy xlv xlf xlu moat vig soxx'
-
         elif ticker == 'my_ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf vpu metv ibb clou xbi arkw arkf arkg'
+            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv vpu xlf vpu metv ibb clou xbi arkw arkf arkg'
 
         elif ticker == 'sector_ETFs':  # Sector ETFs
             self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq iye oih xme xrt smh ibb xtl'
@@ -463,7 +460,7 @@ class ETF:
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
             self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxx': '2.00%',
                             'tecl': '2.00%', 'rom': '2.00%', 'spy': '2.00%', 'cure': '3.00%', 'fas': '1.00%',
-                            'xlu': '1.00%', 'vig': '3.00%', 'xbi': '1.00%', 'ihi': '1.00%', 'coin': '1.00%',
+                            'vpu': '1.00%', 'vig': '3.00%', 'xbi': '1.00%', 'ihi': '1.00%', 'coin': '1.00%',
                             'v': '1.00%', 'ma': '1.00%', 'amzn': '1.00%', 'googl': '1.00%',
                             'fb': '1.00%', 'msft': '1.00%', 'aapl': '1.00%', 'nflx': '1.00%',
                             'adbe': '1.00%', 'tsm': '1.00%', 'crm': '1.00%', 'amt': '1.00%',
@@ -734,6 +731,12 @@ class ETF:
             pass
 
         try:
+            if to_number(self.adj_rev_growth_3y) >= 0.25:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
             if to_number(self.percent_positive_ebit_margin) >= 0.70:
                 martin_score += 1
         except Exception as e:
@@ -771,6 +774,8 @@ class ETF:
             pass
 
         self.martin_score = str(martin_score)
+        if self.num_holdings == '0':
+            self.martin_score = None
 
     def fill_holdings_from_marketwatch(self, ticker):
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
