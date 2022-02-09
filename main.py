@@ -11,11 +11,11 @@ ETF Valuation Metrics:
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
 
 ETF Health Metrics:
-'% Pos Rev Growth', '% at 52W High', '% at 52W Low'
+'% Pos Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low'
 '52W High', 'SMA20', 'SMA50', 'SMA200'
 
 Other ETF Metrics:
-'Ticker', 'Name', 'Type', 'Weight', 'Price'
+'Ticker', 'Name', 'Type', 'Num Holdings', 'Weight', 'Price'
 'Gross Margin', 'Adj EBIT Margin'
 'Price to FVE'
 'Leverage'
@@ -37,7 +37,9 @@ Crypto:
 '''
 
 
-etf = ETF('fngu')
+etf = ETF('arkk arkw arkf')
 # columns = ['Ticker', 'Price to FVE']
-columns = ['Ticker', 'Name', 'Type', 'Leverage', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Weight', '% Pos Rev Growth', '% at 52W High', '% at 52W Low']
+columns = ['Ticker', 'Name', 'Type', 'Num Holdings', 'Leverage', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Weight', '% Pos Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
+
+

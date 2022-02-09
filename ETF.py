@@ -45,7 +45,7 @@ class ETF:
                                  'ba baba bac bam band bill bkng bl blk bmo bmy bns bp brkb bti bud bulz ' \
                                  'c cat cb cci cdns chgg chtr ci clou cmcsa cme cni coin cop cost coup cour ' \
                                  'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
-                                 'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngo fngs fngu ' \
+                                 'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngs ' \
                                  'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
                                  'ibn infy intc intu irm isrg itb iye iyr iyw jamf jd jnj jpm ko lin lly lmnd ' \
                                  'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
@@ -55,7 +55,7 @@ class ETF:
                                  'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
                                  'sumo syk t td tdoc team tenb ter tfc tgt tjx tm tmf tmo tmus tsla tsm ' \
                                  'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp ups upst upwk usb v vale ' \
-                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wfc wix wm wmt w ' \
+                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wix wm wmt w ' \
                                  'xbi xhb xlb xle xlf xli xlk xlp xlu xlc xlv xly xme xom xop xrt xtl zen zg zm zs zts'
 
         elif ticker == 'mine':  # My Holdings

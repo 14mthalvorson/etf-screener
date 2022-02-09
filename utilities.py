@@ -71,7 +71,7 @@ def clean_tickers_to_dict():
         for i, item in enumerate(data):
             data[i] = item.split('\t')
 
-        data = {a: str(b) + '%' for [a, b] in data}
+        data = {a: str(b) for [a, b] in data}
 
         with open('output.txt', 'w+') as g:
             g.write(str(data))

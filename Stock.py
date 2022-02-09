@@ -49,7 +49,7 @@ class Stock:
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
         self.gross_margin, self.ebit_margin, self.net_margin = get_macrotrends_metrics(ticker, 'Margins')
-        self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 3Y')
+        self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 2Y')
 
         self.cash = get_macrotrends_metrics(ticker, 'Cash')
         self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
@@ -118,11 +118,11 @@ class Stock:
         except Exception as e:
             self.ebit = None
 
-        # This is capped at +10% of current EBIT margin
         try:
-            self.adj_ebit_margin = to_percent_string(min(to_number(self.ebit_margin) + 0.10, to_number(self.max_ebit_margin)))
-            if self.ebit_margin is not None:
-                self.adj_ebit_margin = to_percent_string((to_number(self.adj_ebit_margin) + to_number(self.ebit_margin)) / 2)
+            if self.max_ebit_margin is not None:
+                self.adj_ebit_margin = self.max_ebit_margin
+            else:
+                self.adj_ebit_margin = self.ebit_margin
         except Exception as e:
             self.adj_ebit_margin = self.ebit_margin
 
