@@ -120,6 +120,7 @@ class ETF:
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
+            self.is_real_etf = True
             self.leverage = '2x'
             self.expense_ratio = '1.09%'
 
@@ -757,7 +758,14 @@ class ETF:
             pass
 
         try:
-            if to_number(self.expense_ratio) <= 0.40:
+            if to_number(self.expense_ratio) <= 0.0040:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # Sum 3 largest holdings
+        try:
+            if sum(sorted(to_number(x) for x in self.weights.values())[-3:]) / sum(to_number(x) for x in self.weights.values()) < 0.25:
                 martin_score += 1
         except Exception as e:
             pass
