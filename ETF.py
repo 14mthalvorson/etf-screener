@@ -761,7 +761,7 @@ class ETF:
             pass
 
         try:
-            if to_number(self.expense_ratio) <= 0.0040:
+            if to_number(self.expense_ratio) <= 0.0022:
                 martin_score += 1
         except Exception as e:
             pass
@@ -803,13 +803,14 @@ class ETF:
                 pass
 
     # For each stock in an ETF, displays data selected in columns
-    def display_metrics(self, columns, only_nums=False, extra_header=False, include_overall=False):
+    def display_metrics(self, columns, only_nums=False, print_header=True, extra_header=False, include_overall=False):
         header = ''
         for metric_title in columns:
             header += metric_title + '\t'
         if extra_header:
             header += '=IF(C1="Stock", E1, IFERROR(0/0))\t=IF(C1="ETF", E1, IFERROR(0/0))\t=IF(C1="Stock", F1, IFERROR(0/0))\t=IF(C1="ETF", F1, IFERROR(0/0))\t'
-        print(header)
+        if print_header:
+            print(header)
 
         tickers = sorted(list(self.components.keys()))
 
@@ -975,3 +976,7 @@ class ETF:
 
             except Exception as e:
                 pass
+
+    def display_summary(self):
+        # call display metrics.
+        # only print the header the first time though
