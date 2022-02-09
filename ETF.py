@@ -708,27 +708,61 @@ class ETF:
         # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
         martin_score = 0
 
-        if to_number(self.percent_positive_rev_growth) > 0.90:
-            martin_score += 1
-        if to_number(self.percent_positive_rev_growth) > 0.95:
-            martin_score += 1
-        if to_number(self.adj_rev_growth_3y) > 0.08:
-            martin_score += 1
-        if to_number(self.adj_rev_growth_3y) > 0.15:
-            martin_score += 1
-        if to_number(self.percent_positive_ebit_margin) > 0.70:
-            martin_score += 1
-        if to_number(self.percent_positive_ebit_margin) > 0.90:
-            martin_score += 1
-        if to_number(self.weighted_med_adj_ebit_margin) > 0.20:
-            martin_score += 1
-        if to_number(self.weighted_med_gross_margin) > 0.50:
-            martin_score += 1
-        if to_number(self.expense_ratio) < 0.40:
-            martin_score += 1
+        try:
+            if to_number(self.percent_positive_rev_growth) >= 0.90:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.percent_positive_rev_growth) >= 0.95:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.08:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.15:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.percent_positive_ebit_margin) >= 0.70:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.percent_positive_ebit_margin) >= 0.90:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.weighted_med_adj_ebit_margin) >= 0.20:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.weighted_med_gross_margin) >= 0.50:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.expense_ratio) <= 0.40:
+                martin_score += 1
+        except Exception as e:
+            pass
 
         self.martin_score = str(martin_score)
-
 
     def fill_holdings_from_marketwatch(self, ticker):
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
