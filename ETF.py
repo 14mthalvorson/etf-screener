@@ -833,7 +833,7 @@ class ETF:
                         if metric_title == '% at 52W Low':
                             line += component.percent_at_low + '\t'
                         if metric_title == '% Pos Rev Growth':
-                            line += component.self.percent_positive_rev_growth + '\t'
+                            line += component.percent_positive_rev_growth + '\t'
 
                         if metric_title == 'Leverage':
                             line += component.leverage + '\t'
