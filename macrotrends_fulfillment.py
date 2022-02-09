@@ -39,7 +39,7 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             return None
 
     # This is capped at +10% of current EBIT margin
-    elif metric_name == 'Max EBIT Margin 3Y':
+    elif metric_name == 'Max EBIT Margin 2Y':
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
@@ -51,11 +51,11 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
 
-            return to_percent_string(max(chartData[-12:], key=lambda x: x.get('v3', -1))['v3'] / 100)
+            return to_percent_string(max(chartData[-8:], key=lambda x: x.get('v3', -1))['v3'] / 100)
         except Exception as e:
             return None
 
-    # This is capped at +10% of current EBIT margin
+    # Returns gross, operating, profit margins
     elif metric_name == 'Margins':
         try:
             url = 'https://www.macrotrends.net/assets/php/fundamental_metric.php?t=%s&chart=profit-margin' % ticker
@@ -66,15 +66,15 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
             try:
-                gross_margin = chartData[-1]['v1'] + '%'
+                gross_margin = str(chartData[-1]['v1']) + '%'
             except Exception as e:
                 gross_margin = None
             try:
-                ebit_margin = chartData[-1]['v2'] + '%'
+                ebit_margin = str(chartData[-1]['v2']) + '%'
             except Exception as e:
                 ebit_margin = None
             try:
-                net_margin = chartData[-1]['v3'] + '%'
+                net_margin = str(chartData[-1]['v3']) + '%'
             except Exception as e:
                 net_margin = None
 
