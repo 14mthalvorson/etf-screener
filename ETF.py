@@ -491,6 +491,14 @@ class ETF:
             except Exception as e:
                 pass
 
+        # Try setting expense ratio
+        try:
+            url = 'https://www.marketwatch.com/investing/fund/%s?mod=mw_quote_tab' % self.ticker
+            html_doc = requests.get(url).text
+            self.expense_ratio = re.findall('(?<=<small class="label">Net Expense Ratio).*\n.*([0-9]{1}.[0-9]{2}%)(?=<\/span>)', html_doc)[0]
+        except Exception as e:
+            self.expense_ratio = None
+
         # Weighted Median EV/GP
         relative_EV_to_GPs = []
         for ticker in self.weights.keys():
@@ -679,14 +687,10 @@ class ETF:
             self.percent_positive_ebit_margin = to_percent_string(numer / denom)
 
     def fill_holdings_from_marketwatch(self, ticker):
-        # Retrieve URL from dictionary
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
         html_doc = requests.get(url).text
-        # Regex for pulling tickers
         ticker_results = re.findall('(?<=<td class="table__cell u-semi">)([A-Z]+)(?=<\/td>)', html_doc)
-        # Regex for pulling the weightings
         weightings_results = re.findall('(?<=<td class="table__cell">)([0-9]{1,3}.[0-9]{2}%)(?=<\/td>)', html_doc)
-        # Get to use dictionary comprehension!!!
         self.weights = {ticker_results[i]: weightings_results[i] for i in range(len(ticker_results))}
         return
 
@@ -861,6 +865,8 @@ class ETF:
 
                         if metric_title == 'Leverage':
                             line += component.leverage + '\t'
+                        if metric_title == 'Expense Ratio':
+                            line += component.expense_ratio + '\t'
 
                         if metric_title == 'Price to FVE':
                             line += component.price_to_FVE + '\t'
