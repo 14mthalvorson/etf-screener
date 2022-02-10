@@ -6,17 +6,20 @@ mappings = {
 
 
 def to_number(value):
-    value = str(value)
-    if value[-1:] == 'B':
-        return float(value[:-1]) * 1000000000
-    elif value[-1:] == 'M':
-        return float(value[:-1]) * 1000000
-    elif value[-1:] == 'K':
-        return float(value[:-1]) * 1000
-    elif value[-1:] == "%":
-        return float(value[:-1]) / 100
-    else:
-        return float(value)
+    try:
+        value = str(value)
+        if value[-1:] == 'B':
+            return float(value[:-1]) * 1000000000
+        elif value[-1:] == 'M':
+            return float(value[:-1]) * 1000000
+        elif value[-1:] == 'K':
+            return float(value[:-1]) * 1000
+        elif value[-1:] == "%":
+            return float(value[:-1]) / 100
+        else:
+            return float(value)
+    except Exception as e:
+        return None
 
 
 def to_billions_string(value):
@@ -71,7 +74,7 @@ def clean_tickers_to_dict():
         for i, item in enumerate(data):
             data[i] = item.split('\t')
 
-        data = {a: str(b) for [a, b] in data}
+        data = {a: str(b) + '%' for [a, b] in data}
 
         with open('output.txt', 'w+') as g:
             g.write(str(data))
