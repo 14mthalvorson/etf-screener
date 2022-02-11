@@ -687,6 +687,7 @@ class ETF:
                 pass
         if denom == 0:
             self.percent_positive_rev_growth = None
+            self.percent_above_average_rev_growth = None
         else:
             self.percent_positive_rev_growth = to_percent_string(numer / denom)
             self.percent_above_average_rev_growth = to_percent_string(numer_high / denom)
@@ -973,6 +974,8 @@ class ETF:
                             line += component.percent_at_low + '\t'
                         if metric_title == '% Pos Rev Growth':
                             line += component.percent_positive_rev_growth + '\t'
+                        if metric_title == '% >7% Rev Growth':
+                            line += component.percent_above_average_rev_growth + '\t'
                         if metric_title == '% Pos EBIT Margin':
                             line += component.percent_positive_ebit_margin + '\t'
 
