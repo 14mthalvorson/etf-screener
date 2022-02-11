@@ -980,3 +980,4 @@ class ETF:
     def display_summary(self):
         # call display metrics.
         # only print the header the first time though
+        pass
