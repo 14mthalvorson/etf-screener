@@ -222,6 +222,22 @@ class ETF:
             self.ticker_string = ticker
             self.is_real_etf = True
 
+        elif ticker == 'voog':  # SP500 Growth
+            self.weights = {'aapl': '13.01%', 'msft': '11.87%', 'amzn': '6.83%', 'googl': '7.90%', 'tsla': '4.04%',
+                            'fb': '3.74%', 'nvda': '3.46%', 'hd': '1.56%', 'adbe': '1.27%', 'nflx': '1.25%',
+                            'tmo': '1.24%', 'lly': '1.03%', 'jpm': '1.01%', 'qcom': '0.96%', 'unh': '0.93%',
+                            'intu': '0.86%', 'low': '0.84%', 'pfe': '0.84%', 'amd': '0.74%', 'v': '0.73%',
+                            'avgo': '0.73%', 'crm': '0.71%', 'acn': '0.71%', 'ma': '0.69%', 'dhr': '0.67%',
+                            'amat': '0.67%', 'orcl': '0.66%', 'bac': '0.66%', 'abt': '0.62%', 'gs': '0.61%',
+                            'abbv': '0.61%', 'now': '0.61%', 'cost': '0.60%', 'pypl': '0.56%', 'csco': '0.56%',
+                            'nke': '0.54%', 'lrcx': '0.48%', 'pep': '0.47%', 'lin': '0.42%', 'mcd': '0.42%',
+                            'mrna': '0.42%', 'isrg': '0.42%', 'schw': '0.40%', 'txn': '0.40%', 'zts': '0.36%',
+                            'pld': '0.36%', 'sbux': '0.33%', 'spgi': '0.33%', 'ms': '0.32%', 'blk': '0.32%',
+                            'amt': '0.32%', 'ups': '0.32%', 'regn': '0.31%', 'unp': '0.31%', 'klac': '0.31%',
+                            'tgt': '0.29%', 'adp': '0.26%', 'mmc': '0.25%', 'dxcm': '0.24%'}
+            self.ticker_string = 'voog'
+            self.is_real_etf = True
+
         elif ticker == 'vig':  # Hardcoded more than top 25 VIG holdings
             self.weights = {'msft': '4.83%', 'unh': '3.76%', 'jnj': '3.58%', 'hd': '3.47%', 'jpm': '3.31%',
                             'pg': '3.16%', 'v': '2.77%', 'avgo': '2.15%', 'acn': '2.07%', 'cost': '1.98%',
