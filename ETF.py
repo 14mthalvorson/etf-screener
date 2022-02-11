@@ -672,13 +672,16 @@ class ETF:
 
         # Weighted % positive revenue growth
         numer = 0
+        numer_high = 0
         denom = 0
 
         for ticker in self.weights.keys():
             try:
                 if self.components[ticker].adj_rev_growth_3y is not None:
-                    if to_number(self.components[ticker].adj_rev_growth_3y) > 0:
+                    if to_number(self.components[ticker].adj_rev_growth_3y) > 0:  # Positive revenue growth
                         numer += to_number(self.weights[ticker])
+                    if to_number(self.components[ticker].adj_rev_growth_3y) >= 0.07:  # Rev growth of at least 7%
+                        numer_high += to_number(self.weights[ticker])
                     denom += to_number(self.weights[ticker])
             except Exception as e:
                 pass
@@ -686,6 +689,7 @@ class ETF:
             self.percent_positive_rev_growth = None
         else:
             self.percent_positive_rev_growth = to_percent_string(numer / denom)
+            self.percent_above_average_rev_growth = to_percent_string(numer_high / denom)
 
         # Weighted % positive ebit margin
         numer = 0
@@ -706,60 +710,77 @@ class ETF:
         # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
         martin_score = 0
 
+        # % stocks with positive rev growth
         try:
             if to_number(self.percent_positive_rev_growth) >= 0.90:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # % stocks with positive rev growth
         try:
             if to_number(self.percent_positive_rev_growth) >= 0.95:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # 80% of stocks have at least 7% rev growth
+        try:
+            if to_number(self.percent_above_average_rev_growth) >= 0.80:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # Revenue growth > 8%
         try:
             if to_number(self.adj_rev_growth_3y) >= 0.08:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # Revenue growth > 15%
         try:
             if to_number(self.adj_rev_growth_3y) >= 0.15:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # Revenue growth > 25%
         try:
             if to_number(self.adj_rev_growth_3y) >= 0.25:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # % of stocks with positive EBIT margin
         try:
             if to_number(self.percent_positive_ebit_margin) >= 0.70:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # % of stocks with positive EBIT margin
         try:
             if to_number(self.percent_positive_ebit_margin) >= 0.90:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # Median EBIT margin over 20%
         try:
             if to_number(self.weighted_med_adj_ebit_margin) >= 0.20:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # Median Gross margin over 50%
         try:
             if to_number(self.weighted_med_gross_margin) >= 0.50:
                 martin_score += 1
         except Exception as e:
             pass
 
+        # Low expense ratio
         try:
             if to_number(self.expense_ratio) <= 0.0022:
                 martin_score += 1
