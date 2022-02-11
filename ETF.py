@@ -310,6 +310,28 @@ class ETF:
             self.ticker_string = ticker
             self.is_real_etf = True
 
+        elif ticker == 'vht':  # Hardcoded more than top 25 Vanguard VHT (Healthcare) holdings
+            self.weights = {'unh': '7.46%', 'jnj': '7.10%', 'pfe': '5.22%', 'tmo': '4.14%', 'abt': '3.93%',
+                            'abbv': '3.77%', 'lly': '3.54%', 'dhr': '3.33%', 'mrk': '3.06%', 'mdt': '2.19%',
+                            'bmy': '2.18%', 'cvs': '2.15%', 'isrg': '2.02%', 'amgn': '2.01%', 'zts': '1.82%',
+                            'antm': '1.78%', 'syk': '1.43%', 'mrna': '1.37%', 'gild': '1.36%', 'ew': '1.27%',
+                            'ci': '1.23%', 'bdx': '1.14%', 'regn': '1.05%', 'hca': '1.04%', 'bsx': '0.95%',
+                            'hum': '0.94%', 'vrtx': '0.90%', 'idxx': '0.88%', 'ilmn': '0.88%', 'iqv': '0.85%',
+                            'dxcm': '0.82%', 'algn': '0.78%', 'a': '0.76%', 'cnc': '0.76%', 'bax': '0.68%',
+                            'mtd': '0.62%', 'mck': '0.61%', 'rmd': '0.60%', 'biib': '0.56%', 'veev': '0.56%',
+                            'wst': '0.55%', 'lh': '0.48%', 'cern': '0.43%', 'zbh': '0.42%', 'ste': '0.38%',
+                            'hznp': '0.36%', 'wat': '0.36%', 'pki': '0.36%', 'avtr': '0.35%', 'ctlt': '0.34%',
+                            'dgx': '0.33%', 'sgen': '0.33%', 'abc': '0.33%', 'coo': '0.33%', 'tech': '0.32%',
+                            'alny': '0.32%', 'holx': '0.31%', 'crl': '0.30%', 'moh': '0.29%', 'podd': '0.29%',
+                            'bio': '0.26%', 'vtrs': '0.26%', 'abmd': '0.26%', 'bmrn': '0.26%', 'tfx': '0.24%',
+                            'masi': '0.24%', 'cah': '0.24%', 'rgen': '0.22%', 'incy': '0.22%', 'rprx': '0.21%',
+                            'exas': '0.21%', 'tdoc': '0.21%', 'xray': '0.19%', 'elan': '0.19%', 'txg': '0.18%',
+                            'hsic': '0.17%', 'synh': '0.17%', 'nvax': '0.16%', 'pen': '0.16%', 'uhs': '0.16%',
+                            'uthr': '0.15%', 'tndm': '0.15%', 'brkr': '0.14%', 'gh': '0.14%', 'che': '0.13%',
+                            'bhvn': '0.13%', 'nbix': '0.13%', 'ntra': '0.12%', 'omcl': '0.12%', 'ntla': '0.12%'}
+            self.ticker_string = ticker
+            self.is_real_etf = True
+
         elif ticker == 'xlf' or ticker == 'fas':  # Hardcoded more than top 25 XLF (Financials) holdings
             self.weights = {'jpm': '10.086%', 'bac': '7.675%', 'wfc': '5.049%', 'ms': '3.37%',
                             'schw': '3.067%', 'c': '2.972%', 'gs': '2.796%', 'axp': '2.65%', 'blk': '2.642%',
