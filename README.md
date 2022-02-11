@@ -6,7 +6,42 @@ The main goal of this screener is to calculate weighted financial metrics for ET
 
 ## Examples of Capabilities
 
-- Example 1: Find the weighted median financial metrics for QQQ.
+### Example 1: Generate a summary for an ETF.
+
+Input:
+```
+etf = ETF('qld')
+etf.display_summary()
+```
+
+Output:
+```
+qld - ProShares Ultra QQQ
+Leverage: 2x
+Expense Ratio: 0.95%
+Num Holdings Analyzed: 100
+Growth
+	Median Rev Growth: 14.18%
+	% of holdings with positive revenue growth: 97.90%
+	% of holdings with revenue growth above 7.00%: 83.62%
+Valuation
+	Median Gross Margin: 56.51%
+	Median Operating (EBIT) Margin: 29.78%
+	Median EV/GP: 13.06
+	Median EV/EBIT: 25.42
+	Current drawdown from the 52W High: -24.76%
+Health
+	% of holdings with positive EBIT margin: 96.11%
+	% of holdings at 52W High (within 5%): 5.18%
+	% of holdings at 52W Low (within 5%): 4.35%
+	% of ETF covered by 3 largest holdings: 30.83%
+
+Overall "Martin" Score (out of 14): 10
+```
+
+### Example 2: Find the weighted median financial metrics for QQQ.
+
+Rather than just relying on the metrics in the health summaruy, you can also select your own metrics to output.
 
 Input:
 ```
@@ -67,7 +102,7 @@ txn	Texas Instruments Incorporated	Stock	-0.88%	13.00	18.67	67.50%	47.02%	-11.26
 vrtx	Vertex Pharmaceuticals Incorporated	Stock	33.44%	7.73	14.45	88.10%	47.15%	-0.10%	0.46%
 ```
 
-- Example 2: You can also compare stocks and ETFs at the same time.
+### Example 3: You can compare multiple stocks and multiple ETFs at the same time.
 
 Input:
 ```
@@ -94,10 +129,10 @@ The sources for the financial data are listed in the spreadsheet linked at the t
 
 ## Current Data Sources
 [Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
-- Yahoo finance (from the Yahoo Finance and yfinance Python libraries)
-- Finviz finance (from the finviz Python library)
 - Macrotrends (scraped from the website using requests library)
 - Marketwatch (scraped from the website using requests library)
+- Yahoo finance (from the Yahoo Finance and yfinance Python libraries)
+- Finviz finance (from the finviz Python library)
 
 ## Required Libraries to Pip Install
 - requests
