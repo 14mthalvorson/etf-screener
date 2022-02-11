@@ -753,6 +753,20 @@ class ETF:
         except Exception as e:
             pass
 
+        # EV/GP
+        try:
+            if to_number(self.weighted_median_EV_to_GP) <= 15.0:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # EV/EBIT
+        try:
+            if to_number(self.weighted_median_adj_EV_to_EBIT) <= 30.0:
+                martin_score += 1
+        except Exception as e:
+            pass
+
         # % of stocks with positive EBIT margin
         try:
             if to_number(self.percent_positive_ebit_margin) >= 0.70:
