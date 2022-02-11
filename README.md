@@ -126,6 +126,24 @@ vig	Vanguard Dividend Appreciation Index Fund ETF Shares	ETF	7.07%	10.14	21.59	5
 
 The sources for the financial data are listed in the spreadsheet linked at the top of the README. For the ETFs, the holdings are pulled from Marketwatch. Marketwatch only lists the top 25 holdings so that what most of the ETFs will use to analyze. I've hardcoded a few (QQQ, SPY, MOAT) beyond the top 25 that I use more frequently. This also helps during the times that Marketwatch is sometimes not available. I use a couple functions (clean tickers) in the utilities file to do this. Overall, it doesn't make much of a difference thankfully when calculating the weighted medians.
 
+## "Martin" Scoring System
+
+I just named it Martin so it's obvious this isn't some official scoring system but just something I made up. The scoring system is a simple sum, 1 point for each of the following:
+- 90%+ stocks with positive revenue growth
+- 95%+ stocks with positive revenue growth
+- 80%+ stocks with 7%+ revenue growth
+- 8%+ median revenue growth
+- 15%+ median revenue growth
+- 25%+ median revenue growth
+- Median EV/GP lower than 15.0
+- Median EV/EBIT lower than 30.0
+- 70%+ stocks with positive EBIT margin
+- 90%+ stocks with positive EBIT margin
+- Median EBIT margin at least 20%
+- Median gross margin at least 50%
+- Expense Ratio is under 0.22%
+- 3 Largest holdings make up less than 40% of the ETF
+
 
 ## Current Data Sources
 [Data Sources](https://docs.google.com/spreadsheets/d/1DgvwIgLPSnxBZZrfBXDTJCxMmPCuiBNBMZJBUxu6hFE/edit?usp=sharing)
