@@ -3,9 +3,11 @@ from Stock import Stock
 from Crypto import Crypto
 
 
-'''
+''' Options for "columns" list below:
+
 ETF Growth Metrics:
 'Adj Rev Growth 3Y', 'Median TTM Rev Growth 3Y', 'Median Q/Q Rev Growth 3Y', 'Annualized Rev Growth 3Y'
+'% >7% Rev Growth'
 
 ETF Valuation Metrics:
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
@@ -18,7 +20,7 @@ Other ETF Metrics:
 'Ticker', 'Name', 'Type', 'Num Holdings', 'Weight', 'Price'
 'Gross Margin', 'Adj EBIT Margin'
 'Price to FVE'
-'Leverage'
+'Leverage', 'Expense Ratio'
 
 Stock Metrics:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
@@ -37,9 +39,10 @@ Crypto:
 '''
 
 
-etf = ETF('arkk arkw arkf')
-# columns = ['Ticker', 'Price to FVE']
-columns = ['Ticker', 'Name', 'Type', 'Num Holdings', 'Leverage', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Weight', '% Pos Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
+etf = ETF('vht')
+# etf.display_summary()
+
+columns = ['Ticker', 'Name', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 
 
