@@ -339,7 +339,7 @@ class ETF:
             self.ticker_string = ticker
             self.is_real_etf = True
 
-        elif ticker == 'xlv' or ticker == 'cure':  # Hardcoded more than top 25 XLV (Healthcare) holdings
+        elif ticker == 'xlv' or ticker == 'rxl' or ticker == 'cure':  # Hardcoded more than top 25 XLV (Healthcare) holdings
             self.weights = {'unh': '9.112%', 'jnj': '9.002%', 'pfe': '5.93%', 'abbv': '4.927%', 'tmo': '4.637%',
                             'abt': '4.554%', 'mrk': '3.95%', 'lly': '3.847%', 'dhr': '3.649%', 'cvs': '2.842%',
                             'bmy': '2.815%', 'mdt': '2.72%', 'amgn': '2.498%', 'antm': '2.171%', 'isrg': '2.018%',
@@ -570,7 +570,7 @@ class ETF:
 
         # Query Finviz metrics for real ETFs
         if self.is_real_etf:
-            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year'])
+            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year', 'Volatility M'])
 
             if finviz_fundamentals is not None:
                 self.name = finviz_fundamentals['Company']
@@ -581,6 +581,7 @@ class ETF:
                 self.sma200 = finviz_fundamentals['SMA200']
                 self.high_52W = finviz_fundamentals['52W High']
                 self.perf_year = finviz_fundamentals['Perf Year']
+                self.monthly_volatility = finviz_fundamentals['Volatility M']
 
         if self.leverage is None:
             try:
@@ -799,6 +800,12 @@ class ETF:
         except Exception as e:
             self.percent_three_largest_holdings = None
 
+        try:
+            multiplier = int(self.leverage[0])
+            self.leveraged_adj_rev_growth_3y = to_percent_string(multiplier * to_number(self.adj_rev_growth_3y))
+        except Exception as e:
+            self.leveraged_adj_rev_growth_3y = None
+
         # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
         martin_score = 0
 
@@ -886,9 +893,19 @@ class ETF:
         except Exception as e:
             pass
 
-        # Low expense ratio
+        # For 1x - +1 point for low expense ratio
         try:
             if to_number(self.expense_ratio) <= 0.0022:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # For 2x -> +1 point for vol under 5%
+        # For 3x -> +1 point for vol under 6%
+        try:
+            if self.leverage == '2x' and to_number(self.monthly_volatility) <= 0.05:
+                martin_score += 1
+            elif self.leverage == '3x' and to_number(self.monthly_volatility) <= 0.06:
                 martin_score += 1
         except Exception as e:
             pass
@@ -1005,6 +1022,8 @@ class ETF:
 
                         if metric_title == 'Adj Rev Growth 3Y':
                             line += component.adj_rev_growth_3y + '\t'
+                        if metric_title == 'Leveraged Rev Growth 3Y':
+                            line += component.leveraged_adj_rev_growth_3y + '\t'
 
                         if metric_title == 'Gross Margin':
                             if component.type == 'Stock':
@@ -1058,6 +1077,8 @@ class ETF:
                             line += component.sma50 + '\t'
                         if metric_title == 'SMA200':
                             line += component.sma200 + '\t'
+                        if metric_title == 'Volatility':
+                            line += component.monthly_volatility + '\t'
 
                         # ETF Only Metrics
                         if metric_title == 'Weighted Median EV/GP':
