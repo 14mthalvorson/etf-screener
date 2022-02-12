@@ -129,8 +129,10 @@ class ETF:
                 self.expense_ratio = '0.57%'
             if ticker == 'fngo':
                 self.leverage = '2x'
+                self.expense_ratio = '0.95%'
             elif ticker == 'fngu':
                 self.leverage = '3x'
+                self.expense_ratio = '0.95%'
 
         elif ticker == 'bulz':  # BULZ ETF Holdings
             self.ticker_string = 'aapl amd amzn crm fb googl intc msft mu nflx nvda pypl qcom sq tsla'
@@ -792,6 +794,11 @@ class ETF:
         else:
             self.percent_positive_ebit_margin = to_percent_string(numer / denom)
 
+        try:
+            self.percent_three_largest_holdings = to_percent_string(sum(sorted(to_number(x) for x in self.weights.values())[-3:]) / sum(to_number(x) for x in self.weights.values()))
+        except Exception as e:
+            self.percent_three_largest_holdings = None
+
         # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
         martin_score = 0
 
@@ -888,7 +895,7 @@ class ETF:
 
         # Sum 3 largest holdings
         try:
-            if sum(sorted(to_number(x) for x in self.weights.values())[-3:]) / sum(to_number(x) for x in self.weights.values()) < 0.25:
+            if to_number(self.percent_three_largest_holdings) < 0.25:
                 martin_score += 1
         except Exception as e:
             pass
@@ -1100,6 +1107,23 @@ class ETF:
                 pass
 
     def display_summary(self):
-        # call display metrics.
-        # only print the header the first time though
-        pass
+        print(self.ticker, '-', self.name)
+        print('Leverage:', self.leverage)
+        print('Expense Ratio:', self.expense_ratio)
+        print('Num Holdings Analyzed:', self.num_holdings)
+        print('Growth')
+        print('\tMedian Rev Growth:', self.adj_rev_growth_3y)
+        print('\t% of holdings with positive revenue growth:', self.percent_positive_rev_growth)
+        print('\t% of holdings with revenue growth above 7.00%:', self.percent_above_average_rev_growth)
+        print('Valuation')
+        print('\tMedian Gross Margin:', self.weighted_med_gross_margin)
+        print('\tMedian Operating (EBIT) Margin:', self.weighted_med_adj_ebit_margin)
+        print('\tMedian EV/GP:', self.weighted_median_EV_to_GP)
+        print('\tMedian EV/EBIT:', self.weighted_median_adj_EV_to_EBIT)
+        print('\tCurrent drawdown from the 52W High:', self.high_52W)
+        print('Health')
+        print('\t% of holdings with positive EBIT margin:', self.percent_positive_ebit_margin)
+        print('\t% of holdings at 52W High (within 5%):', self.percent_at_high)
+        print('\t% of holdings at 52W Low (within 5%):', self.percent_at_low)
+        print('\t% of ETF covered by 3 largest holdings:', self.percent_three_largest_holdings)
+        print('\nOverall "Martin" Score (out of 14):', self.martin_score)
