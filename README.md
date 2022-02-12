@@ -141,8 +141,10 @@ I just named it Martin so it's obvious this isn't some official scoring system b
 - 90%+ stocks with positive EBIT margin
 - Median EBIT margin at least 20%
 - Median gross margin at least 50%
-- Expense Ratio is under 0.22%
 - 3 Largest holdings make up less than 40% of the ETF
+- (For 1x ETFs) - Expense Ratio is under 0.22%
+- (For 2x ETFs) - Monthly Vol is under 5%
+- (For 3x ETFs) - Monthly Vol is under 6%
 
 
 ## Current Data Sources
