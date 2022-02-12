@@ -41,7 +41,7 @@ Overall "Martin" Score (out of 14): 10
 
 ### Example 2: Find the weighted median financial metrics for QQQ.
 
-Rather than just relying on the metrics in the health summaruy, you can also select your own metrics to output.
+Rather than just relying on the metrics in the health summary, you can also select your own metrics to output.
 
 Input:
 ```
