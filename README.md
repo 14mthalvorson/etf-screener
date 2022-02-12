@@ -49,7 +49,7 @@ etf = ETF('qqq')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
 etf.display_metrics(columns, include_overall=True)
 ```
-The first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed. As noted above, the output is tab-separated format (which doesn't output as clearly here but it works very well in a spreadsheet). 
+In the output below, the first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed. As noted above, the output is tab-separated format (which doesn't output as clearly here but it works very well in a spreadsheet). 
 
 Output:
 ```
