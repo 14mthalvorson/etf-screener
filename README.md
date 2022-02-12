@@ -10,7 +10,7 @@ The main goal of this screener is to calculate weighted financial metrics for ET
 
 Input:
 ```
-etf = ETF('qld')
+etf = ETF('qld')  # (2x QQQ)
 etf.display_summary()
 ```
 
