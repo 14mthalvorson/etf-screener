@@ -39,7 +39,7 @@ Health
 Overall "Martin" Score (out of 14): 10
 ```
 
-### Example 2: Find the weighted median financial metrics for QQQ.
+### Example 2: Display an ETF with the metrics of your choice.
 
 Rather than just relying on the metrics in the health summary, you can also select your own metrics to output.
 
@@ -160,8 +160,9 @@ I just named it Martin so it's obvious this isn't some official scoring system b
 - yahoofinance
 - finvizfinance
 
-## Assumptions
+## Assumptions & Notes
 - I don't do automatic checks on the accuracy of data. Most of the numbers are pulled from Macrotrends and Finviz. The only discrepancies I notice are usually small differences in gross/operating/net margins. In the screener, I usually just average the two sources if they are both available. Maybe in the future I'll source and pull data directly from the SEC quarterly reports.
+- I added caching to the querying of stocks and ETFs. The first time will take the longest and after that there is about a 96% speed-up in the time it takes to analyze an ETF.
 
 ## Future Goals
 - Add sourcing for expense ratios/fees
