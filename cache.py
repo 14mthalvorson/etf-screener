@@ -27,6 +27,20 @@ def add_to_cache(ticker, obj):
         pickle.dump(cache, f)
 
 
+def remove_from_cache(ticker):
+    try:
+        with open('cache.txt', 'rb') as f:
+            cache = pickle.load(f)
+    except Exception as e:
+        cache = {}
+
+    if ticker in cache:
+        del cache[ticker]
+
+    with open('cache.txt', 'wb+') as f:
+        pickle.dump(cache, f)
+
+
 def get_from_cache(ticker):
     print(ticker)
     try:
@@ -43,15 +57,17 @@ def get_from_cache(ticker):
     return obj
 
 
-def remove_from_cache(ticker):
+# Updates everything in cache older than a specified number of days
+def update_cache(max_age):
+    pass
+
+
+def print_cache_keys():
     try:
         with open('cache.txt', 'rb') as f:
             cache = pickle.load(f)
     except Exception as e:
         cache = {}
 
-    if ticker in cache:
-        del cache[ticker]
+    print(' '.join(sorted(list(cache.keys()))))
 
-    with open('cache.txt', 'wb+') as f:
-        pickle.dump(cache, f)

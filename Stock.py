@@ -32,6 +32,8 @@ class Stock:
         self.market_cap = finviz_fundamentals['Market Cap']
         self.shares = finviz_fundamentals['Shs Outstand']
 
+        self.three_year_return, self.five_year_return, self.ten_year_return = get_macrotrends_metrics(ticker, 'Stock Prices')
+
         self.revenue = finviz_fundamentals['Sales']
         self.ebitda = get_macrotrends_metrics(ticker, 'EBITDA')
 

@@ -10,6 +10,7 @@ ETF Growth Metrics:
 'Adj Rev Growth 3Y', 'Leveraged Rev Growth 3Y'
 'Median TTM Rev Growth 3Y', 'Median Q/Q Rev Growth 3Y', 'Annualized Rev Growth 3Y'
 '% >7% Rev Growth'
+'1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return'
 
 ETF Valuation Metrics:
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
@@ -32,7 +33,7 @@ Stock Metrics:
 'Gross Margin', 'EBITDA Margin', 'Adj EBIT Margin', 'EBIT Margin', 'Net Margin'
 'Cash', 'Long Term Debt', 'Debt/EBIT', 'Debt/GP', 'R&D', 'R&D/Revenue'
 'Share Count Growth 3Y', 'Beta', 'GP/Employees', 'Dividend %'
-'Perf Year', 'SMA20', 'SMA50', 'SMA200', '52W High'
+'SMA20', 'SMA50', 'SMA200', '52W High'
 'Morningstar FVE', 'Price to FVE'
 'Price to FVE'
 
@@ -40,9 +41,16 @@ Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
 '''
 
-etf = ETF('qqq spy')
+remove_from_cache('qqq')
+remove_from_cache('tqqq')
 
-columns = ['Ticker', 'Name', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
+etf = ETF('qqq tqqq')
+columns = ['Ticker', 'Name', 'Weight', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return']
+etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
+
+exit(0)
+etf = ETF('webl')
+columns = ['Ticker', 'Name', 'Weight', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', 'Leveraged Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 
 

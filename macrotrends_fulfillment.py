@@ -93,16 +93,15 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
             html_doc = requests.get(url).text
             result = re.search('var dataDaily = \[.*]', html_doc).group(0)[16:]
             chartData = ast.literal_eval(result)
-            now = [day.get('c', -1) for day in chartData if str(date.today())[:8] in day.get('d', '')]
-            print(now)
+            now = to_number([day.get('c', -1) for day in chartData if str(date.today())[:8] in day.get('d', '')][0])
 
             try:
                 if today_str[1] < 10:
                     three_past = str(today_str[0] - 3) + '-0' + str(today_str[1])
                 else:
                     three_past = str(today_str[0] - 3) + '-' + str(today_str[1])
-                old = [day.get('c', -1) for day in chartData if three_past in day.get('d', '')]
-                print(old)
+                old = to_number([day.get('c', -1) for day in chartData if three_past in day.get('d', '')][0])
+                three = to_percent_string((now / old) ** (1/3) - 1)
 
             except Exception as e:
                 three = None
@@ -111,8 +110,8 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
                     five_past = str(today_str[0] - 5) + '-0' + str(today_str[1])
                 else:
                     five_past = str(today_str[0] - 5) + '-' + str(today_str[1])
-                old = [day.get('c', -1) for day in chartData if five_past in day.get('d', '')]
-                print(old)
+                old = to_number([day.get('c', -1) for day in chartData if five_past in day.get('d', '')][0])
+                five = to_percent_string((now / old) ** (1/5) - 1)
 
             except Exception as e:
                 five = None
@@ -121,8 +120,8 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
                     ten_past = str(today_str[0] - 10) + '-0' + str(today_str[1])
                 else:
                     ten_past = str(today_str[0] - 10) + '-' + str(today_str[1])
-                old = [day.get('c', -1) for day in chartData if ten_past in day.get('d', '')]
-                print(old)
+                old = to_number([day.get('c', -1) for day in chartData if ten_past in day.get('d', '')][0])
+                ten = to_percent_string((now / old) ** (1/10) - 1)
 
             except Exception as e:
                 ten = None
