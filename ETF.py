@@ -477,12 +477,19 @@ class ETF:
             self.expense_ratio = '0.59%'
             self.is_real_etf = True
 
+        elif ticker == 'skyy' or ticker == 'skyu':
+            self.weights = {'vmw': '4.32%', 'anet': '3.93%', 'baba': '3.87%', 'googl': '3.82%', 'msft': '3.60%', 'orcl': '3.55%', 'amzn': '3.53%', 'rxt': '3.49%', 'pstg': '3.47%', 'ctxs': '3.41%', 'mdb': '2.88%', 'lumn': '2.75%', 'akam': '2.65%', 'csco': '2.64%', 'hpe': '2.42%', 'docn': '2.37%', 'ibm': '2.29%', 'ntap': '2.02%', 'splk': '1.91%', 'kc': '1.83%', 'now': '1.82%', 'team': '1.72%', 'wk': '1.67%', 'rng': '1.56%', 'net': '1.50%', 'cflt': '1.48%', 'crm': '1.47%', 'adbe': '1.43%', 'fsly': '1.39%', 'hubs': '1.36%', 'twlo': '1.35%', 'sap': '1.26%', 'mstr': '1.15%', 'shop': '1.13%', 'appn': '0.99%', 'domo': '0.91%', 'zen': '0.77%', 'box': '0.76%', 'plan': '0.73%', 'appf': '0.67%', 'dbx': '0.67%', 'mime': '0.66%', 'smar': '0.65%', 'ddog': '0.63%', 'otex': '0.63%', 'panw': '0.63%', 'qlys': '0.60%', 'snow': '0.58%', 'wday': '0.57%', 'crwd': '0.56%', 'intu': '0.55%', 'payc': '0.54%', 'pcty': '0.54%', 'veev': '0.54%', 'qtwo': '0.53%', 'zs': '0.53%', 'trhc': '0.51%', 'avlr': '0.49%', 'bl': '0.47%', 'base': '0.47%', 'coup': '0.45%', 'zm': '0.45%', 'spt': '0.43%', 'asan': '0.40%', 'estc': '0.39%', 'docu': '0.33%', 'evbg': '0.30%'}
+            self.ticker_string = ticker
+            if ticker == 'skyu':
+                self.leverage = '2x'
+            self.is_real_etf = True
+
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
             self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxl': '2.00%',
                             'tecl': '2.00%', 'rom': '2.00%', 'upro': '2.00%', 'cure': '3.00%', 'fas': '1.00%',
                             'vpu': '1.00%', 'vig': '1.00%', 'xbi': '1.00%', 'ihi': '1.00%', 'coin': '1.00%',
                             'voog': '1.00%', 'vdc': '1.00%', 'vgt': '1.00%', 'vox': '1.00%', 'vht': '1.00%',
-                            'schg': '1.00%',
+                            'schg': '1.00%', 'webl': '1.00%', 'skyu': '1.00%', 'cldl': '1.00%', 'ucyb': '1.00%',
                             'v': '1.00%', 'ma': '1.00%', 'amzn': '1.00%', 'googl': '1.00%',
                             'fb': '1.00%', 'msft': '1.00%', 'aapl': '1.00%', 'nflx': '1.00%',
                             'adbe': '1.00%', 'tsm': '1.00%', 'crm': '1.00%', 'amt': '1.00%',

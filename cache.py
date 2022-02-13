@@ -10,7 +10,7 @@ today = 365 * today_str[0] + 31 * today_str[1] + today_str[2]
 
 def clear_cache():
     with open('cache.txt', 'wb+') as f:
-        cache = {'mmmmm': 'nnnnn'}
+        cache = {'mmmmmmmmm': 'nnnnnnnnn'}
         pickle.dump(cache, f)
 
 
@@ -41,3 +41,17 @@ def get_from_cache(ticker):
     today, obj = cache[ticker]
 
     return obj
+
+
+def remove_from_cache(ticker):
+    try:
+        with open('cache.txt', 'rb') as f:
+            cache = pickle.load(f)
+    except Exception as e:
+        cache = {}
+
+    if ticker in cache:
+        del cache[ticker]
+
+    with open('cache.txt', 'wb+') as f:
+        pickle.dump(cache, f)

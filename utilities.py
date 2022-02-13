@@ -1,3 +1,6 @@
+import re
+
+
 mappings = {
     'BTCUSD': {'name': 'Bitcoin', 'line': 8},
     'ETHUSD': {'name': 'Ethereum', 'line': 10},
@@ -53,8 +56,6 @@ def clean_tickers():
     with open('input.txt', 'r+') as f:
         data = f.read().lower().strip()
 
-        # (NYSE Arca: )
-        # (Nasdaq: )
 
         data = sorted(list(set(data.split(' '))))
 
@@ -73,7 +74,7 @@ def clean_tickers_to_dict():
         for i, item in enumerate(data):
             data[i] = item.split('\t')
 
-        data = {a: str(b) + '%' for [a, b] in data}
+        data = {a: str(b) for [a, b] in data}
 
         with open('output.txt', 'w+') as g:
             g.write(str(data))
