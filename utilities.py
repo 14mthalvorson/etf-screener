@@ -51,15 +51,14 @@ def get_median_from_list(vals):
 
 def clean_tickers():
     with open('input.txt', 'r+') as f:
-        data = f.read()
-        data = data.split('\n')
-        for i, item in enumerate(data):
-            data[i] = item.split('\t')
-            for j, thing in enumerate(data[i]):
-                data[i][j] = data[i][j].strip()
-            data[i][1] = float(data[i][1])
+        data = f.read().lower().strip()
 
-        data = {a: str(round(b, 3)) + '%' for [a, b] in data}
+        # (NYSE Arca: )
+        # (Nasdaq: )
+
+        data = sorted(list(set(data.split(' '))))
+
+        data = ' '.join(data)
 
         with open('output.txt', 'w+') as g:
             g.write(str(data).lower())

@@ -12,6 +12,8 @@ class ETF:
     # Ticker can be an ETF ticker
     # Ticker can also be a string of ETF and Stock tickers (separated by a space) (many examples below)
     def __init__(self, ticker):
+        ticker = ticker.lower()
+
         self.components = {}  # HashMap[ticker]: Stock or ETF
         self.weights = None  # HashMap[ticker]: weight
         self.ticker_string = None  # String of component tickers separated by a space
@@ -27,60 +29,7 @@ class ETF:
             ticker = 'custom'
 
         elif ticker == 'all':  # GP relevant companies
-            self.ticker_string = 'a aap aapl abbv abc abmd abnb abt acad acc acn adbe adc adi adm adp adsk aee aep ' \
-                                 'aes afl afrm agen agio ai aig aiz ajg akam akba albo alec algn alks all allo alny ' \
-                                 'alt alxo amat amba amc amd amgn amn amp amt amzn anab anet ango anss antm aon aort ' \
-                                 'apd apg aph api apls appf appn apps aptv aqua ar arct arkf arkg arkk arkw arna ' \
-                                 'arwr asan asgn asml asx atkr ato atra atrc atvi avgo avlr avnt avtr avxl awk axgn ' \
-                                 'axnx axon axp azn azo ba baba bac bam band bax bbio bbwi bby bcpc bcrx bdx beam ' \
-                                 'ben bfly bhvn bidu biib bill bio bj bk bkng bkr bl blk blue bmo bmrn bmy bns bp ' \
-                                 'bpmc br brkr bro bsx bsy btai bti bud bulz bwa bx bxmt c cabo cade cah car carr ' \
-                                 'cat cb cboe cbre cccc cci ccl ccmp ccxi cday cdmo cdna cdns cdw ceg cere cern ' \
-                                 'cfg che chgg chk chrs chtr ci cien cinf cit cl cldx clou clvs cma cmcsa cme cmg ' \
-                                 'cmrx cms cnc cni cnmd cnp cnxc cof coin cone coo cop cost coup cour cpng cprt ' \
-                                 'cprx cris crl crm crox crwd csco csgp csii csx ctas ctlt ctsh ctxs cure cvm cvna ' \
-                                 'cvs cvx cybr cyrx cytk cyxt czr d dash dcph dd ddog de deck dell deo dfs dg dgx ' \
-                                 'dhi dhr dis disca disck dish dkng dlr dltr dmtk dnli docu domo dow dpz dri dsgx ' \
-                                 'dt dte duk dva dvax dxc dxcm ea ebay ebs ecl ed edit edv eght egp egrx eix el ' \
-                                 'elan eme emr enb enph enta entg eog epam eqix eqnr es esgv esnt estc etn etr ' \
-                                 'etsy evbg evrg ew exas exc exel expe expo f fang fas fast fate fb fcx fdmt fds ' \
-                                 'fdx fe ffin ffiv fgen fico fis fisv fitb five fivn flt fmtx fnd fngg fngo fngs ' \
-                                 'fngu fold fox foxa foxf frc frog fsly ftnt fvrr gbci gbt gd gddy gds ge gh gild ' \
-                                 'gis gkos gl glob glw gm gmed gnrc googl goss gpc gpn grmn grts gs gsk gt gthx ' \
-                                 'gtlb gtls hal halo has hban hca hd hdb hele hig hli hlt holx hon hood hpe hpq ' \
-                                 'hrtx hsbc hsic hska hubs hum hznp iart ibb ibm ibn ibrx ice icpt idna idxx ' \
-                                 'idya ihi iipr iivi ilmn imgn imvt incy info infy ingn ino insm insp intc intu ' \
-                                 'ions iova ipg ipgp iqv irdm irm irtc irwd isee isrg it itb itgr itos itw ivog ' \
-                                 'ivoo ivov ivz ixn iye iyr jamf jbt jci jd jkhy jnj jnpr jpm kbr kdp key keys ' \
-                                 'khc kkr klac kmb kmx ko kod kpti kros krtx krys kura kymr l lbrdk lcid len ' \
-                                 'lgnd lh lhx lin lit livn lkq llnw lly lmat lmnd lmt lnc lng lnt logi low lrcx ' \
-                                 'lscc ltpz lulu lumn lvs lyft lyv m ma mar masi mcd mchp mck mco mcrb mdb mdgl ' \
-                                 'mdlz mdt medp meli met metv mgc mgk mgm mgnx mgv mhk mime mkl mksi mktx mlab ' \
-                                 'mmc mmm mms mnkd mnst mo moat moh morf morn mpc mpwr mrk mrna mrsn mrtx mrvl ' \
-                                 'ms msci msft msi mtb mtch mtd mttr mu mxl mygn myov nari nbix nclh ndaq ndsn nee ' \
-                                 'nem neog net newr nflx ni nio nke nlok noc novt now nrg nrix nsa nsc nstg ntap ' \
-                                 'ntes ntla ntra ntrs ntus nuva nvax nvcr nvda nvo nvr nvro nvs nvst nvta nwl nws ' \
-                                 'nwsa nxpi o ocdx ocgn odfl ofix ogn oih okta oled om omc omcl on onto open opk ' \
-                                 'orcl orgo orly ovv pall panw path payc payx pbct pbr pbw pcar pcty pd pdd pdi ' \
-                                 'peg pen penn pep pfe pfg pfgc pg pgr ph phm pins pki pl plan pld pltr plug pm ' \
-                                 'pmvp pnc pnw podd pool powi ppl prta pru psa psx ptc ptct ptgx pton pvh pxd pypl ' \
-                                 'qcln qcom qld qqq qrvo qtwo qure radi rapt rare rblx rckt rcl rcus rdfn rdus re ' \
-                                 'regn repl rf rgen rgnx rhp rigl rjf rl rlay rmd rng rog roku roll rom rop rost ' \
-                                 'rpd rprx rtx rvmd rxl rxrx ry sage saia sana sap sbac sbny sbux schg schw se ' \
-                                 'sedg sens sgen sgmo sgms shop shw sibn sigi siri sivb sklz slab slb smar smh ' \
-                                 'smtc snap sndx snow snps sny so sofi sony soxl soxx spg spgi splk spne spot spsc ' \
-                                 'spy sq srdx sre srne srpt srrk ssb ssd ssnc sso staa stag ste stm stt stx stz ' \
-                                 'sumo swav swch swks swtx syf syk syna synh syy t tan td tdg tdoc tdy team tech ' \
-                                 'tecl tel tenb ter tfc tfx tgt tgtx thc tjx tm tmdx tmf tmo tmus tndm tpr tptx ' \
-                                 'tqqq trex trmb trno trow trup trv tsco tsla tsm tsvt tt ttd tte ttek ttwo tvtx ' \
-                                 'twlo twst twtr txg txn txrh tyd tyl u ua uaa uber ufpi uhs ul ulta umc unh unit ' \
-                                 'unp upro ups upst upwk uri usb usd uthr utsl v vale vapo vb vbiv vbk vbr vcel ' \
-                                 'vcyt vdc veev verv vfc vg vgt vht viac vig viog vioo viov vir vly vmw vnda vnet ' \
-                                 'vnq vo voe vone vong vonv voo voog voov vot vox vpn vpu vray vrex vrns vrsk ' \
-                                 'vrsn vrtx vt vthr vti vtrs vtv vtwg vtwo vtwv vug vv vxf vxrt vym vz w wat wba ' \
-                                 'wcc wcld wday wdc we wec wex wfc whr wing wix wk wm wmt wolf wrb wsc wst wts wtw ' \
-                                 'wynn xbi xel xent xhb xlb xlc xle xlf xli xlk xlnx xlp xlu xlv xly xme xncr xom ' \
-                                 'xop xray xrt xtl y yum z zbh zbra zen zg zion zm zntl zs zts'
+            self.ticker_string = 'a aap aapl abbv abc abmd abnb abt acad acc acn acwi adbe adc adi adm adp adsk aee aep aes afl afrm agen agg agio agq ai aig aiz ajg akam akba albo alec algn alks all allo alny alt alxo amat amba amc amd amgn amn amp amt amzn anab anet ango anss antm aon aort apd apg aph api apls appf appn apps aptv aqua ar arct arkf arkg arkk arkw arna arwr asan asgn asml asx atkr ato atra atrc atvi avgo avlr avnt avtr avxl awk axgn axnx axon axp azn azo ba baba bac bam band bax bbio bbwi bby bcpc bcrx bdcx bdx beam ben bfly bhvn bib bidu biib bil bill bio bj bk bkng bkr bl blk blue bmo bmrn bmy bnd bndx bnku bns bp bpmc br brkr bro brzu bsv bsx bsy btai bti bud bulz bwa bx bxmt c cabo cade cah car carr cat cb cboe cbre cccc cci ccl ccmp ccxi cday cdmo cdna cdns cdw cefd ceg cere cern cfg chau che chgg chk chrs chtr ci cien cinf cit cl cldl cldx clou clvs cma cmcsa cme cmg cmrx cms cnc cni cnmd cnp cnxc cof coin cone coo cop cost coup cour cpng cprt cprx cris crl crm croc crox crwd csco csgp csii csx ctas ctlt ctsh ctxs cure cvm cvna cvs cvx cweb cybr cyrx cytk cyxt czr d dash dcph dd ddm ddog de deck dell deo dfac dfen dfs dg dgp dgro dgx dhi dhr dia dig dis disca disck dish dkng dlr dltr dmtk dnli docu domo dow dpst dpz dri drn dsgx dt dte duk dusl dva dvax dvy dxc dxcm ea ebay ebs ecl ed edc edit edv eem eet efa efo efv eght egp egrx eix el elan emb eme emr enb enph enta entg eog epam eqix eqnr erx es esgu esgv esnt estc esus etn etr etsy euo eurl evbg evrg ew exas exc exel expe expo ezj f fang fas fast fate fb fbgx fcx fdmt fds fdx fe fedl ffin ffiv fgen fico fiee fihd fis fisv fitb five fivn flt fmtx fnd fngg fngo fngs fngu fold fox foxa foxf frc frlg frog fsly ftnt fvrr gbci gbt gd gddy gds gdxu ge gh gild gis gkos gl gld glob glw gm gmed gnrc googl goss govt gpc gpn grmn grts gs gsk gt gthx gtlb gtls gush hal halo has hban hca hd hdb hdlb hele hibl hig hli hlt holx hon hood hpe hpq hrtx hsbc hsic hska hubs hum hyg hznp iart iau ibb ibm ibn ibrx ice icpt idna idxx idya ief iefa iemg igsb ihi iipr iivi ijh ijr ilmn imgn imvt incy indl info infy ingn ino insm insp intc intu ions iova ipg ipgp iqv irdm irm irtc irwd isee isrg it itb itgr itos itot itw iusb ive ivog ivoo ivov ivv ivw ivz iwb iwd iwdl iwf iwfl iwm iwml iwn iwp iwr iws ixn ixus iye iyr jamf jbt jci jd jkhy jnj jnpr jnug jpm jpst kbr kdp key keys khc kkr klac kmb kmx ko kod koru kpti kros krtx krys kura kymr l labu lbrdk lcid len lgnd lh lhx lin lit livn lkq llnw lly lmat lmnd lmt lnc lng lnt logi low lqd lrcx lscc ltl ltpz lulu lumn lvs lyft lyv m ma mar masi mbb mcd mchp mck mco mcrb mdb mdgl mdlz mdt mdy medp meli met metv mexx mgc mgk mgm mgnx mgv mhk midu mime mjxl mkl mksi mktx mlab mlpr mmc mmm mms mnkd mnst mo moat moh morf morn mpc mpwr mrk mrna mrsn mrtx mrvl ms msci msft msi mtb mtch mtd mttr mtul mu mub mvrl mvv mxl mygn myov nail nari nbix nclh ndaq ndsn nee nem neog net newr nflx ni nio nke nlok noc novt now nrg nrgu nrix nsa nsc nstg ntap ntes ntla ntra ntrs ntus nugt nuva nvax nvcr nvda nvo nvr nvro nvs nvst nvta nwl nws nwsa nxpi o ocdx ocgn odfl ofix ogn oih oilu okta oled om omc omcl on onto ooto open opk orcl orgo orly ovv pall panw path payc payx pbct pbr pbw pcar pcty pd pdd pdi peg pen penn pep pfe pff pffl pfg pfgc pg pgr ph phm pill pins pki pl plan pld pltr plug pm pmvp pnc pnw podd pool powi ppl prta pru psa psx ptc ptct ptgx pton pvh pxd pypl qcln qcom qld qqq qrvo qtwo qual qull qure radi rapt rare rblx rckt rcl rcus rdfn rdus re regn repl retl rf rgen rgnx rhp rigl rjf rl rlay rmd rng rog roku roll rom rop rost rpd rprx rsp rtx rusl rvmd rxl rxrx ry saa sage saia sana sap sbac sbny sbux scdl scha schb schd schf schg schp schw schx scz sdy se sedg sens sgen sgmo sgms shop shv shw shy sibn sigi siri sivb sklz skyu slab slb smar smh smhb smtc snap sndx snow snps sny so sofi sony soxl soxx spg spgi splg splk spne spot spsc spuu spxl spy spyv sq srdx sre srne srpt srrk ssb ssd ssnc sso staa stag ste stm stt stx stz sumo swav swch swks swtx syf syk syna synh syy t tan td tdg tdoc tdy team tech tecl tel tenb teng ter tfc tfx tgt tgtx thc tip tjx tlt tm tmdx tmf tmo tmus tna tndm tpor tpr tptx tqqq trex trmb trno trow trup trv tsco tsla tsm tsvt tt ttd tte ttek ttwo tvtx twlo twst twtr txg txn txrh tyd tyl u ua uaa uber ubot ubr ucc ucyb udow ufpi uge uhs ujb ul ulta umc umdd unh unit unp upro ups upst upv upw upwk ure uri urty usb usd usml usmv uthr utsl uvxy uwm uxi uyg uym v vale vapo vb vbiv vbk vbr vcel vcit vcsh vcyt vdc vea veev verv veu vfc vg vgk vgt vht viac vig viog vioo viov vir vly vmbs vmw vnda vnet vnq vo voe vone vong vonv voo voog voov vot vox vpn vpu vray vrex vrns vrsk vrsn vrtx vt vteb vthr vti vtip vtrs vtv vtwg vtwo vtwv vug vv vwo vxf vxrt vxus vym vz w want wat wba wcc wcld wday wdc we webl wec wex wfc whr wing wix wk wm wmt wolf wrb wsc wst wts wtw wynn xbi xel xent xhb xlb xlc xle xlf xli xlk xlnx xlp xlu xlv xly xme xncr xom xop xpp xray xrt xtl y ycs yinn yum z zbh zbra zen zg zion zm zntl zs zts'
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'aapl abnb abt adbe adsk ai akam amd amt amzn anet anss api appf appn apps arkf ' \
@@ -915,7 +864,7 @@ class ETF:
         html_doc = requests.get(url).text
         ticker_results = re.findall('(?<=<td class="table__cell u-semi">)([A-Z]+)(?=<\/td>)', html_doc)
         weightings_results = re.findall('(?<=<td class="table__cell">)([0-9]{1,3}.[0-9]{2}%)(?=<\/td>)', html_doc)
-        self.weights = {ticker_results[i]: weightings_results[i] for i in range(len(ticker_results))}
+        self.weights = {ticker_results[i].lower(): weightings_results[i] for i in range(len(ticker_results))}
         return
 
     # Takes space delimited list of tickers and set equal-weight holdings
