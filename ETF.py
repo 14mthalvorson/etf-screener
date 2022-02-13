@@ -26,39 +26,61 @@ class ETF:
             self.ticker_string = ticker
             ticker = 'custom'
 
-        # Only include in the list if evaluating this stock with this metric is a decent valuation method.
-        elif ticker == 'ebitda':  # EBITDA relevant stocks
-            self.ticker_string = 'amzn aapl googl fb cost wmt unh shop tgt meli dis low ups pins roku upst nke hd acn ibm ' \
-                            'adsk mime dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
-                            'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
-                            'dsgx adbe irm intc coin eqix pm acc awk mu spgi txn dlr mcd avgo amt cci ma sbac o vrsn ' \
-                            'v nvda tsla msft tsm wm now dt cdns'
-
-        elif ticker == 'op' or ticker == 'ebit':  # Operating profit relevant stocks
-            self.ticker_string = 'amzn aapl googl fb cost wmt unh tgt dis low ups pins roku upst nke hd acn ibm ' \
-                            'adsk dpz tyl logi hon pypl amd cvx t etsy morn mdt ttd pg mrk ttwo intu abt vmw cmcsa ' \
-                            'jnj veev csco mtch amat pfe lrcx zm tmo ko anet orcl qcom anss vz adi isrg akam ms ' \
-                            'dsgx adbe irm intc coin eqix pm acc awk mu spgi txn dlr mcd avgo amt cci ma sbac o vrsn ' \
-                            'v nvda msft tsm nflx wm dt cdns'
-
-        elif ticker == 'gp' or ticker == 'all':  # GP relevant companies
-            self.ticker_string = 'aapl abbv abnb abt acc acn adbe adi adp adsk ai akam amat amd amgn amt amzn anet ' \
-                                 'anss antm api appf appn apps arkf arkg arkk arkw asan asml avgo avlr awk axp azn ' \
-                                 'ba baba bac bam band bill bkng bl blk bmo bmy bns bp bti bud bulz ' \
-                                 'c cat cb cci cdns chgg chtr ci clou cmcsa cme cni coin cop cost coup cour ' \
-                                 'cpng crm crwd csco csx cvna cvs cvx cybr ddog de deo dhr dis dlr docu domo dpz ' \
-                                 'dsgx dt duk edv eght el enb eqix eqnr estc etsy evbg f fb fivn fngg fngs ' \
-                                 'frog fvrr ge gild glob gm googl gs gsk gtlb hd hdb hon hood hsbc hubs ibb ibm ' \
-                                 'ibn infy intc intu irm isrg itb iye iyr jamf jd jnj jpm ko lin lly lmnd ' \
-                                 'lmt logi low lrcx ltpz ma mcd mdb mdlz mdt meli metv mime mmc mmm mo moat morn mrk ' \
-                                 'mrna mrvl ms msft mtch mttr mu nee net newr nflx nke now nvda nvo nvs o oih ' \
-                                 'okta open orcl panw path payc pbr pd pdd pdi pep pfe pg pins plan pld pltr pm pnc ' \
-                                 'pton pypl qcom qqq qtwo rblx rdfn rng roku rpd rtx ry sap sbac sbux ' \
-                                 'schw se shop shw sklz smar smh snap snow sny sofi sony soxx spgi splk spot spy sq ' \
-                                 'sumo syk t td tdoc team tenb ter tfc tgt tjx tm tmf tmo tmus tsla tsm ' \
-                                 'ttd tte ttwo twlo twtr txn tyd tyl u ul unh unp ups upst upwk usb v vale ' \
-                                 'veev vig vmw vnq vpn vpu vrsn vtv vug vz wcld wday we wfc wix wm wmt w ' \
-                                 'xbi xhb xlb xle xlf xli xlk xlp xlu xlc xlv xly xme xom xop xrt xtl zen zg zm zs zts'
+        elif ticker == 'all':  # GP relevant companies
+            self.ticker_string = 'a aap aapl abbv abc abmd abnb abt acad acc acn adbe adc adi adm adp adsk aee aep ' \
+                                 'aes afl afrm agen agio ai aig aiz ajg akam akba albo alec algn alks all allo alny ' \
+                                 'alt alxo amat amba amc amd amgn amn amp amt amzn anab anet ango anss antm aon aort ' \
+                                 'apd apg aph api apls appf appn apps aptv aqua ar arct arkf arkg arkk arkw arna ' \
+                                 'arwr asan asgn asml asx atkr ato atra atrc atvi avgo avlr avnt avtr avxl awk axgn ' \
+                                 'axnx axon axp azn azo ba baba bac bam band bax bbio bbwi bby bcpc bcrx bdx beam ' \
+                                 'ben bfly bhvn bidu biib bill bio bj bk bkng bkr bl blk blue bmo bmrn bmy bns bp ' \
+                                 'bpmc br brkr bro bsx bsy btai bti bud bulz bwa bx bxmt c cabo cade cah car carr ' \
+                                 'cat cb cboe cbre cccc cci ccl ccmp ccxi cday cdmo cdna cdns cdw ceg cere cern ' \
+                                 'cfg che chgg chk chrs chtr ci cien cinf cit cl cldx clou clvs cma cmcsa cme cmg ' \
+                                 'cmrx cms cnc cni cnmd cnp cnxc cof coin cone coo cop cost coup cour cpng cprt ' \
+                                 'cprx cris crl crm crox crwd csco csgp csii csx ctas ctlt ctsh ctxs cure cvm cvna ' \
+                                 'cvs cvx cybr cyrx cytk cyxt czr d dash dcph dd ddog de deck dell deo dfs dg dgx ' \
+                                 'dhi dhr dis disca disck dish dkng dlr dltr dmtk dnli docu domo dow dpz dri dsgx ' \
+                                 'dt dte duk dva dvax dxc dxcm ea ebay ebs ecl ed edit edv eght egp egrx eix el ' \
+                                 'elan eme emr enb enph enta entg eog epam eqix eqnr es esgv esnt estc etn etr ' \
+                                 'etsy evbg evrg ew exas exc exel expe expo f fang fas fast fate fb fcx fdmt fds ' \
+                                 'fdx fe ffin ffiv fgen fico fis fisv fitb five fivn flt fmtx fnd fngg fngo fngs ' \
+                                 'fngu fold fox foxa foxf frc frog fsly ftnt fvrr gbci gbt gd gddy gds ge gh gild ' \
+                                 'gis gkos gl glob glw gm gmed gnrc googl goss gpc gpn grmn grts gs gsk gt gthx ' \
+                                 'gtlb gtls hal halo has hban hca hd hdb hele hig hli hlt holx hon hood hpe hpq ' \
+                                 'hrtx hsbc hsic hska hubs hum hznp iart ibb ibm ibn ibrx ice icpt idna idxx ' \
+                                 'idya ihi iipr iivi ilmn imgn imvt incy info infy ingn ino insm insp intc intu ' \
+                                 'ions iova ipg ipgp iqv irdm irm irtc irwd isee isrg it itb itgr itos itw ivog ' \
+                                 'ivoo ivov ivz ixn iye iyr jamf jbt jci jd jkhy jnj jnpr jpm kbr kdp key keys ' \
+                                 'khc kkr klac kmb kmx ko kod kpti kros krtx krys kura kymr l lbrdk lcid len ' \
+                                 'lgnd lh lhx lin lit livn lkq llnw lly lmat lmnd lmt lnc lng lnt logi low lrcx ' \
+                                 'lscc ltpz lulu lumn lvs lyft lyv m ma mar masi mcd mchp mck mco mcrb mdb mdgl ' \
+                                 'mdlz mdt medp meli met metv mgc mgk mgm mgnx mgv mhk mime mkl mksi mktx mlab ' \
+                                 'mmc mmm mms mnkd mnst mo moat moh morf morn mpc mpwr mrk mrna mrsn mrtx mrvl ' \
+                                 'ms msci msft msi mtb mtch mtd mttr mu mxl mygn myov nari nbix nclh ndaq ndsn nee ' \
+                                 'nem neog net newr nflx ni nio nke nlok noc novt now nrg nrix nsa nsc nstg ntap ' \
+                                 'ntes ntla ntra ntrs ntus nuva nvax nvcr nvda nvo nvr nvro nvs nvst nvta nwl nws ' \
+                                 'nwsa nxpi o ocdx ocgn odfl ofix ogn oih okta oled om omc omcl on onto open opk ' \
+                                 'orcl orgo orly ovv pall panw path payc payx pbct pbr pbw pcar pcty pd pdd pdi ' \
+                                 'peg pen penn pep pfe pfg pfgc pg pgr ph phm pins pki pl plan pld pltr plug pm ' \
+                                 'pmvp pnc pnw podd pool powi ppl prta pru psa psx ptc ptct ptgx pton pvh pxd pypl ' \
+                                 'qcln qcom qld qqq qrvo qtwo qure radi rapt rare rblx rckt rcl rcus rdfn rdus re ' \
+                                 'regn repl rf rgen rgnx rhp rigl rjf rl rlay rmd rng rog roku roll rom rop rost ' \
+                                 'rpd rprx rtx rvmd rxl rxrx ry sage saia sana sap sbac sbny sbux schg schw se ' \
+                                 'sedg sens sgen sgmo sgms shop shw sibn sigi siri sivb sklz slab slb smar smh ' \
+                                 'smtc snap sndx snow snps sny so sofi sony soxl soxx spg spgi splk spne spot spsc ' \
+                                 'spy sq srdx sre srne srpt srrk ssb ssd ssnc sso staa stag ste stm stt stx stz ' \
+                                 'sumo swav swch swks swtx syf syk syna synh syy t tan td tdg tdoc tdy team tech ' \
+                                 'tecl tel tenb ter tfc tfx tgt tgtx thc tjx tm tmdx tmf tmo tmus tndm tpr tptx ' \
+                                 'tqqq trex trmb trno trow trup trv tsco tsla tsm tsvt tt ttd tte ttek ttwo tvtx ' \
+                                 'twlo twst twtr txg txn txrh tyd tyl u ua uaa uber ufpi uhs ul ulta umc unh unit ' \
+                                 'unp upro ups upst upwk uri usb usd uthr utsl v vale vapo vb vbiv vbk vbr vcel ' \
+                                 'vcyt vdc veev verv vfc vg vgt vht viac vig viog vioo viov vir vly vmw vnda vnet ' \
+                                 'vnq vo voe vone vong vonv voo voog voov vot vox vpn vpu vray vrex vrns vrsk ' \
+                                 'vrsn vrtx vt vthr vti vtrs vtv vtwg vtwo vtwv vug vv vxf vxrt vym vz w wat wba ' \
+                                 'wcc wcld wday wdc we wec wex wfc whr wing wix wk wm wmt wolf wrb wsc wst wts wtw ' \
+                                 'wynn xbi xel xent xhb xlb xlc xle xlf xli xlk xlnx xlp xlu xlv xly xme xncr xom ' \
+                                 'xop xray xrt xtl y yum z zbh zbra zen zg zion zm zntl zs zts'
 
         elif ticker == 'mine':  # My Holdings
             self.ticker_string = 'aapl abnb abt adbe adsk ai akam amd amt amzn anet anss api appf appn apps arkf ' \
@@ -76,45 +98,9 @@ class ETF:
             self.ticker_string = 'googl amzn tmf fb coin msft crm shop crwd ttd aapl se adbe nvda ddog ' \
                                  'veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
 
-        elif ticker == 'market_cap':  # GP relevant companies
-            self.ticker_string = 'aapl msft googl amzn tsla fb tsm nvda v jnj jpm unh wmt pg bac hd baba ma tm xom pfe ' \
-                            'asml dis ko cvx adbe csco abbv pep nke cmcsa lly tmo avgo acn orcl vz wfc abt crm cost nvs ' \
-                            'nflx intc mrk pypl dhr t qcom mcd azn ms ups nvo schw bbl sap lin ry txn pm unp low ' \
-                            'tte intu nee td hsbc sony hon bmy mdt axp amd cvs rtx ul tmus sny shop c amgn blk ' \
-                            'ba ibm amat cop jd cat deo gs amt bud de sbux pld gsk hdb antm lmt el bp tgt isrg ' \
-                            'ge chtr mmm now bkng infy bti eqnr spgi syk mu zts adp mdlz mo abnb pnc se usb bns cni ' \
-                            'bam tfc gild enb lrcx cb f pbr adi snow tjx cme vale mmc ci pdd cci shw duk csx ' \
-                            'gm bmo ibn'
-
-        elif ticker == 'revenue':  # GP relevant companies
-            self.ticker_string = 'wmt amzn aapl unh cvs tm xom googl cost msft t ci tte hd jd cvx f vz antm bp gm ' \
-                            'cmcssa fb tgt low ups jnj sony tmus intc pg pep ge ibm bam pfe eqnr dis lmt gs rtx ba ' \
-                            'ms jpm tsm ul vale abbv acn bud nvs chtr csco c cat mrk bac tsla nke tjx bmy'
-
-        elif ticker == 'top_ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv xlu xlf'
-
         elif ticker == 'vanguard':  # Vanguard ETFs
             self.ticker_string = 'vig esgv vug vym vv mgc mgk mgv vone vong vonv vthr voo voog voov vti vtv vxf ' \
                                  'vo vot voe ivoo ivog ivov vtwo vtwg vtwv vioo viog viov vb vbk vbr vt'
-
-        elif ticker == 'high_returns':  # BULZ ETF Holdings
-            self.ticker_string = 'xlk soxx smh qqq spy xlv arkw tan qcln arkk xlf lit ixn pbw pall'
-
-        elif ticker == 'my_ETFs':  # Popular ETFs
-            self.ticker_string = 'spy qqq vtv vug vig arkk moat vpn wcld soxx xlv vpu xlf vpu metv ibb clou xbi arkw arkf arkg'
-
-        elif ticker == 'sector_ETFs':  # Sector ETFs
-            self.ticker_string = 'spy qqq vtv vig vpn soxx xle xlf xlu xli xlk xlv xly xlp xlb xlc xop iyr xhb itb vnq iye oih xme xrt smh ibb xtl'
-
-        elif ticker == 'LETFs':  # Leveraged ETFs
-            self.ticker_string = 'qqq qld tqqq spy sso upro xlk tecl fngs fngo fngu bulz rom fngg vpn'
-
-        elif ticker == 'mega':  # Mega-cap tech stocks
-            self.ticker_string = 'aapl amzn googl fb nflx nvda tsla msft tsm'
-
-        elif ticker == 'reit':  # Digital REIT stocks
-            self.ticker_string = 'sbac dlr eqix amt acc o cci irm'
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
