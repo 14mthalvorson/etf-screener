@@ -39,7 +39,7 @@ Health
 Overall "Martin" Score (out of 14): 10
 ```
 
-### Example 2: Find the weighted median financial metrics for QQQ.
+### Example 2: Display an ETF with the metrics of your choice.
 
 Rather than just relying on the metrics in the health summary, you can also select your own metrics to output.
 
