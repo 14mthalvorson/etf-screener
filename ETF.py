@@ -496,6 +496,11 @@ class ETF:
             self.leverage = '2x'
             self.is_real_etf = True
 
+        elif ticker == 'ucyb':
+            self.weights = {'csco': '6.43%', 'panw': '6.10%', 'acn': '6.03%', 'crwd': '5.48%', 'chkp': '3.76%', 'net': '3.65%', 'mndt': '3.59%', 'jnpr': '3.57%', 'vmw': '3.51%', 'ldos': '3.31%', 'tenb': '3.25%', 'akam': '3.23%', 'mime': '3.21%', 'splk': '3.10%', 'ftnt': '3.06%', 'cybr': '2.93%', 'vrsn': '2.92%', 'bah': '2.91%', 'okta': '2.91%', 'ffiv': '2.81%', 'vrns': '2.57%', 'zs': '2.57%', 'rpd': '2.56%', 'qlys': '2.44%', 'sail': '2.43%', 'saic': '1.75%', 'rdwr': '1.03%', 'mant': '0.98%', 'aten': '0.87%', 'infy': '0.63%', 'ospn': '0.37%', 'tufn': '0.18%', 'rbbn': '0.12%'}
+            self.ticker_string = ticker
+            self.is_real_etf = True
+
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
             self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxl': '2.00%',
                             'tecl': '2.00%', 'rom': '2.00%', 'upro': '2.00%', 'cure': '3.00%', 'fas': '1.00%',
