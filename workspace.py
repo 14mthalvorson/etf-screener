@@ -4,7 +4,7 @@ import ast
 import pickle
 from datetime import date
 
-ticker = 'tqqq'
+ticker = 'amzn'
 
 today_str = [int(x) for x in str(date.today()).split('-')]
 if today_str[1] < 10:
@@ -21,9 +21,12 @@ html_doc = requests.get(url).text
 result = re.search('var dataDaily = \[.*]', html_doc).group(0)[16:]
 chartData = ast.literal_eval(result)
 
-m = [date.get('c', -1) for date in chartData if five_past in date.get('d', '')]
+old = to_number([day.get('c', -1) for day in chartData if five_past in day.get('d', '')][0])
+now = to_number([day.get('c', -1) for day in chartData if str(date.today())[:8] in day.get('d', '')][0])
 
-print(m)
+print(old)
+print(now)
+print(to_percent_string((now / old) ** (1/5) - 1))
 
 # print(chartData)
 

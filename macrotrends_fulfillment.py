@@ -1,3 +1,5 @@
+from datetime import date
+
 import requests
 import re
 import ast
@@ -79,6 +81,53 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
                 net_margin = None
 
             return gross_margin, ebit_margin, net_margin
+        except Exception as e:
+            return None, None, None
+
+    # Returns 3, 5, 10 year stock performances if available
+    elif metric_name == 'Stock Prices':
+        try:
+            today_str = [int(x) for x in str(date.today()).split('-')]
+
+            url = 'https://www.macrotrends.net/assets/php/stock_price_history.php?t=%s' % ticker
+            html_doc = requests.get(url).text
+            result = re.search('var dataDaily = \[.*]', html_doc).group(0)[16:]
+            chartData = ast.literal_eval(result)
+            now = [day.get('c', -1) for day in chartData if str(date.today())[:8] in day.get('d', '')]
+            print(now)
+
+            try:
+                if today_str[1] < 10:
+                    three_past = str(today_str[0] - 3) + '-0' + str(today_str[1])
+                else:
+                    three_past = str(today_str[0] - 3) + '-' + str(today_str[1])
+                old = [day.get('c', -1) for day in chartData if three_past in day.get('d', '')]
+                print(old)
+
+            except Exception as e:
+                three = None
+            try:
+                if today_str[1] < 10:
+                    five_past = str(today_str[0] - 5) + '-0' + str(today_str[1])
+                else:
+                    five_past = str(today_str[0] - 5) + '-' + str(today_str[1])
+                old = [day.get('c', -1) for day in chartData if five_past in day.get('d', '')]
+                print(old)
+
+            except Exception as e:
+                five = None
+            try:
+                if today_str[1] < 10:
+                    ten_past = str(today_str[0] - 10) + '-0' + str(today_str[1])
+                else:
+                    ten_past = str(today_str[0] - 10) + '-' + str(today_str[1])
+                old = [day.get('c', -1) for day in chartData if ten_past in day.get('d', '')]
+                print(old)
+
+            except Exception as e:
+                ten = None
+
+            return three, five, ten
         except Exception as e:
             return None, None, None
 
