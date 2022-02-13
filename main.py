@@ -1,6 +1,7 @@
 from ETF import ETF
 from Stock import Stock
 from Crypto import Crypto
+from cache import *
 
 
 ''' Options for "columns" list below:
@@ -39,9 +40,9 @@ Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
 '''
 
-etf = ETF('fngu')
+etf = ETF('qqq spy')
 
-columns = ['Ticker', 'Name', 'Weight', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', 'Leveraged Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
+columns = ['Ticker', 'Name', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Debt/GP', 'Perf Year', '52W High', 'SMA20', 'SMA200', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 
 

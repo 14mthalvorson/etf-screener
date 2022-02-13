@@ -4,6 +4,7 @@ from utilities import *
 from Stock import Stock
 from Crypto import Crypto
 from finviz_finance_fulfillment import get_finviz_metrics
+from cache import *
 
 
 class ETF:
@@ -921,6 +922,8 @@ class ETF:
         if self.num_holdings == '0':
             self.martin_score = None
 
+        add_to_cache(self.ticker, self)
+
     def fill_holdings_from_marketwatch(self, ticker):
         url = 'https://www.marketwatch.com/investing/fund/%s/holdings' % ticker
         html_doc = requests.get(url).text
@@ -931,23 +934,26 @@ class ETF:
 
     # Takes space delimited list of tickers and set equal-weight holdings
     def set_components(self):
-        with open('cache.txt', 'w+') as f:
-            cache = dict(f.read())
 
         for ticker in self.weights.keys():
-            try:  # Try to make the ticker a stock. If it is likely not a stock, it is probably an ETF.
-                if 'USD' in ticker and ticker != 'USD':
-                    self.components[ticker] = Crypto(ticker)
-                else:
-                    try:
-                        self.components[ticker] = Stock(ticker)
-                        if self.components[ticker].type == 'ETF':
+            comp = get_from_cache(ticker)
+            if comp is not None:
+                self.components[ticker] = comp
+            else:
+                try:  # Try to make the ticker a stock. If it is likely not a stock, it is probably an ETF.
+                    if 'USD' in ticker and ticker != 'USD':
+                        self.components[ticker] = Crypto(ticker)
+                    else:
+                        try:
+                            self.components[ticker] = Stock(ticker)
+                            if self.components[ticker].type == 'ETF':
+                                self.components[ticker] = ETF(ticker)
+                        except Exception as e:
+                            # Some new ETFs not in Finviz can fall here
                             self.components[ticker] = ETF(ticker)
-                    except Exception as e:
-                        # Some new ETFs not in Finviz can fall here
-                        self.components[ticker] = ETF(ticker)
-            except Exception as e:
-                pass
+                except Exception as e:
+                    pass
+                add_to_cache(ticker, self.components[ticker])
 
     # For each stock in an ETF, displays data selected in columns
     def display_metrics(self, columns, only_nums=False, print_header=True, extra_header=False, include_overall=False):
