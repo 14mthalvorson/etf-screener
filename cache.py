@@ -1,0 +1,32 @@
+from ETF import *
+import pickle
+from datetime import date
+
+
+# HashMap[ticker] = (date, object)
+today_str = [int(x) for x in str(date.today()).split('-')]
+today = 365 * today_str[0] + 31 * today_str[1] + today_str[2]
+
+
+def clear_cache():
+    with open('cache.txt', 'wb') as f:
+        pickle.dump({}, f)
+
+
+def add_to_cache(ticker, obj):
+    with open('cache.txt', 'rb') as f:
+        cache = pickle.load(f)
+
+    cache[ticker] = (today, obj)
+
+    with open('cache.txt', 'wb') as f:
+        pickle.dump(cache, f)
+
+
+def get_from_cache(ticker):
+    with open('cache.txt', 'rb') as f:
+        cache = pickle.load(f)
+
+        today, obj = cache[ticker]
+
+        return obj
