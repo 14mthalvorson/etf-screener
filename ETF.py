@@ -931,6 +931,9 @@ class ETF:
 
     # Takes space delimited list of tickers and set equal-weight holdings
     def set_components(self):
+        with open('cache.txt', 'w+') as f:
+            cache = dict(f.read())
+
         for ticker in self.weights.keys():
             try:  # Try to make the ticker a stock. If it is likely not a stock, it is probably an ETF.
                 if 'USD' in ticker and ticker != 'USD':
