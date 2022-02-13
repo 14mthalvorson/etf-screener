@@ -490,6 +490,12 @@ class ETF:
             self.leverage = '3x'
             self.is_real_etf = True
 
+        elif ticker == 'cldl':
+            self.weights = {'now': '6.81%', 'orcl': '6.60%', 'adbe': '5.78%', 'crwd': '5.54%', 'sap': '5.49%', 'crm': '5.49%', 'wday': '5.22%', 'veev': '4.96%', 'adsk': '4.77%', 'team': '4.11%', 'zs': '3.85%', 'docu': '3.42%', 'bill': '3.38%', 'akam': '3.24%', 'twlo': '3.23%', 'payc': '3.22%', 'zm': '2.47%', 'rng': '2.15%', 'snow': '2.09%', 'coup': '1.72%', 'fivn': '1.57%', 'pcty': '1.40%', 'plan': '1.12%', 'dbx': '1.08%', 'ntnx': '0.87%', 'mime': '0.84%', 'spsc': '0.81%', 'ncno': '0.78%', 'box': '0.75%', 'qlys': '0.71%', 'bl': '0.71%', 'aciw': '0.70%', 'wk': '0.68%', 'alrm': '0.58%', 'blkb': '0.52%', 'vmw': '0.49%', 'evbg': '0.34%', 'mstr': '0.32%', 'lpsn': '0.32%', 'zuo': '0.28%', 'ai': '0.28%', 'eght': '0.27%', 'pro': '0.24%', 'appf': '0.21%', 'uis': '0.21%', 'modn': '0.15%', 'twou': '0.12%', 'upld': '0.08%', 'trhc': '0.04%'}
+            self.ticker_string = ticker
+            self.leverage = '2x'
+            self.is_real_etf = True
+
         elif ticker == 'lawp':  # My Leveraged All Weather Portfolio
             self.weights = {'tqqq': '45.00%', 'fngu': '2.00%', 'bulz': '2.00%', 'fngg': '2.00%', 'soxl': '2.00%',
                             'tecl': '2.00%', 'rom': '2.00%', 'upro': '2.00%', 'cure': '3.00%', 'fas': '1.00%',
