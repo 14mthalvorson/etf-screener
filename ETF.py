@@ -1062,6 +1062,12 @@ class ETF:
                             line += component.five_year_return + '\t'
                         if metric_title == '10 Year Return':
                             line += component.ten_year_return + '\t'
+                        if metric_title == 'EBIT Growth 3Y':
+                            line += component.gp_growth_3y + '\t'
+                        if metric_title == 'EBIT Growth 5Y':
+                            line += component.gp_growth_5y + '\t'
+                        if metric_title == 'EBIT Growth 10Y':
+                            line += component.gp_growth_10y + '\t'
                         if metric_title == 'SMA20':
                             line += component.sma20 + '\t'
                         if metric_title == 'SMA50':

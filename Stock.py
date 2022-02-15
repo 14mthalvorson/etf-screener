@@ -44,7 +44,7 @@ class Stock:
         self.ttm_rev_growth, self.med_ttm_rev_growth_3y, self.med_qoq_rev_growth_3y, self.annualized_rev_growth_3y, self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Rev Growth')
         self.annualized_rev_growth_5y = finviz_fundamentals['Sales past 5Y']
 
-        self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
+        self.gp_growth_3y, self.gp_growth_5y, self.gp_growth_10y = get_macrotrends_metrics(ticker, 'GP Growth')
 
         self.gross_margin, self.ebit_margin, self.net_margin, self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Margins')
 

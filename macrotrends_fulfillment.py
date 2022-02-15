@@ -24,6 +24,44 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         except Exception as e:
             return None
 
+    if metric_name == 'GP Growth':
+        try:
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=gross-profit&statement=income-statement&freq=Q' % ticker
+            html_doc = requests.get(url).text
+            result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
+            result = result.replace('null', '"NULL"')
+            chartData = ast.literal_eval(result)
+
+            try:
+                if chartData[-1]['v1'] / chartData[-13]['v1'] > 0 and chartData[-1]['v1'] > 0:
+                    three = to_percent_string((chartData[-1]['v1'] / chartData[-13]['v1']) ** (1/3) - 1)
+                else:
+                    three = None
+            except Exception as e:
+                three = None
+            try:
+                if chartData[-1]['v1'] / chartData[-21]['v1'] > 0 and chartData[-1]['v1'] > 0:
+                    five = to_percent_string((chartData[-1]['v1'] / chartData[-21]['v1']) ** (1/5) - 1)
+                else:
+                    five = None
+            except Exception as e:
+                five = None
+            try:
+                if chartData[-1]['v1'] / chartData[-41]['v1'] > 0 and chartData[-1]['v1'] > 0:
+                    ten = to_percent_string((chartData[-1]['v1'] / chartData[-41]['v1']) ** (1/10) - 1)
+                else:
+                    ten = None
+            except Exception as e:
+                ten = None
+
+            try:
+                return three, five, ten
+            except Exception as e:
+                return None, None, None
+
+        except Exception as e:
+            return None, None, None
+
     # Returns gross, operating, profit margins
     elif metric_name == 'Margins':
         try:
