@@ -872,7 +872,7 @@ class ETF:
 
         # For 1x - +1 point for low expense ratio
         try:
-            if to_number(self.expense_ratio) <= 0.0022:
+            if to_number(self.expense_ratio) <= 0.0016:
                 martin_score += 1
         except Exception as e:
             pass
