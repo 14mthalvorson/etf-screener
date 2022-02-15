@@ -40,18 +40,13 @@ class Stock:
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
 
-        self.qoq_rev_growth = finviz_fundamentals['Sales Q/Q']  # This Q revenue / Q revenue 1 year ago
-        self.ttm_rev_growth = get_macrotrends_metrics(ticker, 'TTM Rev Growth')
-        self.med_ttm_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median TTM Rev Growth 3Y')  # TTM Revenue Growth Rate, median of up to last 13 quarters
-        self.med_qoq_rev_growth_3y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 3Y')  # Median Q/Q rev growth rate
-        self.annualized_rev_growth_3y = get_macrotrends_metrics(ticker, 'Annualized Rev Growth 3Y')  # Annualized Revenue Growth Rate
-        self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Median Q/Q Rev Growth 5Y')
+        self.qoq_rev_growth = finviz_fundamentals['Sales Q/Q']
+        self.ttm_rev_growth, self.med_ttm_rev_growth_3y, self.med_qoq_rev_growth_3y, self.annualized_rev_growth_3y, self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Rev Growth')
         self.annualized_rev_growth_5y = finviz_fundamentals['Sales past 5Y']
 
         self.ebitda_growth_3y = get_macrotrends_metrics(ticker, 'EBITDA past 3Y')
 
-        self.gross_margin, self.ebit_margin, self.net_margin = get_macrotrends_metrics(ticker, 'Margins')
-        self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Max EBIT Margin 2Y')
+        self.gross_margin, self.ebit_margin, self.net_margin, self.max_ebit_margin = get_macrotrends_metrics(ticker, 'Margins')
 
         self.cash = get_macrotrends_metrics(ticker, 'Cash')
         self.long_term_debt = get_macrotrends_metrics(ticker, 'Long Term Debt')
