@@ -4,33 +4,9 @@ import ast
 import pickle
 from datetime import date
 
-ticker = 'amzn'
 
-today_str = [int(x) for x in str(date.today()).split('-')]
-if today_str[1] < 10:
-    five_past = str(today_str[0] - 5) + '-0' + str(today_str[1])
-else:
-    five_past = str(today_str[0] - 5) + '-' + str(today_str[1])
+clean_tickers()
 
-print(five_past)
-
-url = 'https://www.macrotrends.net/assets/php/stock_price_history.php?t=%s' % ticker
-html_doc = requests.get(url).text
-
-# Search the html_doc using regex for the chart content and set to chartData variable.
-result = re.search('var dataDaily = \[.*]', html_doc).group(0)[16:]
-chartData = ast.literal_eval(result)
-
-old = to_number([day.get('c', -1) for day in chartData if five_past in day.get('d', '')][0])
-now = to_number([day.get('c', -1) for day in chartData if str(date.today())[:8] in day.get('d', '')][0])
-
-print(old)
-print(now)
-print(to_percent_string((now / old) ** (1/5) - 1))
-
-# print(chartData)
-
-exit(0)
 
 '''
 stock = finvizfinance('qqq')

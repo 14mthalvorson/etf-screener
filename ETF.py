@@ -929,7 +929,11 @@ class ETF:
                             self.components[ticker] = ETF(ticker)
                 except Exception as e:
                     pass
-                add_to_cache(ticker, self.components[ticker])
+
+                try:
+                    add_to_cache(ticker, self.components[ticker])
+                except Exception as e:
+                    pass
 
     # For each stock in an ETF, displays data selected in columns
     def display_metrics(self, columns, only_nums=False, print_header=True, extra_header=False, include_overall=False):
@@ -1062,11 +1066,11 @@ class ETF:
                             line += component.five_year_return + '\t'
                         if metric_title == '10 Year Return':
                             line += component.ten_year_return + '\t'
-                        if metric_title == 'EBIT Growth 3Y':
+                        if metric_title == 'GP Growth 3Y':
                             line += component.gp_growth_3y + '\t'
-                        if metric_title == 'EBIT Growth 5Y':
+                        if metric_title == 'GP Growth 5Y':
                             line += component.gp_growth_5y + '\t'
-                        if metric_title == 'EBIT Growth 10Y':
+                        if metric_title == 'GP Growth 10Y':
                             line += component.gp_growth_10y + '\t'
                         if metric_title == 'SMA20':
                             line += component.sma20 + '\t'
