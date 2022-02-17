@@ -18,7 +18,7 @@ class Stock:
         self.ticker = ticker
         self.type = 'Stock'
 
-        finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sales', 'Dividend %', 'P/E', 'P/S',
+        finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sector', 'Industry', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'Beta', 'SMA20', 'SMA50', 'SMA200', '52W High', '52W Low',
                                                  'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees', 'Volatility M'])
@@ -31,6 +31,8 @@ class Stock:
         self.price = finviz_fundamentals['Price']
         self.market_cap = finviz_fundamentals['Market Cap']
         self.shares = finviz_fundamentals['Shs Outstand']
+        self.sector = finviz_fundamentals['Sector']
+        self.industry = finviz_fundamentals['Industry']
 
         self.three_year_return, self.five_year_return, self.ten_year_return = get_macrotrends_metrics(ticker, 'Stock Prices')
 
