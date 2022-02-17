@@ -59,6 +59,40 @@ class ETF:
             self.ticker_string = 'vig esgv vug vym vv mgc mgk mgv vone vong vonv vthr voo voog voov vti vtv vxf ' \
                                  'vo vot voe ivoo ivog ivov vtwo vtwg vtwv vioo viog viov vb vbk vbr vt'
 
+        # Finviz Sectors/Industries
+        elif ticker == 'technology':
+            self.ticker_string = 'internet gaming software_infrastructure semi_equipment semiconductors consumer_electronics technical_instruments computer_hardware electronic_components'
+
+        elif ticker == 'internet':
+            self.ticker_string = ''
+
+        elif ticker == 'gaming':
+            self.ticker_string = ''
+
+        elif ticker == 'software_infrastructure':
+            self.ticker_string = ''
+
+        elif ticker == 'software_application':
+            self.ticker_string = ''
+
+        elif ticker == 'semi_equipment':
+            self.ticker_string = ''
+
+        elif ticker == 'semiconductors':
+            self.ticker_string = ''
+
+        elif ticker == 'consumer_electronics':
+            self.ticker_string = ''
+
+        elif ticker == 'technical_instruments':
+            self.ticker_string = ''
+
+        elif ticker == 'computer_hardware':
+            self.ticker_string = ''
+
+        elif ticker == 'electronic_components':
+            self.ticker_string = ''
+
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
             self.is_real_etf = True
@@ -967,6 +1001,10 @@ class ETF:
                             line += component.name + '\t'
                         if metric_title == 'Type':  # Works for both stocks and ETFs
                             line += component.type + '\t'
+                        if metric_title == 'Sector':  # Works for both stocks and ETFs
+                            line += component.sector + '\t'
+                        if metric_title == 'Industry':  # Works for both stocks and ETFs
+                            line += component.industry + '\t'
                         if metric_title == 'Num Holdings':
                             line += component.num_holdings + '\t'
                         if metric_title == 'Weight':
