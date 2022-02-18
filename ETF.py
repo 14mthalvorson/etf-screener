@@ -61,37 +61,40 @@ class ETF:
 
         # Finviz Sectors/Industries
         elif ticker == 'technology':
-            self.ticker_string = 'internet gaming software_infrastructure software_application semi_equipment semiconductors consumer_electronics technical_instruments computer_hardware electronic_components'
+            self.ticker_string = 'internet internet_retail gaming software_infrastructure software_application semi_equipment semiconductors consumer_electronics technical_instruments computer_hardware electronic_components'
 
         elif ticker == 'internet':
             self.ticker_string = 'googl fb snap dash twlo mtch spot twtr yndx pins zg z iac grub yy carg lz angi sstk yelp ttgt seat cdlx tbla trvg'
 
+        elif ticker == 'internet_retail':
+            self.ticker_string = 'amzn meli cpng ebay cvna chwy etsy w ftch rvlv fvrr negg ostk wish posh prts aprn'
+
         elif ticker == 'gaming':
-            self.ticker_string = 'rblx se sklz ttwo atvi ea'
+            self.ticker_string = 'se atvi ea rblx ttwo znga pltk scpl sklz avid ddi ngms grvy'
 
         elif ticker == 'software_infrastructure':
-            self.ticker_string = 'hood crwd afrm cflt zs net path mdb gds sq okta pltr plan band wix fivn tenb panw mime bl splk newr adbe ftnt sail sumo vrns appn dbx cybr zuo wex qlys spsc msft gddy box rxt ntnx snps vmw akam rdwr aten mndt tufn ffiv nlok vrsn dox orcl llnw aciw'
+            self.ticker_string = 'msft amzn adbe orcl sq vmw ftnt panw snps crwd zs net mdb okta pltr vrsn splk path cflt akam nlok afrm gddy ffiv hcp mcfe s tost nvei hood iot dox dbx bki tixt fivn gds dava plan docn cybr ntnx mime tenb qlys wix bl altr newr box sqsp appn rxt zuo'
 
         elif ticker == 'software_application':
-            self.ticker_string = 'snow apps asan api ddog shop bill zi smar lyft u estc kc ttd vmeo coup docu avlr frog ncno hubs glob evbg team fsly jamf rng pd upld zen now dt payc rpd qtwo appf crm pcty wday lpsn domo alrm bsy wk eght adsk dsgx anss intu uber calx tyl stne modn cdns azpn cday ssnc ptc fico mant pro otex blkb sap chkp ctxs ospn mstr nuan'
+            self.ticker_string = 'crm sap intu now snow shop team uber wday ddog adsk coin ttd cdns u anss bill app docu hubs zi payc ssnc tyl nuan xm lyft rng zen fico ptc asan ctxs dt pcty cday bsy gtlb azpn avlr mndy coup pcor estc manh gwre smar pega is frsh dsgx lazr alit lspd wk rpd nati cdk ncno brze cwan apps pycr dv mstr srad msp you ayx jamf appf qtwo env esmt comp bmbl calx duol stne alrm spt cxm dct pd olo frog fsly exfy riot bigc evbg ampl vmeo kc mttr eght domo eb pro api pdfs pubm mitk'
 
         elif ticker == 'semi_equipment':
-            self.ticker_string = 'dq amat oled asml klac lrcx ccmp ter entg amba ipgp'
+            self.ticker_string = 'asml amat lrcx klac ter entg ipgp oled amba ccmp klic nvmi acls uctt xper acmr cohu camt veco'
 
         elif ticker == 'semiconductors':
-            self.ticker_string = 'nvda amd onto mpwr asx tsm mxl mu adi mchp powi avgo umc diod qcom xlnx stm smtc qrvo on slab mrvl swks txn intc nxpi lscc syna wolf'
+            self.ticker_string = 'nvda tsm avgo qcom intc txn amd mu adi mrvl xlnx nxpi stm mchp gfs on umc swks mpwr asx qrvo wolf syna lscc amkr slab algm powi tsem'
 
         elif ticker == 'consumer_electronics':
-            self.ticker_string = 'aapl sony'
+            self.ticker_string = 'aapl sony lpl sono vzio irbt gpro ueic vuzi hear'
 
         elif ticker == 'technical_instruments':
-            self.ticker_string = 'mksi iivi cgnx mlab keys grmn tdy novt trmb ese itri'
+            self.ticker_string = 'keys ftv grmn tdy trmb cgnx st mksi iivi cohr novt vnt itri ese mlab faro vldr satl mvis fcuv'
 
         elif ticker == 'computer_hardware':
             self.ticker_string = 'anet pstg logi dell hpq wdc ntap stx'
 
         elif ticker == 'electronic_components':
-            self.ticker_string = 'fn aph glw rog plxs tel sanm'
+            self.ticker_string = 'tel aph glw jbl flex lfus rog atc vicr fn sanm plxs wbx mei cls osis ttmi cts'
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
