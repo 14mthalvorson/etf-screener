@@ -61,37 +61,37 @@ class ETF:
 
         # Finviz Sectors/Industries
         elif ticker == 'technology':
-            self.ticker_string = 'internet gaming software_infrastructure semi_equipment semiconductors consumer_electronics technical_instruments computer_hardware electronic_components'
+            self.ticker_string = 'internet gaming software_infrastructure software_application semi_equipment semiconductors consumer_electronics technical_instruments computer_hardware electronic_components'
 
         elif ticker == 'internet':
-            self.ticker_string = ''
+            self.ticker_string = 'googl fb snap dash twlo mtch spot twtr yndx pins zg z iac grub yy carg lz angi sstk yelp ttgt seat cdlx tbla trvg'
 
         elif ticker == 'gaming':
-            self.ticker_string = ''
+            self.ticker_string = 'rblx se sklz ttwo atvi ea'
 
         elif ticker == 'software_infrastructure':
-            self.ticker_string = ''
+            self.ticker_string = 'hood crwd afrm cflt zs net path mdb gds sq okta pltr plan band wix fivn tenb panw mime bl splk newr adbe ftnt sail sumo vrns appn dbx cybr zuo wex qlys spsc msft gddy box rxt ntnx snps vmw akam rdwr aten mndt tufn ffiv nlok vrsn dox orcl llnw aciw'
 
         elif ticker == 'software_application':
-            self.ticker_string = ''
+            self.ticker_string = 'snow apps asan api ddog shop bill zi smar lyft u estc kc ttd vmeo coup docu avlr frog ncno hubs glob evbg team fsly jamf rng pd upld zen now dt payc rpd qtwo appf crm pcty wday lpsn domo alrm bsy wk eght adsk dsgx anss intu uber calx tyl stne modn cdns azpn cday ssnc ptc fico mant pro otex blkb sap chkp ctxs ospn mstr nuan'
 
         elif ticker == 'semi_equipment':
-            self.ticker_string = ''
+            self.ticker_string = 'dq amat oled asml klac lrcx ccmp ter entg amba ipgp'
 
         elif ticker == 'semiconductors':
-            self.ticker_string = ''
+            self.ticker_string = 'nvda amd onto mpwr asx tsm mxl mu adi mchp powi avgo umc diod qcom xlnx stm smtc qrvo on slab mrvl swks txn intc nxpi lscc syna wolf'
 
         elif ticker == 'consumer_electronics':
-            self.ticker_string = ''
+            self.ticker_string = 'aapl sony'
 
         elif ticker == 'technical_instruments':
-            self.ticker_string = ''
+            self.ticker_string = 'mksi iivi cgnx mlab keys grmn tdy novt trmb ese itri'
 
         elif ticker == 'computer_hardware':
-            self.ticker_string = ''
+            self.ticker_string = 'anet pstg logi dell hpq wdc ntap stx'
 
         elif ticker == 'electronic_components':
-            self.ticker_string = ''
+            self.ticker_string = 'fn aph glw rog plxs tel sanm'
 
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
