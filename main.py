@@ -11,6 +11,7 @@ ETF Growth Metrics:
 'Median TTM Rev Growth 3Y', 'Median Q/Q Rev Growth 3Y', 'Annualized Rev Growth 3Y'
 '% >7% Rev Growth'
 '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return'
+'GP Growth 3Y', 'GP Growth 5Y', 'GP Growth 10Y'
 
 ETF Valuation Metrics:
 'EV/GP', 'Adj EV/EBIT', 'EV/EBIT'
@@ -42,8 +43,9 @@ Crypto:
 '''
 
 
-etf = ETF('spy sso upro qqq qld tqqq')
-columns = ['Ticker', 'Name', 'Weight', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return', 'Adj Rev Growth 3Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '52W High', '% at 52W High', '% at 52W Low']
+
+etf = ETF('all')
+columns = ['Ticker', 'Name', 'Market Cap', 'Sector', 'Industry', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return', 'Adj Rev Growth 3Y', 'Leveraged Rev Growth 3Y', 'GP Growth 3Y', 'GP Growth 5Y', 'GP Growth 10Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '52W High', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 
 
