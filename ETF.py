@@ -1015,7 +1015,7 @@ class ETF:
                         if metric_title == 'Price':
                             line += component.price + '\t'
                         if metric_title == 'Market Cap':
-                            line += component.market_cap + '\t'
+                            line += to_billions_string(to_number(component.market_cap)) + '\t'
                         if metric_title == 'Enterprise Value':
                             line += component.enterprise_value + '\t'
                         if metric_title == 'Shares Outstanding':
