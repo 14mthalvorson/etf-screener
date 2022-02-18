@@ -1042,6 +1042,8 @@ class ETF:
 
                         if metric_title == 'Adj Rev Growth 3Y':
                             line += component.adj_rev_growth_3y + '\t'
+                        if metric_title == 'Rev Growth 5Y':
+                            line += component.annualized_rev_growth_5y + '\t'
                         if metric_title == 'Leveraged Rev Growth 3Y':
                             line += component.leveraged_adj_rev_growth_3y + '\t'
 
