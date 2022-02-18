@@ -990,14 +990,16 @@ class ETF:
                     try:
                         if metric_title == 'Ticker':  # Works for both stocks and ETFs
                             line += component.ticker + '\t'
-                        if metric_title == 'Name':  # Works for both stocks and ETFs
+                        if metric_title == 'Name':
                             line += component.name + '\t'
-                        if metric_title == 'Type':  # Works for both stocks and ETFs
+                        if metric_title == 'Type':
                             line += component.type + '\t'
-                        if metric_title == 'Sector':  # Works for both stocks and ETFs
+                        if metric_title == 'Sector':
                             line += component.sector + '\t'
-                        if metric_title == 'Industry':  # Works for both stocks and ETFs
+                        if metric_title == 'Industry':
                             line += component.industry + '\t'
+                        if metric_title == 'Country':
+                            line += component.country + '\t'
                         if metric_title == 'Num Holdings':
                             line += component.num_holdings + '\t'
                         if metric_title == 'Weight':
