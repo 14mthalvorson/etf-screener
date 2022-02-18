@@ -579,7 +579,7 @@ class ETF:
 
         # Query Finviz metrics for real ETFs
         if self.is_real_etf:
-            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year', 'Volatility M'])
+            finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Dividend %', 'Price', 'SMA20', 'SMA50', 'SMA200', '52W High', 'Perf Year', 'Volatility M', 'Volatility W'])
 
             if finviz_fundamentals is not None:
                 self.name = finviz_fundamentals['Company']
@@ -591,6 +591,7 @@ class ETF:
                 self.high_52W = finviz_fundamentals['52W High']
                 self.perf_year = finviz_fundamentals['Perf Year']
                 self.monthly_volatility = finviz_fundamentals['Volatility M']
+                self.weekly_volatility = finviz_fundamentals['Volatility W']
 
             try:
                 self.three_year_return, self.five_year_return, self.ten_year_return = get_macrotrends_metrics(self.ticker, 'Stock Prices')
@@ -1119,8 +1120,10 @@ class ETF:
                             line += component.sma50 + '\t'
                         if metric_title == 'SMA200':
                             line += component.sma200 + '\t'
-                        if metric_title == 'Volatility':
+                        if metric_title == 'Volatility M':
                             line += component.monthly_volatility + '\t'
+                        if metric_title == 'Volatility W':
+                            line += component.weekly_volatility + '\t'
 
                         # ETF Only Metrics
                         if metric_title == 'Weighted Median EV/GP':

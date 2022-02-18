@@ -21,7 +21,7 @@ class Stock:
         finviz_fundamentals = get_finviz_metrics(ticker, ['Company', 'Price', 'Market Cap', 'Sector', 'Industry', 'Sales', 'Dividend %', 'P/E', 'P/S',
                                                  'EPS this Y', 'Sales Q/Q', 'Sales past 5Y', 'Gross Margin',
                                                  'Oper. Margin', 'Profit Margin', 'Beta', 'SMA20', 'SMA50', 'SMA200', '52W High', '52W Low',
-                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees', 'Volatility M'])
+                                                 'Perf Year', 'Shs Outstand', 'P/C', 'P/FCF', 'Debt/Eq', 'Employees', 'Volatility M', 'Volatility W'])
 
         if finviz_fundamentals['Market Cap'] is None:  # Probably an ETF
             self.type = 'ETF'
@@ -66,6 +66,7 @@ class Stock:
         self.low_52W = finviz_fundamentals['52W Low']
         self.perf_year = finviz_fundamentals['Perf Year']
         self.monthly_volatility = finviz_fundamentals['Volatility M']
+        self.weekly_volatility = finviz_fundamentals['Volatility W']
 
         self.morningstar_FVE = morningstar_FVEs.get(ticker, None)
 
