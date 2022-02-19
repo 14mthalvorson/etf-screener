@@ -56,7 +56,10 @@ def clean_tickers():
     with open('input.txt', 'r+') as f:
         data = f.read().lower().strip()
 
+        data = data.split('\n')
+        data = [x for i, x in enumerate(data) if i % 7 == 1]
 
+        data = ' '.join(data)
         data = sorted(list(set(data.split(' '))))
 
         data = ' '.join(data)

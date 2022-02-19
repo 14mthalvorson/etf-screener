@@ -25,6 +25,7 @@ Other ETF Metrics:
 'Gross Margin', 'Adj EBIT Margin'
 'Price to FVE'
 'Leverage', 'Expense Ratio'
+'Volatility M', 'Volatility W'
 
 Stock Metrics:
 'Ticker', 'Type', 'Weight', 'Price', 'Market Cap', 'Enterprise Value', 'Shares Outstanding'
@@ -42,10 +43,8 @@ Crypto:
 'Ticker', 'Name', 'Type', 'Weight', 'Price'
 '''
 
-
-
-etf = ETF('all')
-columns = ['Ticker', 'Name', 'Market Cap', 'Sector', 'Industry', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return', 'Adj Rev Growth 3Y', 'Leveraged Rev Growth 3Y', 'GP Growth 3Y', 'GP Growth 5Y', 'GP Growth 10Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Volatility', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '52W High', '% at 52W High', '% at 52W Low']
+etf = ETF('all_etfs')
+columns = ['Ticker', 'Name', 'Market Cap', 'Sector', 'Industry', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return', 'Adj Rev Growth 3Y', 'Rev Growth 5Y', 'Leveraged Rev Growth 3Y', 'GP Growth 3Y', 'GP Growth 5Y', 'GP Growth 10Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Volatility M', 'Volatility W', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '52W High', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 
 
