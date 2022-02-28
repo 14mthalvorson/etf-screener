@@ -40,7 +40,7 @@ class ETF:
             self.ticker_string = 'aapl adbe amt amzn bulz cci cldl igv swar coin crm cure dlr eqix fas fb fngg fngu googl ihi ma msft nflx qqqm rom sbac schg skyu soxl tecl tmf tqqq tsm ucyb upro v vdc vgt vht vig voog vox vpu vxf webl xbi'
 
         elif ticker == 'mine':  # My Holdings
-            self.ticker_string = 'aapl abnb abt adbe adsk ai amd amzn anss api appf appn apps arkf asan avlr band bill bl bulz cdns chgg clou coin coup cour cpng crm crwd cure cvna cybr ddog dis docu domo dsgx dt eght estc etsy evbg fb fivn fngg fngo fngu frog fvrr glob googl gtlb hubs ibb idna jamf lmnd logi mdb meli metv morn mrna mrvl msft mtch mttr net newr nflx now nvda okta open path payc pd pins plan pltr pypl qld qtwo rblx rdfn rng roku rom rpd se shop sklz smar snap snow sofi splk spot sq sumo tdoc team tenb ter tqqq tsm ttd twlo twtr tyl u upro upwk usd veev wcld wday we wix xbi z zen zg zm zs'
+            self.ticker_string = 'aapl abnb adbe adsk ai amd amzn qqq ubt anss api appf appn apps arkf asan avlr band bill bl bulz cdns chgg clou coin coup cpng crm crwd cure cvna ddog dis docu domo dsgx dt eght estc etsy evbg fb fivn fngg fngo fngu frog fvrr glob googl gtlb hubs ibb idna jamf lmnd mdb meli metv morn mrna msft mtch mttr net newr nflx now nvda okta open path payc pd pins plan pltr pypl qld qtwo rblx rdfn rng roku rom rpd se shop sklz smar snap snow sofi spot sq sumo tdoc team tenb ter tqqq tsm ttd twlo twtr u upro upwk usd veev wcld wday we wix xbi z zen zg zm zs'
 
         elif ticker == 'my_top':  # My Top Holdings
             self.ticker_string = 'googl amzn tmf fb coin msft crm shop crwd ttd aapl se adbe nvda ddog veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
