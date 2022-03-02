@@ -165,10 +165,9 @@ I just named it Martin so it's obvious this isn't some official scoring system b
 - I added caching to the querying of stocks and ETFs. The first time will take the longest and after that there is about a 96% speed-up in the time it takes to analyze an ETF.
 
 ## Future Goals
-- Add sourcing for expense ratios/fees
 - Improve data sources for international stocks
 - Add conditional statements for filtering lists of stocks (e.g. show revenue growth for QQQ holdings where Operating Margin > 10%)
 - Review and add more error handling
-- Adding some crypto metrics. Obvi crypto won't have the fundamentals stocks have but I could pull price data. Need to figure out the best API for this or the best place to scrape the data from.
+- Potentially - adding some crypto metrics. Obvi crypto won't have the fundamentals stocks have but I could pull price data. Need to figure out the best API for this or the best place to scrape the data from.
 
 
