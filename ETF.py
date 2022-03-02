@@ -45,8 +45,11 @@ class ETF:
         elif ticker == 'my_top':  # My Top Holdings
             self.ticker_string = 'googl amzn tmf fb coin msft crm shop crwd ttd aapl se adbe nvda ddog veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
 
+        elif ticker == 'largest_us':  # My Top Holdings
+            self.ticker_string = 'googl amzn tmf fb coin msft crm shop crwd ttd aapl se adbe nvda ddog veev sq pltr net now hubs fngg fngu bulz twlo etsy pins tdoc qqq'
+
         elif ticker == 'vanguard':  # Vanguard ETFs
-            self.ticker_string = 'vig esgv vug vym vv mgc mgk mgv vone vong vonv vthr voo voog voov vti vtv vxf vo vot voe ivoo ivog ivov vtwo vtwg vtwv vioo viog viov vb vbk vbr vt'
+            self.ticker_string = 'aapl msft googl amzn tsla nvda fb v unh jnj jpm wmt pg ma bac hd xom cvx dis ko abbv pfe avgo lly cost csco adbe vz pep tmo nke cmcsa orcl abt crm dhr wfc intc mrk qcom amd ups mcd nflx t pm txn ms unp tmus nee rtx bmy low schw bx intu axp cvs hon amgn cop lmt pypl c amat now ba de ibm gs antm blk pld amt isrg sbux tgt chtr el abnb ge cat syk mu spgi mo zts mdlz bkng adp cme adi snow mmm usb pnc ci bdx mmc gild duk lrcx tjx hca tfc csx cci ice eog noc ew fcx so uber regn itw shw f eqix gm atvi mrna fisv d gd cl psa snap bsx nsc wm mco wday vrtx pgr cof pxd sq fis rivn fdx nem mrvl bto panw ftnt scco hum epd mar kdp emr met slb ilmn klac apd ddog lhx vmw kkr ecl cnc adsk rop snps khc crwd aig mpc dg ctsh sre idxx aep oxy spg aph orly coin syy iqv kmb adm mnst bax payx dow cmg dell zs cdns hsy bk msci exc stz lcid ttd mck dxcm algn kmi trv gis hlt pru ctas wba a o net dvn wmb dd mchp'
 
         # Finviz Sectors/Industries
         elif ticker == 'technology':
