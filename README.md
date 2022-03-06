@@ -102,7 +102,7 @@ txn	Texas Instruments Incorporated	Stock	-0.88%	13.00	18.67	67.50%	47.02%	-11.26
 vrtx	Vertex Pharmaceuticals Incorporated	Stock	33.44%	7.73	14.45	88.10%	47.15%	-0.10%	0.46%
 ```
 
-After copying and pasting into Google Sheets (and bolding the first line for clarity)
+After copying and pasting into Google Sheets (and bolding the header for readability)
 
 ![Above data displayed in Google Sheets](https://github.com/14mthalvorson/etf-screener/blob/main/qqq_analysis.png)
 
