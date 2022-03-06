@@ -49,7 +49,7 @@ etf = ETF('qqq')
 columns = ['Ticker', 'Name', 'Type', 'Median Rev Growth 3Y', 'EV/GP', 'Adj EV/EBIT', 'Gross Margin', 'Adj EBIT Margin', '52W High', 'Weight']
 etf.display_metrics(columns, include_overall=True)
 ```
-In the output below, the first line is a header. The second line has the aggregate metrics generated for the ETF specified. The following lines are the top holdings, with all the requested metrics listed. As noted above, the output is tab-separated format (which doesn't output as clearly here but it works very well in a spreadsheet). 
+In the output below, the first line is a header. The second line has the aggregate metrics generated for the ETF specified (set include_overall flag to False if you don't want this line). The following lines are the top holdings, with all the requested metrics listed. As noted above, the output is tab-separated format (which doesn't output as clearly here but it works very well in a spreadsheet). 
 
 Output:
 ```
@@ -101,6 +101,10 @@ tsla	Tesla, Inc.	Stock	45.50%	68.36	180.79	25.30%	9.57%	-24.67%	4.26%
 txn	Texas Instruments Incorporated	Stock	-0.88%	13.00	18.67	67.50%	47.02%	-11.26%	1.16%	
 vrtx	Vertex Pharmaceuticals Incorporated	Stock	33.44%	7.73	14.45	88.10%	47.15%	-0.10%	0.46%
 ```
+
+After copying and pasting into Google Sheets (and bolding the first line for clarity)
+
+![Above data displayed in Google Sheets](https://github.com/14mthalvorson/etf-screener/blob/main/qqq_analysis.png)
 
 ### Example 3: You can compare multiple stocks and multiple ETFs at the same time.
 
