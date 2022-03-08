@@ -106,6 +106,12 @@ After copying and pasting into Google Sheets (and bolding the header for readabi
 
 ![Above data displayed in Google Sheets](https://github.com/14mthalvorson/etf-screener/blob/main/qqq_analysis.png)
 
+- Sorting by weight would show the largest holdings of the ETF
+- Sorting by revenue growth would show the fastest growing holdings
+- Sorting by ticker/name would alphabetize the columns, respectively
+
+_The few blanks spots are either due to missing data from the source (in this case Macrotrends) or the heuristic sensing that the calculation is misrepresenative and choosing to instead omit the calculation._
+
 ### Example 3: You can compare multiple stocks and multiple ETFs at the same time.
 
 Input:
