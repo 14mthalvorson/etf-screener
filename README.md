@@ -37,8 +37,6 @@ Health
 	% of holdings at 52W High (within 5%): 5.18%
 	% of holdings at 52W Low (within 5%): 4.35%
 	% of ETF covered by 3 largest holdings: 30.83%
-
-Overall "Martin" Score (out of 14): 10
 ```
 
 ### Example 2: Display an ETF with the metrics of your choice.
