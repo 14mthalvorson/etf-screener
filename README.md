@@ -12,7 +12,7 @@ The process of calculating these metrics includes scraping the weighted holdings
 
 Input:
 ```
-etf = ETF('qld')  # (2x QQQ)
+etf = ETF('qld') 
 etf.display_summary()
 ```
 
