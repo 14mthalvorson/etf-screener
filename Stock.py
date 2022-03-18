@@ -304,5 +304,3 @@ class Stock:
             pass
 
         self.martin_score = str(martin_score)
-        if self.num_holdings == '0':
-            self.martin_score = None
