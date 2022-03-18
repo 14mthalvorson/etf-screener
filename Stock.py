@@ -235,3 +235,74 @@ class Stock:
             self.debt_to_gp = to_ratio_string(to_number(self.long_term_debt) / to_number(self.gross_profit))
         except Exception as e:
             self.debt_to_gp = None
+
+        # Generate "Martin" Score - my arbitrary scoring system for finding ETFs I like
+        martin_score = 0
+
+        # Revenue growth > 8%
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.08:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # Revenue growth > 15%
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.15:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # Revenue growth > 25%
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.25:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        # Revenue growth > 40%
+        try:
+            if to_number(self.adj_rev_growth_3y) >= 0.40:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.ev_to_gp_ratio) <= 15.0:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.adj_ev_to_ebit_ratio) <= 30.0:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.adj_ebit_margin) >= 0.00:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.adj_ebit_margin) >= 0.20:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.gross_margin) >= 0.60:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        try:
+            if to_number(self.monthly_volatility) <= 0.04:
+                martin_score += 1
+        except Exception as e:
+            pass
+
+        self.martin_score = str(martin_score)
+        if self.num_holdings == '0':
+            self.martin_score = None
