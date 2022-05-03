@@ -45,8 +45,7 @@ Crypto:
 
 # clear_cache()
 
-
-etf = ETF('mine')
+etf = ETF('crash_protection')
 columns = ['Ticker', 'Name', 'Market Cap', 'Sector', 'Industry', 'Type', 'Num Holdings', 'Leverage', 'Expense Ratio', 'Martin Score', '1 Year Return', '3 Year Return', '5 Year Return', '10 Year Return', 'Adj Rev Growth 3Y', 'Rev Growth 5Y', 'GP Growth 3Y', 'GP Growth 5Y', 'GP Growth 10Y', 'Gross Margin', 'Adj EBIT Margin', 'EV/GP', 'Adj EV/EBIT', 'Volatility M', 'Volatility W', '% Pos Rev Growth', '% >7% Rev Growth', '% Pos EBIT Margin', '52W High', 'SMA20', 'SMA50', 'SMA200', '% at 52W High', '% at 52W Low']
 etf.display_metrics(columns, only_nums=True, extra_header=False, include_overall=True)
 

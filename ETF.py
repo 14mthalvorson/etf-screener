@@ -85,6 +85,12 @@ class ETF:
         elif ticker == 'electronic_components':
             self.ticker_string = 'tel aph glw jbl flex lfus rog atc vicr fn sanm plxs wbx mei cls osis ttmi cts'
 
+        elif ticker == 'm1':
+            self.ticker_string = 'tqqq tmf cure upro fngu rom soxl tecl fas crash_protection'
+
+        elif ticker == 'crash_protection':
+            self.ticker_string = 'qqqm voog vht vdc vig msft vgt vpu vox goog ma v fb vxf aapl ihi amzn coin dlr eqix sbac tsm cci adbe amt crm xbi nflx'
+
         elif ticker == 'fngg':  # FNGG ETF Holdings
             self.ticker_string = 'googl amd fb nvda amzn msft aapl nflx rblx zs snap crwd se ddog nio snow u tsla zm shop'
             self.is_real_etf = True
