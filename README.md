@@ -1,6 +1,6 @@
 # A financial screener for public stocks and ETFs
 
-The main goal of this screener is to calculate weighted financial metrics for ETFs, similar to metrics you can easily find for stocks. These metrics are mainly around the growth rate, valuation, and general health of an ETF. Below, I've listed a few demo functionalities of the screener.
+The main goal of this screener is to calculate weighted financial metrics for ETFs, similar to metrics you can easily find for stocks. These metrics are mainly around the growth rate, valuation, and general health of an ETF. This is done by looking at the individual weighted holdings within an ETF, pulling the financial data for these holdings, and combining this data with methods that make sense for the metric.
 
 The process of calculating these metrics includes scraping the weighted holdings (stocks) composing an ETF, pulling the financial data of these underlying holdings, running data validation checks, and performing the weighted metric calculations. The output is usually in a tab-separated format for an easy copy/paste into Excel or Google Sheets. This process originally started off with me manually doing a lot of this work and I figured I could automate much of this process to save time, improve accuracy, and provide a programmatic platform for further building off of. Additionally, the (primarily) ETF screener can also be used to screen stocks, for which there are many additional metrics not available for ETFs. This project was designed for my personal use (but feel free to use as well if useful!) and is not intended for use in any production systems.
 
@@ -135,26 +135,6 @@ vig	Vanguard Dividend Appreciation Index Fund ETF Shares	ETF	7.07%	10.14	21.59	5
 ```
 
 The sources for the financial data are listed in the spreadsheet linked at the top of the README. For the ETFs, the holdings are pulled from Marketwatch. Marketwatch only lists the top 25 holdings so that what most of the ETFs will use to analyze. I've hardcoded a few (QQQ, SPY, MOAT) beyond the top 25 that I use more frequently. This also helps during the times that Marketwatch is sometimes not available. I use a couple functions (clean tickers) in the utilities file to do this. Overall, it doesn't make much of a difference thankfully when calculating the weighted medians.
-
-## "Martin" Scoring System
-
-I just named it Martin so it's obvious this isn't some official scoring system but just something I made up. The scoring system is a simple sum, 1 point for each of the following:
-- 90%+ stocks with positive revenue growth
-- 95%+ stocks with positive revenue growth
-- 80%+ stocks with 7%+ revenue growth
-- 8%+ median revenue growth
-- 15%+ median revenue growth
-- 25%+ median revenue growth
-- Median EV/GP lower than 15.0
-- Median EV/EBIT lower than 30.0
-- 70%+ stocks with positive EBIT margin
-- 90%+ stocks with positive EBIT margin
-- Median EBIT margin at least 20%
-- Median gross margin at least 50%
-- 3 Largest holdings make up less than 40% of the ETF
-- (For 1x ETFs) - Expense Ratio is under 0.22%
-- (For 2x ETFs) - Monthly Vol is under 5%
-- (For 3x ETFs) - Monthly Vol is under 6%
 
 
 ## Current Data Sources
