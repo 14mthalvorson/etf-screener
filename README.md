@@ -151,8 +151,8 @@ The sources for the financial data are listed in the spreadsheet linked at the t
 - finvizfinance
 
 ## Assumptions & Notes
-- I don't do automatic checks on the accuracy of data. Most of the numbers are pulled from Macrotrends and Finviz. The only discrepancies I notice are usually small differences in gross/operating/net margins. In the screener, I usually just average the two sources if they are both available. Maybe in the future I'll source and pull data directly from the SEC quarterly reports.
-- I added caching to the querying of stocks and ETFs. The first time will take the longest and after that there is about a 96% speed-up in the time it takes to analyze an ETF.
+- I don't do automatic checks on the accuracy of data. Most of the numbers are pulled from Macrotrends and Finviz. The only discrepancies I notice are usually small differences in gross/operating/net margins. In the screener, I usually will preference the Macrotrends data if available. Maybe in the future I'll source and pull data directly from the SEC quarterly reports.
+- I added caching to the querying of stocks and ETFs. The first time calling a stock or ETF will take the longest (must search for all the data). After that there is about a 96% speed-up in the time it takes to analyze an ETF (just pulling the previously cached data). To clear the cache, there is a clear_cache() function you can call from main.
 
 ## Future Goals
 - Improve data sources for international stocks
