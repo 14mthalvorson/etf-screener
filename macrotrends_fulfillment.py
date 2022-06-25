@@ -226,16 +226,16 @@ def get_macrotrends_metrics(ticker, metric_name, *args):
         try:
             # This URL is from a specific chart on the Macrotrends revenue page
 
-            url = 'view-source:https://www.macrotrends.net/stocks/charts/%s/bandwidth/price-sales' % ticker
+            url = 'https://www.macrotrends.net/assets/php/fundamental_iframe.php?t=%s&type=price-sales&statement=price-ratios&freq=Q' % ticker
             html_doc = requests.get(url).text
 
             # Search the html_doc using regex for the chart content and set to chartData variable.
             result = re.search('var chartData = \[.*]', html_doc).group(0)[16:]
             result = result.replace('null', '"NULL"')
             chartData = ast.literal_eval(result)
-            chartData = [x for x in chartData if x.get('v3', 'NULL') != 'NULL'][-21:]  # Remove list items with 'v3' items == 'NULL'
-            if len(chartData) == 21:
-                return get_median_from_list(chartData)
+            chartData = [x['v3'] for x in chartData if x.get('v3', 'NULL') != 'NULL'][-21:]  # Remove list items with 'v3' items == 'NULL'
+            if len(chartData) >= 13:
+                return to_ratio_string(get_median_from_list(chartData))
         except Exception as e:
             return None
 
