@@ -42,9 +42,7 @@ class Stock:
 
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
-        print(1)
         self.ps_ratio_5y_med = get_macrotrends_metrics(ticker, '5Y Median P/S')
-        print(self.ps_ratio_5y_med)
 
         self.qoq_rev_growth = finviz_fundamentals['Sales Q/Q']
         self.ttm_rev_growth, self.med_ttm_rev_growth_3y, self.med_qoq_rev_growth_3y, self.annualized_rev_growth_3y, self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Rev Growth')
