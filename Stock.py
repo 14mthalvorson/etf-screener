@@ -42,6 +42,7 @@ class Stock:
 
         self.pe_ratio = finviz_fundamentals['P/E']
         self.ps_ratio = finviz_fundamentals['P/S']
+        self.ps_ratio_5y_med = get_macrotrends_metrics(ticker, '5Y Median P/S')
 
         self.qoq_rev_growth = finviz_fundamentals['Sales Q/Q']
         self.ttm_rev_growth, self.med_ttm_rev_growth_3y, self.med_qoq_rev_growth_3y, self.annualized_rev_growth_3y, self.med_qoq_rev_growth_5y = get_macrotrends_metrics(ticker, 'Rev Growth')
@@ -109,6 +110,12 @@ class Stock:
             self.price_to_FVE = to_ratio_string(to_number(self.price) / to_number(self.morningstar_FVE))
         except Exception as e:
             self.price_to_FVE = None
+
+        # Current P/S over Historical P/S
+        try:
+            self.current_to_historical_ps_ratio = to_ratio_string(to_number(self.ps_ratio) / to_number(self.ps_ratio_5y_med))
+        except Exception as e:
+            self.current_to_historical_ps_ratio = None
 
         # Gross profit
         try:
