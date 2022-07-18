@@ -1,4 +1,4 @@
-# A financial screener for public stocks and ETFs
+# Financial screener for stocks and ETFs
 
 The main goal of this screener is to calculate weighted financial metrics for ETFs, similar to metrics you can easily find for stocks. These metrics are mainly around the growth rate, valuation, and general health of an ETF. This is done by looking at the individual weighted holdings within an ETF, pulling the financial data for these holdings, and combining this data with methods that make sense for the metric.
 
